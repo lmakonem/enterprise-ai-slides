@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Activity 2: Inside the Machine</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body><h1>Activity 2: Inside the Machine</h1>
+<p><strong>Module 2: Tokenization &amp; Model Cards</strong></p>
+<h2>⏱️ Time Estimate</h2>
+<p>45 Minutes</p>
+<h2>🎯 Objective</h2>
+<p>In this activity, you will visualize how an LLM "sees" text using a tokenizer. You will also learn to read and evaluate the "Nutrition Label" of an AI model: the Model Card.</p>
+<h2>🛠️ Tools Required</h2>
+<ul>
+<li>A web browser</li>
+<li><strong>OpenAI Tokenizer:</strong> <a href="https://platform.openai.com/tokenizer">platform.openai.com/tokenizer</a></li>
+<li><strong>Hugging Face Model Hub:</strong> <a href="https://huggingface.co/models">huggingface.co/models</a></li>
+<li><strong>Model Evaluation Rubric:</strong> <a href="../templates/model-evaluation.md">model-evaluation.md</a></li>
+</ul>
+<h2>📂 Deliverables</h2>
+<ul>
+<li>Completed <a href="../templates/model-evaluation.md">Model Evaluation Rubric</a></li>
+</ul>
+<hr />
+<h2>📝 Step-by-Step Instructions</h2>
+<h3>Part 1: Tokenization Visualization (15 min)</h3>
+<p>LLMs don't read words; they read <strong>tokens</strong> (roughly 3/4 of a word).</p>
+<ol>
+<li>
+<p><strong>Open the Tokenizer Tool:</strong><br />
+    Go to <a href="https://platform.openai.com/tokenizer">platform.openai.com/tokenizer</a>.</p>
+</li>
+<li>
+<p><strong>Paste This Text:</strong><br />
+    &gt; "Artificial Intelligence is transforming enterprise operations."</p>
+</li>
+<li>
+<p><strong>Observe the Colors:</strong><br />
+    Notice how words are split.</p>
+<ul>
+<li>"Artificial" might be one token.</li>
+<li>"Intelligence" might be one token.</li>
+<li>Notice how spaces are handled.</li>
+</ul>
+</li>
+<li>
+<p><strong>Try a Complex Word:</strong><br />
+    Type: <code>supercalifragilisticexpialidocious</code></p>
+<ul>
+<li>How many tokens is it split into? Why? (This helps the model handle rare words).</li>
+</ul>
+</li>
+<li>
+<p><strong>Try Code:</strong><br />
+    Type:<br />
+<code>python
+    def hello_world():
+        print("Hello, Enterprise!")</code></p>
+<ul>
+<li>Look at how punctuation and indentation are tokenized. This is why coding models need massive context windows.</li>
+</ul>
+</li>
+</ol>
+<h3>Part 2: Exploring the Hugging Face Hub (15 min)</h3>
+<p>Hugging Face is the "GitHub of AI." It hosts over 500,000 open-source models.</p>
+<ol>
+<li><strong>Go to Hugging Face:</strong> <a href="https://huggingface.co/models">huggingface.co/models</a></li>
+<li>
+<p><strong>Search for Models:</strong><br />
+    Use the search bar to find these three famous models:</p>
+<ul>
+<li><code>gpt2</code> (Classic, by OpenAI)</li>
+<li><code>meta-llama/Llama-2-7b-chat-hf</code> (Open-source standard, by Meta)</li>
+<li><code>mistralai/Mistral-7B-Instruct-v0.1</code> (High performance, by Mistral)</li>
+</ul>
+</li>
+<li>
+<p><strong>Filter by Task:</strong><br />
+    On the left sidebar, click <strong>Text Generation</strong>. Notice how many models appear. Now click <strong>Text Classification</strong>.</p>
+</li>
+</ol>
+<h3>Part 3: Reading a Model Card (15 min)</h3>
+<p>Pick <strong>ONE</strong> of the models above (or find a new one like <code>google/gemma-7b</code>). Open its page.</p>
+<p><strong>Locate the following sections on the "Model Card" tab:</strong><br />
+1.  <strong>Model Description:</strong> What does it do? (e.g., "7-billion parameter language model")<br />
+2.  <strong>Intended Use:</strong> Who is it for? (e.g., "Research," "Chatbots")<br />
+3.  <strong>Training Data:</strong> What did it read? (e.g., "Publicly available online data")<br />
+4.  <strong>Limitations &amp; Bias:</strong> Does it warn you about hallucination or toxic outputs?<br />
+5.  <strong>License:</strong> Is it truly open source (Apache 2.0/MIT) or restricted (Community License)?</p>
+<p><strong>Fill out the <a href="../templates/model-evaluation.md">Model Evaluation Rubric</a></strong> for your chosen model.</p>
+<hr />
+<h2>✅ Success Criteria</h2>
+<ul>
+<li>[ ] Successfully used the tokenizer tool to split text.</li>
+<li>[ ] Navigated the Hugging Face Model Hub.</li>
+<li>[ ] Located and read a Model Card.</li>
+<li>[ ] Completed the Model Evaluation Rubric.</li>
+</ul></body></html>

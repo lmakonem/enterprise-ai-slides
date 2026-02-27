@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Hugging Face Model Evaluation Rubric</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body><h1>Hugging Face Model Evaluation Rubric</h1>
+<p><strong>Your Name:</strong> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>__<br />
+<strong>Date:</strong> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong></p>
+<h2>Instructions</h2>
+<p>Choose a model from the Hugging Face Model Hub (e.g., <code>gpt2</code>, <code>distilbert-base-uncased</code>, <code>meta-llama/Llama-2-7b-chat-hf</code>). Read its Model Card (the README on the model page) and fill out this rubric.</p>
+<p><strong>Model Name:</strong> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em>_<br />
+<strong>Model Type (e.g., Text Gen, Classification):</strong> </strong><strong><em>_</em></strong><strong><em>_</em></strong>_<br />
+<strong>Link:</strong> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong></p>
+<hr />
+<h3>Part 1: Basic Information (Find this in the "Model Card" tab)</h3>
+<ol>
+<li>
+<p><strong>Parameters (Size):</strong></p>
+<ul>
+<li>( ) &lt; 1B</li>
+<li>( ) 1B - 10B</li>
+<li>( ) &gt; 10B</li>
+<li>( ) Unknown / Not Stated</li>
+</ul>
+</li>
+<li>
+<p><strong>License:</strong></p>
+<ul>
+<li>( ) Open Source (Apache 2.0, MIT)</li>
+<li>( ) Restrictive (Llama Community, Creative Commons Non-Commercial)</li>
+<li>( ) Proprietary / Unknown</li>
+<li><em>Note any specific restrictions:</em> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>___</li>
+</ul>
+</li>
+<li>
+<p><strong>Language(s):</strong></p>
+<ul>
+<li>( ) English Only</li>
+<li>( ) Multilingual (List top 3): <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>___</li>
+<li>( ) Code / Other</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>Part 2: Transparency &amp; Safety (Look for "Limitations", "Bias", or "Training Data")</h3>
+<ol>
+<li>
+<p><strong>Training Data Description:</strong></p>
+<ul>
+<li>( ) Detailed (Links to specific datasets provided)</li>
+<li>( ) Vague (General description like "web text")</li>
+<li>( ) None (No information provided)</li>
+</ul>
+</li>
+<li>
+<p><strong>Known Limitations / Bias:</strong></p>
+<ul>
+<li><em>Does the card mention potential bias or risks?</em> (Yes / No)</li>
+<li><em>List one limitation mentioned:</em> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>______</li>
+</ul>
+</li>
+<li>
+<p><strong>Intended Use:</strong></p>
+<ul>
+<li><em>What is this model built for?</em> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>______</li>
+<li><em>What is it NOT built for?</em> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>___</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>Part 3: Usability (Look for "How to Use" or code snippets)</h3>
+<ol>
+<li>
+<p><strong>Code Example Provided:</strong></p>
+<ul>
+<li>( ) Yes, simple <code>pipeline</code> code</li>
+<li>( ) Yes, complex code</li>
+<li>( ) No code provided</li>
+</ul>
+</li>
+<li>
+<p><strong>Inference API Enabled:</strong> (Look for the "Hosted inference API" box on the right)</p>
+<ul>
+<li>( ) Yes (You can type text and test it on the page)</li>
+<li>( ) No (You must download it)</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>Part 4: Your Verdict</h3>
+<p><strong>Would you recommend this model for a production enterprise application?</strong><br />
+( ) Yes<br />
+( ) No<br />
+( ) Maybe, with fine-tuning</p>
+<p><strong>Reasoning:</strong><br />
+<em>(Why did you choose this rating? Consider license, transparency, and ease of use.)</em></p>
+<hr />
+<hr /></body></html>

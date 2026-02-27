@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Activity 12: Hands-On with MCP (Model Context Protocol)</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body><h1>Activity 12: Hands-On with MCP (Model Context Protocol)</h1>
+<p><strong>Duration:</strong> 90 Minutes<br />
+<strong>Goal:</strong> Connect Claude Desktop to local files, databases, and a custom Python server to experience "AI Integration" firsthand.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>A computer (Mac, Windows, Linux)</li>
+<li><a href="https://claude.ai/download">Claude Desktop App</a> installed</li>
+<li>Python 3.10 or higher installed</li>
+<li>A code editor (VS Code recommended)</li>
+</ul>
+<hr />
+<h2>Part 1: The "Magic Moment" — Connecting Local Files (20 min)</h2>
+<p><em>Objective: Give Claude read-access to a folder on your computer without uploading files manually.</em></p>
+<ol>
+<li>
+<p><strong>Open Claude Desktop App.</strong></p>
+<ul>
+<li>Go to <code>Settings</code> (or <code>Claude &gt; Settings</code> on Mac).</li>
+<li>Look for the <strong>Developer</strong> or <strong>MCP</strong> section. (Note: The location changes as the feature evolves. If you don't see it, check the "Feature Preview" menu).</li>
+<li><em>Alternatively, you can edit the config file directly (see Part 3).</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Configure the Filesystem Server:</strong></p>
+<ul>
+<li>We will use the pre-built <code>@modelcontextprotocol/server-filesystem</code>.</li>
+<li>You need <code>npx</code> (part of Node.js) installed for this standard server. If you don't have Node.js, skip to Part 3 where we use Python.</li>
+<li>Command to add:<br />
+<code>bash
+  npx -y @modelcontextprotocol/server-filesystem /Users/yourusername/Desktop/my-project</code><br />
+<em>(Replace the path with a real folder on your computer)</em>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Test It:</strong></p>
+<ul>
+<li>Create a file named <code>secret_project.txt</code> in that folder with the text: "The secret code is BLUEBERRY."</li>
+<li>Open a new chat in Claude.</li>
+<li>You should see a generic "hammer/wrench" icon or an attachment icon indicating MCP tools are active.</li>
+<li>Ask: <em>"Please read the file secret_project.txt in my project folder and tell me the code."</em></li>
+<li><strong>Observe:</strong> Claude didn't hallucinate. It actually read the file from your disk.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Part 2: The "Database Whisperer" (20 min)</h2>
+<p><em>Objective: Let Claude query a SQLite database to answer questions.</em></p>
+<ol>
+<li>
+<p><strong>Prepare the Data:</strong></p>
+<ul>
+<li>We have provided a <code>sample_database.sql</code> file in the <code>app/</code> folder.</li>
+<li>Create a SQLite database from it (or use the pre-made <code>company.db</code> if provided).</li>
+<li>Command (if you have sqlite3 installed):<br />
+<code>bash
+  sqlite3 company.db &lt; app/sample_database.sql</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Add the SQLite Server:</strong></p>
+<ul>
+<li>We will use the official SQLite MCP server.</li>
+<li>Add to your Claude Config:<br />
+<code>json
+  "sqlite": {
+    "command": "uvx",
+    "args": ["mcp-server-sqlite", "--db-path", "/absolute/path/to/company.db"]
+  }</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Test It:</strong></p>
+<ul>
+<li>Restart Claude Desktop.</li>
+<li>Ask: <em>"What is the most expensive product in the database?"</em></li>
+<li>Ask: <em>"Who is the highest paid employee in Engineering?"</em></li>
+<li><strong>Observe:</strong> Claude writes and executes SQL queries on the fly to answer you.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Part 3: Build Your Own MCP Server (40 min)</h2>
+<p><em>Objective: Write a Python server that exposes a custom "Company Directory" API.</em></p>
+<h3>Step 1: Setup</h3>
+<ol>
+<li>Navigate to the <code>app/</code> folder in your terminal.</li>
+<li>Create a virtual environment:<br />
+<code>bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate</code></li>
+<li>Install the MCP SDK:<br />
+<code>bash
+    pip install mcp</code></li>
+</ol>
+<h3>Step 2: Review the Code</h3>
+<p>Open <code>server.py</code> in VS Code. This file uses the <code>FastMCP</code> class to make creating servers easy.<br />
+- <strong>Resources:</strong> <code>@mcp.resource()</code> decorator makes data readable.<br />
+- <strong>Tools:</strong> <code>@mcp.tool()</code> decorator makes functions callable.<br />
+- <strong>Prompts:</strong> <code>@mcp.prompt()</code> decorator creates templates.</p>
+<h3>Step 3: Configure Claude</h3>
+<p>You need to tell Claude where your python script is.<br />
+1.  Open your config file:<br />
+    - macOS: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code><br />
+    - Windows: <code>%APPDATA%\Claude\claude_desktop_config.json</code><br />
+2.  Add your server:<br />
+<code>json
+    {
+      "mcpServers": {
+        "my-company-directory": {
+          "command": "/absolute/path/to/your/venv/bin/python",
+          "args": ["/absolute/path/to/your/app/server.py"]
+        }
+      }
+    }</code><br />
+<em>Tip: Use the absolute path to the Python executable inside your virtual environment!</em></p>
+<h3>Step 4: Test Your Creation</h3>
+<ol>
+<li>Restart Claude Desktop.</li>
+<li>Look for the plug icon (MCP).</li>
+<li><strong>Try the Resource:</strong> "Read the full employee list from the company directory."</li>
+<li><strong>Try the Tool:</strong> "Find the email for the person who works in HR."</li>
+<li><strong>Try the Prompt:</strong> "Use the 'new_hire_onboarding' prompt for Alice Johnson."</li>
+</ol>
+<h3>Step 5: Challenge</h3>
+<p>Modify <code>server.py</code> to add a new tool: <code>calculate_bonus(salary)</code>.<br />
+- It should return 10% of the input salary.<br />
+- Restart Claude and ask it to calculate a bonus for Bob.</p>
+<hr />
+<h2>Troubleshooting</h2>
+<ul>
+<li><strong>Claude shows "Connection Failed":</strong> Check your paths in the config JSON. JSON doesn't like backslashes <code>\</code> on Windows unless escaped <code>\\</code>.</li>
+<li><strong>"Command not found":</strong> Ensure you are pointing to the python executable <em>inside</em> the virtual environment.</li>
+<li><strong>Logs:</strong> Check Claude's logs for error messages.</li>
+</ul></body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Activity 6: Hugging Face Deep Dive</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body><h1>Activity 6: Hugging Face Deep Dive</h1>
+<p><strong>Module 6: Model Selection &amp; Deployment</strong></p>
+<h2>⏱️ Time Estimate</h2>
+<p>90 Minutes</p>
+<h2>🎯 Objective</h2>
+<p>In this deep-dive lab, you will move beyond being an AI "user" to an AI "builder." You will explore the Hugging Face platform, analyze models using a structured rubric, use the Inference API to run models via code, and finally deploy your own web-based AI app (a Space) that anyone can use.</p>
+<h2>🛠️ Tools Required</h2>
+<ul>
+<li>A web browser</li>
+<li><strong>Hugging Face Account:</strong> <a href="https://huggingface.co">huggingface.co</a> (Free)</li>
+<li><strong>Python Environment:</strong> Either local (VS Code) or Google Colab (recommended for beginners).</li>
+<li><strong>Model Evaluation Rubric:</strong> <a href="../templates/model-evaluation.md">model-evaluation.md</a></li>
+</ul>
+<h2>📂 Deliverables</h2>
+<ul>
+<li>Completed <a href="../templates/model-evaluation.md">Model Evaluation Rubric</a></li>
+<li>A working <strong>Hugging Face Space URL</strong> (e.g., <code>https://huggingface.co/spaces/YourName/my-summarizer</code>)</li>
+</ul>
+<hr />
+<h2>📝 Step-by-Step Instructions</h2>
+<h3>Part 1: Account &amp; Token Setup (10 min)</h3>
+<ol>
+<li><strong>Create Account:</strong> Go to <a href="https://huggingface.co">huggingface.co</a> and sign up. verify your email.</li>
+<li><strong>Get Access Token:</strong><ul>
+<li>Click your profile picture -&gt; <strong>Settings</strong> -&gt; <strong>Access Tokens</strong>.</li>
+<li>Click <strong>Create new token</strong>.</li>
+<li>Name it: <code>lab-token</code>.</li>
+<li>Permissions: <strong>Read</strong>.</li>
+<li>Copy the token (starts with <code>hf_...</code>). Save it somewhere safe.</li>
+</ul>
+</li>
+</ol>
+<h3>Part 2: Model Scouting (20 min)</h3>
+<p>Imagine you are an enterprise architect. You need to find a model for <strong>Sentiment Analysis</strong> (classifying text as Positive/Negative).<br />
+1.  <strong>Search:</strong> Go to the Model Hub. Search for "Sentiment Analysis."<br />
+2.  <strong>Filter:</strong> Select "Text Classification" on the left.<br />
+3.  <strong>Evaluate:</strong> Pick 3 models (e.g., <code>distilbert-base-uncased-finetuned-sst-2-english</code>, <code>cardiffnlp/twitter-roberta-base-sentiment</code>).<br />
+4.  <strong>Rubric:</strong> Fill out the <strong><a href="../templates/model-evaluation.md">Model Evaluation Rubric</a></strong> for the most promising one. Check its license and limitations.</p>
+<h3>Part 3: Using the Inference API (20 min)</h3>
+<p>Instead of downloading huge models, we can use Hugging Face's servers via an API.</p>
+<ol>
+<li><strong>Open Python:</strong> Use a local script or a Google Colab notebook.</li>
+<li><strong>Install Library:</strong><br />
+<code>bash
+    pip install huggingface_hub</code></li>
+<li><strong>Run the Script:</strong><br />
+    Copy the code from <code>app/inference_api_demo.py</code> (provided in the lab files).<br />
+    Replace <code>YOUR_HF_TOKEN</code> with the token you created in Part 1.<br />
+    Run the script.<ul>
+<li><em>Challenge:</em> Change the <code>prompt</code> variable to something related to your industry.</li>
+</ul>
+</li>
+</ol>
+<h3>Part 4: Deploying a Space (30 min)</h3>
+<p>Now, the grand finale: deploying a web app. We will use <strong>Gradio</strong>, a library that turns Python functions into web UIs instantly.</p>
+<ol>
+<li>
+<p><strong>Create a New Space:</strong></p>
+<ul>
+<li>Go to Hugging Face -&gt; <strong>Spaces</strong> -&gt; <strong>Create new Space</strong>.</li>
+<li><strong>Space Name:</strong> <code>my-first-summarizer</code></li>
+<li><strong>License:</strong> MIT</li>
+<li><strong>SDK:</strong> <strong>Gradio</strong></li>
+<li><strong>Hardware:</strong> <strong>CPU Basic (Free)</strong></li>
+<li><strong>Visibility:</strong> Public</li>
+</ul>
+</li>
+<li>
+<p><strong>Add Files:</strong><br />
+    You can edit files directly in the browser (easiest) or clone the repo.</p>
+<ul>
+<li><strong>Create <code>app.py</code>:</strong> Paste the code from <code>app/app.py</code> (in lab files).</li>
+<li><strong>Create <code>requirements.txt</code>:</strong> Paste the code from <code>app/requirements.txt</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Commit &amp; Build:</strong></p>
+<ul>
+<li>Click "Commit changes to main."</li>
+<li>Watch the "Building" status at the top. It will turn green ("Running") in 1-2 minutes.</li>
+</ul>
+</li>
+<li>
+<p><strong>Test It:</strong></p>
+<ul>
+<li>Find a long news article.</li>
+<li>Paste it into your new app.</li>
+<li>Click "Submit."</li>
+<li>Copy the URL and share it!</li>
+</ul>
+</li>
+</ol>
+<h3>Part 5: Reflection (10 min)</h3>
+<ul>
+<li>How easy was it to deploy compared to setting up a traditional server?</li>
+<li>What are the risks of using a public Space for company data? (Hint: Anyone can see it unless it's private).</li>
+</ul>
+<hr />
+<h2>✅ Success Criteria</h2>
+<ul>
+<li>[ ] Created a Hugging Face account and token.</li>
+<li>[ ] Successfully ran the Python inference script.</li>
+<li>[ ] Deployed a working Gradio Space.</li>
+<li>[ ] Tested the summarizer with real text.</li>
+</ul></body></html>

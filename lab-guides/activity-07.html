@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Activity 7: Your First RAG Pipeline</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body><h1>Activity 7: Your First RAG Pipeline</h1>
+<p><strong>Module 7: Advanced Enterprise Patterns</strong></p>
+<h2>⏱️ Time Estimate</h2>
+<p>90 Minutes</p>
+<h2>🎯 Objective</h2>
+<p>In this advanced lab, you will build a Retrieval-Augmented Generation (RAG) system. This is the #1 enterprise use case for AI today. You will create a chatbot that answers questions about a specific company policy document, ensuring it doesn't hallucinate answers outside of that text.</p>
+<h2>🛠️ Tools Required</h2>
+<ul>
+<li>A web browser</li>
+<li><strong>Hugging Face Account:</strong> <a href="https://huggingface.co">huggingface.co</a> (Same token as Activity 6)</li>
+<li><strong>Python Environment:</strong> Local VS Code or Google Colab.</li>
+<li><strong>App Code:</strong> (Provided in <code>app/</code> folder)</li>
+</ul>
+<h2>📂 Deliverables</h2>
+<ul>
+<li>A working RAG application that answers questions about <code>company_policy.txt</code>.</li>
+<li>Screenshots of the bot answering correctly (and refusing to answer off-topic questions if prompted).</li>
+</ul>
+<hr />
+<h2>📝 Step-by-Step Instructions</h2>
+<h3>Part 1: Understand RAG (10 min)</h3>
+<p>Traditional LLMs (like ChatGPT) only know what they were trained on (public internet data up to a certain date). RAG fixes this by:<br />
+1.  <strong>Retrieving:</strong> Finding relevant snippets from your private documents.<br />
+2.  <strong>Augmenting:</strong> Adding those snippets to the prompt.<br />
+3.  <strong>Generating:</strong> Asking the LLM to answer using <em>only</em> those snippets.</p>
+<h3>Part 2: Setup Environment (15 min)</h3>
+<ol>
+<li><strong>Create a Folder:</strong> Name it <code>rag-demo</code>.</li>
+<li><strong>Copy Files:</strong> Copy <code>app.py</code>, <code>requirements.txt</code>, and <code>company_policy.txt</code> from the lab materials into this folder.</li>
+<li><strong>Install Libraries:</strong><br />
+    Open your terminal/command prompt in this folder and run:<br />
+<code>bash
+    pip install -r requirements.txt</code><br />
+<em>(Note: This might take a few minutes as it installs <code>langchain</code>, <code>chromadb</code>, and <code>torch</code>)</em>.</li>
+</ol>
+<h3>Part 3: Configure Token (5 min)</h3>
+<ol>
+<li><strong>Get Token:</strong> Use the same <code>hf_...</code> token from Activity 6.</li>
+<li><strong>Set Environment Variable:</strong><ul>
+<li><strong>Windows (PowerShell):</strong> <code>$env:HF_TOKEN="your_token_here"</code></li>
+<li><strong>Mac/Linux:</strong> <code>export HF_TOKEN="your_token_here"</code></li>
+<li><strong>Or (Not Recommended for Prod):</strong> Hardcode it in <code>app.py</code> temporarily if you struggle with env vars.</li>
+</ul>
+</li>
+</ol>
+<h3>Part 4: Run the App (20 min)</h3>
+<ol>
+<li><strong>Run the Script:</strong><br />
+<code>bash
+    python app.py</code></li>
+<li><strong>Wait for Launch:</strong> You will see a local URL (e.g., <code>http://127.0.0.1:7860</code>). Open it in your browser.</li>
+</ol>
+<h3>Part 5: Test the Bot (20 min)</h3>
+<p>Try these questions and observe the answers:<br />
+1.  <strong>Basic Retrieval:</strong> "How many vacation days do I get?"<br />
+<em>(Expected: 15 days)</em><br />
+2.  <strong>Specific Rule:</strong> "Can I wear jeans to a client meeting?"<br />
+<em>(Expected: No, client meetings require Business Professional)</em><br />
+3.  <strong>Negative Test:</strong> "What is the capital of France?"<br />
+<em>(Expected: The bot might try to answer based on the policy, or fail gracefully. Since the context doesn't contain geography, a good RAG system should say "I don't know" or hallucinate less than a raw model.)</em></p>
+<h3>Part 6: Modify the Data (20 min)</h3>
+<ol>
+<li><strong>Edit <code>company_policy.txt</code>:</strong> Change the remote work policy to "Fridays are remote-only."</li>
+<li><strong>Restart the App:</strong> Stop the script (Ctrl+C) and run <code>python app.py</code> again.</li>
+<li><strong>Ask Again:</strong> "Can I work from home on Friday?"<br />
+<em>(Expected: Yes, based on your new data)</em>.</li>
+</ol>
+<hr />
+<h2>✅ Success Criteria</h2>
+<ul>
+<li>[ ] Successfully installed LangChain and ChromaDB.</li>
+<li>[ ] Ran the RAG app locally.</li>
+<li>[ ] Verified that the bot answers questions based on the <code>company_policy.txt</code> file.</li>
+<li>[ ] Modified the policy file and saw the bot update its answers.</li>
+</ul></body></html>

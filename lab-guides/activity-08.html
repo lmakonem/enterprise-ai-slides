@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Activity 8: Prompt Engineering Bootcamp</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body><h1>Activity 8: Prompt Engineering Bootcamp</h1>
+<p><strong>Module 8: Mastering the Craft</strong></p>
+<h2>⏱️ Time Estimate</h2>
+<p>60 Minutes</p>
+<h2>🎯 Objective</h2>
+<p>Prompt Engineering is the #1 skill for working effectively with AI. In this bootcamp, you will complete 10 exercises, ranging from basic questions to complex chain-of-thought reasoning.</p>
+<h2>🛠️ Tools Required</h2>
+<ul>
+<li>A web browser (ChatGPT, Claude, or Gemini)</li>
+<li><strong>Prompt Library Template:</strong> <a href="../templates/prompt-library-template.md">prompt-library-template.md</a></li>
+</ul>
+<h2>📂 Deliverables</h2>
+<ul>
+<li>Completed <a href="../templates/prompt-library-template.md">Personal Prompt Library</a> containing at least 5 perfected prompts.</li>
+</ul>
+<hr />
+<h2>📝 Step-by-Step Instructions</h2>
+<h3>Part 1: The Basics (15 min)</h3>
+<p>Open your preferred AI tool. Try these exercises.</p>
+<ol>
+<li>
+<p><strong>Basic (Zero-Shot):</strong></p>
+<ul>
+<li><strong>Prompt:</strong> "Summarize the history of the internet."</li>
+<li><strong>Goal:</strong> Too broad. Refine it to be specific.</li>
+<li><strong>Refinement:</strong> "Summarize the history of the internet in 3 paragraphs, focusing on the invention of TCP/IP and the World Wide Web."</li>
+</ul>
+</li>
+<li>
+<p><strong>Role-Based (Persona):</strong></p>
+<ul>
+<li><strong>Prompt:</strong> "You are a grumpy 19th-century lighthouse keeper. Explain how a smartphone works."</li>
+<li><strong>Goal:</strong> Notice the tone shift.</li>
+</ul>
+</li>
+<li>
+<p><strong>Few-Shot (Examples):</strong></p>
+<ul>
+<li>
+<p><strong>Prompt:</strong><br />
+    &gt; "Convert these colloquial phrases into professional corporate speak.<br />
+    &gt; <br />
+    &gt; Input: 'That idea is stupid.' -&gt; Output: 'We may want to reconsider that approach.'<br />
+    &gt; Input: 'I'm too busy.' -&gt; Output: 'I currently have limited bandwidth.'<br />
+    &gt; Input: 'Stop wasting time.' -&gt; Output: "</p>
+</li>
+<li>
+<p><strong>Goal:</strong> Teach the model by example.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3>Part 2: Advanced Techniques (30 min)</h3>
+<p>Now, let's get serious.</p>
+<ol>
+<li>
+<p><strong>Chain-of-Thought (Reasoning):</strong></p>
+<ul>
+<li><strong>Prompt:</strong><br />
+    &gt; "Solve this logic puzzle. Think step-by-step. Show your work before giving the final answer.<br />
+    &gt; <br />
+    &gt; Puzzle: A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?"</li>
+<li><strong>Goal:</strong> Without "think step-by-step," models often guess $0.10 (wrong). The correct answer is $0.05.</li>
+</ul>
+</li>
+<li>
+<p><strong>Structured Output (JSON/CSV):</strong></p>
+<ul>
+<li><strong>Prompt:</strong><br />
+    &gt; "Generate 5 fake customer personas for a coffee shop app. Return the result strictly as a JSON array with keys: 'name', 'age', 'favorite_drink', 'spending_habit'."</li>
+<li><strong>Goal:</strong> Get clean data you can use in code.</li>
+</ul>
+</li>
+<li>
+<p><strong>Constraint (Format):</strong></p>
+<ul>
+<li><strong>Prompt:</strong><br />
+    &gt; "Explain quantum computing. Use only words with one syllable. Keep it under 50 words."</li>
+<li><strong>Goal:</strong> Force simplicity.</li>
+</ul>
+</li>
+<li>
+<p><strong>Multi-Step (Chaining):</strong></p>
+<ul>
+<li><strong>Prompt A:</strong> "Write an outline for a presentation on AI safety."</li>
+<li><strong>Prompt B:</strong> "Take Section 2 of that outline and write the full script for a 3-minute speech."</li>
+</ul>
+</li>
+<li>
+<p><strong>Meta-Prompting:</strong></p>
+<ul>
+<li><strong>Prompt:</strong> "Write a prompt that I can give to an AI to make it act like a world-class Python tutor."</li>
+<li><strong>Goal:</strong> Use AI to write better AI prompts.</li>
+</ul>
+</li>
+</ol>
+<h3>Part 3: Build Your Library (15 min)</h3>
+<p>Open the <strong><a href="../templates/prompt-library-template.md">Prompt Library Template</a></strong>.<br />
+Document your favorite prompts from today. Refine them until they work perfectly every time.<br />
+Save this file for future use.</p>
+<hr />
+<h2>✅ Success Criteria</h2>
+<ul>
+<li>[ ] Completed all 8 types of prompt exercises.</li>
+<li>[ ] Successfully used "Chain-of-Thought" to solve a logic puzzle.</li>
+<li>[ ] Generated structured data (JSON/CSV).</li>
+<li>[ ] Documented at least 5 high-quality prompts in your library.</li>
+</ul></body></html>
