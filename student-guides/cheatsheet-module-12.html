@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 12: MCP Cheat Sheet — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 12: MCP Cheat Sheet</h1>
+</div>
+<div class="content">
+<h1 id="module-12-mcp-cheat-sheet">Module 12: MCP Cheat Sheet</h1>
+<h2 id="what-is-mcp">What is MCP?</h2>
+<p><strong>Model Context Protocol</strong> is an open standard that connects AI models (LLMs) to data and tools. It replaces custom integrations with a universal "plug-and-play" system.</p>
+<h2 id="key-terminology">Key Terminology</h2>
+<ul>
+<li><strong>Client (Host):</strong> The AI application (Claude Desktop, Cursor, Zed) that consumes data.</li>
+<li><strong>Server:</strong> The process that provides data and capabilities (e.g., GitHub Server, Postgres Server).</li>
+<li><strong>Transport:</strong> The communication channel (Stdio for local, SSE for remote).</li>
+<li><strong>Resource:</strong> Passive data (read-only). Example: <code>file:///logs/error.txt</code>.</li>
+<li><strong>Tool:</strong> Actionable function (write/execute). Example: <code>delete_file("log.txt")</code>.</li>
+<li><strong>Prompt:</strong> User-facing template. Example: <code>summarize_bugs</code>.</li>
+</ul>
+<h2 id="architecture-diagram-simplified">Architecture Diagram (Simplified)</h2>
+<pre><code>[ User ] -&gt; [ Host (Claude) ] &lt;--&gt; [ Transport (Stdio/SSE) ] &lt;--&gt; [ MCP Server ] &lt;--&gt; [ Data Source (DB/API) ]
+</code></pre>
+<h2 id="top-pre-built-servers">Top Pre-Built Servers</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Server</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Install Command (npx/uvx)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Filesystem</strong></td>
+<td style="text-align: left;">Read/write local files</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-filesystem</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SQLite</strong></td>
+<td style="text-align: left;">Query SQLite databases</td>
+<td style="text-align: left;"><code>uvx mcp-server-sqlite</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GitHub</strong></td>
+<td style="text-align: left;">Search repos, issues, PRs</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-github</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Slack</strong></td>
+<td style="text-align: left;">Read/post to channels</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-slack</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PostgreSQL</strong></td>
+<td style="text-align: left;">Query Postgres databases</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-postgres</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Google Drive</strong></td>
+<td style="text-align: left;">Access Drive files</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-google-drive</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Memory</strong></td>
+<td style="text-align: left;">Remember user preferences</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-memory</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Brave Search</strong></td>
+<td style="text-align: left;">Web search</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-brave-search</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fetch</strong></td>
+<td style="text-align: left;">Download web pages</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-fetch</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Puppeteer</strong></td>
+<td style="text-align: left;">Browser automation</td>
+<td style="text-align: left;"><code>npx -y @modelcontextprotocol/server-puppeteer</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="claude-desktop-configuration">Claude Desktop Configuration</h2>
+<p>File: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> (Mac)</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;my-server&quot;: {
+      &quot;command&quot;: &quot;/path/to/venv/bin/python&quot;,
+      &quot;args&quot;: [&quot;/path/to/server.py&quot;],
+      &quot;env&quot;: { &quot;API_KEY&quot;: &quot;12345&quot; }
+    }
+  }
+}
+</code></pre>
+<h2 id="minimal-python-server-template">Minimal Python Server Template</h2>
+<pre><code class="language-python">from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP(&quot;My Server&quot;)
+
+@mcp.resource(&quot;my://data&quot;)
+def get_data() -&gt; str:
+    return &quot;Hello World&quot;
+
+@mcp.tool()
+def add(a: int, b: int) -&gt; int:
+    return a + b
+
+if __name__ == &quot;__main__&quot;:
+    mcp.run()
+</code></pre>
+<h2 id="security-checklist">Security Checklist</h2>
+<ul>
+<li>[ ] <strong>Least Privilege:</strong> Does the server have more access than it needs?</li>
+<li>[ ] <strong>Human-in-the-Loop:</strong> Does the Host ask for confirmation before critical actions?</li>
+<li>[ ] <strong>Sandboxing:</strong> Is the server running in a container or VM?</li>
+<li>[ ] <strong>Input Validation:</strong> Does the tool validate arguments to prevent injection?</li>
+<li>[ ] <strong>Audit Logging:</strong> Are tool executions logged?</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><strong>"Connection Refused":</strong> Server crashed or port is blocked. Check logs.</li>
+<li><strong>"Tool Not Found":</strong> Restart the Host (Claude). Config changes require a restart.</li>
+<li><strong>"Permission Denied":</strong> Check file permissions or API keys.</li>
+<li><strong>Hallucination:</strong> Ensure tool descriptions are clear so the AI knows <em>when</em> to use them.</li>
+</ul>
+</div>
+</body>
+</html>

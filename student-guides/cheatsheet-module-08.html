@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 8 Cheat Sheet: Prompt Engineering — Formulas & Templates — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 8 Cheat Sheet: Prompt Engineering — Formulas & Templates</h1>
+</div>
+<div class="content">
+<h1 id="module-8-cheat-sheet-prompt-engineering-formulas-templates">Module 8 Cheat Sheet: Prompt Engineering — Formulas &amp; Templates</h1>
+<h2 id="what-is-prompt-engineering">What Is Prompt Engineering?</h2>
+<p>Prompt engineering is the skill of writing clear, structured instructions that get the best possible output from AI. Think of it as learning to brief a highly capable but literal-minded new employee.</p>
+<h2 id="the-universal-prompt-formula">The Universal Prompt Formula</h2>
+<pre><code>ROLE  +  CONTEXT  +  TASK  +  FORMAT  +  CONSTRAINTS
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>What to Include</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Role</strong></td>
+<td>Who the AI should act as</td>
+<td>"You are a senior financial analyst…"</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>Background information</td>
+<td>"Our company is a mid-size SaaS firm with $50M ARR…"</td>
+</tr>
+<tr>
+<td><strong>Task</strong></td>
+<td>What you want done</td>
+<td>"Analyze this quarterly report and identify…"</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td>How to structure the output</td>
+<td>"Present as a bulleted executive summary…"</td>
+</tr>
+<tr>
+<td><strong>Constraints</strong></td>
+<td>Rules and boundaries</td>
+<td>"Keep under 300 words. Use only data provided."</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-co-star-framework">The CO-STAR Framework</h2>
+<p>A battle-tested framework for business prompts:</p>
+<table>
+<thead>
+<tr>
+<th>Letter</th>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C</strong></td>
+<td>Context</td>
+<td>Background info the AI needs</td>
+</tr>
+<tr>
+<td><strong>O</strong></td>
+<td>Objective</td>
+<td>The specific goal</td>
+</tr>
+<tr>
+<td><strong>S</strong></td>
+<td>Style</td>
+<td>Writing style (formal, casual, technical)</td>
+</tr>
+<tr>
+<td><strong>T</strong></td>
+<td>Tone</td>
+<td>Emotional quality (confident, empathetic, neutral)</td>
+</tr>
+<tr>
+<td><strong>A</strong></td>
+<td>Audience</td>
+<td>Who will read the output</td>
+</tr>
+<tr>
+<td><strong>R</strong></td>
+<td>Response</td>
+<td>Desired format and length</td>
+</tr>
+</tbody>
+</table>
+<h3 id="co-star-example">CO-STAR Example</h3>
+<blockquote>
+<p><strong>Context:</strong> Our Q3 revenue declined 12% due to customer churn in the SMB segment.</p>
+<p><strong>Objective:</strong> Draft talking points for the all-hands meeting explaining the decline and our recovery plan.</p>
+<p><strong>Style:</strong> Executive communication — clear, confident, data-driven.</p>
+<p><strong>Tone:</strong> Honest but optimistic. Acknowledge the challenge, emphasize the plan.</p>
+<p><strong>Audience:</strong> All employees (technical and non-technical).</p>
+<p><strong>Response:</strong> 5–7 bullet points, each 1–2 sentences. Include one key metric per point.</p>
+</blockquote>
+<h2 id="prompt-patterns-for-business">Prompt Patterns for Business</h2>
+<h3 id="1-chain-of-thought">1. Chain of Thought</h3>
+<p>Ask the AI to reason step-by-step before answering.</p>
+<blockquote>
+<p>"Walk me through your reasoning step by step before giving your recommendation for…"</p>
+</blockquote>
+<h3 id="2-few-shot-examples">2. Few-Shot Examples</h3>
+<p>Provide examples of desired input/output pairs.</p>
+<blockquote>
+<p>"Here are two examples of how I want customer emails categorized:<br />
+Email: 'My order hasn't arrived' → Category: Shipping<br />
+Email: 'How do I reset my password?' → Category: Account Support<br />
+Now categorize this email: '...'"</p>
+</blockquote>
+<h3 id="3-role-constraint">3. Role + Constraint</h3>
+<p>Combine expertise with guardrails.</p>
+<blockquote>
+<p>"You are an employment lawyer reviewing this termination letter. Flag any statements that could create legal liability. Do not rewrite the letter — only identify risks."</p>
+</blockquote>
+<h3 id="4-structured-output">4. Structured Output</h3>
+<p>Request specific formats.</p>
+<blockquote>
+<p>"Analyze this RFP and produce a table with columns: Requirement, Our Capability, Gap (Yes/No), Effort Estimate."</p>
+</blockquote>
+<h3 id="5-iterative-refinement">5. Iterative Refinement</h3>
+<p>Build on previous outputs.</p>
+<blockquote>
+<p>"Now take the executive summary you just wrote and make it suitable for a board presentation — more concise, highlight only the three most critical findings."</p>
+</blockquote>
+<h2 id="common-prompt-mistakes">Common Prompt Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Too vague</td>
+<td>"Help me with marketing"</td>
+<td>Specify the exact task, audience, and format</td>
+</tr>
+<tr>
+<td>No context</td>
+<td>AI doesn't know your situation</td>
+<td>Provide relevant background information</td>
+</tr>
+<tr>
+<td>No format specified</td>
+<td>Output is unstructured</td>
+<td>Request bullets, tables, numbered lists, etc.</td>
+</tr>
+<tr>
+<td>Too many tasks at once</td>
+<td>AI loses focus</td>
+<td>Break into sequential prompts</td>
+</tr>
+<tr>
+<td>No constraints</td>
+<td>Output is too long or off-topic</td>
+<td>Set word limits, scope boundaries</td>
+</tr>
+<tr>
+<td>Assuming AI knows your data</td>
+<td>It doesn't have your internal info</td>
+<td>Paste relevant data or use RAG</td>
+</tr>
+</tbody>
+</table>
+<h2 id="temperature-guide-for-business-prompts">Temperature Guide for Business Prompts</h2>
+<table>
+<thead>
+<tr>
+<th>Task Type</th>
+<th>Temperature</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data extraction, compliance checks</td>
+<td>0.0 – 0.2</td>
+<td>Need consistency and accuracy</td>
+</tr>
+<tr>
+<td>Report writing, summarization</td>
+<td>0.3 – 0.5</td>
+<td>Balanced clarity</td>
+</tr>
+<tr>
+<td>Marketing copy, brainstorming</td>
+<td>0.6 – 0.8</td>
+<td>More creative variation</td>
+</tr>
+<tr>
+<td>Ideation, creative naming</td>
+<td>0.8 – 1.0</td>
+<td>Maximum diversity of ideas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prompt-templates-quick-reference">Prompt Templates — Quick Reference</h2>
+<p><strong>Email Drafting:</strong></p>
+<blockquote>
+<p>"Draft a professional email to [recipient/role] regarding [topic]. Tone: [formal/friendly/urgent]. Include: [key points]. Keep under [X] words."</p>
+</blockquote>
+<p><strong>Document Summarization:</strong></p>
+<blockquote>
+<p>"Summarize the following document in [X] bullet points for [audience]. Focus on [specific aspects]. Flag any items requiring action."</p>
+</blockquote>
+<p><strong>Decision Analysis:</strong></p>
+<blockquote>
+<p>"Given the following options: [list options]. Evaluate each against these criteria: [criteria]. Present as a comparison table with a recommendation."</p>
+</blockquote>
+<p><strong>Meeting Prep:</strong></p>
+<blockquote>
+<p>"Based on the following agenda and background materials, prepare: (1) Three key questions to ask, (2) Potential objections and responses, (3) A one-paragraph opening statement."</p>
+</blockquote>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can apply the ROLE + CONTEXT + TASK + FORMAT + CONSTRAINTS formula</li>
+<li>[ ] I can use the CO-STAR framework for business prompts</li>
+<li>[ ] I know at least three prompt patterns (chain of thought, few-shot, etc.)</li>
+<li>[ ] I can identify and fix common prompt mistakes</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 8</em></p>
+</div>
+</body>
+</html>

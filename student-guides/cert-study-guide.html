@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Certificate Exam Study Guide — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Certificate Exam Study Guide</h1>
+</div>
+<div class="content">
+<h1 id="certificate-exam-study-guide">Certificate Exam Study Guide</h1>
+<p><strong>Course:</strong> AI for the Enterprise: From Zero to Secure Adoption<br />
+<strong>Instructor:</strong> Howard Mukanda<br />
+<strong>Version:</strong> 1.0 — February 2026</p>
+<hr />
+<h2 id="exam-overview">Exam Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Detail</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Format</strong></td>
+<td>Online, proctored through Kajabi</td>
+</tr>
+<tr>
+<td><strong>Questions</strong></td>
+<td>40 multiple-choice + 1 scenario-based (written response)</td>
+</tr>
+<tr>
+<td><strong>Time Limit</strong></td>
+<td>90 minutes</td>
+</tr>
+<tr>
+<td><strong>Passing Score</strong></td>
+<td>70% (minimum 29 out of 41 total points)</td>
+</tr>
+<tr>
+<td><strong>Attempts</strong></td>
+<td>2 attempts included; 7-day wait between attempts</td>
+</tr>
+<tr>
+<td><strong>Open Book?</strong></td>
+<td>No — closed book, no external resources during the exam</td>
+</tr>
+<tr>
+<td><strong>When to Take</strong></td>
+<td>After completing all 10 modules</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scoring">Scoring</h3>
+<ul>
+<li><strong>Multiple-choice questions:</strong> 1 point each (40 points total)</li>
+<li><strong>Scenario question:</strong> 1 point (graded on completeness and reasoning)</li>
+<li><strong>Total possible:</strong> 41 points</li>
+<li><strong>Passing:</strong> 29 points (approximately 70%)</li>
+</ul>
+<hr />
+<h2 id="topic-weights">Topic Weights</h2>
+<p>The exam draws questions from all 10 modules. Here is the approximate weight of each topic area:</p>
+<table>
+<thead>
+<tr>
+<th>Topic Area</th>
+<th>Modules</th>
+<th>Weight</th>
+<th># of Questions (approx.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI Fundamentals &amp; Terminology</td>
+<td>1, 3</td>
+<td>20%</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Hands-On Tool Knowledge</td>
+<td>2</td>
+<td>10%</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Enterprise Use Cases</td>
+<td>4</td>
+<td>15%</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Tool Evaluation &amp; Vendor Assessment</td>
+<td>5</td>
+<td>10%</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Security, Privacy &amp; Compliance</td>
+<td>6</td>
+<td>20%</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Responsible AI &amp; Ethics</td>
+<td>7</td>
+<td>10%</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Policy, Governance &amp; Adoption</td>
+<td>8, 9</td>
+<td>15%</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>The scenario-based question will typically combine security/compliance with a practical adoption decision.</p>
+<hr />
+<h2 id="what-to-study">What to Study</h2>
+<h3 id="ai-fundamentals-modules-1-3">AI Fundamentals (Modules 1 &amp; 3)</h3>
+<ul>
+<li>Definition of AI, ML, deep learning, and generative AI</li>
+<li>Difference between narrow AI and AGI</li>
+<li>How AI models are trained (data → training → inference)</li>
+<li>What LLMs are and how they work at a high level</li>
+<li>Key terms: algorithm, model, parameter, token, hallucination, bias</li>
+</ul>
+<h3 id="hands-on-tools-module-2">Hands-On Tools (Module 2)</h3>
+<ul>
+<li>Differences between ChatGPT, Claude, Gemini</li>
+<li>What prompt engineering is and why it matters</li>
+<li>How to write effective prompts (specificity, context, examples)</li>
+<li>What Hugging Face is and what the Model Hub offers</li>
+</ul>
+<h3 id="enterprise-use-cases-module-4">Enterprise Use Cases (Module 4)</h3>
+<ul>
+<li>At least 3 AI use cases per department (marketing, finance, HR, ops, legal, customer service)</li>
+<li>How to distinguish high-value from low-value AI opportunities</li>
+<li>Common pitfalls when identifying AI use cases</li>
+</ul>
+<h3 id="tool-evaluation-module-5">Tool Evaluation (Module 5)</h3>
+<ul>
+<li>Build vs. buy decision framework</li>
+<li>Key criteria for evaluating AI vendors (security, data handling, SLA, cost, integration)</li>
+<li>How to design and run a proof of concept (POC)</li>
+</ul>
+<h3 id="security-privacy-compliance-module-6">Security, Privacy &amp; Compliance (Module 6)</h3>
+<ul>
+<li>Data leakage risks when using AI tools</li>
+<li>What prompt injection is and how to defend against it</li>
+<li>GDPR, HIPAA, and SOC 2 relevance to AI</li>
+<li>Shadow AI: what it is and why it's dangerous</li>
+<li>Data classification and how it applies to AI inputs</li>
+<li>PII handling rules</li>
+</ul>
+<h3 id="responsible-ai-ethics-module-7">Responsible AI &amp; Ethics (Module 7)</h3>
+<ul>
+<li>The six principles of responsible AI: fairness, reliability, privacy, inclusiveness, transparency, accountability</li>
+<li>How bias enters AI systems (training data, design choices, feedback loops)</li>
+<li>What explainability means and when it's required</li>
+<li>Real-world examples of AI ethics failures</li>
+</ul>
+<h3 id="policy-governance-adoption-modules-8-9">Policy, Governance &amp; Adoption (Modules 8 &amp; 9)</h3>
+<ul>
+<li>Key components of an AI acceptable use policy</li>
+<li>How to structure an AI governance committee</li>
+<li>Pilot program design: scope, success metrics, timeline</li>
+<li>Change management: training, communication, resistance</li>
+<li>KPIs for measuring AI success (efficiency, accuracy, cost savings, user adoption)</li>
+</ul>
+<hr />
+<h2 id="25-practice-questions-with-answers">25 Practice Questions with Answers</h2>
+<h3 id="ai-fundamentals">AI Fundamentals</h3>
+<p><strong>1. What is the best description of "narrow AI"?</strong><br />
+A) AI that can perform any intellectual task a human can<br />
+B) AI designed for one specific task, like spam filtering<br />
+C) AI that only works on small datasets<br />
+D) AI that runs on small devices  </p>
+<p><strong>Answer: B</strong> — Narrow AI is designed for specific tasks. All current commercial AI is narrow AI. AGI (option A) does not yet exist.</p>
+<hr />
+<p><strong>2. What happens during the "inference" phase of an AI system?</strong><br />
+A) The model is being trained on new data<br />
+B) The model processes new inputs and produces outputs<br />
+C) The model is being tested for bias<br />
+D) The model's parameters are being adjusted  </p>
+<p><strong>Answer: B</strong> — Inference is when a trained model is actually used — it takes new data in and produces predictions or outputs.</p>
+<hr />
+<p><strong>3. A "hallucination" in AI refers to:</strong><br />
+A) When the AI correctly identifies patterns humans can't see<br />
+B) When the AI confidently generates incorrect or fabricated information<br />
+C) When the AI refuses to answer a question<br />
+D) When the AI produces results too slowly  </p>
+<p><strong>Answer: B</strong> — Hallucinations are a major reliability risk; the AI sounds confident but the information is wrong or made up.</p>
+<hr />
+<p><strong>4. What is a Large Language Model (LLM)?</strong><br />
+A) A database for storing large documents<br />
+B) An AI trained on massive text data that can generate and understand language<br />
+C) A tool for translating between programming languages<br />
+D) A type of computer hardware for AI  </p>
+<p><strong>Answer: B</strong> — LLMs like GPT-4, Claude, and Gemini are trained on vast amounts of text to process and generate human language.</p>
+<hr />
+<p><strong>5. Which of the following is an example of "generative AI"?</strong><br />
+A) A spam filter<br />
+B) A tool that creates marketing copy from a brief<br />
+C) A database query tool<br />
+D) A temperature sensor  </p>
+<p><strong>Answer: B</strong> — Generative AI creates new content. Writing marketing copy from a brief is content generation.</p>
+<hr />
+<h3 id="hands-on-tools">Hands-On Tools</h3>
+<p><strong>6. Which of the following is the BEST prompt for getting a useful response from an LLM?</strong><br />
+A) "Tell me about marketing"<br />
+B) "Write a 200-word email to our sales team announcing a new AI-powered CRM feature, using a professional but enthusiastic tone"<br />
+C) "Do something about marketing AI"<br />
+D) "AI email"  </p>
+<p><strong>Answer: B</strong> — Effective prompts are specific, include context, define format, and set tone. Option B does all of these.</p>
+<hr />
+<p><strong>7. What is Hugging Face primarily used for?</strong><br />
+A) Social media management<br />
+B) Hosting and sharing AI models, datasets, and demo applications<br />
+C) Cloud computing infrastructure<br />
+D) Video conferencing  </p>
+<p><strong>Answer: B</strong> — Hugging Face is a community platform for sharing pre-trained models, datasets, and interactive Spaces.</p>
+<hr />
+<p><strong>8. What is "prompt engineering"?</strong><br />
+A) Building physical hardware for AI systems<br />
+B) The skill of crafting effective instructions to get useful AI outputs<br />
+C) Programming AI models from scratch<br />
+D) Deleting bad AI responses  </p>
+<p><strong>Answer: B</strong> — Prompt engineering is about writing clear, specific instructions that guide AI toward useful outputs.</p>
+<hr />
+<h3 id="enterprise-use-cases">Enterprise Use Cases</h3>
+<p><strong>9. Which department would MOST likely use AI-powered sentiment analysis?</strong><br />
+A) Facilities management<br />
+B) Marketing and customer experience<br />
+C) Building security<br />
+D) Janitorial services  </p>
+<p><strong>Answer: B</strong> — Sentiment analysis identifies emotional tone in text, making it valuable for tracking customer feedback and brand perception.</p>
+<hr />
+<p><strong>10. A company wants to use AI to predict which machines on the factory floor will need maintenance. This is an example of:</strong><br />
+A) Generative AI<br />
+B) Predictive analytics<br />
+C) Natural language processing<br />
+D) Computer vision  </p>
+<p><strong>Answer: B</strong> — Predicting equipment failures based on data patterns is a classic predictive analytics use case.</p>
+<hr />
+<p><strong>11. Which is the BEST first step when identifying AI opportunities in an enterprise?</strong><br />
+A) Purchase the most expensive AI platform available<br />
+B) Identify repetitive, data-rich tasks where errors are costly or speed matters<br />
+C) Replace all employees with AI agents<br />
+D) Wait for competitors to adopt AI first  </p>
+<p><strong>Answer: B</strong> — The best AI opportunities are tasks that are repetitive, have good data, and where improvement delivers measurable value.</p>
+<hr />
+<h3 id="tool-evaluation">Tool Evaluation</h3>
+<p><strong>12. When evaluating an AI vendor, which question is MOST important from a security perspective?</strong><br />
+A) "Does the tool have a mobile app?"<br />
+B) "Where is our data stored and who has access to it?"<br />
+C) "What color themes are available?"<br />
+D) "How many employees does the vendor have?"  </p>
+<p><strong>Answer: B</strong> — Data storage, access controls, and data handling practices are the most critical security concerns in vendor evaluation.</p>
+<hr />
+<p><strong>13. A "proof of concept" (POC) is:</strong><br />
+A) A legally binding contract with an AI vendor<br />
+B) A small-scale test to see if an AI tool works for your use case before committing<br />
+C) A theoretical paper about AI<br />
+D) A guarantee that AI will work  </p>
+<p><strong>Answer: B</strong> — A POC is a controlled, limited test that validates whether a tool delivers real value before a full investment.</p>
+<hr />
+<h3 id="security-privacy-compliance">Security, Privacy &amp; Compliance</h3>
+<p><strong>14. "Shadow AI" refers to:</strong><br />
+A) AI that operates in dark mode<br />
+B) Employees using unauthorized AI tools without IT oversight<br />
+C) AI that runs during off-hours<br />
+D) AI backup systems  </p>
+<p><strong>Answer: B</strong> — Shadow AI is a governance risk where employees use unapproved tools, potentially exposing sensitive data.</p>
+<hr />
+<p><strong>15. An employee pastes a confidential contract into a free AI chatbot. This is an example of:</strong><br />
+A) Prompt engineering<br />
+B) Data leakage<br />
+C) Fine-tuning<br />
+D) Transfer learning  </p>
+<p><strong>Answer: B</strong> — Entering confidential data into a third-party AI tool risks exposing that data to the tool provider and potentially its training data.</p>
+<hr />
+<p><strong>16. What is "prompt injection"?</strong><br />
+A) Adding more context to improve an AI response<br />
+B) A security attack where crafted input tricks an AI into ignoring its instructions<br />
+C) A method for training AI models faster<br />
+D) Inserting images into a text prompt  </p>
+<p><strong>Answer: B</strong> — Prompt injection is a deliberate attack that manipulates AI behavior, potentially causing it to leak data or bypass safety rules.</p>
+<hr />
+<p><strong>17. Which regulation is MOST relevant when using AI to process personal data of EU citizens?</strong><br />
+A) SOX (Sarbanes-Oxley)<br />
+B) GDPR (General Data Protection Regulation)<br />
+C) OSHA<br />
+D) FCC regulations  </p>
+<p><strong>Answer: B</strong> — GDPR governs the processing of personal data for EU citizens and has specific implications for AI systems.</p>
+<hr />
+<p><strong>18. Before feeding data into an AI tool, you should:</strong><br />
+A) Check the data classification level and confirm the tool is approved for that level<br />
+B) Always use the most powerful AI model available<br />
+C) Remove all formatting from the data<br />
+D) Translate the data into English first  </p>
+<p><strong>Answer: A</strong> — Data classification determines what tools and platforms are appropriate. Confidential data should never go into unapproved public tools.</p>
+<hr />
+<h3 id="responsible-ai-ethics">Responsible AI &amp; Ethics</h3>
+<p><strong>19. Which of the following is NOT one of the standard principles of responsible AI?</strong><br />
+A) Fairness<br />
+B) Profitability<br />
+C) Transparency<br />
+D) Accountability  </p>
+<p><strong>Answer: B</strong> — The six widely accepted principles are fairness, reliability/safety, privacy/security, inclusiveness, transparency, and accountability. Profitability is a business goal, not a responsible AI principle.</p>
+<hr />
+<p><strong>20. AI bias most commonly enters a system through:</strong><br />
+A) The physical hardware it runs on<br />
+B) Biased or unrepresentative training data<br />
+C) The color of the user interface<br />
+D) The programming language used  </p>
+<p><strong>Answer: B</strong> — Bias in training data is the most common source of AI bias. If the data doesn't represent all groups fairly, the model won't either.</p>
+<hr />
+<p><strong>21. "Explainability" in AI means:</strong><br />
+A) The AI can explain jokes<br />
+B) Users can understand how and why the AI reached a specific decision<br />
+C) The AI's code is written in plain English<br />
+D) The AI provides longer responses  </p>
+<p><strong>Answer: B</strong> — Explainability is critical in regulated industries where decisions must be justified and auditable.</p>
+<hr />
+<h3 id="policy-governance-adoption">Policy, Governance &amp; Adoption</h3>
+<p><strong>22. An AI acceptable use policy should include:</strong><br />
+A) Only the names of approved AI tools<br />
+B) Guidelines on data classification, approved tools, prohibited uses, and incident reporting<br />
+C) A list of all employees' passwords<br />
+D) Marketing materials for AI vendors  </p>
+<p><strong>Answer: B</strong> — A comprehensive AUP covers what tools are approved, what data can be used, what's prohibited, and how to report problems.</p>
+<hr />
+<p><strong>23. What is the PRIMARY purpose of a pilot program?</strong><br />
+A) To replace a full enterprise rollout<br />
+B) To test an AI solution in a controlled setting and measure results before scaling<br />
+C) To satisfy regulatory requirements<br />
+D) To train the AI on all company data  </p>
+<p><strong>Answer: B</strong> — Pilots are small-scale tests designed to validate value, identify risks, and build evidence before committing to a wider rollout.</p>
+<hr />
+<p><strong>24. Which KPI would BEST measure the success of an AI-powered customer service chatbot?</strong><br />
+A) Number of AI vendors contacted<br />
+B) Percentage of customer inquiries resolved without human escalation<br />
+C) Number of lines of code in the chatbot<br />
+D) Cost of the chatbot's hardware  </p>
+<p><strong>Answer: B</strong> — Resolution rate (queries handled without human help) directly measures whether the chatbot is delivering its intended value.</p>
+<hr />
+<p><strong>25. The biggest risk during AI change management is:</strong><br />
+A) The AI being too accurate<br />
+B) Employee resistance due to fear, lack of training, or unclear communication<br />
+C) Running out of cloud storage<br />
+D) Choosing a tool with too many features  </p>
+<p><strong>Answer: B</strong> — People are the hardest part of any technology rollout. Fear of job loss, inadequate training, and poor communication are the top barriers.</p>
+<hr />
+<h2 id="scenario-question-what-to-expect">Scenario Question — What to Expect</h2>
+<p>The scenario question presents a realistic business situation and asks you to make a recommendation. You will have 10–15 minutes for this question. Here is an example:</p>
+<blockquote>
+<p><strong>Scenario:</strong> Your company's marketing department wants to use a free, public AI tool to generate social media posts. They plan to paste customer testimonials (including names and photos) into the tool to create personalized content. As the newly trained AI lead, what risks do you identify, and what would you recommend?</p>
+</blockquote>
+<p>A strong answer would cover:<br />
+- <strong>Data privacy risk:</strong> Customer names and photos are PII; pasting into a public tool risks data leakage<br />
+- <strong>Compliance risk:</strong> Potential GDPR/privacy regulation violation<br />
+- <strong>Shadow AI risk:</strong> Using an unapproved tool outside IT governance<br />
+- <strong>Recommendations:</strong> Use anonymized data, get IT/legal approval for the tool, check the vendor's data handling policy, consider an enterprise-tier tool with data protections</p>
+<hr />
+<h2 id="study-tips">Study Tips</h2>
+<ol>
+<li><strong>Review the glossary</strong> in the Student Handbook — many questions test terminology</li>
+<li><strong>Re-watch Module 6 (Security)</strong> — it carries the highest exam weight alongside fundamentals</li>
+<li><strong>Practice explaining concepts in plain English</strong> — the exam tests understanding, not memorization</li>
+<li><strong>Do the module quizzes first</strong> — they use similar question formats</li>
+<li><strong>For the scenario question:</strong> Structure your answer with clear headings (Risks, Recommendations, Next Steps)</li>
+<li><strong>Time management:</strong> Spend no more than 1.5 minutes per multiple-choice question, saving 10–15 minutes for the scenario</li>
+<li><strong>Read all answer choices</strong> before selecting — some questions have "most correct" answers that require comparison</li>
+<li><strong>Focus on "why" not just "what"</strong> — understanding the reasoning behind concepts helps you answer questions you haven't seen before</li>
+</ol>
+<hr />
+<h2 id="quick-reference-key-frameworks-to-know">Quick-Reference: Key Frameworks to Know</h2>
+<table>
+<thead>
+<tr>
+<th>Framework / Concept</th>
+<th>What It Is</th>
+<th>Where It Appears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Responsible AI Principles</td>
+<td>6 principles for ethical AI use</td>
+<td>Module 7, exam questions 19-21 area</td>
+</tr>
+<tr>
+<td>Data Classification</td>
+<td>Public → Internal → Confidential → Restricted</td>
+<td>Module 6, 8</td>
+</tr>
+<tr>
+<td>Build vs. Buy</td>
+<td>Framework for deciding whether to build AI in-house or purchase</td>
+<td>Module 5</td>
+</tr>
+<tr>
+<td>Pilot Design</td>
+<td>Scope → Metrics → Timeline → Evaluate → Decide</td>
+<td>Module 9</td>
+</tr>
+<tr>
+<td>AI Governance Structure</td>
+<td>Policy + Committee + Monitoring + Incident Response</td>
+<td>Module 8</td>
+</tr>
+<tr>
+<td>Risk Assessment</td>
+<td>Identify → Assess → Mitigate → Monitor</td>
+<td>Module 6</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Good luck on your exam! Remember: this certification proves you can think critically about AI in an enterprise setting — not that you memorized a textbook.</em></p>
+<p><em>© 2026 Howard Mukanda. All rights reserved.</em></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 4 Cheat Sheet: AI Risks — Risk Matrix & Real-World Incidents — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 4 Cheat Sheet: AI Risks — Risk Matrix & Real-World Incidents</h1>
+</div>
+<div class="content">
+<h1 id="module-4-cheat-sheet-ai-risks-risk-matrix-real-world-incidents">Module 4 Cheat Sheet: AI Risks — Risk Matrix &amp; Real-World Incidents</h1>
+<h2 id="ai-risk-categories">AI Risk Categories</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Security</strong></td>
+<td>Threats to AI system integrity</td>
+<td>Prompt injection, data poisoning, model theft</td>
+</tr>
+<tr>
+<td><strong>Operational</strong></td>
+<td>Disruptions to business processes</td>
+<td>Model drift, hallucinated outputs, downtime</td>
+</tr>
+<tr>
+<td><strong>Compliance</strong></td>
+<td>Regulatory and legal exposure</td>
+<td>GDPR violations, bias in hiring, unlicensed training data</td>
+</tr>
+<tr>
+<td><strong>Reputational</strong></td>
+<td>Brand and trust damage</td>
+<td>Offensive outputs, public AI failures</td>
+</tr>
+<tr>
+<td><strong>Ethical</strong></td>
+<td>Fairness and societal impact</td>
+<td>Algorithmic bias, lack of transparency</td>
+</tr>
+<tr>
+<td><strong>Financial</strong></td>
+<td>Direct monetary losses</td>
+<td>Runaway API costs, fraud via deepfakes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enterprise-ai-risk-matrix">Enterprise AI Risk Matrix</h2>
+<p>Rate each risk: <strong>Likelihood</strong> (1–5) × <strong>Impact</strong> (1–5) = <strong>Risk Score</strong></p>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Likelihood</th>
+<th>Impact</th>
+<th>Score</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hallucinated outputs in customer-facing tools</td>
+<td>5</td>
+<td>4</td>
+<td><strong>20</strong></td>
+<td>🔴 Critical</td>
+</tr>
+<tr>
+<td>Shadow AI (unauthorized tool use)</td>
+<td>5</td>
+<td>3</td>
+<td><strong>15</strong></td>
+<td>🔴 Critical</td>
+</tr>
+<tr>
+<td>Prompt injection attacks</td>
+<td>4</td>
+<td>4</td>
+<td><strong>16</strong></td>
+<td>🔴 Critical</td>
+</tr>
+<tr>
+<td>Data leakage via AI prompts</td>
+<td>4</td>
+<td>5</td>
+<td><strong>20</strong></td>
+<td>🔴 Critical</td>
+</tr>
+<tr>
+<td>Bias in AI-assisted decisions</td>
+<td>3</td>
+<td>5</td>
+<td><strong>15</strong></td>
+<td>🟠 High</td>
+</tr>
+<tr>
+<td>Vendor lock-in</td>
+<td>3</td>
+<td>3</td>
+<td><strong>9</strong></td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td>Model drift (accuracy degradation)</td>
+<td>3</td>
+<td>3</td>
+<td><strong>9</strong></td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td>Regulatory non-compliance</td>
+<td>2</td>
+<td>5</td>
+<td><strong>10</strong></td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td>Deepfake / synthetic media misuse</td>
+<td>2</td>
+<td>4</td>
+<td><strong>8</strong></td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td>Supply chain compromise (model poisoning)</td>
+<td>1</td>
+<td>5</td>
+<td><strong>5</strong></td>
+<td>🟢 Low</td>
+</tr>
+</tbody>
+</table>
+<h3 id="risk-score-interpretation">Risk Score Interpretation</h3>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Level</th>
+<th>Action Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15–25</td>
+<td>🔴 Critical</td>
+<td>Immediate mitigation; executive visibility</td>
+</tr>
+<tr>
+<td>8–14</td>
+<td>🟡 Medium</td>
+<td>Planned mitigation within 90 days</td>
+</tr>
+<tr>
+<td>1–7</td>
+<td>🟢 Low</td>
+<td>Monitor; review quarterly</td>
+</tr>
+</tbody>
+</table>
+<h2 id="real-world-ai-incidents">Real-World AI Incidents</h2>
+<table>
+<thead>
+<tr>
+<th>Incident</th>
+<th>Year</th>
+<th>What Happened</th>
+<th>Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Samsung Data Leak</strong></td>
+<td>2023</td>
+<td>Engineers pasted proprietary source code into ChatGPT</td>
+<td>Never paste confidential data into public AI tools</td>
+</tr>
+<tr>
+<td><strong>Air Canada Chatbot</strong></td>
+<td>2024</td>
+<td>Chatbot fabricated a refund policy; airline held legally liable</td>
+<td>AI outputs need human review for legal/financial claims</td>
+</tr>
+<tr>
+<td><strong>DPD Chatbot Meltdown</strong></td>
+<td>2024</td>
+<td>Customer tricked chatbot into swearing and criticizing the company</td>
+<td>Implement guardrails and content filtering</td>
+</tr>
+<tr>
+<td><strong>NYC AI Chatbot</strong></td>
+<td>2024</td>
+<td>City's business advice chatbot recommended illegal actions</td>
+<td>Validate AI advice against authoritative sources</td>
+</tr>
+<tr>
+<td><strong>Lawyer Cites Fake Cases</strong></td>
+<td>2023</td>
+<td>Attorney used ChatGPT; it hallucinated non-existent court cases</td>
+<td>Always verify AI-generated legal/factual claims</td>
+</tr>
+<tr>
+<td><strong>Amazon AI Hiring Bias</strong></td>
+<td>2018</td>
+<td>Recruiting AI penalized women's resumes</td>
+<td>Audit AI systems for bias before deployment</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mitigation-quick-reference">Mitigation Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Key Mitigations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hallucinations</strong></td>
+<td>Human-in-the-loop review, RAG (ground responses in verified data), confidence scoring</td>
+</tr>
+<tr>
+<td><strong>Data Leakage</strong></td>
+<td>DLP policies, enterprise-grade tools with no-training guarantees, input filtering</td>
+</tr>
+<tr>
+<td><strong>Shadow AI</strong></td>
+<td>Approved tool list, AI acceptable use policy, monitoring/discovery</td>
+</tr>
+<tr>
+<td><strong>Prompt Injection</strong></td>
+<td>Input validation, role-based access, sandboxed execution</td>
+</tr>
+<tr>
+<td><strong>Bias</strong></td>
+<td>Diverse training data, regular bias audits, fairness metrics</td>
+</tr>
+<tr>
+<td><strong>Vendor Lock-in</strong></td>
+<td>Multi-model strategy, data portability clauses, open standards</td>
+</tr>
+<tr>
+<td><strong>Compliance Gaps</strong></td>
+<td>AI impact assessments, legal review, regulatory monitoring</td>
+</tr>
+</tbody>
+</table>
+<h2 id="building-your-ai-risk-register">Building Your AI Risk Register</h2>
+<p>For each AI use case in your organization, document:</p>
+<ol>
+<li><strong>Use Case</strong> — What the AI does</li>
+<li><strong>Data Involved</strong> — What data it accesses (classify sensitivity)</li>
+<li><strong>Users</strong> — Who uses it and who is affected</li>
+<li><strong>Risks Identified</strong> — Map to categories above</li>
+<li><strong>Risk Score</strong> — Likelihood × Impact</li>
+<li><strong>Mitigations</strong> — What controls are in place</li>
+<li><strong>Owner</strong> — Who is accountable</li>
+<li><strong>Review Date</strong> — When to reassess</li>
+</ol>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can identify the top five AI risks for a typical enterprise</li>
+<li>[ ] I can build a basic risk matrix using likelihood and impact</li>
+<li>[ ] I can cite at least three real-world AI incidents and their lessons</li>
+<li>[ ] I know the key mitigations for hallucinations and data leakage</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 4</em></p>
+</div>
+</body>
+</html>

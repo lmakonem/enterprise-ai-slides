@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Vendor Assessment Checklist — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>AI Vendor Assessment Checklist</h1>
+</div>
+<div class="content">
+<h1 id="ai-vendor-assessment-checklist">AI Vendor Assessment Checklist</h1>
+<blockquote>
+<p>A comprehensive questionnaire for evaluating AI vendors across data privacy, security, functionality, cost, and stability. Use this before signing any AI vendor contract.</p>
+<p><strong>Scoring:</strong> Rate each item 0–3 (0 = Not met, 1 = Partially met, 2 = Mostly met, 3 = Fully met). Sum scores per section. See rubric at end.</p>
+</blockquote>
+<hr />
+<h2 id="section-1-data-privacy-20-questions-max-score-60">Section 1: Data Privacy (20 Questions) — Max Score: 60</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Score (0–3)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Does the vendor have a published, up-to-date privacy policy specific to their AI product?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Does the vendor guarantee that customer data is <strong>not used to train</strong> their AI models?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Can you opt out of data collection and telemetry?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Where is customer data stored? Are data residency options available (US, EU, specific regions)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>Is all data encrypted at rest (AES-256 or equivalent)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>Is all data encrypted in transit (TLS 1.2+ minimum, TLS 1.3 preferred)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>What is the data retention policy? Can you control retention periods?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>Can customer data be fully deleted on request (right to erasure)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>Does the vendor support data portability (export your data in standard formats)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.10</td>
+<td>Are there data processing agreements (DPA) available that meet GDPR/CCPA requirements?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.11</td>
+<td>Does the vendor disclose all sub-processors and their locations?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.12</td>
+<td>Is customer data logically or physically segregated from other tenants?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.13</td>
+<td>Does the vendor have a Data Protection Officer (DPO) or equivalent role?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.14</td>
+<td>Are AI prompt inputs and outputs logged? Who can access these logs?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.15</td>
+<td>Does the vendor provide data flow diagrams showing how data moves through their system?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.16</td>
+<td>How does the vendor handle data in fine-tuning or customization scenarios?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.17</td>
+<td>Are there mechanisms to prevent PII from being included in model training?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.18</td>
+<td>Does the vendor comply with relevant data protection laws (GDPR, CCPA, HIPAA, etc.)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.19</td>
+<td>Can you restrict which employee data categories are processed by the AI?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.20</td>
+<td>Does the vendor notify you of changes to data handling practices before they take effect?</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Section 1 Score: _____ / 60</strong></p>
+<hr />
+<h2 id="section-2-security-15-questions-max-score-45">Section 2: Security (15 Questions) — Max Score: 45</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Score (0–3)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td>Does the vendor hold SOC 2 Type II certification (issued within the last 12 months)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Does the vendor hold ISO 27001 certification with current surveillance audits?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Does the vendor support SSO (SAML 2.0 / OIDC) and SCIM provisioning?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Is multi-factor authentication (MFA) enforced for all access?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Does the vendor implement role-based access control (RBAC) with least-privilege defaults?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>Does the vendor conduct regular penetration testing (at least annually)? Are reports available?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.7</td>
+<td>Does the vendor have a documented vulnerability management program?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.8</td>
+<td>Is there a bug bounty or responsible disclosure program?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.9</td>
+<td>What is the vendor's incident response plan? What are the breach notification timelines?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.10</td>
+<td>Does the vendor maintain comprehensive audit logs? Can customers access them?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.11</td>
+<td>Are there protections against prompt injection and adversarial inputs?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.12</td>
+<td>Does the vendor conduct AI-specific security testing (model robustness, adversarial testing)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.13</td>
+<td>Are API endpoints protected with rate limiting, authentication, and encryption?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.14</td>
+<td>Does the vendor's security program cover supply chain risks (third-party models, libraries)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.15</td>
+<td>Does the vendor provide a shared responsibility model document outlining customer vs. vendor security obligations?</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Section 2 Score: _____ / 45</strong></p>
+<hr />
+<h2 id="section-3-functionality-15-questions-max-score-45">Section 3: Functionality (15 Questions) — Max Score: 45</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Score (0–3)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1</td>
+<td>Does the tool support your primary use cases (list: <strong><em>_</em></strong><strong><em>_</em></strong>_____)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Is there an admin console for user management, monitoring, and configuration?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Does the tool integrate with your existing tech stack (list key systems: <strong><em>_</em></strong>____)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Is there an API available for custom integrations and automation?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>Does the tool support custom knowledge bases (RAG, document upload, etc.)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>Can administrators set content policies and usage restrictions?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.7</td>
+<td>Does the tool support multiple AI models or model selection?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.8</td>
+<td>Are usage analytics and reporting available (per user, per department, per use case)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.9</td>
+<td>Is there comprehensive documentation and training resources available?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.10</td>
+<td>Does the vendor offer onboarding support and customer success resources?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.11</td>
+<td>What is the tool's performance (latency, uptime SLA, throughput)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.12</td>
+<td>Does the tool support multi-language capabilities relevant to your operations?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.13</td>
+<td>Can the tool be customized (custom prompts, workflows, personas)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.14</td>
+<td>Is there a sandbox/test environment for evaluation before full deployment?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.15</td>
+<td>Does the vendor have a public product roadmap and regular feature releases?</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Section 3 Score: _____ / 45</strong></p>
+<hr />
+<h2 id="section-4-cost-10-questions-max-score-30">Section 4: Cost (10 Questions) — Max Score: 30</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Score (0–3)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1</td>
+<td>Is the pricing model clear and predictable (per-seat, per-token, tiered)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Are there transparent overage charges or usage caps?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>What is the total cost of ownership (license + implementation + training + maintenance)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>Are there volume discounts or enterprise pricing available?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.5</td>
+<td>Is there a free trial or pilot program to evaluate before committing?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>What are the contract terms (monthly, annual, multi-year)? Are there early termination penalties?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.7</td>
+<td>Does the vendor provide cost management tools (usage dashboards, budget alerts)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.8</td>
+<td>How does the pricing compare to direct competitors for equivalent features?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.9</td>
+<td>Are there hidden costs (setup fees, integration fees, premium support, training)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.10</td>
+<td>What is the expected price trajectory? Has the vendor historically raised prices?</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Section 4 Score: _____ / 30</strong></p>
+<hr />
+<h2 id="section-5-vendor-stability-support-10-questions-max-score-30">Section 5: Vendor Stability &amp; Support (10 Questions) — Max Score: 30</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Score (0–3)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1</td>
+<td>How long has the vendor been in business? What is their funding/financial position?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>What is their customer base size, particularly in your industry?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.3</td>
+<td>Can the vendor provide enterprise references in your sector?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>What are the SLAs for uptime and what is the vendor's track record (check status page history)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>What support tiers are available? What is the response time for critical issues?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Is there a dedicated account manager or customer success team?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.7</td>
+<td>Does the vendor have a business continuity / disaster recovery plan?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.8</td>
+<td>What happens to your data if the vendor is acquired, shuts down, or you terminate?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.9</td>
+<td>Does the contract include data export/migration assistance on termination?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.10</td>
+<td>Does the vendor have a transparent communication history (outage notifications, changelogs)?</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Section 5 Score: _____ / 30</strong></p>
+<hr />
+<h2 id="scoring-rubric">Scoring Rubric</h2>
+<h3 id="per-item-scoring">Per-Item Scoring</h3>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Meaning</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0</strong></td>
+<td>Not met</td>
+<td>Capability does not exist or vendor cannot/will not provide evidence</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>Partially met</td>
+<td>Some capability exists but with significant gaps or limitations</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Mostly met</td>
+<td>Capability is solid but missing minor elements or documentation</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Fully met</td>
+<td>Capability is mature, well-documented, and verified</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-score-interpretation">Section Score Interpretation</h3>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Max Score</th>
+<th>🟢 Strong (&gt;80%)</th>
+<th>🟡 Acceptable (60–80%)</th>
+<th>🔴 Weak (&lt;60%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Privacy</td>
+<td>60</td>
+<td>48+</td>
+<td>36–47</td>
+<td>&lt;36</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>45</td>
+<td>36+</td>
+<td>27–35</td>
+<td>&lt;27</td>
+</tr>
+<tr>
+<td>Functionality</td>
+<td>45</td>
+<td>36+</td>
+<td>27–35</td>
+<td>&lt;27</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>30</td>
+<td>24+</td>
+<td>18–23</td>
+<td>&lt;18</td>
+</tr>
+<tr>
+<td>Vendor Stability</td>
+<td>30</td>
+<td>24+</td>
+<td>18–23</td>
+<td>&lt;18</td>
+</tr>
+</tbody>
+</table>
+<h3 id="overall-assessment">Overall Assessment</h3>
+<table>
+<thead>
+<tr>
+<th>Total Score (out of 210)</th>
+<th>Rating</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>170–210</strong> (&gt;80%)</td>
+<td>🟢 <strong>Strong Candidate</strong></td>
+<td>Proceed to contract negotiation</td>
+</tr>
+<tr>
+<td><strong>126–169</strong> (60–80%)</td>
+<td>🟡 <strong>Conditional</strong></td>
+<td>Proceed with documented risk acceptance for gap areas</td>
+</tr>
+<tr>
+<td><strong>84–125</strong> (40–60%)</td>
+<td>🟠 <strong>Weak</strong></td>
+<td>Significant remediation required before proceeding</td>
+</tr>
+<tr>
+<td><strong>&lt;84</strong> (&lt;40%)</td>
+<td>🔴 <strong>Not Recommended</strong></td>
+<td>Do not proceed — seek alternative vendors</td>
+</tr>
+</tbody>
+</table>
+<h3 id="automatic-disqualifiers">Automatic Disqualifiers</h3>
+<p>Regardless of total score, flag the vendor as <strong>high risk</strong> if any of these apply:</p>
+<ul>
+<li>[ ] Customer data is used for model training with no opt-out</li>
+<li>[ ] No SOC 2 Type II or equivalent security certification</li>
+<li>[ ] No data processing agreement (DPA) available</li>
+<li>[ ] Breach notification timeline exceeds 72 hours</li>
+<li>[ ] No data deletion capability on termination</li>
+<li>[ ] Cannot provide data residency in required jurisdiction</li>
+</ul>
+<hr />
+<h2 id="how-to-use-this-checklist">How to Use This Checklist</h2>
+<ol>
+<li><strong>Before the vendor meeting:</strong> Send Sections 1–2 as a questionnaire to the vendor</li>
+<li><strong>During the evaluation:</strong> Complete Sections 3–5 based on demos, references, and documentation</li>
+<li><strong>After evaluation:</strong> Score all sections, review automatic disqualifiers</li>
+<li><strong>Decision meeting:</strong> Present scores by section to the evaluation committee</li>
+<li><strong>Negotiation:</strong> Use low-scoring areas as negotiation leverage (e.g., "We need X before signing")</li>
+<li><strong>Post-contract:</strong> Reassess annually — vendor capabilities and risks change over time</li>
+</ol>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Vendor Assessment Checklist</em></p>
+</div>
+</body>
+</html>

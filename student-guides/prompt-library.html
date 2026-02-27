@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Prompt Template Library — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Prompt Template Library</h1>
+</div>
+<div class="content">
+<h1 id="prompt-template-library">Prompt Template Library</h1>
+<blockquote>
+<p>40+ ready-to-use business prompts organized by function. Copy, customize, and use.</p>
+<p><strong>Format:</strong> Each prompt includes Purpose, the Prompt itself, Expected Output, and Customization Tips.</p>
+</blockquote>
+<hr />
+<h2 id="communication-8-prompts">📧 Communication (8 Prompts)</h2>
+<h3 id="1-professional-email-draft">1. Professional Email Draft</h3>
+<ul>
+<li><strong>Purpose:</strong> Draft a polished email quickly</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>You are a professional communications specialist. Draft an email to [recipient/role] regarding [topic]. Tone: [formal/friendly/urgent]. Include these key points: [point 1, point 2, point 3]. Keep under [X] words. Close with a clear call to action.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Ready-to-send email</li>
+<li><strong>Tips:</strong> Specify the relationship (client, manager, vendor) for better tone calibration.</li>
+</ul>
+<h3 id="2-meeting-summary">2. Meeting Summary</h3>
+<ul>
+<li><strong>Purpose:</strong> Turn meeting notes into a structured summary</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Summarize the following meeting notes into a structured format with: (1) Key Decisions, (2) Action Items with owners and deadlines, (3) Open Questions, (4) Next Steps. Use bullet points. Keep it concise — no more than one page. Meeting notes: [paste notes]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Formatted meeting summary</li>
+<li><strong>Tips:</strong> Include attendee names in the notes so the AI can assign action items correctly.</li>
+</ul>
+<h3 id="3-difficult-conversation-prep">3. Difficult Conversation Prep</h3>
+<ul>
+<li><strong>Purpose:</strong> Prepare for a sensitive workplace conversation</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>I need to have a conversation with [role] about [situation]. Help me prepare: (1) An opening statement that is direct but empathetic, (2) Three key points I need to communicate, (3) Anticipated pushback and how to respond, (4) A constructive closing that focuses on next steps. Tone: professional, calm, solution-oriented.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Conversation script with objection handling</li>
+<li><strong>Tips:</strong> Provide context about the relationship and desired outcome.</li>
+</ul>
+<h3 id="4-presentation-outline">4. Presentation Outline</h3>
+<ul>
+<li><strong>Purpose:</strong> Structure a presentation quickly</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create a presentation outline for a [duration]-minute talk on [topic] for [audience]. Include: a compelling opening hook, [X] main sections with key talking points for each, data points or examples to include, and a strong closing with call to action. Format as a numbered outline with sub-bullets.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Presentation skeleton ready for slides</li>
+<li><strong>Tips:</strong> Mention if you want a storytelling arc, data-heavy approach, or persuasive structure.</li>
+</ul>
+<h3 id="5-executive-summary">5. Executive Summary</h3>
+<ul>
+<li><strong>Purpose:</strong> Condense a long document for leadership</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Summarize the following document into an executive summary for [C-suite/board/VP-level audience]. Structure: (1) One-sentence overview, (2) Key findings (3–5 bullets), (3) Implications for our business, (4) Recommended actions, (5) Key risks. Maximum 300 words. Use plain language — avoid jargon. Document: [paste or describe]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Executive-ready summary</li>
+<li><strong>Tips:</strong> Specify what leadership cares about most (revenue, risk, timeline).</li>
+</ul>
+<h3 id="6-stakeholder-update">6. Stakeholder Update</h3>
+<ul>
+<li><strong>Purpose:</strong> Write a project status update</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Write a stakeholder update email for [project name]. Include: Status (On Track / At Risk / Delayed), Key accomplishments this period, Upcoming milestones, Blockers or risks (with mitigation), and any decisions needed from stakeholders. Keep professional and concise. Data: [paste project status info]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Formatted status update</li>
+<li><strong>Tips:</strong> Include RAG status (Red/Amber/Green) for visual clarity.</li>
+</ul>
+<h3 id="7-policy-communication">7. Policy Communication</h3>
+<ul>
+<li><strong>Purpose:</strong> Announce a new policy to employees</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Draft an internal announcement for [policy name]. Include: What is changing and why, What employees need to do differently, Timeline and effective date, Where to get more information, and an FAQ section with 5 likely questions. Tone: clear, supportive, not bureaucratic. Audience: all employees.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Internal communication with FAQ</li>
+<li><strong>Tips:</strong> Highlight the "what's in it for me" for employees.</li>
+</ul>
+<h3 id="8-cross-cultural-communication">8. Cross-Cultural Communication</h3>
+<ul>
+<li><strong>Purpose:</strong> Adapt messaging for international audiences</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Adapt the following message for [target culture/region]. Consider: communication style norms (direct vs. indirect), formality expectations, cultural sensitivities, and appropriate greetings/closings. Maintain the core message while adjusting delivery. Original message: [paste message]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Culturally adapted communication</li>
+<li><strong>Tips:</strong> Specify the specific country or region, not just "Asia" or "Europe."</li>
+</ul>
+<hr />
+<h2 id="analysis-research-7-prompts">📊 Analysis &amp; Research (7 Prompts)</h2>
+<h3 id="9-competitive-analysis">9. Competitive Analysis</h3>
+<ul>
+<li><strong>Purpose:</strong> Analyze a competitor quickly</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Analyze [competitor name] as a competitor to our company in [industry/market]. Cover: Products/services overview, Target market and positioning, Key strengths and weaknesses, Recent strategic moves, Pricing model (if known), and Potential threats to our business. Present as a structured brief with a SWOT table.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Competitive intelligence brief with SWOT</li>
+<li><strong>Tips:</strong> Provide info about your own company so the AI can make relevant comparisons.</li>
+</ul>
+<h3 id="10-data-interpretation">10. Data Interpretation</h3>
+<ul>
+<li><strong>Purpose:</strong> Extract insights from data</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Analyze the following data and provide: (1) Top 3 key trends or patterns, (2) Anomalies or outliers worth investigating, (3) Possible causes for the trends observed, (4) Recommended actions based on the data, (5) What additional data would strengthen the analysis. Present findings with supporting data points. Data: [paste data or describe]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Data analysis with actionable insights</li>
+<li><strong>Tips:</strong> Specify the business context so insights are relevant, not generic.</li>
+</ul>
+<h3 id="11-market-research-summary">11. Market Research Summary</h3>
+<ul>
+<li><strong>Purpose:</strong> Synthesize market research findings</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Synthesize the following market research into an executive brief. Cover: Market size and growth trajectory, Key segments and their characteristics, Major trends shaping the market, Competitive landscape overview, Opportunities for our organization, and Risks/threats to monitor. Format as a one-page brief with bullet points. Source material: [paste or describe]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Market research brief</li>
+<li><strong>Tips:</strong> Specify your organization's position in the market for relevant framing.</li>
+</ul>
+<h3 id="12-process-analysis">12. Process Analysis</h3>
+<ul>
+<li><strong>Purpose:</strong> Identify inefficiencies in a business process</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Analyze the following business process and identify: (1) Bottlenecks or delays, (2) Redundant steps, (3) Automation opportunities, (4) Risk points, (5) Suggested improvements with estimated impact (time/cost savings). Process: [describe step by step]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Process improvement recommendations</li>
+<li><strong>Tips:</strong> Include average time and cost per step if available.</li>
+</ul>
+<h3 id="13-rfpproposal-analysis">13. RFP/Proposal Analysis</h3>
+<ul>
+<li><strong>Purpose:</strong> Evaluate a vendor proposal or RFP response</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Evaluate the following proposal/RFP response against our requirements. Create a table with columns: Requirement, Vendor Response, Meets Requirement (Yes/Partial/No), Gaps/Concerns. Then summarize: Overall assessment, Top 3 strengths, Top 3 weaknesses, Key questions to ask the vendor, and Go/No-Go recommendation with reasoning. Requirements: [list] Proposal: [paste]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Structured proposal evaluation</li>
+<li><strong>Tips:</strong> Weight the requirements by priority before analysis.</li>
+</ul>
+<h3 id="14-risk-assessment">14. Risk Assessment</h3>
+<ul>
+<li><strong>Purpose:</strong> Evaluate risks for a project or initiative</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Conduct a risk assessment for [project/initiative]. For each risk, provide: Description, Likelihood (1–5), Impact (1–5), Risk Score, Mitigation strategy, and Risk owner suggestion. Present as a risk register table. Include at least 8–10 risks across categories: technical, operational, financial, regulatory, and reputational.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Risk register with mitigations</li>
+<li><strong>Tips:</strong> Provide project details for more specific risk identification.</li>
+</ul>
+<h3 id="15-root-cause-analysis">15. Root Cause Analysis</h3>
+<ul>
+<li><strong>Purpose:</strong> Investigate why something went wrong</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Perform a root cause analysis for the following issue: [describe the problem]. Use the 5 Whys technique. Then provide: (1) Root cause statement, (2) Contributing factors, (3) Immediate corrective actions, (4) Long-term preventive measures, (5) Recommended process changes.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Root cause analysis with corrective actions</li>
+<li><strong>Tips:</strong> Include timeline of events and data points for more accurate analysis.</li>
+</ul>
+<hr />
+<h2 id="management-operations-6-prompts">👥 Management &amp; Operations (6 Prompts)</h2>
+<h3 id="16-one-on-one-prep">16. One-on-One Prep</h3>
+<ul>
+<li><strong>Purpose:</strong> Prepare for a productive 1:1 meeting</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Help me prepare for a 1:1 meeting with [direct report name/role]. Context: [any relevant context — recent performance, project updates, concerns]. Generate: (1) 3 open-ended questions about their work and development, (2) Feedback to deliver (positive and constructive), (3) Discussion topics to cover, (4) Development opportunities to suggest. Tone: supportive, growth-oriented.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> 1:1 meeting prep sheet</li>
+<li><strong>Tips:</strong> Include what you know about their career goals.</li>
+</ul>
+<h3 id="17-change-management-plan">17. Change Management Plan</h3>
+<ul>
+<li><strong>Purpose:</strong> Plan a change initiative</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create a change management plan for [describe the change]. Include: Stakeholder analysis (who is impacted and how), Communication plan (what, when, to whom), Training requirements, Resistance points and mitigation, Success metrics, and a 90-day timeline with milestones. Format as a structured plan document.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Change management plan</li>
+<li><strong>Tips:</strong> Specify the organization size and culture for realistic planning.</li>
+</ul>
+<h3 id="18-okr-development">18. OKR Development</h3>
+<ul>
+<li><strong>Purpose:</strong> Draft OKRs for a team or initiative</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Develop OKRs for [team/department/initiative] for [time period]. Context: [strategic priorities, current challenges]. Create 3 Objectives, each with 3–4 Key Results. Key Results must be specific, measurable, and time-bound. Include suggested initiatives for each Key Result. Align to the company goal of [state goal].</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> OKR set with initiatives</li>
+<li><strong>Tips:</strong> Share existing company-level OKRs for alignment.</li>
+</ul>
+<h3 id="19-project-kickoff-agenda">19. Project Kickoff Agenda</h3>
+<ul>
+<li><strong>Purpose:</strong> Structure a project kickoff meeting</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create a project kickoff meeting agenda for [project name]. Duration: [X] minutes. Include: Welcome and introductions, Project overview and objectives, Scope and deliverables, Roles and responsibilities (RACI), Timeline and milestones, Communication plan, Risk overview, Q&amp;A, and Next steps with action items. Include time allocations for each section.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Timed meeting agenda</li>
+<li><strong>Tips:</strong> Include attendee list so roles section is relevant.</li>
+</ul>
+<h3 id="20-sop-draft">20. SOP Draft</h3>
+<ul>
+<li><strong>Purpose:</strong> Create a standard operating procedure</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Write a Standard Operating Procedure (SOP) for [process name]. Include: Purpose and scope, Roles and responsibilities, Prerequisites/requirements, Step-by-step procedure (numbered), Decision points (if/then), Quality checks, Troubleshooting common issues, and Version history placeholder. Use clear, imperative language. Target audience: [who will use this].</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Complete SOP document</li>
+<li><strong>Tips:</strong> Walk through the process yourself first and provide your rough notes.</li>
+</ul>
+<h3 id="21-vendor-negotiation-prep">21. Vendor Negotiation Prep</h3>
+<ul>
+<li><strong>Purpose:</strong> Prepare for a vendor negotiation</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Help me prepare for a contract negotiation with [vendor] for [product/service]. Our budget is [range]. Provide: (1) Key leverage points, (2) Common pricing tactics this type of vendor uses, (3) Questions to ask, (4) Concessions we can offer vs. must-haves, (5) Walk-away criteria, (6) A negotiation script for the opening. Context: [relationship history, alternatives available]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Negotiation strategy and script</li>
+<li><strong>Tips:</strong> Mention if you have competitive bids or are renewing vs. new purchase.</li>
+</ul>
+<hr />
+<h2 id="human-resources-6-prompts">🧑‍💼 Human Resources (6 Prompts)</h2>
+<h3 id="22-job-description">22. Job Description</h3>
+<ul>
+<li><strong>Purpose:</strong> Write a compelling job posting</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Write a job description for [title] at [company type/industry]. Include: Role summary (2–3 sentences), Key responsibilities (6–8 bullets), Required qualifications, Preferred qualifications, What we offer (benefits/culture), and a brief company description. Tone: professional but engaging — attract top talent. Avoid gendered language.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Ready-to-post job description</li>
+<li><strong>Tips:</strong> Include salary range and remote/hybrid/onsite for better results.</li>
+</ul>
+<h3 id="23-interview-questions">23. Interview Questions</h3>
+<ul>
+<li><strong>Purpose:</strong> Develop structured interview questions</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Generate [X] behavioral interview questions for a [role] position. For each question, provide: The question, What competency it assesses, What a strong answer looks like (indicators), and a Follow-up probe question. Cover these competencies: [list competencies]. Use the STAR format (Situation, Task, Action, Result).</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Structured interview guide</li>
+<li><strong>Tips:</strong> Specify seniority level for appropriately calibrated questions.</li>
+</ul>
+<h3 id="24-performance-review-draft">24. Performance Review Draft</h3>
+<ul>
+<li><strong>Purpose:</strong> Draft constructive performance feedback</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Draft performance review feedback for [employee role]. Based on the following observations: [list accomplishments and areas for improvement]. Include: Overall performance summary, Key strengths (with specific examples), Areas for development (with specific examples), Goals for next review period, and Development recommendations. Tone: balanced, specific, forward-looking. Avoid vague praise or criticism.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Performance review narrative</li>
+<li><strong>Tips:</strong> Include specific metrics or project outcomes for grounded feedback.</li>
+</ul>
+<h3 id="25-training-program-outline">25. Training Program Outline</h3>
+<ul>
+<li><strong>Purpose:</strong> Design an employee training program</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Design a training program for [topic] targeting [audience]. Include: Learning objectives (3–5), Module breakdown with topics and durations, Delivery methods for each module (lecture, workshop, hands-on, self-paced), Assessment methods, Required materials/resources, and Success metrics. Total program duration: [X hours/days].</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Training program design document</li>
+<li><strong>Tips:</strong> Mention existing skill levels and preferred learning formats.</li>
+</ul>
+<h3 id="26-employee-survey-questions">26. Employee Survey Questions</h3>
+<ul>
+<li><strong>Purpose:</strong> Measure employee sentiment</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create an employee survey about [topic — e.g., AI tool adoption, job satisfaction, remote work]. Include: 15 questions using a mix of Likert scale (1–5), multiple choice, and 3 open-ended questions. Group by theme. Ensure questions are neutral and non-leading. Include a brief introduction explaining the survey purpose and that responses are anonymous.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Complete survey with introduction</li>
+<li><strong>Tips:</strong> Specify what decisions the survey results will inform.</li>
+</ul>
+<h3 id="27-onboarding-checklist">27. Onboarding Checklist</h3>
+<ul>
+<li><strong>Purpose:</strong> Create a structured onboarding plan</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create a 90-day onboarding plan for a new [role] hire. Organize by: Week 1 (orientation, setup, introductions), Weeks 2–4 (training, shadowing, first tasks), Months 2–3 (increasing responsibility, check-ins, goals). Include specific activities, people to meet, tools to learn, and milestones. Add checkbox format for tracking.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> 90-day onboarding checklist</li>
+<li><strong>Tips:</strong> Include your actual tool stack and team structure for accuracy.</li>
+</ul>
+<hr />
+<h2 id="finance-5-prompts">💰 Finance (5 Prompts)</h2>
+<h3 id="28-budget-justification">28. Budget Justification</h3>
+<ul>
+<li><strong>Purpose:</strong> Build a business case for a budget request</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Write a budget justification for [initiative/tool/hire] costing [amount] over [time period]. Include: Executive summary, Business problem it solves, Expected ROI with calculations, Comparison with alternatives (including do-nothing), Risk of not investing, Implementation timeline, and Key assumptions. Audience: CFO/Finance committee.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Budget justification document</li>
+<li><strong>Tips:</strong> Include specific cost savings or revenue impact data.</li>
+</ul>
+<h3 id="29-financial-report-interpretation">29. Financial Report Interpretation</h3>
+<ul>
+<li><strong>Purpose:</strong> Explain financial data to non-finance stakeholders</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Explain the following financial data in plain language for a non-finance audience. Cover: What the numbers mean in practical terms, Key trends (positive and negative), How this compares to our targets/benchmarks, What actions the data suggests, and Three questions leadership should be asking. Avoid financial jargon — use analogies where helpful. Data: [paste financial data]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Plain-language financial interpretation</li>
+<li><strong>Tips:</strong> Specify the audience's role for relevant framing.</li>
+</ul>
+<h3 id="30-cost-benefit-analysis">30. Cost-Benefit Analysis</h3>
+<ul>
+<li><strong>Purpose:</strong> Evaluate whether an investment is worthwhile</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Perform a cost-benefit analysis for [initiative]. Structure as: Costs (one-time and recurring, over 3 years), Benefits (quantifiable and qualitative, over 3 years), Net Present Value calculation (assume [X]% discount rate), Payback period, Sensitivity analysis (best case / base case / worst case), and Recommendation. Present with summary table.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> CBA with financial projections</li>
+<li><strong>Tips:</strong> Provide actual vendor quotes and salary data for realistic numbers.</li>
+</ul>
+<h3 id="31-expense-report-summary">31. Expense Report Summary</h3>
+<ul>
+<li><strong>Purpose:</strong> Summarize and categorize expenses</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Categorize and summarize the following expense data. Group by: category, department, and time period. Identify: Top spending categories, Unusual or outlier transactions, Trends compared to [previous period], Budget variance by category, and Recommendations for cost optimization. Present as a summary with a category breakdown table. Data: [paste expense data]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Categorized expense analysis</li>
+<li><strong>Tips:</strong> Include budget targets for variance analysis.</li>
+</ul>
+<h3 id="32-pricing-strategy-analysis">32. Pricing Strategy Analysis</h3>
+<ul>
+<li><strong>Purpose:</strong> Evaluate pricing options</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Analyze pricing strategy options for [product/service]. Consider: Cost-plus pricing, Value-based pricing, Competitive pricing, and Tiered/freemium models. For each, provide: How it works, Pros and cons for our situation, Revenue projection estimate, Market positioning implications. Recommend the best approach with reasoning. Context: [costs, market, competitors, customer segment]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Pricing strategy comparison and recommendation</li>
+<li><strong>Tips:</strong> Include cost structure and competitor pricing for grounded analysis.</li>
+</ul>
+<hr />
+<h2 id="marketing-5-prompts">📢 Marketing (5 Prompts)</h2>
+<h3 id="33-content-calendar">33. Content Calendar</h3>
+<ul>
+<li><strong>Purpose:</strong> Plan content across channels</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create a [X]-week content calendar for [brand/product] targeting [audience]. Channels: [blog, LinkedIn, email, Twitter, etc.]. Include: Theme for each week, Content titles/topics, Content type (article, infographic, video, post), Key message per piece, Publishing date, and CTA for each piece. Align to these goals: [marketing goals].</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Multi-channel content calendar</li>
+<li><strong>Tips:</strong> Mention seasonal events, product launches, or industry events.</li>
+</ul>
+<h3 id="34-social-media-post-batch">34. Social Media Post Batch</h3>
+<ul>
+<li><strong>Purpose:</strong> Generate multiple social posts efficiently</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Write [X] social media posts for [platform] about [topic/product]. For each post: Match the platform's best practices (character limits, hashtags, format), Include a hook in the first line, End with a CTA, Vary the tone (informative, engaging, provocative, inspiring). Target audience: [describe]. Brand voice: [describe].</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Ready-to-schedule social posts</li>
+<li><strong>Tips:</strong> Provide examples of past top-performing posts.</li>
+</ul>
+<h3 id="35-email-campaign-sequence">35. Email Campaign Sequence</h3>
+<ul>
+<li><strong>Purpose:</strong> Design a multi-touch email campaign</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Design a [X]-email nurture sequence for [goal — e.g., product launch, event registration, lead nurture]. For each email provide: Subject line (with A/B variant), Preview text, Email body (copy), CTA button text, Optimal send timing (day of week, time), and Segmentation notes. Audience: [describe]. Tone: [professional/casual/urgent].</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Complete email sequence</li>
+<li><strong>Tips:</strong> Include your industry and buyer stage for relevant messaging.</li>
+</ul>
+<h3 id="36-customer-persona">36. Customer Persona</h3>
+<ul>
+<li><strong>Purpose:</strong> Define a target customer profile</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create a detailed customer persona for [product/service]. Include: Name and demographic info, Job title and company profile, Goals and motivations, Pain points and challenges, How they find and evaluate solutions, Decision-making criteria, Preferred communication channels, Objections they might have, and A quote that captures their mindset. Base on: [any customer data or research available].</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Customer persona document</li>
+<li><strong>Tips:</strong> Create 2–3 personas for different segments.</li>
+</ul>
+<h3 id="37-ab-test-design">37. A/B Test Design</h3>
+<ul>
+<li><strong>Purpose:</strong> Plan an A/B test for marketing optimization</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Design an A/B test for [element to test — subject line, CTA, landing page, etc.]. Include: Hypothesis, Control (A) and Variant (B) descriptions, Primary metric to measure, Secondary metrics, Required sample size estimate, Test duration, Statistical significance threshold, and Decision framework (when to declare a winner). Context: [current performance data]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> A/B test plan</li>
+<li><strong>Tips:</strong> Include current baseline metrics for realistic planning.</li>
+</ul>
+<hr />
+<h2 id="legal-compliance-5-prompts">⚖️ Legal &amp; Compliance (5 Prompts)</h2>
+<h3 id="38-contract-review-checklist">38. Contract Review Checklist</h3>
+<ul>
+<li><strong>Purpose:</strong> Identify key risks in a contract</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Review the following contract and identify: (1) Key obligations for each party, (2) Liability and indemnification terms, (3) Termination clauses and conditions, (4) Data handling and privacy provisions, (5) IP ownership clauses, (6) Auto-renewal terms, (7) Potential red flags or unusual terms, (8) Missing standard protections. Present as a checklist with risk ratings (Low/Medium/High) for each item. Contract: [paste or describe]</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Contract review checklist with risk flags</li>
+<li><strong>Tips:</strong> Specify your industry for relevant regulatory considerations. <strong>Note:</strong> Always have legal counsel review — AI is for initial screening, not legal advice.</li>
+</ul>
+<h3 id="39-compliance-gap-analysis">39. Compliance Gap Analysis</h3>
+<ul>
+<li><strong>Purpose:</strong> Assess compliance against a standard</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Perform a compliance gap analysis for [regulation/standard — e.g., GDPR, SOC 2, EU AI Act] based on our current practices: [describe current state]. For each requirement, provide: Requirement summary, Current status (Compliant/Partial/Non-Compliant), Gap description, Remediation steps, Priority (High/Medium/Low), and Estimated effort. Present as a gap analysis table.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Compliance gap analysis with remediation plan</li>
+<li><strong>Tips:</strong> Provide your current policies and controls for accurate gap identification.</li>
+</ul>
+<h3 id="40-privacy-impact-assessment">40. Privacy Impact Assessment</h3>
+<ul>
+<li><strong>Purpose:</strong> Assess privacy risks of a new project</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Conduct a Privacy Impact Assessment (PIA) for [project/system]. Cover: Data collected (types and sources), Purpose of data processing, Legal basis for processing, Data storage and retention, Third-party data sharing, Data subject rights mechanisms, Security measures, Risk assessment (likelihood × impact), and Recommended mitigations. Format as a structured PIA document.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> PIA report</li>
+<li><strong>Tips:</strong> Include the specific data elements and processing activities.</li>
+</ul>
+<h3 id="41-policy-document-draft">41. Policy Document Draft</h3>
+<ul>
+<li><strong>Purpose:</strong> Create an internal policy</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Draft an [AI Acceptable Use / Data Classification / Information Security] policy for a [company size/type] organization. Include: Purpose and scope, Definitions, Policy statements, Roles and responsibilities, Enforcement and consequences, Exception process, Related policies, and Review schedule. Tone: clear, authoritative, accessible. Audience: all employees.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Internal policy document</li>
+<li><strong>Tips:</strong> Specify your industry and any existing policies to maintain consistency.</li>
+</ul>
+<h3 id="42-incident-response-template">42. Incident Response Template</h3>
+<ul>
+<li><strong>Purpose:</strong> Create an AI incident response procedure</li>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create an AI incident response procedure for [organization type]. Cover: Incident classification (severity levels), Detection and reporting process, Initial response steps (first 30 minutes), Investigation procedure, Containment and mitigation, Stakeholder notification (internal and external), Root cause analysis template, Post-incident review process, and Documentation requirements. Include a decision tree for severity classification.</p>
+</blockquote>
+</li>
+<li><strong>Output:</strong> Incident response procedure with decision tree</li>
+<li><strong>Tips:</strong> Align with your existing IT incident response framework.</li>
+</ul>
+<hr />
+<h2 id="general-purpose-power-prompts-3-prompts">🔧 General-Purpose Power Prompts (3 Prompts)</h2>
+<h3 id="43-explain-like-im-a-business-person">43. "Explain Like I'm a Business Person"</h3>
+<ul>
+<li><strong>Prompt:</strong><blockquote>
+<p>Explain [technical concept] in plain business language. Use an analogy from everyday business. Cover: What it is, Why it matters for our business, What it costs (if applicable), and What decisions it affects. No jargon. Maximum 200 words.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="44-challenge-my-thinking">44. "Challenge My Thinking"</h3>
+<ul>
+<li><strong>Prompt:</strong><blockquote>
+<p>I'm planning to [describe decision/strategy]. Act as a constructive devil's advocate. Give me: (1) Three strongest arguments against this approach, (2) Risks I might be overlooking, (3) Alternative approaches worth considering, (4) Questions I should be able to answer before proceeding. Be direct — I want honest pushback, not validation.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="45-create-a-framework">45. "Create a Framework"</h3>
+<ul>
+<li><strong>Prompt:</strong><blockquote>
+<p>Create a decision framework for [decision type — e.g., evaluating AI vendors, prioritizing projects, hiring decisions]. Include: Key criteria to evaluate (weighted), Scoring method (1–5 scale), Decision thresholds (go/no-go), Red flags that override the score, and A blank template I can fill in. Make it practical enough to use in a 30-minute meeting.</p>
+</blockquote>
+</li>
+</ul>
+<hr />
+<h2 id="tips-for-all-prompts">Tips for All Prompts</h2>
+<ol>
+<li><strong>Be specific</strong> — Replace all [brackets] with your actual details</li>
+<li><strong>Provide context</strong> — The more relevant info you give, the better the output</li>
+<li><strong>Iterate</strong> — First output is a draft; refine with follow-up prompts</li>
+<li><strong>Verify</strong> — Always fact-check AI outputs, especially numbers and claims</li>
+<li><strong>Save what works</strong> — Build a personal library of prompts that work for your role</li>
+</ol>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Prompt Template Library</em></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 6 Cheat Sheet: Hugging Face — Navigation & Model Cards — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 6 Cheat Sheet: Hugging Face — Navigation & Model Cards</h1>
+</div>
+<div class="content">
+<h1 id="module-6-cheat-sheet-hugging-face-navigation-model-cards">Module 6 Cheat Sheet: Hugging Face — Navigation &amp; Model Cards</h1>
+<h2 id="what-is-hugging-face">What Is Hugging Face?</h2>
+<p>Hugging Face (huggingface.co) is the largest open-source AI platform — a GitHub for AI models. It hosts <strong>500,000+ models</strong>, datasets, and demo apps, and is used by most major enterprises exploring open-source AI.</p>
+<h2 id="key-sections-of-the-platform">Key Sections of the Platform</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>URL</th>
+<th>What You'll Find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Models</strong></td>
+<td>huggingface.co/models</td>
+<td>Pre-trained models for text, image, audio, and more</td>
+</tr>
+<tr>
+<td><strong>Datasets</strong></td>
+<td>huggingface.co/datasets</td>
+<td>Training and evaluation datasets</td>
+</tr>
+<tr>
+<td><strong>Spaces</strong></td>
+<td>huggingface.co/spaces</td>
+<td>Interactive demos and apps</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>huggingface.co/docs</td>
+<td>Tutorials, API references, guides</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-navigate-the-model-hub">How to Navigate the Model Hub</h2>
+<h3 id="filtering-models">Filtering Models</h3>
+<p>Use filters to narrow your search:<br />
+- <strong>Task</strong> — Text generation, summarization, translation, classification, etc.<br />
+- <strong>Library</strong> — PyTorch, TensorFlow, ONNX, etc.<br />
+- <strong>Language</strong> — Filter by supported languages<br />
+- <strong>License</strong> — Critical for enterprise use (Apache 2.0, MIT = commercial-friendly)<br />
+- <strong>Model Size</strong> — Filter by parameter count</p>
+<h3 id="key-sorting-options">Key Sorting Options</h3>
+<ul>
+<li><strong>Trending</strong> — Currently popular models</li>
+<li><strong>Most Downloads</strong> — Battle-tested, widely adopted</li>
+<li><strong>Most Likes</strong> — Community-endorsed quality</li>
+<li><strong>Recently Updated</strong> — Latest improvements</li>
+</ul>
+<h2 id="reading-a-model-card">Reading a Model Card</h2>
+<p>A <strong>model card</strong> is a standardized document that describes an AI model. It's your go-to source for evaluating whether a model is right for your use case.</p>
+<h3 id="essential-sections-to-review">Essential Sections to Review</h3>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>What to Look For</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Model Description</strong></td>
+<td>What the model does, who built it</td>
+<td>Understand capabilities and provenance</td>
+</tr>
+<tr>
+<td><strong>Intended Use</strong></td>
+<td>Recommended applications</td>
+<td>Ensure alignment with your use case</td>
+</tr>
+<tr>
+<td><strong>Limitations</strong></td>
+<td>Known weaknesses, failure modes</td>
+<td>Avoid deploying where it will fail</td>
+</tr>
+<tr>
+<td><strong>Training Data</strong></td>
+<td>What data was used</td>
+<td>Check for bias, licensing, quality</td>
+</tr>
+<tr>
+<td><strong>Evaluation Results</strong></td>
+<td>Benchmark scores and metrics</td>
+<td>Compare performance objectively</td>
+</tr>
+<tr>
+<td><strong>License</strong></td>
+<td>Usage rights and restrictions</td>
+<td>Determine if commercial use is allowed</td>
+</tr>
+<tr>
+<td><strong>Bias &amp; Risks</strong></td>
+<td>Known biases and ethical concerns</td>
+<td>Essential for responsible deployment</td>
+</tr>
+<tr>
+<td><strong>How to Use</strong></td>
+<td>Code examples and configuration</td>
+<td>Assess technical complexity</td>
+</tr>
+</tbody>
+</table>
+<h2 id="license-types-enterprise-quick-guide">License Types — Enterprise Quick Guide</h2>
+<table>
+<thead>
+<tr>
+<th>License</th>
+<th>Commercial Use</th>
+<th>Modification</th>
+<th>Key Restriction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apache 2.0</strong></td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+<td>Must include license notice</td>
+</tr>
+<tr>
+<td><strong>MIT</strong></td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+<td>Minimal restrictions</td>
+</tr>
+<tr>
+<td><strong>Llama 3 Community</strong></td>
+<td>✅ Yes (under 700M MAU)</td>
+<td>✅ Yes</td>
+<td>Revenue/user thresholds require Meta license</td>
+</tr>
+<tr>
+<td><strong>CC-BY-4.0</strong></td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+<td>Must give credit</td>
+</tr>
+<tr>
+<td><strong>CC-BY-NC-4.0</strong></td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+<td>Non-commercial only</td>
+</tr>
+<tr>
+<td><strong>GPL-3.0</strong></td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+<td>Derivatives must also be open-source</td>
+</tr>
+<tr>
+<td><strong>Custom/Restricted</strong></td>
+<td>⚠️ Varies</td>
+<td>⚠️ Varies</td>
+<td>Read the specific terms carefully</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Enterprise rule of thumb:</strong> Stick to <strong>Apache 2.0</strong> or <strong>MIT</strong> licenses for the least legal friction.</p>
+<h2 id="popular-enterprise-relevant-models-2025">Popular Enterprise-Relevant Models (2025)</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Creator</th>
+<th>Parameters</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Llama 3.1</strong></td>
+<td>Meta</td>
+<td>8B–405B</td>
+<td>General text generation, self-hosting</td>
+</tr>
+<tr>
+<td><strong>Mistral Large</strong></td>
+<td>Mistral AI</td>
+<td>123B</td>
+<td>Multilingual, code, reasoning</td>
+</tr>
+<tr>
+<td><strong>Phi-3</strong></td>
+<td>Microsoft</td>
+<td>3.8B–14B</td>
+<td>Small/edge deployments</td>
+</tr>
+<tr>
+<td><strong>Gemma 2</strong></td>
+<td>Google</td>
+<td>2B–27B</td>
+<td>Lightweight, on-device</td>
+</tr>
+<tr>
+<td><strong>StarCoder 2</strong></td>
+<td>BigCode</td>
+<td>3B–15B</td>
+<td>Code generation</td>
+</tr>
+<tr>
+<td><strong>Whisper</strong></td>
+<td>OpenAI</td>
+<td>Various</td>
+<td>Speech-to-text</td>
+</tr>
+<tr>
+<td><strong>BGE / E5</strong></td>
+<td>Various</td>
+<td>Various</td>
+<td>Text embeddings for search/RAG</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evaluating-a-model-for-enterprise-use-checklist">Evaluating a Model for Enterprise Use — Checklist</h2>
+<ul>
+<li>[ ] <strong>License:</strong> Is it approved for commercial use?</li>
+<li>[ ] <strong>Model Card Quality:</strong> Is documentation thorough?</li>
+<li>[ ] <strong>Training Data:</strong> Is it disclosed? Any known issues?</li>
+<li>[ ] <strong>Benchmarks:</strong> How does it perform on relevant tasks?</li>
+<li>[ ] <strong>Community Adoption:</strong> Downloads, likes, active issues?</li>
+<li>[ ] <strong>Size vs. Infrastructure:</strong> Can you run it on your hardware?</li>
+<li>[ ] <strong>Maintenance:</strong> Is it actively updated?</li>
+<li>[ ] <strong>Security:</strong> Any known vulnerabilities or supply-chain risks?</li>
+</ul>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can navigate the Hugging Face model hub and apply filters</li>
+<li>[ ] I can read a model card and identify critical information</li>
+<li>[ ] I understand which licenses allow commercial use</li>
+<li>[ ] I can evaluate whether a model is suitable for enterprise deployment</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 6</em></p>
+</div>
+</body>
+</html>

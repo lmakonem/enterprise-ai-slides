@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 1 Cheat Sheet: AI Basics — Terms & Landscape — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 1 Cheat Sheet: AI Basics — Terms & Landscape</h1>
+</div>
+<div class="content">
+<h1 id="module-1-cheat-sheet-ai-basics-terms-landscape">Module 1 Cheat Sheet: AI Basics — Terms &amp; Landscape</h1>
+<h2 id="what-is-artificial-intelligence">What Is Artificial Intelligence?</h2>
+<p>AI is software that performs tasks normally requiring human intelligence — recognizing patterns, making decisions, generating content, and understanding language.</p>
+<h2 id="key-terms-you-need-to-know">Key Terms You Need to Know</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Plain-English Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Artificial Intelligence (AI)</strong></td>
+<td>Umbrella term for machines that mimic human cognition</td>
+</tr>
+<tr>
+<td><strong>Machine Learning (ML)</strong></td>
+<td>AI that learns from data instead of following hard-coded rules</td>
+</tr>
+<tr>
+<td><strong>Deep Learning</strong></td>
+<td>ML using layered neural networks for complex pattern recognition</td>
+</tr>
+<tr>
+<td><strong>Large Language Model (LLM)</strong></td>
+<td>AI trained on massive text to generate and understand language (e.g., GPT-4, Claude, Gemini)</td>
+</tr>
+<tr>
+<td><strong>Generative AI (GenAI)</strong></td>
+<td>AI that creates new content — text, images, code, audio</td>
+</tr>
+<tr>
+<td><strong>Natural Language Processing (NLP)</strong></td>
+<td>AI that reads, understands, and generates human language</td>
+</tr>
+<tr>
+<td><strong>Computer Vision</strong></td>
+<td>AI that interprets images and video</td>
+</tr>
+<tr>
+<td><strong>Neural Network</strong></td>
+<td>Computing architecture loosely inspired by the human brain</td>
+</tr>
+<tr>
+<td><strong>Training</strong></td>
+<td>The process of teaching an AI model using data</td>
+</tr>
+<tr>
+<td><strong>Inference</strong></td>
+<td>Using a trained model to make predictions or generate output</td>
+</tr>
+<tr>
+<td><strong>Fine-Tuning</strong></td>
+<td>Adapting a pre-trained model to a specific task or domain</td>
+</tr>
+<tr>
+<td><strong>Hallucination</strong></td>
+<td>When AI generates plausible-sounding but factually incorrect output</td>
+</tr>
+<tr>
+<td><strong>Token</strong></td>
+<td>A chunk of text (roughly ¾ of a word) that LLMs process</td>
+</tr>
+<tr>
+<td><strong>Prompt</strong></td>
+<td>The instruction or question you give an AI system</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td>Application Programming Interface — how software talks to AI services</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-ai-landscape-at-a-glance">The AI Landscape at a Glance</h2>
+<h3 id="by-capability-type">By Capability Type</h3>
+<ul>
+<li><strong>Predictive AI</strong> — Forecasts outcomes (fraud detection, demand planning)</li>
+<li><strong>Generative AI</strong> — Creates new content (ChatGPT, DALL-E, Copilot)</li>
+<li><strong>Analytical AI</strong> — Extracts insights from data (recommendation engines, sentiment analysis)</li>
+<li><strong>Conversational AI</strong> — Interacts via dialogue (chatbots, virtual assistants)</li>
+</ul>
+<h3 id="major-enterprise-ai-providers-2025">Major Enterprise AI Providers (2025)</h3>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Key Products</th>
+<th>Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OpenAI</strong></td>
+<td>ChatGPT Enterprise, GPT-4o, API</td>
+<td>Leading LLM capability</td>
+</tr>
+<tr>
+<td><strong>Microsoft</strong></td>
+<td>Copilot for M365, Azure OpenAI</td>
+<td>Deep Office/enterprise integration</td>
+</tr>
+<tr>
+<td><strong>Google</strong></td>
+<td>Gemini, Vertex AI</td>
+<td>Multimodal AI, cloud-native</td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong></td>
+<td>Claude Enterprise</td>
+<td>Safety-focused, long context</td>
+</tr>
+<tr>
+<td><strong>Meta</strong></td>
+<td>Llama (open-source)</td>
+<td>Free, self-hostable models</td>
+</tr>
+<tr>
+<td><strong>Amazon</strong></td>
+<td>Bedrock, Q</td>
+<td>AWS ecosystem, multi-model</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ai-vs-traditional-software">AI vs. Traditional Software</h2>
+<table>
+<thead>
+<tr>
+<th>Traditional Software</th>
+<th>AI Software</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Follows explicit rules</td>
+<td>Learns patterns from data</td>
+</tr>
+<tr>
+<td>Deterministic (same input → same output)</td>
+<td>Probabilistic (output may vary)</td>
+</tr>
+<tr>
+<td>Programmed by humans</td>
+<td>Trained on data</td>
+</tr>
+<tr>
+<td>Breaks on edge cases</td>
+<td>Generalizes but can hallucinate</td>
+</tr>
+</tbody>
+</table>
+<h2 id="three-questions-to-ask-about-any-ai-tool">Three Questions to Ask About Any AI Tool</h2>
+<ol>
+<li><strong>What data does it use?</strong> — Where was it trained? Does it use your data?</li>
+<li><strong>Where does processing happen?</strong> — On your servers, in the cloud, or at the vendor?</li>
+<li><strong>Who is accountable?</strong> — When the AI is wrong, who owns the outcome?</li>
+</ol>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can explain the difference between AI, ML, and GenAI</li>
+<li>[ ] I can name three enterprise AI providers and their key products</li>
+<li>[ ] I understand what "hallucination" means and why it matters</li>
+<li>[ ] I know the difference between training and inference</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 1</em></p>
+</div>
+</body>
+</html>

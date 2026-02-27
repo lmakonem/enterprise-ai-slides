@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 7 Cheat Sheet: Safe AI Workflows — RAG & Guardrails — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 7 Cheat Sheet: Safe AI Workflows — RAG & Guardrails</h1>
+</div>
+<div class="content">
+<h1 id="module-7-cheat-sheet-safe-ai-workflows-rag-guardrails">Module 7 Cheat Sheet: Safe AI Workflows — RAG &amp; Guardrails</h1>
+<h2 id="what-is-rag">What Is RAG?</h2>
+<p><strong>Retrieval-Augmented Generation (RAG)</strong> is a pattern that makes AI more accurate and trustworthy by grounding its responses in your organization's own data — instead of relying solely on what the model learned during training.</p>
+<h3 id="rag-in-plain-english">RAG in Plain English</h3>
+<pre><code>Without RAG:  User Question → LLM (guesses from training data) → Answer (may hallucinate)
+
+With RAG:     User Question → Search YOUR documents → Feed relevant docs to LLM → Answer (grounded in facts)
+</code></pre>
+<h2 id="how-rag-works-step-by-step">How RAG Works — Step by Step</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What Happens</th>
+<th>Key Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. <strong>Ingest</strong></td>
+<td>Your documents are loaded and chunked into smaller pieces</td>
+<td>Document loaders, text splitters</td>
+</tr>
+<tr>
+<td>2. <strong>Embed</strong></td>
+<td>Each chunk is converted into a numerical vector</td>
+<td>Embedding models (e.g., OpenAI ada, BGE)</td>
+</tr>
+<tr>
+<td>3. <strong>Store</strong></td>
+<td>Vectors are saved in a searchable database</td>
+<td>Vector databases (Pinecone, Weaviate, Chroma)</td>
+</tr>
+<tr>
+<td>4. <strong>Retrieve</strong></td>
+<td>When a user asks a question, find the most relevant chunks</td>
+<td>Semantic similarity search</td>
+</tr>
+<tr>
+<td>5. <strong>Generate</strong></td>
+<td>Pass the question + relevant chunks to the LLM</td>
+<td>LLM with augmented context</td>
+</tr>
+<tr>
+<td>6. <strong>Cite</strong></td>
+<td>Include source references in the response</td>
+<td>Citation tracking</td>
+</tr>
+</tbody>
+</table>
+<h2 id="why-rag-matters-for-enterprise">Why RAG Matters for Enterprise</h2>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reduces hallucinations</strong></td>
+<td>Answers grounded in actual documents</td>
+</tr>
+<tr>
+<td><strong>No retraining needed</strong></td>
+<td>Update documents, not the model</td>
+</tr>
+<tr>
+<td><strong>Data stays private</strong></td>
+<td>Your data stays in your infrastructure</td>
+</tr>
+<tr>
+<td><strong>Always current</strong></td>
+<td>New documents are instantly searchable</td>
+</tr>
+<tr>
+<td><strong>Auditable</strong></td>
+<td>Responses can cite specific sources</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-are-ai-guardrails">What Are AI Guardrails?</h2>
+<p>Guardrails are <strong>safety controls</strong> that filter, validate, and constrain AI inputs and outputs to prevent harmful, incorrect, or policy-violating behavior.</p>
+<h3 id="types-of-guardrails">Types of Guardrails</h3>
+<table>
+<thead>
+<tr>
+<th>Guardrail Type</th>
+<th>What It Does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input Filtering</strong></td>
+<td>Blocks harmful/inappropriate prompts before they reach the model</td>
+<td>Block prompts containing PII or confidential data</td>
+</tr>
+<tr>
+<td><strong>Output Filtering</strong></td>
+<td>Screens AI responses before delivery to user</td>
+<td>Remove toxic content, flag potential hallucinations</td>
+</tr>
+<tr>
+<td><strong>Topic Restriction</strong></td>
+<td>Limits AI to approved subject areas</td>
+<td>Prevent a customer service bot from giving medical advice</td>
+</tr>
+<tr>
+<td><strong>PII Detection</strong></td>
+<td>Identifies and redacts personal data</td>
+<td>Mask names, SSNs, emails in prompts and responses</td>
+</tr>
+<tr>
+<td><strong>Content Moderation</strong></td>
+<td>Detects and blocks harmful content</td>
+<td>Filter hate speech, violence, explicit content</td>
+</tr>
+<tr>
+<td><strong>Factual Grounding</strong></td>
+<td>Requires citations or confidence scores</td>
+<td>Reject responses not backed by source documents</td>
+</tr>
+<tr>
+<td><strong>Role/Scope Boundaries</strong></td>
+<td>Constrains the AI's persona and authority</td>
+<td>"You are a billing assistant. Do not discuss HR matters."</td>
+</tr>
+</tbody>
+</table>
+<h2 id="guardrail-tools-and-frameworks">Guardrail Tools and Frameworks</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Provider</th>
+<th>Key Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Guardrails AI</strong></td>
+<td>Open-source</td>
+<td>Validators for output quality, format, safety</td>
+</tr>
+<tr>
+<td><strong>NeMo Guardrails</strong></td>
+<td>NVIDIA</td>
+<td>Programmable safety rails for LLM apps</td>
+</tr>
+<tr>
+<td><strong>Azure AI Content Safety</strong></td>
+<td>Microsoft</td>
+<td>Content filtering API for text and images</td>
+</tr>
+<tr>
+<td><strong>Lakera Guard</strong></td>
+<td>Lakera</td>
+<td>Prompt injection and data leakage detection</td>
+</tr>
+<tr>
+<td><strong>Rebuff</strong></td>
+<td>Open-source</td>
+<td>Prompt injection detection</td>
+</tr>
+<tr>
+<td><strong>Presidio</strong></td>
+<td>Microsoft</td>
+<td>PII detection and anonymization</td>
+</tr>
+</tbody>
+</table>
+<h2 id="designing-a-safe-ai-workflow">Designing a Safe AI Workflow</h2>
+<pre><code>┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│   User Input  │───→│ Input Guards  │───→│  RAG + LLM   │───→│ Output Guards │───→ Response
+└──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
+                     • PII detection     • Retrieve docs     • Fact-check
+                     • Prompt injection   • Generate answer    • PII redaction
+                       detection         • Include citations   • Toxicity filter
+                     • Topic filtering                        • Confidence score
+</code></pre>
+<h2 id="human-in-the-loop-patterns">Human-in-the-Loop Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>When to Use</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Review Before Send</strong></td>
+<td>High-stakes outputs (legal, financial, customer-facing)</td>
+<td>AI drafts → Human reviews → Human approves/edits → Sent</td>
+</tr>
+<tr>
+<td><strong>Escalation</strong></td>
+<td>Low-confidence or sensitive topics</td>
+<td>AI handles routine → Flags edge cases → Human takes over</td>
+</tr>
+<tr>
+<td><strong>Spot Check</strong></td>
+<td>Moderate-risk, high-volume workflows</td>
+<td>AI processes all → Human randomly audits a sample</td>
+</tr>
+<tr>
+<td><strong>Override</strong></td>
+<td>Any workflow</td>
+<td>Human can always correct or override AI output</td>
+</tr>
+</tbody>
+</table>
+<h2 id="safe-workflow-checklist">Safe Workflow Checklist</h2>
+<ul>
+<li>[ ] Define what data the AI can access (data classification)</li>
+<li>[ ] Implement input guardrails (PII detection, prompt injection defense)</li>
+<li>[ ] Use RAG to ground responses in verified documents</li>
+<li>[ ] Implement output guardrails (content filtering, factual grounding)</li>
+<li>[ ] Include source citations in all AI-generated responses</li>
+<li>[ ] Define human-in-the-loop requirements by risk level</li>
+<li>[ ] Log all AI interactions for audit purposes</li>
+<li>[ ] Monitor for model drift and accuracy degradation</li>
+<li>[ ] Test guardrails with adversarial prompts before launch</li>
+<li>[ ] Establish a feedback loop for continuous improvement</li>
+</ul>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can explain how RAG works and why it reduces hallucinations</li>
+<li>[ ] I can list at least four types of AI guardrails</li>
+<li>[ ] I can design a basic safe AI workflow with input/output controls</li>
+<li>[ ] I understand when and how to implement human-in-the-loop review</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 7</em></p>
+</div>
+</body>
+</html>

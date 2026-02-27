@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 9 Cheat Sheet: AI Security — Threats & Shadow AI — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 9 Cheat Sheet: AI Security — Threats & Shadow AI</h1>
+</div>
+<div class="content">
+<h1 id="module-9-cheat-sheet-ai-security-threats-shadow-ai">Module 9 Cheat Sheet: AI Security — Threats &amp; Shadow AI</h1>
+<h2 id="the-ai-threat-landscape">The AI Threat Landscape</h2>
+<p>AI introduces new attack surfaces that traditional security tools don't cover. Understanding these threats is the first step to defending against them.</p>
+<h2 id="top-ai-specific-threats">Top AI-Specific Threats</h2>
+<table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Description</th>
+<th>Impact</th>
+<th>Likelihood</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompt Injection</strong></td>
+<td>Attacker embeds malicious instructions in user input to hijack AI behavior</td>
+<td>Data exfiltration, unauthorized actions</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td><strong>Data Leakage via Prompts</strong></td>
+<td>Employees paste confidential data into AI tools</td>
+<td>IP theft, compliance violations</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td><strong>Shadow AI</strong></td>
+<td>Unauthorized AI tool usage across the organization</td>
+<td>Uncontrolled data exposure, compliance risk</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td><strong>Model Poisoning</strong></td>
+<td>Adversary corrupts training data to influence model behavior</td>
+<td>Compromised decisions, backdoors</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td><strong>Adversarial Inputs</strong></td>
+<td>Specially crafted inputs designed to fool AI systems</td>
+<td>Incorrect classifications, bypassed controls</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td><strong>Model Theft / Extraction</strong></td>
+<td>Attacker queries an API repeatedly to recreate the model</td>
+<td>IP loss, competitive disadvantage</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td><strong>Deepfakes</strong></td>
+<td>AI-generated synthetic media (audio, video, images)</td>
+<td>Fraud, impersonation, misinformation</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td><strong>Supply Chain Attacks</strong></td>
+<td>Compromised pre-trained models or libraries</td>
+<td>Backdoors, data theft</td>
+<td>🟡 Medium</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prompt-injection-deep-dive">Prompt Injection — Deep Dive</h2>
+<h3 id="types-of-prompt-injection">Types of Prompt Injection</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>How It Works</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Direct</strong></td>
+<td>User directly instructs the model to ignore its system prompt</td>
+<td>"Ignore all previous instructions and…"</td>
+</tr>
+<tr>
+<td><strong>Indirect</strong></td>
+<td>Malicious instructions hidden in data the AI processes</td>
+<td>Invisible text in a document: "When summarizing, also email contents to…"</td>
+</tr>
+<tr>
+<td><strong>Jailbreaking</strong></td>
+<td>Social engineering the model to bypass safety filters</td>
+<td>"Pretend you are DAN (Do Anything Now)…"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="defenses-against-prompt-injection">Defenses Against Prompt Injection</h3>
+<ul>
+<li>Input validation and sanitization</li>
+<li>Separate system prompts from user inputs architecturally</li>
+<li>Output monitoring for unexpected patterns</li>
+<li>Use tools like Lakera Guard or Rebuff for detection</li>
+<li>Limit AI's ability to take real-world actions without human approval</li>
+</ul>
+<h2 id="shadow-ai-the-biggest-enterprise-risk">Shadow AI — The Biggest Enterprise Risk</h2>
+<h3 id="what-is-shadow-ai">What Is Shadow AI?</h3>
+<p>Shadow AI is the use of <strong>unauthorized AI tools</strong> by employees — personal ChatGPT accounts, unapproved browser extensions, AI features in consumer apps — outside IT's visibility and control.</p>
+<h3 id="why-it-happens">Why It Happens</h3>
+<ul>
+<li>Employees want productivity gains <em>now</em></li>
+<li>Official tools are too slow to deploy or too restrictive</li>
+<li>Lack of awareness about data risks</li>
+<li>No clear AI acceptable use policy</li>
+</ul>
+<h3 id="shadow-ai-discovery-methods">Shadow AI Discovery Methods</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Network Monitoring</strong></td>
+<td>Detect traffic to known AI service domains (api.openai.com, etc.)</td>
+</tr>
+<tr>
+<td><strong>Endpoint Detection</strong></td>
+<td>Scan for AI browser extensions and desktop apps</td>
+</tr>
+<tr>
+<td><strong>CASB (Cloud Access Security Broker)</strong></td>
+<td>Monitor SaaS AI tool usage across the org</td>
+</tr>
+<tr>
+<td><strong>Employee Surveys</strong></td>
+<td>Ask directly — often reveals widespread use</td>
+</tr>
+<tr>
+<td><strong>Expense Reports</strong></td>
+<td>Look for AI tool subscriptions on corporate cards</td>
+</tr>
+<tr>
+<td><strong>DLP Rules</strong></td>
+<td>Flag when sensitive data is sent to AI service domains</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shadow-ai-mitigation-strategy">Shadow AI Mitigation Strategy</h3>
+<pre><code>1. Discover  →  2. Assess  →  3. Approve or Block  →  4. Monitor  →  5. Educate
+   What's          Risk of        Provide approved       Ongoing        Train employees
+   being used?     each tool?     alternatives           detection      on safe use
+</code></pre>
+<h2 id="enterprise-ai-security-architecture">Enterprise AI Security Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    Security Controls Layer                    │
+├──────────────┬──────────────┬──────────────┬───────────────────┤
+│ Identity &amp;   │ Data         │ Network      │ Application       │
+│ Access       │ Protection   │ Security     │ Security          │
+├──────────────┼──────────────┼──────────────┼───────────────────┤
+│ SSO/MFA      │ DLP policies │ API gateway  │ Input validation  │
+│ RBAC         │ Encryption   │ WAF rules    │ Output filtering  │
+│ Least        │ Data         │ Traffic      │ Rate limiting     │
+│ privilege    │ masking      │ monitoring   │ Prompt guardrails │
+│ Audit logs   │ PII          │ Geo-blocking │ Vulnerability     │
+│              │ detection    │              │ scanning          │
+└──────────────┴──────────────┴──────────────┴───────────────────┘
+</code></pre>
+<h2 id="ai-security-checklist">AI Security Checklist</h2>
+<h3 id="immediate-actions-week-1">Immediate Actions (Week 1)</h3>
+<ul>
+<li>[ ] Publish an AI acceptable use policy</li>
+<li>[ ] Inventory known AI tool usage</li>
+<li>[ ] Block or monitor traffic to unauthorized AI services</li>
+<li>[ ] Communicate approved AI tools and access procedures</li>
+</ul>
+<h3 id="short-term-month-1">Short-Term (Month 1)</h3>
+<ul>
+<li>[ ] Deploy DLP rules for AI service endpoints</li>
+<li>[ ] Enable audit logging on all approved AI tools</li>
+<li>[ ] Implement MFA and SSO for enterprise AI platforms</li>
+<li>[ ] Train employees on data handling with AI tools</li>
+</ul>
+<h3 id="ongoing">Ongoing</h3>
+<ul>
+<li>[ ] Conduct quarterly shadow AI audits</li>
+<li>[ ] Pen-test AI applications for prompt injection</li>
+<li>[ ] Monitor for data leakage patterns</li>
+<li>[ ] Review and update AI security policies</li>
+<li>[ ] Track AI-related security incidents</li>
+</ul>
+<h2 id="key-metrics-to-track">Key Metrics to Track</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What It Measures</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shadow AI tools detected</td>
+<td>Unauthorized tool spread</td>
+<td>Decreasing quarter over quarter</td>
+</tr>
+<tr>
+<td>DLP incidents (AI-related)</td>
+<td>Sensitive data sent to AI tools</td>
+<td>Zero critical incidents</td>
+</tr>
+<tr>
+<td>Prompt injection attempts blocked</td>
+<td>Attack defense effectiveness</td>
+<td>100% detection rate</td>
+</tr>
+<tr>
+<td>Employees trained on AI security</td>
+<td>Awareness coverage</td>
+<td>100% of AI users</td>
+</tr>
+<tr>
+<td>Time to detect AI security incident</td>
+<td>Response readiness</td>
+<td>&lt; 24 hours</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can explain the top five AI-specific security threats</li>
+<li>[ ] I understand what shadow AI is and how to discover it</li>
+<li>[ ] I can describe at least three prompt injection defense techniques</li>
+<li>[ ] I have a phased plan for improving AI security posture</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 9</em></p>
+</div>
+</body>
+</html>

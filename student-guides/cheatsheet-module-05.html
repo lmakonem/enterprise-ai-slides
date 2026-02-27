@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 5 Cheat Sheet: AI Governance — Policies, EU AI Act & NIST AI RMF — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 5 Cheat Sheet: AI Governance — Policies, EU AI Act & NIST AI RMF</h1>
+</div>
+<div class="content">
+<h1 id="module-5-cheat-sheet-ai-governance-policies-eu-ai-act-nist-ai-rmf">Module 5 Cheat Sheet: AI Governance — Policies, EU AI Act &amp; NIST AI RMF</h1>
+<h2 id="what-is-ai-governance">What Is AI Governance?</h2>
+<p>AI governance is the system of <strong>policies, processes, and oversight structures</strong> that ensure AI is used responsibly, ethically, and in compliance with regulations across your organization.</p>
+<h2 id="essential-ai-governance-policies">Essential AI Governance Policies</h2>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Purpose</th>
+<th>Key Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI Acceptable Use Policy</strong></td>
+<td>Define what employees can/cannot do with AI</td>
+<td>Approved tools, prohibited uses, data handling rules</td>
+</tr>
+<tr>
+<td><strong>AI Data Governance Policy</strong></td>
+<td>Control what data enters AI systems</td>
+<td>Data classification, no-go data types, retention rules</td>
+</tr>
+<tr>
+<td><strong>AI Procurement Policy</strong></td>
+<td>Guide AI vendor selection</td>
+<td>Security requirements, assessment criteria, approval workflow</td>
+</tr>
+<tr>
+<td><strong>AI Ethics Policy</strong></td>
+<td>Ensure fairness and transparency</td>
+<td>Bias testing, human oversight, impact assessments</td>
+</tr>
+<tr>
+<td><strong>AI Incident Response Plan</strong></td>
+<td>Handle AI failures</td>
+<td>Escalation paths, containment steps, notification procedures</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-eu-ai-act-key-categories">The EU AI Act — Key Categories</h2>
+<p>The EU AI Act (effective August 2024, phased enforcement through 2027) classifies AI systems by risk level:</p>
+<table>
+<thead>
+<tr>
+<th>Risk Level</th>
+<th>Description</th>
+<th>Examples</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🚫 <strong>Unacceptable</strong></td>
+<td>Banned outright</td>
+<td>Social scoring, real-time biometric surveillance (most cases), manipulative AI</td>
+<td>Prohibited</td>
+</tr>
+<tr>
+<td>🔴 <strong>High Risk</strong></td>
+<td>Significant impact on health, safety, rights</td>
+<td>HR/recruiting AI, credit scoring, law enforcement tools</td>
+<td>Conformity assessment, risk management, human oversight, transparency, data governance</td>
+</tr>
+<tr>
+<td>🟡 <strong>Limited Risk</strong></td>
+<td>Moderate transparency needed</td>
+<td>Chatbots, deepfake generators</td>
+<td>Disclose AI is in use; label AI-generated content</td>
+</tr>
+<tr>
+<td>🟢 <strong>Minimal Risk</strong></td>
+<td>Most AI applications</td>
+<td>Spam filters, AI-enhanced games, recommendation engines</td>
+<td>No specific obligations (voluntary codes of practice)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="eu-ai-act-key-dates">EU AI Act — Key Dates</h3>
+<ul>
+<li><strong>February 2025</strong> — Prohibitions on unacceptable-risk AI take effect</li>
+<li><strong>August 2025</strong> — Rules for general-purpose AI models apply</li>
+<li><strong>August 2026</strong> — Full enforcement of high-risk system requirements</li>
+</ul>
+<h3 id="eu-ai-act-penalties">EU AI Act — Penalties</h3>
+<ul>
+<li>Up to <strong>€35 million or 7% of global annual turnover</strong> for prohibited AI practices</li>
+<li>Up to <strong>€15 million or 3%</strong> for other violations</li>
+</ul>
+<h2 id="nist-ai-risk-management-framework-ai-rmf-10">NIST AI Risk Management Framework (AI RMF 1.0)</h2>
+<p>A voluntary, flexible US framework for managing AI risks. Built on <strong>four core functions</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+<th>Key Activities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GOVERN</strong></td>
+<td>Set up leadership and culture for AI risk management</td>
+<td>Define roles, policies, accountability; establish AI governance board; allocate resources</td>
+</tr>
+<tr>
+<td><strong>MAP</strong></td>
+<td>Identify and contextualize AI risks</td>
+<td>Catalog AI systems; assess intended/unintended impacts; identify stakeholders; classify risk levels</td>
+</tr>
+<tr>
+<td><strong>MEASURE</strong></td>
+<td>Assess and monitor risks</td>
+<td>Define metrics (fairness, accuracy, robustness); test for bias; monitor performance; evaluate security</td>
+</tr>
+<tr>
+<td><strong>MANAGE</strong></td>
+<td>Prioritize and act on risks</td>
+<td>Implement controls; plan incident response; document decisions; continuously improve</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nist-ai-rmf-trustworthiness-characteristics">NIST AI RMF Trustworthiness Characteristics</h3>
+<p>The framework promotes seven traits of trustworthy AI:<br />
+1. <strong>Valid &amp; Reliable</strong> — Performs as intended<br />
+2. <strong>Safe</strong> — Does not endanger people<br />
+3. <strong>Secure &amp; Resilient</strong> — Resists attacks and recovers from failures<br />
+4. <strong>Accountable &amp; Transparent</strong> — Decisions can be explained and traced<br />
+5. <strong>Explainable &amp; Interpretable</strong> — Outputs can be understood<br />
+6. <strong>Privacy-Enhanced</strong> — Protects personal data<br />
+7. <strong>Fair (Bias Managed)</strong> — Minimizes harmful discrimination</p>
+<h2 id="building-an-ai-governance-program-starter-checklist">Building an AI Governance Program — Starter Checklist</h2>
+<h3 id="phase-1-foundation-months-13">Phase 1: Foundation (Months 1–3)</h3>
+<ul>
+<li>[ ] Establish an AI governance committee (IT, Legal, Compliance, Business)</li>
+<li>[ ] Inventory all AI tools currently in use (including shadow AI)</li>
+<li>[ ] Draft AI acceptable use policy</li>
+<li>[ ] Define data classification for AI use (what data can/cannot enter AI systems)</li>
+<li>[ ] Select a risk framework (NIST AI RMF recommended)</li>
+</ul>
+<h3 id="phase-2-operationalize-months-36">Phase 2: Operationalize (Months 3–6)</h3>
+<ul>
+<li>[ ] Implement AI procurement assessment process</li>
+<li>[ ] Conduct risk assessments for existing AI use cases</li>
+<li>[ ] Deploy monitoring for AI usage and data flows</li>
+<li>[ ] Train employees on AI policies</li>
+<li>[ ] Set up incident response procedures for AI failures</li>
+</ul>
+<h3 id="phase-3-mature-months-612">Phase 3: Mature (Months 6–12)</h3>
+<ul>
+<li>[ ] Conduct regular bias and fairness audits</li>
+<li>[ ] Review and update policies quarterly</li>
+<li>[ ] Report AI governance metrics to leadership</li>
+<li>[ ] Benchmark against EU AI Act / NIST AI RMF requirements</li>
+<li>[ ] Establish continuous improvement cycle</li>
+</ul>
+<h2 id="quick-reference-governance-framework-comparison">Quick Reference: Governance Framework Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Origin</th>
+<th>Type</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EU AI Act</strong></td>
+<td>European Union</td>
+<td>Regulation (mandatory)</td>
+<td>All AI systems in EU market</td>
+</tr>
+<tr>
+<td><strong>NIST AI RMF</strong></td>
+<td>US (NIST)</td>
+<td>Framework (voluntary)</td>
+<td>Any organization, any sector</td>
+</tr>
+<tr>
+<td><strong>ISO 42001</strong></td>
+<td>International (ISO)</td>
+<td>Standard (certifiable)</td>
+<td>AI management systems</td>
+</tr>
+<tr>
+<td><strong>OECD AI Principles</strong></td>
+<td>OECD</td>
+<td>Principles (voluntary)</td>
+<td>Policy guidance for governments</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can describe the four EU AI Act risk categories with examples</li>
+<li>[ ] I can explain the four NIST AI RMF functions</li>
+<li>[ ] I can list five essential AI governance policies</li>
+<li>[ ] I have a roadmap for building an AI governance program</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 5</em></p>
+</div>
+</body>
+</html>

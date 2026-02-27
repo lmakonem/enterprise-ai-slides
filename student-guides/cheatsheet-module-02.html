@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Module 2 Cheat Sheet: How Large Language Models Work — AI for the Enterprise</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter','Segoe UI',Arial,sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.7; padding:0 0 60px; }
+.hero { background:linear-gradient(135deg,#0d9488 0%,#0891b2 100%); padding:36px 40px 30px; margin-bottom:40px; }
+.hero .label { font-size:.7em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:6px; }
+.hero h1 { font-size:1.8em; font-weight:700; color:#fff; }
+.content { max-width:860px; margin:0 auto; padding:0 32px; }
+h1,h2,h3,h4 { margin-top:28px; margin-bottom:10px; }
+h1 { font-size:1.5em; color:#0d9488; border-bottom:2px solid #1e3a5f; padding-bottom:8px; }
+h2 { font-size:1.2em; color:#38bdf8; }
+h3 { font-size:1.05em; color:#7dd3fc; }
+h4 { font-size:.9em; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; }
+p  { color:#cbd5e1; margin:10px 0; }
+ul,ol { color:#cbd5e1; padding-left:24px; margin:10px 0; }
+li { margin:5px 0; }
+strong { color:#e2e8f0; }
+a  { color:#0d9488; }
+code { background:#1e293b; color:#38bdf8; padding:2px 7px; border-radius:4px; font-size:.88em; font-family:'Fira Code',monospace; }
+pre { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0; }
+pre code { background:none; padding:0; color:#e2e8f0; font-size:.85em; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9em; }
+th { background:#1e3a5f; color:#38bdf8; padding:10px 14px; text-align:left; font-weight:600; border:1px solid #334155; }
+td { padding:9px 14px; border:1px solid #334155; color:#cbd5e1; vertical-align:top; }
+tr:nth-child(even) td { background:#0f1f35; }
+blockquote { border-left:4px solid #0d9488; padding:12px 20px; background:#0f1f35; border-radius:0 8px 8px 0; margin:16px 0; color:#94a3b8; font-style:italic; }
+hr { border:none; border-top:1px solid #1e3a5f; margin:28px 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="label">AI for the Enterprise &bull; Student Resource</div>
+  <h1>Module 2 Cheat Sheet: How Large Language Models Work</h1>
+</div>
+<div class="content">
+<h1 id="module-2-cheat-sheet-how-large-language-models-work">Module 2 Cheat Sheet: How Large Language Models Work</h1>
+<h2 id="the-big-picture">The Big Picture</h2>
+<p>LLMs are AI systems trained on vast amounts of text to predict the next word in a sequence. That simple mechanism — next-word prediction — produces remarkably capable language generation.</p>
+<h2 id="how-text-becomes-numbers-tokenization">How Text Becomes Numbers: Tokenization</h2>
+<p>LLMs don't read words — they process <strong>tokens</strong> (chunks of text converted to numbers).</p>
+<table>
+<thead>
+<tr>
+<th>Example Text</th>
+<th>Approximate Tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Hello"</td>
+<td>1 token</td>
+</tr>
+<tr>
+<td>"Enterprise AI strategy"</td>
+<td>3 tokens</td>
+</tr>
+<tr>
+<td>A typical email (~200 words)</td>
+<td>~270 tokens</td>
+</tr>
+<tr>
+<td>A 50-page report</td>
+<td>~37,500 tokens</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it matters:</strong> You're billed per token, and every model has a token limit (context window).</p>
+<h2 id="key-model-parameters">Key Model Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>What It Means</th>
+<th>Business Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parameters (billions)</strong></td>
+<td>Number of learned connections in the model</td>
+<td>More parameters ≈ more capable (but more expensive)</td>
+</tr>
+<tr>
+<td><strong>Context Window</strong></td>
+<td>Maximum tokens the model can process at once</td>
+<td>Determines how much info you can include in a prompt</td>
+</tr>
+<tr>
+<td><strong>Temperature</strong></td>
+<td>Controls randomness (0 = deterministic, 1 = creative)</td>
+<td>Lower for reports/data; higher for brainstorming</td>
+</tr>
+<tr>
+<td><strong>Top-p</strong></td>
+<td>Controls diversity of word choices</td>
+<td>Fine-tunes creativity alongside temperature</td>
+</tr>
+<tr>
+<td><strong>Max Tokens</strong></td>
+<td>Limit on output length</td>
+<td>Controls response length and cost</td>
+</tr>
+</tbody>
+</table>
+<h2 id="context-windows-compared-2025">Context Windows Compared (2025)</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Context Window</th>
+<th>Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4o</td>
+<td>128K tokens</td>
+<td>~96,000 words (~200 pages)</td>
+</tr>
+<tr>
+<td>Claude 3.5 Sonnet</td>
+<td>200K tokens</td>
+<td>~150,000 words (~300 pages)</td>
+</tr>
+<tr>
+<td>Gemini 1.5 Pro</td>
+<td>1M tokens</td>
+<td>~750,000 words (~1,500 pages)</td>
+</tr>
+<tr>
+<td>Llama 3</td>
+<td>128K tokens</td>
+<td>~96,000 words (~200 pages)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-training-pipeline-simplified">The Training Pipeline (Simplified)</h2>
+<pre><code>Step 1: Pre-Training          Step 2: Fine-Tuning         Step 3: Alignment
+────────────────────         ──────────────────          ─────────────────
+Read billions of             Specialize on               RLHF — learn from
+web pages, books,     →      domain-specific      →      human feedback to
+code, articles               data &amp; tasks                be helpful &amp; safe
+</code></pre>
+<h2 id="what-llms-can-and-cannot-do">What LLMs Can and Cannot Do</h2>
+<table>
+<thead>
+<tr>
+<th>✅ Can Do Well</th>
+<th>❌ Cannot Do Reliably</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Summarize documents</td>
+<td>Do math (without tools)</td>
+</tr>
+<tr>
+<td>Draft and edit text</td>
+<td>Access real-time information (without plugins)</td>
+</tr>
+<tr>
+<td>Translate languages</td>
+<td>Guarantee factual accuracy</td>
+</tr>
+<tr>
+<td>Extract structured data</td>
+<td>Reason about things not in training data</td>
+</tr>
+<tr>
+<td>Generate code</td>
+<td>Understand your company's proprietary context (without RAG)</td>
+</tr>
+<tr>
+<td>Brainstorm ideas</td>
+<td>Replace human judgment on critical decisions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cost-drivers">Cost Drivers</h2>
+<pre><code>Total Cost = Input Tokens × Input Price + Output Tokens × Output Price
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Cost Factor</th>
+<th>How to Optimize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Long prompts (many input tokens)</td>
+<td>Be concise; use system prompts wisely</td>
+</tr>
+<tr>
+<td>Long outputs (many output tokens)</td>
+<td>Set max_tokens; ask for bullet points</td>
+</tr>
+<tr>
+<td>Frequent API calls</td>
+<td>Batch requests; cache common queries</td>
+</tr>
+<tr>
+<td>Larger models</td>
+<td>Use smaller models for simple tasks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="practical-tip-temperature-settings-by-use-case">Practical Tip: Temperature Settings by Use Case</h2>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Recommended Temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data extraction, classification</td>
+<td>0.0 – 0.2</td>
+</tr>
+<tr>
+<td>Summarization, translation</td>
+<td>0.2 – 0.5</td>
+</tr>
+<tr>
+<td>General business writing</td>
+<td>0.5 – 0.7</td>
+</tr>
+<tr>
+<td>Creative brainstorming</td>
+<td>0.7 – 1.0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-self-check">Quick Self-Check</h2>
+<ul>
+<li>[ ] I can explain tokenization and why context windows matter</li>
+<li>[ ] I understand what "parameters" means in the context of LLMs</li>
+<li>[ ] I know how temperature affects output</li>
+<li>[ ] I can estimate approximate token costs for a business use case</li>
+</ul>
+<hr />
+<p><em>AI for the Enterprise: From Zero to Secure Adoption — Module 2</em></p>
+</div>
+</body>
+</html>
