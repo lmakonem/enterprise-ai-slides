@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Module 12: Model Context Protocol (MCP)</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+  <link rel="stylesheet" href="../theme/enterprise-ai.css" id="theme">
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
@@ -23,7 +23,7 @@
       right: -100px;
       width: 400px;
       height: 400px;
-      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background: url('../../assets/decorative/concentric-rings.svg') no-repeat center;
       background-size: contain;
       pointer-events: none;
       z-index: 0;
@@ -38,7 +38,7 @@
       left: -20px;
       width: 200px;
       height: 200px;
-      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      background: url('../../assets/decorative/dot-matrix.svg') repeat;
       pointer-events: none;
       z-index: 0;
       opacity: 0.5;
@@ -352,7 +352,7 @@
 
       <!-- SLIDE 1: Title -->
       <section data-transition="none">
-        <img  src="/assets/module-icons/module-12.svg" style="width:100px">
+        <img  src="../../assets/module-icons/module-12.svg" style="width:100px">
         <h1>Module 12</h1>
         <h2>Model Context Protocol (MCP)</h2>
         <p>The Universal Standard for AI Tool Integration</p>
@@ -457,7 +457,7 @@
       <!-- SLIDE 7: Architecture Diagram -->
       <section>
         <h2>MCP Architecture Overview</h2>
-        <img   src="/assets/graphics/arch-mcp-architecture.svg" style="max-width:700px;width:100%">
+        <img   src="../../assets/graphics/arch-mcp-architecture.svg" style="max-width:700px;width:100%">
         <aside class="notes">The architecture follows a client-server model. The MCP Host (like Claude Desktop or your application) contains an MCP Client that connects to one or more MCP Servers. Each server exposes Tools (functions the AI can call), Resources (data the AI can read), and Prompts (templates for common tasks). Communication uses JSON-RPC over either stdio (local) or HTTP+SSE (remote).</aside>
       </section>
 
@@ -759,7 +759,7 @@
 }</code></pre>
           </div>
         </div>
-        <img   src="/assets/lab-graphics/activity12-mcp-handshake.svg" style="width:600px; margin:20px auto; display:block;" alt="MCP protocol handshake sequence diagram">
+        <img   src="../../assets/lab-graphics/activity12-mcp-handshake.svg" style="width:600px; margin:20px auto; display:block;" alt="MCP protocol handshake sequence diagram">
         <aside class="notes">Notice the protocolVersion field — both sides must agree on a compatible version. The capabilities object tells each side what features are available. The server here supports tools with dynamic list changes (it can add/remove tools at runtime) and resource subscriptions (clients can get notified when resources update). After initialize, the client sends an 'initialized' notification to confirm.</aside>
       </section>
 
@@ -1409,14 +1409,14 @@ async def test_lookup_cve():
       <!-- SLIDE 39.5: Project — Slack Bot Integration -->
       <section data-transition="slide">
         <h2>🏗️ Project: AI Slack Bot with MCP</h2>
-        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/project-slack-bot-arch.svg" style="max-width:700px;width:100%"></div>
+        <div style="text-align:center;margin:20px 0"><img   src="../../assets/graphics/project-slack-bot-arch.svg" style="max-width:700px;width:100%"></div>
         <aside class="notes">This architecture shows how an AI-powered Slack bot uses MCP servers to access internal tools — combining conversational AI with real-time enterprise integrations for incident response, knowledge queries, and workflow automation.</aside>
       </section>
 
       <!-- SLIDE 39.6: Course Completion Certificate -->
       <section>
         <h2>🎓 Course Completion</h2>
-        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/certificate-preview.svg" style="max-width:700px;width:100%"></div>
+        <div style="text-align:center;margin:20px 0"><img   src="../../assets/graphics/certificate-preview.svg" style="max-width:700px;width:100%"></div>
         <p class="text-teal">Congratulations on completing the Enterprise AI Course!</p>
         <aside class="notes">Students who complete all 12 modules and labs receive this certificate of completion. It validates proficiency in enterprise AI strategy, LLM integration, RAG architecture, and MCP protocol implementation.</aside>
       </section>

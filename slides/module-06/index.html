@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Module 6: Hugging Face &amp; Open-Source AI</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+  <link rel="stylesheet" href="../theme/enterprise-ai.css" id="theme">
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
@@ -23,7 +23,7 @@
       right: -100px;
       width: 400px;
       height: 400px;
-      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background: url('../../assets/decorative/concentric-rings.svg') no-repeat center;
       background-size: contain;
       pointer-events: none;
       z-index: 0;
@@ -38,7 +38,7 @@
       left: -20px;
       width: 200px;
       height: 200px;
-      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      background: url('../../assets/decorative/dot-matrix.svg') repeat;
       pointer-events: none;
       z-index: 0;
       opacity: 0.5;
@@ -352,7 +352,7 @@
 
       <!-- SLIDE 1: Title -->
       <section data-transition="none">
-        <img  src="/assets/module-icons/module-06.svg" style="width:100px">
+        <img  src="../../assets/module-icons/module-06.svg" style="width:100px">
         <h1>Module 6</h1>
         <h2>Hugging Face &amp; Open-Source AI</h2>
         <p>Navigating the World's Largest Open-Source AI Ecosystem</p>
@@ -426,7 +426,7 @@
       <!-- SLIDE 5: Hub Overview -->
       <section>
         <h2>The Hugging Face Hub</h2>
-        <img   src="/assets/graphics/concept-fine-tuning-vs-rag.svg" style="max-width:700px;width:100%">
+        <img   src="../../assets/graphics/concept-fine-tuning-vs-rag.svg" style="max-width:700px;width:100%">
         <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
           <p>Three pillars: <strong>Models</strong> (pre-trained weights), <strong>Datasets</strong> (training &amp; eval data), and <strong>Spaces</strong> (live demos &amp; apps). Together they form a complete ecosystem for discovering, evaluating, and deploying AI.</p>
         </div>
@@ -861,7 +861,7 @@ print(answer)
 models = requests.get("http://localhost:11434/api/tags").json()
 for m in models["models"]:
     print(f"  {m['name']} — {m['size'] / 1e9:.1f} GB")</code></pre>
-        <img   src="/assets/lab-graphics/ollama-architecture.svg" style="width:600px; margin:20px auto; display:block;" alt="Ollama local deployment architecture">
+        <img   src="../../assets/lab-graphics/ollama-architecture.svg" style="width:600px; margin:20px auto; display:block;" alt="Ollama local deployment architecture">
         <aside class="notes">Ollama makes local model deployment trivially easy — two commands and you have a model running locally. The Python integration is a simple HTTP API, no special libraries needed. This is ideal for security-sensitive evaluations where you don't want prompts leaving your network. For enterprise deployment, you'd add authentication, logging, and rate limiting around this basic setup.</aside>
       </section>
 
@@ -965,7 +965,7 @@ for m in models["models"]:
           </ol>
         </div>
         <p>📝 <strong>Deliverable:</strong> A 1-page model evaluation report comparing two models with a deployment recommendation</p>
-        <img   src="/assets/lab-graphics/activity06-huggingface-workflow.svg" style="width:600px; margin:20px auto; display:block;" alt="Hugging Face model evaluation workflow">
+        <img   src="../../assets/lab-graphics/activity06-huggingface-workflow.svg" style="width:600px; margin:20px auto; display:block;" alt="Hugging Face model evaluation workflow">
         <aside class="notes">This activity simulates the real model selection process an enterprise goes through. Walk participants through the Hub interface if needed. Common pitfalls: choosing models based solely on download count, ignoring license restrictions, and not testing edge cases. The security review step is unique to our course — most tutorials skip it, but it's essential for enterprise deployment. The deliverable format mirrors what you'd present to an AI ethics board for approval.</aside>
       </section>
 

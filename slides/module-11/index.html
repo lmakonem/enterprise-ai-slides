@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Module 11: LLM Integration Patterns</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+  <link rel="stylesheet" href="../theme/enterprise-ai.css" id="theme">
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
@@ -23,7 +23,7 @@
       right: -100px;
       width: 400px;
       height: 400px;
-      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background: url('../../assets/decorative/concentric-rings.svg') no-repeat center;
       background-size: contain;
       pointer-events: none;
       z-index: 0;
@@ -38,7 +38,7 @@
       left: -20px;
       width: 200px;
       height: 200px;
-      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      background: url('../../assets/decorative/dot-matrix.svg') repeat;
       pointer-events: none;
       z-index: 0;
       opacity: 0.5;
@@ -352,7 +352,7 @@
 
       <!-- SLIDE 1: Title -->
       <section data-transition="none">
-        <img  src="/assets/module-icons/module-11.svg" style="width:100px">
+        <img  src="../../assets/module-icons/module-11.svg" style="width:100px">
         <h1>Module 11</h1>
         <h2>LLM Integration Patterns</h2>
         <p>APIs, RAG, LangChain & Production Architecture</p>
@@ -401,7 +401,7 @@
       <!-- SLIDE 4: Enterprise AI Stack -->
       <section>
         <h2>The Enterprise AI Stack</h2>
-        <img   src="/assets/graphics/arch-enterprise-ai-stack.svg" style="max-width:700px;width:100%">
+        <img   src="../../assets/graphics/arch-enterprise-ai-stack.svg" style="max-width:700px;width:100%">
         <aside class="notes">This stack diagram shows how all the components we'll cover fit together. At the bottom are foundation models accessed via APIs. In the middle is the orchestration layer — LangChain, RAG pipelines, prompt management. At the top is the application layer — your actual product. On the sides are cross-cutting concerns: monitoring, security, and cost management.</aside>
       </section>
 
@@ -538,7 +538,7 @@ print(f"Args: {tool_call.function.arguments}")
       <!-- SLIDE 11: RAG Architecture -->
       <section>
         <h2>RAG Pipeline Architecture</h2>
-        <img   src="/assets/graphics/arch-rag-pipeline-enterprise.svg" style="max-width:700px;width:100%">
+        <img   src="../../assets/graphics/arch-rag-pipeline-enterprise.svg" style="max-width:700px;width:100%">
         <aside class="notes">The RAG pipeline has four stages: Ingest (chunk and embed documents), Store (vector database), Retrieve (similarity search), and Generate (LLM with retrieved context). Each stage has optimization opportunities. The most impactful optimization is usually in chunking strategy — getting the right chunk size and overlap for your data.</aside>
       </section>
 
@@ -646,14 +646,14 @@ results = collection.query(
     where={"source": "nist-800-207"}  # Metadata filter
 )
 print(results["documents"][0])  # Most relevant chunks</code></pre>
-        <img   src="/assets/lab-graphics/chromadb-architecture.svg" style="width:600px; margin:20px auto; display:block;" alt="ChromaDB vector database architecture">
+        <img   src="../../assets/lab-graphics/chromadb-architecture.svg" style="width:600px; margin:20px auto; display:block;" alt="ChromaDB vector database architecture">
         <aside class="notes">ChromaDB is the fastest way to get a vector store running — it works locally with zero infrastructure. The metadata filtering is crucial for enterprise use: you can restrict searches to specific document sources, date ranges, or security classification levels. In production, you'd use PersistentClient with a mounted volume for durability.</aside>
       </section>
 
       <!-- SLIDE 14.5: Vector Similarity Concepts -->
       <section>
         <h2>Understanding Vector Similarity</h2>
-        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/concept-vector-similarity.svg" style="max-width:700px;width:100%"></div>
+        <div style="text-align:center;margin:20px 0"><img   src="../../assets/graphics/concept-vector-similarity.svg" style="max-width:700px;width:100%"></div>
         <aside class="notes">This diagram illustrates how vector similarity works — documents and queries are mapped to points in high-dimensional space, and similarity is measured by the distance or angle between vectors. Closer vectors mean more semantically similar content.</aside>
       </section>
 
@@ -736,7 +736,7 @@ print(answer)</code></pre>
       <!-- SLIDE 18: LangChain Components -->
       <section>
         <h2>LangChain Component Architecture</h2>
-        <img   src="/assets/graphics/arch-langchain-components.svg" style="max-width:700px;width:100%">
+        <img   src="../../assets/graphics/arch-langchain-components.svg" style="max-width:700px;width:100%">
         <div class="cols-3">
           <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
             <h3>🔗 Chains</h3>
@@ -1022,15 +1022,15 @@ print(f"Query cost: ${cost:.4f}")  # $0.0100</code></pre>
       <!-- SLIDE 28.5: Project Architecture — Document Q&A -->
       <section data-transition="fade">
         <h2>🏗️ Project: Document Q&A System</h2>
-        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/project-doc-qa-arch.svg" style="max-width:700px;width:100%"></div>
-        <img   src="/assets/lab-graphics/project01-docqa-screenshot-mock.svg" style="width:600px; margin:20px auto; display:block;" alt="Document Q&A system screenshot mockup">
+        <div style="text-align:center;margin:20px 0"><img   src="../../assets/graphics/project-doc-qa-arch.svg" style="max-width:700px;width:100%"></div>
+        <img   src="../../assets/lab-graphics/project01-docqa-screenshot-mock.svg" style="width:600px; margin:20px auto; display:block;" alt="Document Q&A system screenshot mockup">
         <aside class="notes">This architecture diagram shows the complete Document Q&A RAG system — from document ingestion through chunking, embedding, vector storage, retrieval, and LLM generation with source attribution.</aside>
       </section>
 
       <!-- SLIDE 28.6: Project Architecture — Email Triage -->
       <section>
         <h2>🏗️ Project: AI Email Triage</h2>
-        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/project-email-triage-arch.svg" style="max-width:700px;width:100%"></div>
+        <div style="text-align:center;margin:20px 0"><img   src="../../assets/graphics/project-email-triage-arch.svg" style="max-width:700px;width:100%"></div>
         <aside class="notes">The email triage project uses LLM classification to automatically categorize, prioritize, and route incoming emails — reducing manual processing time by 80%+.</aside>
       </section>
 
@@ -1105,7 +1105,7 @@ print(f"Query cost: ${cost:.4f}")  # $0.0100</code></pre>
           </ul>
           <p><strong>Duration:</strong> 2.5 hours | <strong>Deliverable:</strong> Dockerized RAG service with monitoring</p>
         </div>
-        <img   src="/assets/lab-graphics/project02-slackbot-interaction.svg" style="width:600px; margin:20px auto; display:block;" alt="AI Slack bot interaction flow">
+        <img   src="../../assets/lab-graphics/project02-slackbot-interaction.svg" style="width:600px; margin:20px auto; display:block;" alt="AI Slack bot interaction flow">
         <aside class="notes">This lab is the most hands-on in the course. Students will build a complete, production-grade RAG service from scratch. The evaluation component is critical — by testing against a known-good answer set, students experience firsthand how RAG quality varies with different configurations. The Docker deployment ensures the system is portable and production-ready.</aside>
       </section>
 
