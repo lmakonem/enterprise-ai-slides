@@ -23,7 +23,7 @@
       right: -100px;
       width: 400px;
       height: 400px;
-      background: url('../../assets/decorative/concentric-rings.svg') no-repeat center;
+      background: url('https://lmakonem.github.io/enterprise-ai-slides/assets/decorative/concentric-rings.svg') no-repeat center;
       background-size: contain;
       pointer-events: none;
       z-index: 0;
@@ -38,7 +38,7 @@
       left: -20px;
       width: 200px;
       height: 200px;
-      background: url('../../assets/decorative/dot-matrix.svg') repeat;
+      background: url('https://lmakonem.github.io/enterprise-ai-slides/assets/decorative/dot-matrix.svg') repeat;
       pointer-events: none;
       z-index: 0;
       opacity: 0.5;
@@ -352,7 +352,7 @@
 
       <!-- SLIDE 1: Title -->
       <section data-transition="none">
-        <img  src="../../assets/module-icons/module-07.svg" style="width:100px">
+        <img  src="https://lmakonem.github.io/enterprise-ai-slides/assets/module-icons/module-07.svg" style="width:100px">
         <h1>Module 7</h1>
         <h2>Building Secure AI Workflows</h2>
         <p>From Raw Input to Trusted Output — Engineering Guardrails That Actually Work</p>
@@ -609,7 +609,7 @@ if not check["safe"]:
       <!-- SLIDE 14: Guardrails Concept Diagram -->
       <section data-transition="slide">
         <h2>Guardrails Architecture</h2>
-        <img   src="../../assets/graphics/concept-guardrails.svg" style="max-width:700px;width:100%">
+        <img   src="https://lmakonem.github.io/enterprise-ai-slides/assets/graphics/concept-guardrails.svg" style="max-width:700px;width:100%">
         <p>Guardrails wrap the LLM call with programmable input/output checks, routing logic, and fallback behaviors.</p>
         <aside class="notes">This diagram shows the standard guardrails pattern. User input enters the pipeline, passes through input rails (validation, injection detection, topic filtering), reaches the LLM, and the output passes through output rails (PII redaction, toxicity, grounding checks) before reaching the user. If any rail triggers, the system can block, rephrase, or escalate.</aside>
       </section>
@@ -881,7 +881,7 @@ print(f"Action: {result['action']}")</code></pre>
       <!-- SLIDE 27: Secure Deployment Architecture -->
       <section>
         <h2>Secure Deployment Architecture</h2>
-        <img   src="../../assets/graphics/arch-secure-deployment.svg" style="max-width:700px;width:100%">
+        <img   src="https://lmakonem.github.io/enterprise-ai-slides/assets/graphics/arch-secure-deployment.svg" style="max-width:700px;width:100%">
         <p>A production-grade AI deployment with guardrails at every layer — from API gateway to model endpoint.</p>
         <aside class="notes">This architecture shows the full production stack. The API gateway handles rate limiting and authentication. The guardrails service runs input/output validation. The LLM orchestrator manages routing to different models. The monitoring layer feeds into your existing SIEM and alerting stack. Every component logs to a central audit trail for compliance.</aside>
       </section>
@@ -957,7 +957,7 @@ print(f"Action: {result['action']}")</code></pre>
             <li  ><strong>Step 5 (5 min):</strong> Test with adversarial inputs from the provided test suite</li>
           </ol>
         </div>
-        <img   src="../../assets/lab-graphics/activity07-guardrails-pipeline.svg" style="width:600px; margin:20px auto; display:block;" alt="Guardrails pipeline architecture for the hands-on activity">
+        <img   src="https://lmakonem.github.io/enterprise-ai-slides/assets/lab-graphics/activity07-guardrails-pipeline.svg" style="width:600px; margin:20px auto; display:block;" alt="Guardrails pipeline architecture for the hands-on activity">
         <aside class="notes">Students build a complete guardrails pipeline from scratch using the skeleton below. The test suite includes prompt injections, PII-laden text, toxic content, and normal queries. Starter code is in the lab repository. The double PII check (input + output) is the key pattern — input prevents sending PII to the provider, output catches training data leakage.</aside>
       </section>
 
