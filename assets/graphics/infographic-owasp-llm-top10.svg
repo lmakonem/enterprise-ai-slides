@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="owaspGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="url(#owaspGrad)">🛡️ OWASP LLM Top 10 Security Risks (2025)</text>
+  
+  <!-- Header row -->
+  <rect x="30" y="55" width="40" height="25" rx="4" fill="#1e293b"/>
+  <text x="50" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#64748b">#</text>
+  
+  <rect x="80" y="55" width="300" height="25" rx="4" fill="#1e293b"/>
+  <text x="230" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#64748b">Vulnerability</text>
+  
+  <rect x="390" y="55" width="280" height="25" rx="4" fill="#1e293b"/>
+  <text x="530" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#64748b">Description</text>
+  
+  <rect x="680" y="55" width="90" height="25" rx="4" fill="#1e293b"/>
+  <text x="725" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#64748b">Risk</text>
+  
+  <!-- Row 1: Prompt Injection -->
+  <rect x="30" y="90" width="40" height="45" rx="4" fill="#ef4444"/>
+  <text x="50" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#fff">1</text>
+  
+  <rect x="80" y="90" width="300" height="45" rx="4" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+  <text x="100" y="110" font-family="Inter, sans-serif" font-size="16">💉</text>
+  <text x="125" y="115" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#ef4444">Prompt Injection</text>
+  <text x="125" y="128" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Direct &amp; indirect manipulation</text>
+  
+  <rect x="390" y="90" width="280" height="45" rx="4" fill="#0f172a"/>
+  <text x="400" y="115" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Attackers craft inputs to manipulate LLM</text>
+  <text x="400" y="128" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">behavior, bypass restrictions, exfil data</text>
+  
+  <rect x="680" y="90" width="90" height="45" rx="4" fill="#ef4444"/>
+  <text x="725" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#fff">CRITICAL</text>
+  
+  <!-- Row 2: Sensitive Data Disclosure -->
+  <rect x="30" y="145" width="40" height="45" rx="4" fill="#ef4444"/>
+  <text x="50" y="173" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#fff">2</text>
+  
+  <rect x="80" y="145" width="300" height="45" rx="4" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+  <text x="100" y="165" font-family="Inter, sans-serif" font-size="16">🔓</text>
+  <text x="125" y="170" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#ef4444">Sensitive Data Disclosure</text>
+  <text x="125" y="183" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Training data &amp; PII leakage</text>
+  
+  <rect x="390" y="145" width="280" height="45" rx="4" fill="#0f172a"/>
+  <text x="400" y="170" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">LLM reveals confidential info from</text>
+  <text x="400" y="183" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">training data or user inputs</text>
+  
+  <rect x="680" y="145" width="90" height="45" rx="4" fill="#ef4444"/>
+  <text x="725" y="173" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#fff">CRITICAL</text>
+  
+  <!-- Row 3: Supply Chain -->
+  <rect x="30" y="200" width="40" height="45" rx="4" fill="#f97316"/>
+  <text x="50" y="228" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#fff">3</text>
+  
+  <rect x="80" y="200" width="300" height="45" rx="4" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="100" y="220" font-family="Inter, sans-serif" font-size="16">📦</text>
+  <text x="125" y="225" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#f97316">Supply Chain Vulnerabilities</text>
+  <text x="125" y="238" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Compromised models &amp; plugins</text>
+  
+  <rect x="390" y="200" width="280" height="45" rx="4" fill="#0f172a"/>
+  <text x="400" y="225" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Third-party models, data, or plugins</text>
+  <text x="400" y="238" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">introduce vulnerabilities</text>
+  
+  <rect x="680" y="200" width="90" height="45" rx="4" fill="#f97316"/>
+  <text x="725" y="228" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#fff">HIGH</text>
+  
+  <!-- Row 4: Data &amp; Model Poisoning -->
+  <rect x="30" y="255" width="40" height="45" rx="4" fill="#f97316"/>
+  <text x="50" y="283" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#fff">4</text>
+  
+  <rect x="80" y="255" width="300" height="45" rx="4" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="100" y="275" font-family="Inter, sans-serif" font-size="16">☠️</text>
+  <text x="125" y="280" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#f97316">Data &amp; Model Poisoning</text>
+  <text x="125" y="293" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Malicious training manipulation</text>
+  
+  <rect x="390" y="255" width="280" height="45" rx="4" fill="#0f172a"/>
+  <text x="400" y="280" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Attackers corrupt training data to</text>
+  <text x="400" y="293" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">influence model behavior</text>
+  
+  <rect x="680" y="255" width="90" height="45" rx="4" fill="#f97316"/>
+  <text x="725" y="283" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#fff">HIGH</text>
+  
+  <!-- Row 5: Improper Output Handling -->
+  <rect x="30" y="310" width="40" height="45" rx="4" fill="#eab308"/>
+  <text x="50" y="338" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#000">5</text>
+  
+  <rect x="80" y="310" width="300" height="45" rx="4" fill="#1e293b" stroke="#eab308" stroke-width="1"/>
+  <text x="100" y="330" font-family="Inter, sans-serif" font-size="16">📤</text>
+  <text x="125" y="335" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#eab308">Improper Output Handling</text>
+  <text x="125" y="348" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Unvalidated LLM responses</text>
+  
+  <rect x="390" y="310" width="280" height="45" rx="4" fill="#0f172a"/>
+  <text x="400" y="335" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">LLM output used without validation</text>
+  <text x="400" y="348" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">leading to XSS, SSRF, code exec</text>
+  
+  <rect x="680" y="310" width="90" height="45" rx="4" fill="#eab308"/>
+  <text x="725" y="338" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#000">MEDIUM</text>
+  
+  <!-- Row 6: Excessive Agency -->
+  <rect x="30" y="365" width="40" height="45" rx="4" fill="#eab308"/>
+  <text x="50" y="393" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#000">6</text>
+  
+  <rect x="80" y="365" width="300" height="45" rx="4" fill="#1e293b" stroke="#eab308" stroke-width="1"/>
+  <text x="100" y="385" font-family="Inter, sans-serif" font-size="16">🤖</text>
+  <text x="125" y="390" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#eab308">Excessive Agency</text>
+  <text x="125" y="403" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Over-permissioned LLM actions</text>
+  
+  <rect x="390" y="365" width="280" height="45" rx="4" fill="#0f172a"/>
+  <text x="400" y="390" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">LLM granted excessive permissions</text>
+  <text x="400" y="403" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">to take harmful autonomous actions</text>
+  
+  <rect x="680" y="365" width="90" height="45" rx="4" fill="#eab308"/>
+  <text x="725" y="393" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#000">MEDIUM</text>
+  
+  <!-- Row 7: System Prompt Leakage -->
+  <rect x="30" y="420" width="40" height="45" rx="4" fill="#14b8a6"/>
+  <text x="50" y="448" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#000">7</text>
+  
+  <rect x="80" y="420" width="300" height="45" rx="4" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="100" y="440" font-family="Inter, sans-serif" font-size="16">📋</text>
+  <text x="125" y="445" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">System Prompt Leakage</text>
+  <text x="125" y="458" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Exposing hidden instructions</text>
+  
+  <rect x="390" y="420" width="280" height="45" rx="4" fill="#0f172a"/>
+  <text x="400" y="445" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">System prompts revealed through</text>
+  <text x="400" y="458" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">clever querying techniques</text>
+  
+  <rect x="680" y="420" width="90" height="45" rx="4" fill="#14b8a6"/>
+  <text x="725" y="448" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#000">LOW</text>
+  
+  <!-- Row 8-10 summary -->
+  <rect x="30" y="475" width="740" height="45" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <text x="50" y="495" font-family="Inter, sans-serif" font-size="10" fill="#64748b">8-10:</text>
+  <text x="100" y="495" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Vector &amp; Embedding Weaknesses</text>
+  <text x="300" y="495" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Misinformation</text>
+  <text x="450" y="495" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Unbounded Consumption (DoS)</text>
+  <text x="650" y="495" font-family="Inter, sans-serif" font-size="9" fill="#14b8a6">LOW-MED</text>
+  
+  <!-- Mitigation Tips -->
+  <rect x="30" y="530" width="740" height="60" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+  <text x="400" y="552" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">🛡️ Key Mitigations</text>
+  <text x="130" y="575" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Input Validation</text>
+  <text x="270" y="575" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Output Filtering</text>
+  <text x="400" y="575" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Least Privilege</text>
+  <text x="530" y="575" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Rate Limiting</text>
+  <text x="670" y="575" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Audit Logging</text>
+</svg>

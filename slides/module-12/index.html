@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 12: Model Context Protocol (MCP)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-12.svg" style="width:100px">
+        <h1>Module 12</h1>
+        <h2>Model Context Protocol (MCP)</h2>
+        <p>The Universal Standard for AI Tool Integration</p>
+        <p class="text-teal">IT Security Labs / OpSec Fusion</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">MCP is the newest and most transformative protocol in the AI ecosystem. Announced by Anthropic in late 2024, it has rapidly become the standard way AI models connect to external tools and data sources. Think of it as USB-C for AI — one universal connector instead of hundreds of custom integrations.</aside>
+      </section>
+
+      <!-- SLIDE 2: Objectives -->
+      <section data-transition="fade">
+        <h2>🎯 Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ol>
+            <li   >Explain the problem MCP solves and why it matters for enterprise AI</li>
+            <li   >Describe MCP architecture: clients, servers, and transports</li>
+            <li   >Understand JSON-RPC as MCP's communication foundation</li>
+            <li   >Build MCP servers that expose tools, resources, and prompts</li>
+            <li   >Connect MCP clients to servers for real-world integrations</li>
+            <li   >Apply security best practices for MCP deployments</li>
+            <li   >Design enterprise MCP deployment topologies</li>
+          </ol>
+        </div>
+        <aside class="notes">By the end of this module, you'll have built a working MCP server from scratch and connected it to Claude Desktop. MCP is the bridge between Module 11's LLM integration patterns and real-world tool use — it standardizes how AI models interact with your systems, databases, and APIs.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section>
+        <h2>💡 Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">N×M</div>
+            <div class="stat-label">The integration problem: N models × M tools = chaos</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">1</div>
+            <div class="stat-label">MCP: one protocol to connect any model to any tool</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">MCP servers published in 2025</div>
+          </div>
+        </div>
+        <p>Without MCP, every AI integration is a custom snowflake. With MCP, you build once and connect everywhere.</p>
+        <aside class="notes">Before MCP, integrating an AI model with your database required custom code specific to that model's function calling format. Switch models? Rewrite everything. MCP standardizes the interface so your database connector works with Claude, GPT, Gemini, and any future model — just like HTTP standardized web communication.</aside>
+      </section>
+
+      <!-- SLIDE 4: The Problem MCP Solves -->
+      <section data-transition="slide">
+        <h2>The N×M Integration Problem</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>❌ Before MCP</h3>
+            <ul>
+              <li class="fragment fade-up"  >GPT + Slack = custom integration</li>
+              <li  >GPT + Database = custom integration</li>
+              <li  >Claude + Slack = another custom integration</li>
+              <li  >Claude + Database = yet another</li>
+              <li  >Gemini + Slack = and another...</li>
+              <li  ><strong>5 models × 10 tools = 50 integrations</strong></li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>✅ With MCP</h3>
+            <ul>
+              <li  >Slack MCP Server (works with ALL models)</li>
+              <li  >Database MCP Server (works with ALL models)</li>
+              <li  >Each model speaks MCP natively</li>
+              <li  ><strong>5 models + 10 servers = 15 components</strong></li>
+              <li  >Build a server once, use everywhere</li>
+              <li  >Switch models without rewiring tools</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The math is compelling: N×M custom integrations becomes N+M standardized components. But the real benefit is organizational — your security team builds one MCP server for the SIEM and every AI tool in the company can use it, with consistent access controls. No more shadow integrations or copy-pasted API wrappers.</aside>
+      </section>
+
+      <!-- SLIDE 5: MCP Timeline & Adoption -->
+      <section>
+        <h2>📅 MCP Adoption Timeline</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <ul>
+            <li  ><strong>Nov 2024:</strong> Anthropic publishes MCP specification v1.0 as open standard</li>
+            <li  ><strong>Dec 2024:</strong> Claude Desktop ships with MCP client support; community builds first 100 servers</li>
+            <li  ><strong>Q1 2025:</strong> Cursor, Windsurf, Zed IDE adopt MCP; 1,000+ servers on registries</li>
+            <li  ><strong>Q2 2025:</strong> OpenAI announces MCP support in ChatGPT Desktop; Google adds MCP to Gemini</li>
+            <li  ><strong>Q3 2025:</strong> Streamable HTTP transport replaces SSE; OAuth 2.1 auth spec published</li>
+            <li  ><strong>Q4 2025:</strong> Enterprise gateway products emerge (Cloudflare, AWS); 10K+ servers</li>
+            <li  ><strong>2026:</strong> MCP becomes de facto standard for AI-tool integration across the industry</li>
+          </ul>
+        </div>
+        <aside class="notes">MCP's adoption curve is one of the fastest in developer tooling history. The key inflection point was when OpenAI — Anthropic's primary competitor — adopted MCP rather than creating a rival standard. This signaled that MCP had won the standardization battle. By 2026, not supporting MCP is a competitive disadvantage for any AI platform.</aside>
+      </section>
+
+      <!-- SLIDE 6: Section Divider - Architecture -->
+      <section data-background-color="#1e293b">
+        <h1>Section 1</h1>
+        <h2>MCP Architecture</h2>
+        <p>Clients, Servers & Transports</p>
+        <aside class="notes">Understanding MCP's architecture is essential before writing code. The protocol has clean separation of concerns: clients manage AI model connections, servers expose capabilities, and transports handle communication. Let's break down each component.</aside>
+      </section>
+
+      <!-- SLIDE 7: Architecture Diagram -->
+      <section>
+        <h2>MCP Architecture Overview</h2>
+        <img   src="/assets/graphics/arch-mcp-architecture.svg" style="max-width:700px;width:100%">
+        <aside class="notes">The architecture follows a client-server model. The MCP Host (like Claude Desktop or your application) contains an MCP Client that connects to one or more MCP Servers. Each server exposes Tools (functions the AI can call), Resources (data the AI can read), and Prompts (templates for common tasks). Communication uses JSON-RPC over either stdio (local) or HTTP+SSE (remote).</aside>
+      </section>
+
+      <!-- SLIDE 8: Core Components -->
+      <section>
+        <h2>Core Components</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>🖥️ MCP Host</h3>
+            <p>The application that contains the AI model</p>
+            <ul>
+              <li  >Claude Desktop</li>
+              <li  >Cursor IDE</li>
+              <li  >VS Code Copilot</li>
+              <li  >Your custom app</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>🔌 MCP Client</h3>
+            <p>Protocol handler inside the host</p>
+            <ul>
+              <li  >Manages connections</li>
+              <li  >Sends requests</li>
+              <li  >Receives responses</li>
+              <li  >1:1 with servers</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3>⚙️ MCP Server</h3>
+            <p>Exposes capabilities via MCP</p>
+            <ul>
+              <li class="fragment zoom-in"  >Tools (actions)</li>
+              <li  >Resources (data)</li>
+              <li  >Prompts (templates)</li>
+              <li  >Lightweight process</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The key insight: MCP Servers are lightweight, single-purpose processes. A file system server, a database server, and a Slack server all run independently. This is the Unix philosophy applied to AI integrations — each server does one thing well. The host manages multiple client-server connections simultaneously.</aside>
+      </section>
+
+      <!-- SLIDE 9: Server Capabilities Deep Dive -->
+      <section data-transition="slide">
+        <h2>MCP Server Capabilities</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3>🔧 Tools</h3>
+            <p><em>Functions the AI can execute</em></p>
+            <pre  ><code class="python">{
+  "name": "query_database",
+  "description": "Run SQL query",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sql": {"type": "string"}
+    }
+  }
+}</code></pre>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3>📄 Resources</h3>
+            <p><em>Data the AI can read</em></p>
+            <pre  ><code class="python">{
+  "uri": "file:///logs/auth.log",
+  "name": "Auth Logs",
+  "mimeType": "text/plain"
+}</code></pre>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>💬 Prompts</h3>
+            <p><em>Reusable templates</em></p>
+            <pre  ><code class="python">{
+  "name": "analyze_incident",
+  "arguments": [
+    {"name": "incident_id",
+     "required": true}
+  ]
+}</code></pre>
+          </div>
+        </div>
+        <aside class="notes">Tools are model-controlled — the AI decides when to call them based on user intent. Resources are user-controlled — they're data the user explicitly adds to context (like attaching a file). Prompts are reusable templates that combine instructions and arguments. Most servers primarily expose tools, but resources and prompts enable powerful workflows for knowledge-heavy applications.</aside>
+      </section>
+
+      <!-- SLIDE 10: Transport Mechanisms -->
+      <section>
+        <h2>Transport Mechanisms</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>📟 stdio (Local)</h3>
+            <ul>
+              <li  >Server runs as child process</li>
+              <li  >Communication via stdin/stdout</li>
+              <li  >Zero network config</li>
+              <li  >Best for: desktop apps, local tools</li>
+              <li  >Used by: Claude Desktop, Cursor</li>
+            </ul>
+            <pre  ><code class="json">{
+  "command": "python",
+  "args": ["server.py"],
+  "transport": "stdio"
+}</code></pre>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>🌐 Streamable HTTP (Remote)</h3>
+            <ul>
+              <li  >Server runs as HTTP service</li>
+              <li  >Client→Server: HTTP POST</li>
+              <li  >Server→Client: SSE streaming</li>
+              <li class="fragment fade-up"  >Best for: shared servers, cloud</li>
+              <li  >Supports authentication headers</li>
+            </ul>
+            <pre  ><code class="json">{
+  "url": "https://mcp.internal.co/db",
+  "transport": "streamable-http",
+  "headers": {"Authorization": "Bearer ..."}
+}</code></pre>
+          </div>
+        </div>
+        <aside class="notes">stdio is simpler and more secure — the server runs locally as a child process with no network exposure. Streamable HTTP transport (introduced mid-2025) enables remote, shared MCP servers that multiple users can connect to. It replaced the older SSE-only transport with better reliability and support for stateless operation. For enterprise deployments, start with stdio for development and move to Streamable HTTP for shared infrastructure.</aside>
+      </section>
+
+      <!-- SLIDE 11: MCP vs Function Calling -->
+      <section>
+        <h2>MCP vs Function Calling</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Feature</th><th>Function Calling</th><th>MCP</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td><strong>Scope</strong></td><td>Single API call</td><td class="text-teal">Full protocol with lifecycle</td></tr>
+            <tr ><td><strong>Standardized</strong></td><td class="text-red">Vendor-specific (OpenAI ≠ Anthropic)</td><td class="text-teal">Universal open standard</td></tr>
+            <tr ><td><strong>Discovery</strong></td><td>Tools defined in each request</td><td class="text-teal">Dynamic tool discovery</td></tr>
+            <tr ><td><strong>Data access</strong></td><td>Tools only</td><td class="text-teal">Tools + Resources + Prompts</td></tr>
+            <tr ><td><strong>State</strong></td><td>Stateless</td><td class="text-teal">Persistent connection</td></tr>
+            <tr ><td><strong>Security</strong></td><td>App-level only</td><td class="text-teal">Protocol-level auth (OAuth 2.1)</td></tr>
+            <tr ><td><strong>Reusability</strong></td><td class="text-red">Per-model implementation</td><td class="text-teal">Build once, works everywhere</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">Function calling is a feature of individual LLM APIs. MCP is a protocol that sits above function calling and standardizes it. In practice, MCP hosts translate between MCP's tool format and whatever function calling format the underlying model uses. You don't choose between them — MCP uses function calling under the hood but gives you portability and richer capabilities on top.</aside>
+      </section>
+
+      <!-- SLIDE 12: Myth vs Reality -->
+      <section data-transition="slide">
+        <h2>Myth vs Reality: MCP</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"MCP is just Anthropic's proprietary tool-calling format. It only works with Claude."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>MCP is an <strong>open specification</strong> (MIT licensed) adopted by OpenAI, Google, Microsoft, and hundreds of companies. It works with any LLM. Anthropic created it, but the community owns it — like how Google created Go but doesn't control it.</p>
+          </div>
+        </div>
+        <aside class="notes">This is the most common misconception about MCP. Because Anthropic created it, people assume it's a vendor lock-in play. In reality, Anthropic open-sourced the spec and SDKs from day one. The protocol is model-agnostic by design — MCP servers don't know or care which AI model is calling them. The adoption by OpenAI and Google in 2025 proved it's a true open standard.</aside>
+      </section>
+
+      <!-- SLIDE 13: Section Divider - JSON-RPC -->
+      <section data-background-color="#1e293b">
+        <h1>Section 2</h1>
+        <h2>JSON-RPC Foundation</h2>
+        <p>Understanding the wire protocol</p>
+        <aside class="notes">MCP is built on JSON-RPC 2.0, a simple and well-established protocol for remote procedure calls. Understanding the message format helps you debug MCP connections, build custom clients, and reason about what's happening over the wire.</aside>
+      </section>
+
+      <!-- SLIDE 14: JSON-RPC Messages -->
+      <section data-transition="slide">
+        <h2>JSON-RPC Message Types</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>📤 Request</h3>
+            <pre  ><code class="json">{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "query_db",
+    "arguments": {
+      "sql": "SELECT * FROM users"
+    }
+  }
+}</code></pre>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>📥 Response</h3>
+            <pre  ><code class="json">{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [{
+      "type": "text",
+      "text": "Found 42 users"
+    }]
+  }
+}</code></pre>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3>🔔 Notification</h3>
+            <pre  ><code class="json">{
+  "jsonrpc": "2.0",
+  "method": "notifications/
+    resources/updated",
+  "params": {
+    "uri": "file:///logs"
+  }
+}</code></pre>
+          </div>
+        </div>
+        <aside class="notes">Three message types: Requests have an ID and expect a response. Responses carry the result (or error) for a specific request ID. Notifications have no ID and don't expect a response — they're fire-and-forget signals, like telling the client that a resource has changed. This is standard JSON-RPC 2.0 with MCP-specific method names.</aside>
+      </section>
+
+      <!-- SLIDE 15: MCP Connection Lifecycle -->
+      <section>
+        <h2>MCP Connection Lifecycle</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <ol>
+            <li  ><strong>Initialize:</strong> Client sends capabilities, server responds with its capabilities</li>
+            <li  ><strong>Initialized:</strong> Client sends notification confirming handshake complete</li>
+            <li class="fragment fade-up"  ><strong>Discover:</strong> Client lists available tools, resources, and prompts</li>
+            <li class="fragment fade-up"  ><strong>Operate:</strong> Client calls tools, reads resources, uses prompts</li>
+            <li  ><strong>Shutdown:</strong> Graceful disconnection via close or process termination</li>
+          </ol>
+        </div>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3>MCP Methods</h3>
+            <pre  ><code class="json">// Discovery
+"tools/list"
+"resources/list"
+"prompts/list"
+
+// Operations
+"tools/call"
+"resources/read"
+"prompts/get"
+
+// Notifications
+"notifications/tools/list_changed"
+"notifications/resources/updated"</code></pre>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>Error Codes</h3>
+            <pre  ><code class="json">// JSON-RPC standard
+-32700  // Parse error
+-32600  // Invalid request
+-32601  // Method not found
+-32602  // Invalid params
+-32603  // Internal error
+
+// MCP-specific
+-32001  // Request cancelled
+-32002  // Content too large</code></pre>
+          </div>
+        </div>
+        <aside class="notes">The handshake is crucial — it establishes what both sides can do. The client advertises which MCP features it supports (e.g., sampling, roots) and the server responds with its capabilities (tools, resources, prompts). This capability negotiation ensures forward compatibility as the protocol evolves. If a client doesn't support a feature, the server won't try to use it.</aside>
+      </section>
+
+      <!-- SLIDE 16: Initialize Handshake Detail -->
+      <section>
+        <h2>Initialize Handshake in Detail</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>Client → Server</h3>
+            <pre  ><code class="json">{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2025-03-26",
+    "capabilities": {
+      "roots": { "listChanged": true },
+      "sampling": {}
+    },
+    "clientInfo": {
+      "name": "claude-desktop",
+      "version": "1.5.0"
+    }
+  }
+}</code></pre>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>Server → Client</h3>
+            <pre  ><code class="json">{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "protocolVersion": "2025-03-26",
+    "capabilities": {
+      "tools": { "listChanged": true },
+      "resources": {
+        "subscribe": true
+      }
+    },
+    "serverInfo": {
+      "name": "security-tools",
+      "version": "2.0.0"
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+        <img   src="/assets/lab-graphics/activity12-mcp-handshake.svg" style="width:600px; margin:20px auto; display:block;" alt="MCP protocol handshake sequence diagram">
+        <aside class="notes">Notice the protocolVersion field — both sides must agree on a compatible version. The capabilities object tells each side what features are available. The server here supports tools with dynamic list changes (it can add/remove tools at runtime) and resource subscriptions (clients can get notified when resources update). After initialize, the client sends an 'initialized' notification to confirm.</aside>
+      </section>
+
+      <!-- SLIDE 17: Section Divider - Building Servers -->
+      <section data-background-color="#1e293b">
+        <h1>Section 3</h1>
+        <h2>Building MCP Servers</h2>
+        <p>Python implementation from scratch</p>
+        <aside class="notes">Now we write code. We'll build a complete MCP server in Python that exposes security tools — a vulnerability scanner, a log analyzer, and an incident report generator. The official MCP Python SDK makes this straightforward.</aside>
+      </section>
+
+      <!-- SLIDE 18: MCP Server - Setup -->
+      <section>
+        <h2>🐍 MCP Server: Project Setup</h2>
+        <pre  ><code class="python"># Install dependencies
+# pip install mcp[cli] httpx
+
+# server.py — Security Tools MCP Server
+from mcp.server import Server
+from mcp.server.stdio import stdio_server
+from mcp.types import (
+    Tool, TextContent, Resource, Prompt, PromptMessage,
+    PromptArgument, GetPromptResult
+)
+import json
+import httpx
+
+# Create the server
+app = Server("security-tools")
+
+# This server will expose:
+# - Tools: vulnerability lookup, log analysis
+# - Resources: security policy documents
+# - Prompts: incident analysis template</code></pre>
+        <aside class="notes">The MCP Python SDK provides a clean, decorator-based API. The Server class is the core — you create one instance and register tools, resources, and prompts on it. The stdio_server function handles the transport layer, reading from stdin and writing to stdout. For production, you can swap to SSE transport with minimal code changes.</aside>
+      </section>
+
+      <!-- SLIDE 19: MCP Server - Tools Definition -->
+      <section>
+        <h2>🔧 Defining Tools</h2>
+        <pre  ><code class="python">@app.list_tools()
+async def list_tools() -> list[Tool]:
+    return [
+        Tool(
+            name="lookup_cve",
+            description="Look up a CVE vulnerability by ID. Returns severity, "
+                       "description, affected software, and remediation steps.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "cve_id": {
+                        "type": "string",
+                        "description": "CVE identifier (e.g., CVE-2024-3094)",
+                        "pattern": "^CVE-\\d{4}-\\d{4,}$"
+                    }
+                },
+                "required": ["cve_id"]
+            }
+        ),
+        Tool(
+            name="analyze_log_entry",
+            description="Analyze a security log entry for threat indicators.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "log_entry": {"type": "string", "description": "Raw log line"},
+                    "log_source": {
+                        "type": "string",
+                        "enum": ["syslog", "auth", "firewall", "web"],
+                        "description": "Source system for the log"
+                    }
+                },
+                "required": ["log_entry"]
+            }
+        )
+    ]</code></pre>
+        <aside class="notes">Tool definitions include a JSON Schema for input validation. The AI model uses the name and description to decide when to call a tool, so write clear, specific descriptions. The pattern field on cve_id provides regex validation — the server will reject malformed CVE IDs before processing. Always validate inputs in MCP servers, especially for tools that access sensitive systems.</aside>
+      </section>
+
+      <!-- SLIDE 20: MCP Server - Tool Implementation -->
+      <section>
+        <h2>⚡ Implementing Tool Handlers</h2>
+        <pre  ><code class="python">@app.call_tool()
+async def call_tool(name: str, arguments: dict) -> list[TextContent]:
+    if name == "lookup_cve":
+        return await handle_lookup_cve(arguments["cve_id"])
+    elif name == "analyze_log_entry":
+        return handle_analyze_log(
+            arguments["log_entry"],
+            arguments.get("log_source", "syslog")
+        )
+    raise ValueError(f"Unknown tool: {name}")
+
+async def handle_lookup_cve(cve_id: str) -> list[TextContent]:
+    """Fetch CVE details from NVD API."""
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(
+            f"https://services.nvd.nist.gov/rest/json/cves/2.0",
+            params={"cveId": cve_id},
+            timeout=10.0
+        )
+        if resp.status_code != 200:
+            return [TextContent(type="text",
+                text=f"Error: NVD API returned {resp.status_code}")]
+
+        data = resp.json()
+        if not data.get("vulnerabilities"):
+            return [TextContent(type="text",
+                text=f"CVE {cve_id} not found")]
+
+        vuln = data["vulnerabilities"][0]["cve"]
+        desc = vuln["descriptions"][0]["value"]
+        metrics = vuln.get("metrics", {})
+
+        return [TextContent(type="text", text=json.dumps({
+            "cve_id": cve_id,
+            "description": desc,
+            "metrics": metrics,
+            "references": [r["url"] for r in vuln.get("references", [])[:5]]
+        }, indent=2))]</code></pre>
+        <aside class="notes">The tool handler fetches real CVE data from NIST's National Vulnerability Database API. Key patterns: use async HTTP for non-blocking calls, set reasonable timeouts, handle errors gracefully with informative messages, and return structured JSON so the AI can parse and reason about the results. In production, you'd add caching to avoid repeated NVD lookups.</aside>
+      </section>
+
+      <!-- SLIDE 21: MCP Server - Resources -->
+      <section>
+        <h2>📄 Exposing Resources</h2>
+        <pre  ><code class="python">@app.list_resources()
+async def list_resources() -> list[Resource]:
+    return [
+        Resource(
+            uri="security://policies/acceptable-use",
+            name="Acceptable Use Policy",
+            description="Company acceptable use policy for IT systems",
+            mimeType="text/markdown"
+        ),
+        Resource(
+            uri="security://policies/incident-response",
+            name="Incident Response Plan",
+            description="Step-by-step incident response procedures",
+            mimeType="text/markdown"
+        )
+    ]
+
+@app.read_resource()
+async def read_resource(uri: str) -> str:
+    policies = {
+        "security://policies/acceptable-use": """
+# Acceptable Use Policy
+## 1. Purpose
+This policy defines acceptable use of IT systems...
+## 2. Scope
+All employees, contractors, and third parties...
+        """,
+        "security://policies/incident-response": """
+# Incident Response Plan
+## Phase 1: Detection & Analysis
+1. Monitor SIEM alerts for anomalous activity
+2. Classify incident severity (P1-P4)
+3. Assign incident commander...
+        """
+    }
+    if uri not in policies:
+        raise ValueError(f"Unknown resource: {uri}")
+    return policies[uri]</code></pre>
+        <aside class="notes">Resources are data the AI can access on demand — like attaching a file to context. Unlike tools, resources are typically user-initiated: the user selects which policy documents to include in the conversation. The custom URI scheme (security://) organizes resources by domain. In production, you'd load these from a database or document store rather than hardcoding.</aside>
+      </section>
+
+      <!-- SLIDE 22: MCP Server - Prompts -->
+      <section>
+        <h2>💬 Defining Prompts</h2>
+        <pre  ><code class="python">@app.list_prompts()
+async def list_prompts() -> list[Prompt]:
+    return [
+        Prompt(
+            name="analyze_incident",
+            description="Structured security incident analysis template",
+            arguments=[
+                PromptArgument(
+                    name="incident_id",
+                    description="Incident tracking ID",
+                    required=True
+                ),
+                PromptArgument(
+                    name="severity",
+                    description="Incident severity (P1-P4)",
+                    required=False
+                )
+            ]
+        )
+    ]
+
+@app.get_prompt()
+async def get_prompt(name: str, arguments: dict | None) -> GetPromptResult:
+    if name == "analyze_incident":
+        incident_id = arguments.get("incident_id", "UNKNOWN")
+        return GetPromptResult(
+            description=f"Analyze incident {incident_id}",
+            messages=[
+                PromptMessage(role="user", content=TextContent(
+                    type="text",
+                    text=f"""Analyze security incident {incident_id}.
+Provide:
+1. **Timeline** of events
+2. **Impact assessment** (systems, data, users affected)
+3. **Root cause analysis**
+4. **Containment actions** taken
+5. **Recovery steps** needed
+6. **Lessons learned** and prevention measures
+Severity: {arguments.get('severity', 'TBD')}"""
+                ))
+            ]
+        )
+    raise ValueError(f"Unknown prompt: {name}")</code></pre>
+        <aside class="notes">Prompts are reusable templates that standardize common AI interactions. When a user selects the 'analyze_incident' prompt in Claude Desktop, it generates a structured analysis request. This ensures consistent incident analysis across your team — everyone uses the same framework. Prompts can include dynamic data from arguments and even reference resources.</aside>
+      </section>
+
+      <!-- SLIDE 23: MCP Server - Running It -->
+      <section data-transition="slide">
+        <h2>🚀 Running the MCP Server</h2>
+        <pre  ><code class="python"># Bottom of server.py
+import asyncio
+
+async def main():
+    async with stdio_server() as (read_stream, write_stream):
+        await app.run(
+            read_stream, write_stream,
+            app.create_initialization_options()
+        )
+
+if __name__ == "__main__":
+    asyncio.run(main())</code></pre>
+        <h3>Claude Desktop Configuration</h3>
+        <pre  ><code class="json">// ~/Library/Application Support/Claude/claude_desktop_config.json
+{
+  "mcpServers": {
+    "security-tools": {
+      "command": "python",
+      "args": ["/path/to/server.py"],
+      "env": {
+        "NVD_API_KEY": "your-api-key"
+      }
+    }
+  }
+}</code></pre>
+        <aside class="notes">That's all it takes to connect your MCP server to Claude Desktop. When Claude starts, it spawns your server as a child process and communicates via stdio. The env field passes environment variables securely — never hardcode API keys in server code. After saving this config, restart Claude Desktop and you'll see your tools appear in the tools menu.</aside>
+      </section>
+
+      <!-- SLIDE 24: Section Divider - MCP Clients -->
+      <section data-background-color="#1e293b">
+        <h1>Section 4</h1>
+        <h2>Building MCP Clients</h2>
+        <p>Connecting your applications to MCP servers</p>
+        <aside class="notes">While Claude Desktop and Cursor are the most popular MCP hosts, you can build your own MCP client to connect any application to MCP servers. This is essential for custom enterprise applications that need to leverage the growing MCP server ecosystem.</aside>
+      </section>
+
+      <!-- SLIDE 25: MCP Client Implementation -->
+      <section>
+        <h2>🐍 MCP Client Connection</h2>
+        <pre  ><code class="python">from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+import asyncio, json
+
+async def main():
+    # Define which server to connect to
+    server_params = StdioServerParameters(
+        command="python",
+        args=["server.py"],
+        env={"NVD_API_KEY": "your-key"}
+    )
+
+    async with stdio_client(server_params) as (read, write):
+        async with ClientSession(read, write) as session:
+            # 1. Initialize the connection
+            await session.initialize()
+
+            # 2. Discover available tools
+            tools = await session.list_tools()
+            print(f"Available tools: {[t.name for t in tools.tools]}")
+
+            # 3. Call a tool
+            result = await session.call_tool(
+                "lookup_cve",
+                arguments={"cve_id": "CVE-2024-3094"}
+            )
+            print(result.content[0].text)
+
+            # 4. Read a resource
+            resource = await session.read_resource(
+                "security://policies/incident-response"
+            )
+            print(resource.contents[0].text[:200])
+
+asyncio.run(main())</code></pre>
+        <aside class="notes">This client connects to any MCP server via stdio — the same way Claude Desktop does. The three-step pattern is always the same: initialize, discover, operate. You can build this into Flask APIs, CLI tools, Slack bots, or any Python application. The session handles JSON-RPC framing, capability negotiation, and message routing automatically.</aside>
+      </section>
+
+      <!-- SLIDE 26: Integrating MCP with LLMs -->
+      <section data-transition="fade">
+        <h2>🔗 MCP + LLM: Complete Integration</h2>
+        <pre  ><code class="python">from openai import OpenAI
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+async def ai_with_mcp_tools(user_question: str):
+    """Connect an LLM to MCP tools for autonomous operation."""
+    params = StdioServerParameters(command="python", args=["server.py"])
+
+    async with stdio_client(params) as (read, write):
+        async with ClientSession(read, write) as session:
+            await session.initialize()
+
+            # Convert MCP tools to OpenAI function format
+            mcp_tools = await session.list_tools()
+            openai_tools = [{
+                "type": "function",
+                "function": {
+                    "name": t.name,
+                    "description": t.description,
+                    "parameters": t.inputSchema
+                }
+            } for t in mcp_tools.tools]
+
+            # LLM decides which tools to call
+            client = OpenAI()
+            response = client.chat.completions.create(
+                model="gpt-4o", tools=openai_tools,
+                messages=[{"role": "user", "content": user_question}]
+            )
+
+            # Execute tool calls via MCP
+            for tool_call in response.choices[0].message.tool_calls or []:
+                result = await session.call_tool(
+                    tool_call.function.name,
+                    json.loads(tool_call.function.arguments)
+                )
+                print(f"Tool {tool_call.function.name}: {result.content[0].text}")</code></pre>
+        <aside class="notes">This is the key pattern — MCP as the tool execution layer for any LLM. The client discovers MCP tools, converts their schemas to the LLM's function calling format, and executes tool calls through MCP. This means your MCP servers work with OpenAI, Anthropic, Google, or any model that supports function calling. The MCP server doesn't know or care which model is calling it. This is the portability promise in action.</aside>
+      </section>
+
+      <!-- SLIDE 27: Section Divider - Security -->
+      <section data-background-color="#1e293b">
+        <h1>Section 5</h1>
+        <h2>MCP Security</h2>
+        <p>Authentication, authorization & threat model</p>
+        <aside class="notes">Security is the most critical consideration for enterprise MCP deployments. MCP servers can access databases, file systems, APIs, and cloud infrastructure. A poorly secured MCP server is an attack vector. This section covers the threat model and defense strategies.</aside>
+      </section>
+
+      <!-- SLIDE 28: MCP Security Best Practices -->
+      <section>
+        <h2>🔒 MCP Security Best Practices</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>Authentication &amp; Authorization</h3>
+            <ul>
+              <li   ><strong>OAuth 2.1</strong> for remote servers (MCP spec-recommended)</li>
+              <li   >Short-lived tokens with narrow scopes</li>
+              <li   >Per-tool permission grants — not blanket access</li>
+              <li   >Mutual TLS for server-to-server communication</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>Input Validation &amp; Sandboxing</h3>
+            <ul>
+              <li   >Validate ALL inputs against JSON Schema</li>
+              <li   >Sanitize SQL, file paths, shell commands</li>
+              <li   >Run servers in containers with minimal privileges</li>
+              <li   >Use allowlists, never blocklists</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;margin-top:1em">
+          <h3>🛡️ Principle of Least Privilege</h3>
+          <p>Each MCP server should have the <strong>minimum permissions</strong> needed. A database server gets read-only access. A file server gets access to one directory. A Slack server can post to specific channels only.</p>
+        </div>
+        <aside class="notes">Security is paramount for enterprise MCP deployments. The biggest risk is prompt injection — a malicious document could trick the AI into calling tools in unintended ways. Defense in depth: validate inputs at the server level regardless of what the AI sends, run servers with least privilege, and require human approval for destructive actions. The MCP spec now includes OAuth 2.1 as the standard auth mechanism for remote servers.</aside>
+      </section>
+
+      <!-- SLIDE 29: MCP Threat Model -->
+      <section>
+        <h2>⚠️ MCP Threat Model</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Threat</th><th>Vector</th><th>Mitigation</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Prompt Injection</strong></td><td>Malicious document tricks AI into calling dangerous tools</td><td>Human-in-the-loop for destructive ops; input validation</td></tr>
+            <tr  ><td><strong>Tool Abuse</strong></td><td>AI calls tools in unintended ways (e.g., SELECT * on huge table)</td><td>Rate limiting; query size limits; row caps</td></tr>
+            <tr  ><td><strong>Data Exfiltration</strong></td><td>AI reads sensitive resource and includes in response to user</td><td>Resource access controls; output filtering</td></tr>
+            <tr  ><td><strong>Server Compromise</strong></td><td>Vulnerable MCP server code exploited (RCE, path traversal)</td><td>Container isolation; dependency scanning; least privilege</td></tr>
+            <tr  ><td><strong>Credential Theft</strong></td><td>API keys in env vars exposed via logging or error messages</td><td>Secret managers; never log arguments containing credentials</td></tr>
+            <tr  ><td><strong>Confused Deputy</strong></td><td>Server acts on behalf of user without verifying identity</td><td>Pass user context through; per-user authorization checks</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">The confused deputy problem is particularly insidious with MCP. A shared MCP server receives tool calls from multiple users via the AI host, but the server might not know WHICH user initiated the request. Enterprise deployments must propagate user identity from the host through to the server, and the server must enforce per-user access controls. Without this, User A could ask the AI to access User B's data through a shared database MCP server.</aside>
+      </section>
+
+      <!-- SLIDE 30: Case Study -->
+      <section>
+        <h2>🏢 Case Study: Block (Square) MCP Deployment</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <h3>AI-Powered Developer Platform (2025)</h3>
+          <ul>
+            <li  ><strong>Challenge:</strong> 8,000+ engineers using 5 different AI coding tools, each with custom integrations to internal systems</li>
+            <li class="fragment fade-up"  ><strong>Solution:</strong> Built MCP gateway with 15 internal servers (code search, CI/CD, deploy, Jira, on-call)</li>
+            <li class="fragment fade-up"  ><strong>Architecture:</strong> Central gateway with OAuth 2.1, per-team scoping, and audit logging</li>
+            <li  ><strong>Results:</strong>
+              <ul>
+                <li  >Reduced integration maintenance from 45 custom connectors to 15 MCP servers</li>
+                <li  >Onboarding new AI tools: from 3 weeks to 2 days</li>
+                <li  >100% audit coverage on AI-initiated actions</li>
+                <li class="fragment fade-up"  >Developer satisfaction with AI tools: +34% NPS increase</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <aside class="notes">Block's deployment is a model for enterprise MCP adoption. The key decision was centralizing through a gateway rather than having each team run their own servers. This gave them consistent security policies, unified audit logging, and the ability to onboard new AI tools instantly — they just point the new tool at the gateway. The 45-to-15 reduction in integrations freed up two full-time engineers who were doing nothing but maintaining custom connectors.</aside>
+      </section>
+
+      <!-- SLIDE 31: Section Divider - Production -->
+      <section data-background-color="#1e293b">
+        <h1>Section 6</h1>
+        <h2>Production Deployment</h2>
+        <p>From prototype to enterprise scale</p>
+        <aside class="notes">Getting MCP working locally is straightforward. Deploying it for an organization — with authentication, monitoring, high availability, and multi-team governance — requires architectural thinking. This section covers the three main deployment patterns and when to use each.</aside>
+      </section>
+
+      <!-- SLIDE 32: Deployment Patterns -->
+      <section>
+        <h2>🏗️ MCP Deployment Patterns</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3>Sidecar</h3>
+            <p>MCP server runs alongside each app instance</p>
+            <ul>
+              <li  >Simple stdio transport</li>
+              <li  >No network exposure</li>
+              <li  >One server per host</li>
+              <li  >Best for: desktop apps, dev tools</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>Gateway</h3>
+            <p>Centralized MCP proxy with auth &amp; routing</p>
+            <ul>
+              <li  >Single entry point</li>
+              <li class="fragment fade-right"  >Centralized logging &amp; audit</li>
+              <li  >Rate limiting &amp; quotas</li>
+              <li class="fragment zoom-in"  >Best for: enterprise shared infra</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>Mesh</h3>
+            <p>Distributed MCP servers with service discovery</p>
+            <ul>
+              <li  >Servers register capabilities</li>
+              <li  >Dynamic routing</li>
+              <li  >Horizontal scaling</li>
+              <li class="fragment fade-up"  >Best for: large-scale, multi-team</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Most organizations start with the sidecar pattern — it's how Claude Desktop works. As MCP adoption grows, the gateway pattern emerges naturally: a central proxy that handles authentication, authorization, audit logging, and routing to backend MCP servers. The mesh pattern is for large enterprises where dozens of teams each maintain their own MCP servers and need a registry for discovery.</aside>
+      </section>
+
+      <!-- SLIDE 33: MCP Ecosystem -->
+      <section>
+        <h2>🌍 MCP Ecosystem: Popular Servers</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Server</th><th>Capabilities</th><th>Enterprise Use Case</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Filesystem</strong></td><td>Read, write, search files</td><td>Document analysis, config management</td></tr>
+            <tr  ><td><strong>GitHub</strong></td><td>Issues, PRs, code search, actions</td><td>AI-assisted code review &amp; triage</td></tr>
+            <tr  ><td><strong>Slack</strong></td><td>Send messages, search history</td><td>Incident communication automation</td></tr>
+            <tr  ><td><strong>PostgreSQL</strong></td><td>Query, describe schema, analyze</td><td>Natural-language database access</td></tr>
+            <tr  ><td><strong>Brave Search</strong></td><td>Web search, local search</td><td>Threat intel enrichment</td></tr>
+            <tr  ><td><strong>Puppeteer</strong></td><td>Browser automation, screenshots</td><td>Web app testing, evidence capture</td></tr>
+            <tr  ><td><strong>Sentry</strong></td><td>Error tracking, issue management</td><td>Automated error triage</td></tr>
+          </tbody>
+        </table>
+        <p class="text-teal">Over 10,000 community MCP servers available on <strong>mcp.so</strong> and <strong>glama.ai</strong></p>
+        <aside class="notes">The MCP ecosystem exploded in 2025. Anthropic published reference servers for common integrations, and the community built thousands more. For security teams, the most valuable are: database servers for natural-language SIEM queries, GitHub servers for automated vulnerability triage, and filesystem servers for log analysis. Before building a custom server, check the registry — someone probably built what you need.</aside>
+      </section>
+
+      <!-- SLIDE 34: MCP Debugging & Testing -->
+      <section>
+        <h2>🔍 MCP Debugging &amp; Testing</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>MCP Inspector</h3>
+            <pre  ><code class="bash"># Install and run MCP Inspector
+npx @modelcontextprotocol/inspector \
+  python server.py
+
+# Opens web UI at localhost:5173
+# - Test tool calls interactively
+# - View JSON-RPC messages
+# - Inspect server capabilities
+# - Validate schemas</code></pre>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>Testing Strategies</h3>
+            <ul>
+              <li  ><strong>Unit tests:</strong> Test tool handlers directly</li>
+              <li  ><strong>Integration tests:</strong> Spawn server, connect client, call tools</li>
+              <li  ><strong>Schema validation:</strong> Verify all tools have valid JSON Schema</li>
+              <li class="fragment fade-up"  ><strong>Error paths:</strong> Invalid inputs, timeouts, API failures</li>
+              <li class="fragment zoom-in"  ><strong>Security tests:</strong> SQL injection, path traversal, prompt injection</li>
+            </ul>
+          </div>
+        </div>
+        <pre  ><code class="python"># Integration test example
+import pytest
+from mcp.client.stdio import stdio_client
+
+@pytest.mark.asyncio
+async def test_lookup_cve():
+    params = StdioServerParameters(command="python", args=["server.py"])
+    async with stdio_client(params) as (read, write):
+        async with ClientSession(read, write) as session:
+            await session.initialize()
+            result = await session.call_tool("lookup_cve", {"cve_id": "CVE-2024-3094"})
+            assert "xz" in result.content[0].text.lower()</code></pre>
+        <aside class="notes">MCP Inspector is the essential debugging tool — think Postman for MCP. It connects to your server and provides a web UI to call tools, inspect responses, and view raw JSON-RPC traffic. For CI/CD, write integration tests that spawn your server and exercise every tool with both valid and malicious inputs. Pay special attention to error handling — a crashed MCP server means the AI loses access to that capability.</aside>
+      </section>
+
+      <!-- SLIDE 35: Hands-On Activity -->
+      <section>
+        <h2>🛠️ Hands-On Activity</h2>
+        <h3>Build &amp; Connect an MCP Server</h3>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <ol>
+            <li  ><strong>Build (15 min):</strong> Create a security-tools MCP server with 2+ tools (CVE lookup, log analysis)</li>
+            <li  ><strong>Resources (5 min):</strong> Add at least one resource (security policy document)</li>
+            <li  ><strong>Test (10 min):</strong> Use MCP Inspector — verify tool schemas and responses</li>
+            <li class="fragment fade-right"  ><strong>Connect (10 min):</strong> Configure Claude Desktop via <code>claude_desktop_config.json</code></li>
+            <li class="fragment fade-right"  ><strong>Query (5 min):</strong> Ask Claude: "Look up CVE-2024-3094 and assess the risk to our systems"</li>
+            <li  ><strong>Bonus:</strong> Add input validation and error handling for edge cases</li>
+          </ol>
+        </div>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#047857,#10b981);color:#fff;">
+            <div class="stat-number">45</div>
+            <div class="stat-label">minutes</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
+            <div class="stat-number">2+</div>
+            <div class="stat-label">tools to implement</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#9f1239,#e11d48);color:#fff;">
+            <div class="stat-number">1</div>
+            <div class="stat-label">working MCP integration</div>
+          </div>
+        </div>
+        <aside class="notes">This is the core lab for this module. Students will build the server we've been discussing, test it with MCP Inspector, and connect it to Claude Desktop. Emphasize that they should test error paths — what happens when the NVD API is down? What if someone passes SQL injection in the CVE ID field? The bonus challenge: add rate limiting and request logging to their server.</aside>
+      </section>
+
+      <!-- SLIDE 36: Quiz -->
+      <section>
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <ol>
+            <li    >What problem does MCP solve?
+              <ul><li class="fragment fade-up"    >A) Makes LLMs faster at inference</li><li    >B) Reduces N×M integrations to N+M standardized components ✅</li><li    >C) Replaces function calling entirely</li></ul>
+            </li>
+            <li    >Which MCP capability type is <em>model-controlled</em> (AI decides when to use)?
+              <ul><li    >A) Resources</li><li    >B) Prompts</li><li    >C) Tools ✅</li></ul>
+            </li>
+            <li class="fragment zoom-in"    >What transport is recommended for shared enterprise MCP servers?
+              <ul><li    >A) stdio</li><li    >B) Streamable HTTP ✅</li><li    >C) WebSocket</li></ul>
+            </li>
+            <li    >What is the biggest security risk in MCP deployments?
+              <ul><li    >A) Network latency</li><li    >B) Prompt injection leading to unintended tool calls ✅</li><li    >C) JSON-RPC parsing overhead</li></ul>
+            </li>
+            <li    >In the MCP connection lifecycle, what happens after initialize?
+              <ul><li    >A) Tool calls begin immediately</li><li    >B) Client sends "initialized" notification, then discovery ✅</li><li class="fragment fade-up"    >C) Server sends all tool results</li></ul>
+            </li>
+          </ol>
+        </div>
+        <aside class="notes">Give students 3 minutes to answer individually, then review as a group. Question 4 is the most important — prompt injection is the attack vector most teams overlook. Discuss real examples: a malicious PDF uploaded to a RAG system could contain hidden instructions like 'call the delete_file tool on /etc/passwd' — the AI might follow those instructions if the server doesn't enforce access controls.</aside>
+      </section>
+
+      <!-- SLIDE 37: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>✅ Key Takeaways</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <ul>
+            <li class="fragment fade-up"   >✅ <strong>MCP solves N×M:</strong> One protocol replaces hundreds of custom integrations</li>
+            <li   >✅ <strong>Architecture is simple:</strong> Hosts → Clients → Servers with Tools, Resources, and Prompts</li>
+            <li   >✅ <strong>JSON-RPC under the hood:</strong> Standard wire protocol with initialize → discover → operate lifecycle</li>
+            <li   >✅ <strong>Servers are lightweight:</strong> Single-purpose processes, easy to build, test, and deploy</li>
+            <li   >✅ <strong>Security is non-negotiable:</strong> Validate inputs, enforce least privilege, audit every tool call</li>
+            <li   >✅ <strong>Ecosystem is massive:</strong> 10K+ servers — check the registry before building custom</li>
+            <li   >✅ <strong>Start sidecar, evolve to gateway:</strong> Match deployment pattern to organizational maturity</li>
+            <li class="fragment fade-up"   >✅ <strong>MCP + LLM is portable:</strong> Build tools once, connect to any model provider</li>
+          </ul>
+        </div>
+        <aside class="notes">MCP is the most significant standardization effort in the AI tooling space since OpenAPI standardized REST APIs. The organizations that adopt it early will have a significant advantage — their AI integrations will be portable, auditable, and composable. The key message: MCP isn't just a protocol, it's an ecosystem strategy.</aside>
+      </section>
+
+      <!-- SLIDE 38: Lab Preview -->
+      <section>
+        <h2>🔬 Lab Preview</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <h3>Lab 12: MCP Server Development</h3>
+          <ul>
+            <li  >Build a multi-tool MCP server from scratch with 4+ tools</li>
+            <li  >Implement OAuth 2.1 auth and input validation</li>
+            <li class="fragment fade-up"  >Deploy with Streamable HTTP transport for remote access</li>
+            <li  >Connect to Claude Desktop and a custom Python client</li>
+            <li  >Build the LLM↔MCP bridge (slide 26 pattern) with OpenAI</li>
+            <li  >Write integration tests with pytest covering error paths</li>
+            <li  >Add OpenTelemetry tracing for observability</li>
+          </ul>
+          <p><strong>Duration:</strong> 2.5 hours | <strong>Deliverable:</strong> Production-ready MCP server with tests</p>
+        </div>
+        <aside class="notes">The lab extends the hands-on activity with Streamable HTTP transport deployment, proper testing, and the LLM integration bridge pattern. Students will see their MCP server working with both Claude Desktop (via stdio) and a custom client (via HTTP), proving the portability promise. The OpenTelemetry addition is critical for production — it gives full visibility into the AI-to-tool pipeline.</aside>
+      </section>
+
+      <!-- SLIDE 39: Resources -->
+      <section>
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>Official Documentation</h3>
+            <ul>
+              <li  ><strong>MCP Spec:</strong> spec.modelcontextprotocol.io</li>
+              <li  ><strong>Python SDK:</strong> github.com/modelcontextprotocol/python-sdk</li>
+              <li  ><strong>TypeScript SDK:</strong> github.com/modelcontextprotocol/typescript-sdk</li>
+              <li  ><strong>Anthropic Docs:</strong> docs.anthropic.com/en/docs/agents-and-tools/mcp</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>Ecosystem &amp; Tools</h3>
+            <ul>
+              <li  ><strong>Server Registry:</strong> mcp.so &amp; glama.ai/mcp</li>
+              <li  ><strong>MCP Inspector:</strong> @modelcontextprotocol/inspector</li>
+              <li  ><strong>MCP Auth Spec:</strong> OAuth 2.1 integration guide</li>
+              <li  ><strong>Awesome MCP:</strong> github.com/punkpeye/awesome-mcp-servers</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The official spec is the definitive reference — read it at least once. The Python and TypeScript SDKs have excellent example servers in their repos. MCP Inspector is indispensable for development. The awesome-mcp-servers list is community-curated and updated frequently — check it before building anything custom.</aside>
+      </section>
+
+      <!-- SLIDE 39.5: Project — Slack Bot Integration -->
+      <section data-transition="slide">
+        <h2>🏗️ Project: AI Slack Bot with MCP</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/project-slack-bot-arch.svg" style="max-width:700px;width:100%"></div>
+        <aside class="notes">This architecture shows how an AI-powered Slack bot uses MCP servers to access internal tools — combining conversational AI with real-time enterprise integrations for incident response, knowledge queries, and workflow automation.</aside>
+      </section>
+
+      <!-- SLIDE 39.6: Course Completion Certificate -->
+      <section>
+        <h2>🎓 Course Completion</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/certificate-preview.svg" style="max-width:700px;width:100%"></div>
+        <p class="text-teal">Congratulations on completing the Enterprise AI Course!</p>
+        <aside class="notes">Students who complete all 12 modules and labs receive this certificate of completion. It validates proficiency in enterprise AI strategy, LLM integration, RAG architecture, and MCP protocol implementation.</aside>
+      </section>
+
+      <!-- SLIDE 40: Q&A -->
+      <section data-transition="fade">
+        <h2>❓ Questions &amp; Discussion</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <h3>Discussion Prompts</h3>
+          <ul>
+            <li class="fragment fade-right"   >What internal tools would benefit most from MCP integration at your organization?</li>
+            <li class="fragment zoom-in"   >How would you approach the security review for deploying MCP servers in production?</li>
+            <li   >Which deployment pattern (sidecar, gateway, mesh) fits your team's maturity?</li>
+          </ul>
+        </div>
+        <p class="text-teal">🎓 Course Complete — Congratulations!</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Open the floor for questions. Common discussion topics: How does MCP handle versioning when servers update? (Capability negotiation handles this.) Can MCP servers call other MCP servers? (Not directly — the host orchestrates multi-server workflows.) What about latency for real-time applications? (stdio is sub-millisecond; HTTP adds network round-trip.) How do you handle MCP server crashes? (Hosts should implement automatic restart with backoff.) Congratulate students on completing the full 12-module course!</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

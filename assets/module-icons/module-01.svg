@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Lightbulb with circuit -->
+  <path d="M80,140 C60,120 60,80 80,60 C100,40 120,40 140,60 C160,80 160,120 140,140" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <rect x="90" y="140" width="20" height="10" fill="#1b98e0" />
+  <!-- Circuit inside -->
+  <polyline points="90,100 100,80 110,100" fill="none" stroke="#ffffff" stroke-width="2" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M01</text>
+</svg>

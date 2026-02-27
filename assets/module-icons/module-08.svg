@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Chat bubble with code -->
+  <path d="M60,60 H140 V120 H80 L60,140 V60 Z" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <text x="100" y="100" font-family="monospace" font-size="20" fill="#1b98e0" text-anchor="middle">&lt;/&gt;</text>
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M08</text>
+</svg>

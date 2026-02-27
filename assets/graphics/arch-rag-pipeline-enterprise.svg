@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+  <defs>
+    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="50%" style="stop-color:#14b8a6"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="600" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">Enterprise RAG Pipeline Architecture</text>
+  
+  <!-- Data Sources Section -->
+  <rect x="30" y="70" width="140" height="200" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="100" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#ef4444">Data Sources</text>
+  
+  <rect x="45" y="110" width="110" height="35" rx="5" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="100" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#f8fafc">☁️ S3 / Blob</text>
+  
+  <rect x="45" y="155" width="110" height="35" rx="5" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="100" y="177" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#f8fafc">📁 SharePoint</text>
+  
+  <rect x="45" y="200" width="110" height="35" rx="5" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="100" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#f8fafc">🗃️ Databases</text>
+  
+  <!-- Arrow -->
+  <path d="M170 170 L210 170" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- ETL Pipeline -->
+  <rect x="220" y="120" width="100" height="100" rx="10" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="270" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#eab308">⚙️ ETL</text>
+  <text x="270" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Extract</text>
+  <text x="270" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Transform</text>
+  <text x="270" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Load</text>
+  
+  <!-- Arrow -->
+  <path d="M320 170 L360 170" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Chunking -->
+  <rect x="370" y="120" width="100" height="100" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="420" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">✂️ Chunking</text>
+  <text x="420" y="175" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Semantic Split</text>
+  <text x="420" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Overlap 20%</text>
+  <text x="420" y="205" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">512 tokens</text>
+  
+  <!-- Arrow -->
+  <path d="M470 170 L510 170" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Embedding -->
+  <rect x="520" y="120" width="100" height="100" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="570" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">🧮 Embedding</text>
+  <text x="570" y="175" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">text-embed-3</text>
+  <text x="570" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">1536 dims</text>
+  
+  <!-- Arrow -->
+  <path d="M620 170 L660 170" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Vector Store -->
+  <rect x="670" y="100" width="140" height="140" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="740" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#8b5cf6">🗄️ Vector Store</text>
+  <rect x="685" y="155" width="110" height="30" rx="5" fill="#0f172a"/>
+  <text x="740" y="175" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Pinecone / Weaviate</text>
+  <rect x="685" y="195" width="110" height="30" rx="5" fill="#0f172a"/>
+  <text x="740" y="215" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">ChromaDB / pgvector</text>
+  
+  <!-- Query Flow Section -->
+  <text x="500" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="bold" fill="url(#flowGrad)">━━━━━━ Query Flow ━━━━━━</text>
+  
+  <!-- User Query -->
+  <rect x="30" y="340" width="120" height="80" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">👤 User</text>
+  <text x="90" y="390" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Query Input</text>
+  <text x="90" y="405" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">"What is..."</text>
+  
+  <!-- Arrow -->
+  <path d="M150 380 L190 380" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Query Engine -->
+  <rect x="200" y="340" width="120" height="80" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="260" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">🔍 Query</text>
+  <text x="260" y="387" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Embed Query</text>
+  <text x="260" y="402" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Similarity Search</text>
+  
+  <!-- Arrow up to vector store -->
+  <path d="M260 340 L260 280 L740 280 L740 240" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="500" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#8b5cf6">Retrieve Top-K</text>
+  
+  <!-- Arrow -->
+  <path d="M320 380 L360 380" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Context Assembly -->
+  <rect x="370" y="340" width="120" height="80" rx="10" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="430" y="365" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#eab308">📋 Augment</text>
+  <text x="430" y="385" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Build Context</text>
+  <text x="430" y="400" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">+ System Prompt</text>
+  
+  <!-- Arrow -->
+  <path d="M490 380 L530 380" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- LLM -->
+  <rect x="540" y="330" width="140" height="100" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="610" y="360" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">🤖 LLM</text>
+  <text x="610" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">GPT-4 / Claude</text>
+  <text x="610" y="395" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Generate Answer</text>
+  <text x="610" y="410" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">w/ Citations</text>
+  
+  <!-- Arrow -->
+  <path d="M680 380 L720 380" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Validator -->
+  <rect x="730" y="340" width="120" height="80" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="790" y="365" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#ef4444">✅ Validator</text>
+  <text x="790" y="385" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Fact Check</text>
+  <text x="790" y="400" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Guardrails</text>
+  
+  <!-- Arrow -->
+  <path d="M850 380 L890 380" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Response -->
+  <rect x="900" y="340" width="80" height="80" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="940" y="375" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">📤</text>
+  <text x="940" y="395" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Response</text>
+  
+  <!-- Performance Metrics -->
+  <rect x="100" y="460" width="800" height="120" rx="10" fill="#1e293b" stroke="#64748b" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="500" y="485" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#94a3b8">📊 Key Metrics</text>
+  
+  <text x="200" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#3b82f6">Latency: &lt;2s</text>
+  <text x="350" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#14b8a6">Relevance: 0.85+</text>
+  <text x="500" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#eab308">Recall@10: 95%</text>
+  <text x="650" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#ef4444">Hallucination: &lt;5%</text>
+  <text x="800" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#8b5cf6">Cost: $0.02/query</text>
+  
+  <text x="200" y="550" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">P95 response time</text>
+  <text x="350" y="550" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">Answer quality score</text>
+  <text x="500" y="550" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">Document coverage</text>
+  <text x="650" y="550" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">Factual accuracy</text>
+  <text x="800" y="550" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">Token + embed cost</text>
+</svg>

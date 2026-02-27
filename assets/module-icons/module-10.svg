@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Chess King -->
+  <path d="M100,60 L110,80 H90 Z" fill="#00d4aa" />
+  <rect x="90" y="80" width="20" height="40" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <line x1="80" y1="120" x2="120" y2="120" stroke="#00d4aa" stroke-width="2" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M10</text>
+</svg>

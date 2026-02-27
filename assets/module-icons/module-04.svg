@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Warning Triangle -->
+  <path d="M100,50 L140,120 H60 Z" fill="none" stroke="#e94560" stroke-width="3" />
+  <!-- Eye inside -->
+  <circle cx="100" cy="95" r="5" fill="#00d4aa" />
+  <path d="M90,95 Q100,85 110,95 Q100,105 90,95" fill="none" stroke="#00d4aa" stroke-width="1" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M04</text>
+</svg>

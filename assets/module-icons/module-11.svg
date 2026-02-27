@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Puzzle Pieces -->
+  <path d="M80,80 H100 V100 H80 Z" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <path d="M100,100 H120 V120 H100 Z" fill="none" stroke="#1b98e0" stroke-width="2" />
+  <line x1="100" y1="80" x2="120" y2="100" stroke="#fff" stroke-width="1" opacity="0.5" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M11</text>
+</svg>

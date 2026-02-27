@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="tokGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#eab308"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="bold" fill="url(#tokGrad)">✂️ Tokenization: Words → Numbers</text>
+  
+  <!-- Original Text -->
+  <rect x="40" y="55" width="520" height="45" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="300" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Original Text</text>
+  <text x="300" y="92" text-anchor="middle" font-family="monospace" font-size="14" fill="#f8fafc">"The quick brown fox jumps"</text>
+  
+  <!-- Arrow down -->
+  <path d="M300 100 L300 125" stroke="#f97316" stroke-width="2"/>
+  <polygon points="295,120 300,130 305,120" fill="#f97316"/>
+  
+  <!-- Magnifying glass metaphor -->
+  <circle cx="300" cy="145" r="20" fill="none" stroke="#eab308" stroke-width="2"/>
+  <line x1="315" y1="160" x2="330" y2="175" stroke="#eab308" stroke-width="3"/>
+  <text x="300" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="12">🔍</text>
+  
+  <!-- Tokenizer label -->
+  <text x="360" y="155" font-family="Inter, sans-serif" font-size="10" fill="#eab308">Tokenizer (BPE/SentencePiece)</text>
+  
+  <!-- Arrow down -->
+  <path d="M300 170 L300 195" stroke="#f97316" stroke-width="2"/>
+  <polygon points="295,190 300,200 305,190" fill="#f97316"/>
+  
+  <!-- Tokenized view -->
+  <rect x="40" y="205" width="520" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="300" y="225" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Tokens (Subwords)</text>
+  
+  <!-- Individual tokens -->
+  <rect x="55" y="240" width="55" height="35" rx="5" fill="#ef4444"/>
+  <text x="82" y="257" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">The</text>
+  <text x="82" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#000">ID: 464</text>
+  
+  <rect x="120" y="240" width="70" height="35" rx="5" fill="#f97316"/>
+  <text x="155" y="257" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">quick</text>
+  <text x="155" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#000">ID: 2068</text>
+  
+  <rect x="200" y="240" width="70" height="35" rx="5" fill="#eab308"/>
+  <text x="235" y="257" text-anchor="middle" font-family="monospace" font-size="10" fill="#000">brown</text>
+  <text x="235" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#000">ID: 7586</text>
+  
+  <rect x="280" y="240" width="55" height="35" rx="5" fill="#22c55e"/>
+  <text x="307" y="257" text-anchor="middle" font-family="monospace" font-size="10" fill="#000">fox</text>
+  <text x="307" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#000">ID: 3124</text>
+  
+  <rect x="345" y="240" width="65" height="35" rx="5" fill="#14b8a6"/>
+  <text x="377" y="257" text-anchor="middle" font-family="monospace" font-size="10" fill="#000">jump</text>
+  <text x="377" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#000">ID: 5765</text>
+  
+  <rect x="420" y="240" width="35" height="35" rx="5" fill="#3b82f6"/>
+  <text x="437" y="257" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">s</text>
+  <text x="437" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#fff">ID: 82</text>
+  
+  <rect x="465" y="240" width="85" height="35" rx="5" fill="#8b5cf6"/>
+  <text x="507" y="257" text-anchor="middle" font-family="monospace" font-size="10" fill="#fff">[space]</text>
+  <text x="507" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#fff">+special</text>
+  
+  <!-- Arrow down to vector -->
+  <path d="M300 285 L300 310" stroke="#f97316" stroke-width="2"/>
+  <polygon points="295,305 300,315 305,305" fill="#f97316"/>
+  
+  <!-- Vector representation -->
+  <rect x="40" y="320" width="520" height="70" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="300" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#8b5cf6">Token IDs → Model Input</text>
+  <text x="300" y="365" text-anchor="middle" font-family="monospace" font-size="12" fill="#f8fafc">[464, 2068, 7586, 3124, 5765, 82, ...]</text>
+  <text x="300" y="382" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">These IDs map to learned embeddings (vectors) of dimension 4096+</text>
+  
+  <!-- Key insight box -->
+  <rect x="420" y="55" width="170" height="85" rx="6" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="505" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#94a3b8">💡 Why Subwords?</text>
+  <text x="430" y="95" font-family="Inter, sans-serif" font-size="7" fill="#64748b">• Handle unknown words</text>
+  <text x="430" y="110" font-family="Inter, sans-serif" font-size="7" fill="#64748b">• Smaller vocabulary</text>
+  <text x="430" y="125" font-family="Inter, sans-serif" font-size="7" fill="#64748b">• "jumps" = "jump" + "s"</text>
+</svg>

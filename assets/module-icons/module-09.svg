@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Lock with Brain -->
+  <rect x="80" y="90" width="40" height="30" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <path d="M90,90 V80 A10,10 0 0,1 110,80 V90" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <circle cx="100" cy="105" r="5" fill="#1b98e0" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M09</text>
+</svg>

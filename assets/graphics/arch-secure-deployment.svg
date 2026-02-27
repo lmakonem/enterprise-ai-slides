@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+  <defs>
+    <linearGradient id="secGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+    <marker id="secArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#14b8a6"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="600" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="500" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="url(#secGrad)">🔒 Secure AI Deployment Architecture</text>
+  
+  <!-- External Users -->
+  <rect x="30" y="150" width="100" height="120" rx="10" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+  <text x="80" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">👥</text>
+  <text x="80" y="225" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#f8fafc">Users</text>
+  <text x="80" y="245" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">External</text>
+  <text x="80" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Requests</text>
+  
+  <!-- Arrow -->
+  <path d="M130 210 L165 210" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- WAF -->
+  <rect x="175" y="160" width="90" height="100" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="220" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">🛡️</text>
+  <text x="220" y="215" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ef4444">WAF</text>
+  <text x="220" y="232" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">DDoS Protect</text>
+  <text x="220" y="245" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">SQL Injection</text>
+  
+  <!-- Arrow -->
+  <path d="M265 210 L295 210" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- API Auth -->
+  <rect x="305" y="160" width="90" height="100" rx="8" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="350" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">🔑</text>
+  <text x="350" y="215" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#eab308">API Auth</text>
+  <text x="350" y="232" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">OAuth 2.0</text>
+  <text x="350" y="245" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">JWT Tokens</text>
+  
+  <!-- Arrow -->
+  <path d="M395 210 L425 210" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- Input Sanitizer -->
+  <rect x="435" y="160" width="90" height="100" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="480" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">🧹</text>
+  <text x="480" y="215" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#8b5cf6">Sanitize</text>
+  <text x="480" y="232" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Prompt Inject</text>
+  <text x="480" y="245" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Jailbreak Det</text>
+  
+  <!-- Arrow -->
+  <path d="M525 210 L555 210" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- Rate Limiter -->
+  <rect x="565" y="160" width="90" height="100" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="610" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">⏱️</text>
+  <text x="610" y="215" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f97316">Rate Limit</text>
+  <text x="610" y="232" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Quota Mgmt</text>
+  <text x="610" y="245" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Cost Control</text>
+  
+  <!-- Arrow down to LLM -->
+  <path d="M610 260 L610 310" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- LLM Service (Center, larger) -->
+  <rect x="510" y="320" width="200" height="110" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+  <text x="610" y="360" text-anchor="middle" font-family="Inter, sans-serif" font-size="28">🤖</text>
+  <text x="610" y="390" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#3b82f6">LLM Service</text>
+  <text x="610" y="410" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8">GPT-4 / Claude / Private Model</text>
+  
+  <!-- Arrow down -->
+  <path d="M610 430 L610 470" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- Output Filter -->
+  <rect x="565" y="480" width="90" height="100" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="610" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">🔍</text>
+  <text x="610" y="535" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Output Filter</text>
+  <text x="610" y="552" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Toxicity Check</text>
+  <text x="610" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Bias Detection</text>
+  
+  <!-- Arrow left -->
+  <path d="M565 530 L535 530" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- PII Redactor -->
+  <rect x="435" y="480" width="90" height="100" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+  <text x="480" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">🔏</text>
+  <text x="480" y="535" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ec4899">PII Redact</text>
+  <text x="480" y="552" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Email/Phone</text>
+  <text x="480" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">SSN/Credit</text>
+  
+  <!-- Arrow left -->
+  <path d="M435 530 L405 530" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- Audit Logger -->
+  <rect x="305" y="480" width="90" height="100" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="350" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">📋</text>
+  <text x="350" y="535" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Audit Log</text>
+  <text x="350" y="552" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Full Trace</text>
+  <text x="350" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Compliance</text>
+  
+  <!-- Arrow left -->
+  <path d="M305 530 L275 530" stroke="#14b8a6" stroke-width="2" marker-end="url(#secArrow)"/>
+  
+  <!-- Response -->
+  <rect x="175" y="480" width="90" height="100" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+  <text x="220" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="18">📤</text>
+  <text x="220" y="535" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">Response</text>
+  <text x="220" y="552" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Safe Output</text>
+  <text x="220" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Encrypted</text>
+  
+  <!-- Arrow back to users -->
+  <path d="M175 530 L130 530 L80 530 L80 270" stroke="#64748b" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Security Services Panel (Right side) -->
+  <rect x="750" y="150" width="220" height="400" rx="12" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <text x="860" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#94a3b8">🔐 Security Services</text>
+  
+  <rect x="765" y="200" width="190" height="50" rx="6" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+  <text x="860" y="225" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ef4444">Secrets Vault</text>
+  <text x="860" y="240" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">HashiCorp Vault / AWS KMS</text>
+  
+  <rect x="765" y="260" width="190" height="50" rx="6" fill="#0f172a" stroke="#eab308" stroke-width="1"/>
+  <text x="860" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#eab308">Identity Provider</text>
+  <text x="860" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Okta / Azure AD / Auth0</text>
+  
+  <rect x="765" y="320" width="190" height="50" rx="6" fill="#0f172a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="860" y="345" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#8b5cf6">SIEM Integration</text>
+  <text x="860" y="360" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Splunk / Elastic / Sentinel</text>
+  
+  <rect x="765" y="380" width="190" height="50" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1"/>
+  <text x="860" y="405" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Model Registry</text>
+  <text x="860" y="420" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Signed • Versioned • Audited</text>
+  
+  <rect x="765" y="440" width="190" height="50" rx="6" fill="#0f172a" stroke="#14b8a6" stroke-width="1"/>
+  <text x="860" y="465" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Policy Engine</text>
+  <text x="860" y="480" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">OPA / Cedar / Custom Rules</text>
+  
+  <rect x="765" y="500" width="190" height="40" rx="6" fill="#0f172a" stroke="#ec4899" stroke-width="1"/>
+  <text x="860" y="525" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ec4899">Encryption (TLS 1.3)</text>
+  
+  <!-- Connection lines to security services -->
+  <line x1="710" y1="375" x2="750" y2="375" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

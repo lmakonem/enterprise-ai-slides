@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 3: AI Tools Landscape</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-03.svg" style="width:100px">
+        <h1>Module 3: AI Tools Landscape</h1>
+        <h3>Evaluating ChatGPT, Claude, Gemini, Copilot & Open-Source</h3>
+        <p>IT Security Labs / OpSec Fusion</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Welcome to Module 3. Today is about practical tool selection. By the end, you'll know which AI tool to reach for depending on the task, budget, and privacy requirements. We'll test them head-to-head and build your own evaluation framework.</aside>
+      </section>
+
+      <!-- SLIDE 2: Learning Objectives -->
+      <section data-transition="fade">
+        <h2>Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ul>
+            <li   >🎯 Evaluate the strengths and weaknesses of major AI platforms</li>
+            <li   >🎯 Compare pricing models and calculate total cost of ownership</li>
+            <li   >🎯 Apply a structured framework for enterprise AI tool selection</li>
+            <li   >🎯 Understand the open-source model ecosystem and when to self-host</li>
+            <li   >🎯 Identify specialized AI tools for security, legal, and domain-specific work</li>
+            <li class="fragment fade-right"   >🎯 Conduct hands-on tool comparisons with standardized prompts</li>
+          </ul>
+        </div>
+        <aside class="notes">This module is the most immediately practical in the course. You'll leave with a decision framework you can use next week to evaluate any AI tool for your organization. We focus on the tools that matter most in 2025, but the framework applies to whatever comes next.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section data-transition="slide">
+        <h2>Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">$1.3M</div>
+            <div class="stat-label">average annual enterprise spend on AI tools (Gartner, 2025)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">42%</div>
+            <div class="stat-label">of companies use 3+ different AI tools with no unified strategy (Forrester)</div>
+          </div>
+        </div>
+        <p class="text-red" style="margin-top:1em; text-align:center;">Tool sprawl + no evaluation criteria = wasted budget and security gaps.</p>
+        <aside class="notes">Most enterprises are spending on AI tools without a coherent strategy. Teams pick their favorite — marketing uses ChatGPT, engineering uses Copilot, legal uses Claude — and nobody's evaluating whether that's optimal. This module gives you the framework to rationalize that spend.</aside>
+      </section>
+
+      <!-- SLIDE 4: Section Divider — The Big Three -->
+      <section data-background-color="#1e293b">
+        <h2>Section 1</h2>
+        <h3>The Big Three: ChatGPT, Claude & Gemini</h3>
+        <aside class="notes">Let's start with the three dominant commercial LLM platforms. Each has distinct strengths that map to different use cases. Understanding these differences is essential for informed procurement.</aside>
+      </section>
+
+      <!-- SLIDE 6: AI Tools Overview -->
+      <section data-transition="fade">
+        <h2>The AI Tools Landscape (2025)</h2>
+        <img   src="/assets/graphics/infographic-ai-tools-comparison.svg" style="max-width:700px;width:100%">
+        <aside class="notes">This landscape changes quarterly, but the categories are stable: closed-source frontier models, open-source models, code assistants, and specialized tools. We'll cover each category. The key takeaway is that no single tool wins at everything — tool selection is about matching capability to use case.</aside>
+      </section>
+
+      <!-- SLIDE 7: ChatGPT / OpenAI -->
+      <section>
+        <h2>ChatGPT (OpenAI)</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3 class="text-teal">Strengths</h3>
+            <ul>
+              <li  >✅ Largest ecosystem (plugins, GPTs, API)</li>
+              <li  >✅ Strong general-purpose reasoning</li>
+              <li  >✅ Multimodal (text, vision, audio, video)</li>
+              <li class="fragment fade-up"  >✅ Code Interpreter for data analysis</li>
+              <li class="fragment fade-up"  >✅ DALL-E integration for image generation</li>
+              <li  >✅ Largest user base → most community resources</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3 class="text-red">Weaknesses</h3>
+            <ul>
+              <li class="fragment fade-up"  >❌ Higher hallucination rate on niche topics</li>
+              <li  >❌ Data retention concerns (training on inputs by default)</li>
+              <li  >❌ Pricing can escalate quickly at scale</li>
+              <li  >❌ Less consistent on long, structured outputs</li>
+              <li  >❌ Rate limits on free tier are restrictive</li>
+              <li  >❌ Opaque about model changes and capabilities</li>
+            </ul>
+          </div>
+        </div>
+        <p><strong>Best for:</strong> Rapid prototyping, multimodal tasks, broad general knowledge, code generation</p>
+        <aside class="notes">OpenAI is the market leader by user base and mindshare. GPT-4o is genuinely impressive across tasks. However, for enterprise use, the data privacy policy requires careful review — by default, conversations may be used for training. The Enterprise tier addresses this but costs significantly more.</aside>
+      </section>
+
+      <!-- SLIDE 8: ChatGPT Enterprise Deep Dive -->
+      <section>
+        <h2>OpenAI for Enterprise</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3 class="text-teal">ChatGPT Enterprise Tier</h3>
+            <ul>
+              <li  >No training on your data (contractual guarantee)</li>
+              <li  >SOC 2 Type II compliance</li>
+              <li  >SSO/SCIM provisioning</li>
+              <li  >Admin console with usage analytics</li>
+              <li class="fragment zoom-in"  >Unlimited GPT-4o access</li>
+              <li  >32K context for all users</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-blue">API Platform</h3>
+            <ul>
+              <li  >Fine-tuning API (GPT-4o-mini, GPT-3.5)</li>
+              <li  >Assistants API with tool use</li>
+              <li  >Batch API (50% cost reduction)</li>
+              <li  >Embeddings, Whisper (audio), TTS</li>
+              <li  >Structured outputs (JSON mode)</li>
+              <li  >Function calling for agentic workflows</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;margin-top:0.5em;">
+          <p>📊 <strong>Case Study — Morgan Stanley:</strong> Deployed GPT-4 to 16,000 financial advisors for wealth management research. Result: 30% faster client preparation, 95% advisor satisfaction.</p>
+        </div>
+        <aside class="notes">Morgan Stanley's deployment is the gold-standard enterprise GPT case study. They built a RAG system over 100,000 internal research documents. The key to their success: they didn't just deploy the model — they invested heavily in data curation, prompt engineering, and human review workflows. The technology was 30% of the effort; the remaining 70% was process design.</aside>
+      </section>
+
+      <!-- SLIDE 9: Claude / Anthropic -->
+      <section>
+        <h2>Claude (Anthropic)</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3 class="text-teal">Strengths</h3>
+            <ul>
+              <li  >✅ Exceptional long-context handling (200K tokens)</li>
+              <li class="fragment fade-right"  >✅ Most reliable for structured, detailed output</li>
+              <li class="fragment fade-right"  >✅ Strong safety alignment (Constitutional AI)</li>
+              <li  >✅ Excellent at following complex instructions</li>
+              <li  >✅ Best-in-class for document analysis</li>
+              <li  >✅ Clear data privacy policy (no training on inputs)</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-red">Weaknesses</h3>
+            <ul>
+              <li  >❌ Smaller plugin/integration ecosystem</li>
+              <li  >❌ Can be overly cautious (safety refusals)</li>
+              <li  >❌ No native image generation</li>
+              <li  >❌ Fewer multimodal capabilities than GPT-4o</li>
+              <li  >❌ Newer platform = fewer enterprise case studies</li>
+              <li  >❌ Knowledge cutoff can lag competitors</li>
+            </ul>
+          </div>
+        </div>
+        <p><strong>Best for:</strong> Long document analysis, legal/compliance work, safety-critical applications, enterprise data privacy</p>
+        <aside class="notes">Claude is the quiet powerhouse. Enterprise teams increasingly prefer it for serious work — legal review, policy analysis, technical documentation. The 200K context window means you can feed it an entire codebase or contract set. Anthropic's clear privacy stance makes procurement easier in regulated industries.</aside>
+      </section>
+
+      <!-- SLIDE 10: Claude Enterprise Case Studies -->
+      <section>
+        <h2>Claude in the Enterprise</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3 class="text-teal">Key Differentiators</h3>
+            <ul>
+              <li  ><strong>Constitutional AI:</strong> Self-correcting safety alignment</li>
+              <li  ><strong>Artifacts:</strong> Interactive code/document generation</li>
+              <li  ><strong>Computer Use:</strong> GUI automation capability</li>
+              <li  ><strong>Projects:</strong> Persistent context with uploaded files</li>
+              <li  ><strong>Amazon Bedrock:</strong> Enterprise deployment via AWS</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3 class="text-blue">Real-World Deployments</h3>
+            <ul>
+              <li class="fragment zoom-in"  >🏛️ <strong>Bridgewater Associates:</strong> Investment research analysis across 10,000+ documents</li>
+              <li  >⚖️ <strong>Allen & Overy:</strong> Legal contract review — 40% time reduction</li>
+              <li  >🏥 <strong>Notion:</strong> AI features powered by Claude for 30M+ users</li>
+              <li  >💻 <strong>GitLab:</strong> Code review and vulnerability detection</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Claude's sweet spot is enterprise knowledge work — the kind of tasks where you need to process hundreds of pages and produce reliable, structured output. Bridgewater uses it to analyze investment memos that would take analysts days to read. Allen & Overy's legal teams report that Claude catches contractual risks that humans miss due to fatigue.</aside>
+      </section>
+
+      <!-- SLIDE 11: Gemini / Google -->
+      <section>
+        <h2>Gemini (Google DeepMind)</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3 class="text-teal">Strengths</h3>
+            <ul>
+              <li class="fragment zoom-in"   >✅ Massive context window (2M tokens with 1.5 Pro)</li>
+              <li class="fragment fade-up"   >✅ Native Google Workspace integration</li>
+              <li class="fragment fade-up"   >✅ Strong multimodal (text, image, video, audio)</li>
+              <li   >✅ Competitive pricing (cheapest frontier model)</li>
+              <li   >✅ Grounding with Google Search</li>
+              <li class="fragment zoom-in"   >✅ Vertex AI for enterprise deployment</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3 class="text-red">Weaknesses</h3>
+            <ul>
+              <li   >❌ Inconsistent quality across versions</li>
+              <li   >❌ Less developer ecosystem than OpenAI</li>
+              <li   >❌ Gemini branding/product confusion</li>
+              <li   >❌ Weaker at creative writing vs. competitors</li>
+              <li   >❌ Google's history of killing products</li>
+              <li   >❌ Enterprise trust still building</li>
+            </ul>
+          </div>
+        </div>
+        <p><strong>Best for:</strong> Google Workspace shops, video/audio analysis, cost-sensitive deployments, massive document processing</p>
+        <aside class="notes">Gemini's killer feature is the 2M token context window — you can literally feed it a 3,000-page PDF. If your organization is already on Google Workspace, the native integration is compelling. The pricing is also significantly lower than OpenAI for comparable quality on most tasks.</aside>
+      </section>
+
+      <!-- SLIDE 12: Gemini Workspace Integration -->
+      <section>
+        <h2>Gemini in Google Workspace</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;text-align:center;">
+            <h3>📧 Gmail</h3>
+            <p>Draft replies, summarize threads, extract action items</p>
+            <p class="text-teal">Available in Business/Enterprise</p>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;text-align:center;">
+            <h3>📄 Docs</h3>
+            <p>Generate content, rewrite sections, summarize documents</p>
+            <p class="text-teal">"Help me write" sidebar</p>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;text-align:center;">
+            <h3>📊 Sheets</h3>
+            <p>Generate formulas, create templates, analyze data trends</p>
+            <p class="text-teal">Natural language → formulas</p>
+          </div>
+        </div>
+        <div class="cols-3" style="margin-top:0.5em;">
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;text-align:center;">
+            <h3>📽️ Slides</h3>
+            <p>Generate presentations, create images, suggest layouts</p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;text-align:center;">
+            <h3>🗓️ Meet</h3>
+            <p>Real-time transcription, meeting summaries, action items</p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;text-align:center;">
+            <h3>💬 Chat</h3>
+            <p>Summarize conversations, draft responses, search history</p>
+          </div>
+        </div>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;margin-top:0.5em;">
+          <p><strong>Pricing:</strong> Gemini Business: $14/user/mo | Gemini Enterprise: $30/user/mo (add-on to Workspace)</p>
+        </div>
+        <aside class="notes">For organizations already on Google Workspace, Gemini integration is the path of least resistance. The AI is embedded where employees already work — no new tools to learn, no context switching. The business case practically writes itself: if even 30 minutes/week is saved per employee, the ROI is massive. However, the quality varies by feature — Docs and Gmail are strong, Sheets AI is still maturing.</aside>
+      </section>
+
+      <!-- SLIDE 13: Head-to-Head Comparison -->
+      <section data-transition="slide">
+        <h2>Head-to-Head: Feature Comparison</h2>
+        <table class="comparison" style="font-size:0.75em;">
+          <thead><tr ><th>Feature</th><th>ChatGPT (GPT-4o)</th><th>Claude 3.5 Sonnet</th><th>Gemini 1.5 Pro</th></tr></thead>
+          <tbody>
+            <tr ><td><strong>Context Window</strong></td><td>128K</td><td>200K</td><td class="text-teal"><strong>2M</strong></td></tr>
+            <tr ><td><strong>Coding</strong></td><td class="text-teal"><strong>Excellent</strong></td><td>Excellent</td><td>Good</td></tr>
+            <tr ><td><strong>Long Document Analysis</strong></td><td>Good</td><td class="text-teal"><strong>Excellent</strong></td><td>Excellent</td></tr>
+            <tr ><td><strong>Creative Writing</strong></td><td class="text-teal"><strong>Excellent</strong></td><td>Very Good</td><td>Good</td></tr>
+            <tr ><td><strong>Safety/Alignment</strong></td><td>Good</td><td class="text-teal"><strong>Excellent</strong></td><td>Good</td></tr>
+            <tr ><td><strong>Multimodal</strong></td><td class="text-teal"><strong>Excellent</strong></td><td>Good (vision only)</td><td>Excellent</td></tr>
+            <tr ><td><strong>Enterprise Privacy</strong></td><td>Good (Enterprise tier)</td><td class="text-teal"><strong>Excellent</strong></td><td>Good (Vertex AI)</td></tr>
+            <tr ><td><strong>Price (input/1M tokens)</strong></td><td>$2.50</td><td>$3.00</td><td class="text-teal"><strong>$1.25</strong></td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">No single model wins every category. This is why many enterprises use multiple tools. The key is matching the tool to the task. Use ChatGPT for creative and multimodal work, Claude for analysis and compliance, Gemini for cost-effective processing of massive documents. This table should be your starting point for tool selection.</aside>
+      </section>
+
+      <!-- SLIDE 14: Emerging Challengers -->
+      <section>
+        <h2>Emerging Challengers</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3 class="text-teal">xAI — Grok</h3>
+            <ul>
+              <li  >Real-time X (Twitter) data access</li>
+              <li  >Less content filtering (by design)</li>
+              <li  >Competitive on reasoning benchmarks</li>
+              <li  >Enterprise API available via xAI platform</li>
+            </ul>
+            <p><strong>Watch for:</strong> Organizations wanting unfiltered analysis</p>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-blue">Cohere — Command R+</h3>
+            <ul>
+              <li  >Purpose-built for enterprise RAG</li>
+              <li  >Best-in-class citation generation</li>
+              <li  >Multilingual focus (100+ languages)</li>
+              <li  >On-premise deployment options</li>
+            </ul>
+            <p><strong>Watch for:</strong> Enterprise search and knowledge management</p>
+          </div>
+        </div>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;margin-top:0.5em;">
+          <p>🌍 <strong>Also worth monitoring:</strong> Inflection (Pi), Reka, AI21 Labs (Jamba), and China's ecosystem — Baidu (Ernie), Zhipu (GLM-4), ByteDance (Doubao)</p>
+        </div>
+        <aside class="notes">The market is not a three-horse race. Cohere is quietly winning enterprise RAG deployments because their Command R+ model was specifically designed for retrieval — it cites sources inline and handles multilingual queries better than any competitor. Grok appeals to organizations that want fewer guardrails. Keep an eye on China's ecosystem — they're innovating fast and pricing aggressively.</aside>
+      </section>
+
+      <!-- SLIDE 15: Section Divider — Code Assistants -->
+      <section data-background-color="#1e293b">
+        <h2>Section 2</h2>
+        <h3>Code Assistants: GitHub Copilot & Beyond</h3>
+        <aside class="notes">Code assistants are the fastest-growing AI tool category in enterprise. Let's evaluate the major options and understand where they add value — and where they introduce risk.</aside>
+      </section>
+
+      <!-- SLIDE 16: GitHub Copilot -->
+      <section>
+        <h2>GitHub Copilot</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3 class="text-teal">What It Does</h3>
+            <ul>
+              <li  >AI pair programmer in your IDE (VS Code, JetBrains, Neovim)</li>
+              <li class="fragment fade-right"  >Autocomplete, chat, code explanation, test generation</li>
+              <li  >Copilot Workspace: AI-driven issue → PR pipeline</li>
+              <li  >Multi-model: GPT-4o, Claude 3.5, Gemini available</li>
+            </ul>
+            <p style="margin-top:0.5em;"><strong>Pricing:</strong> $10/mo Individual, $19/mo Business, $39/mo Enterprise</p>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-blue">Measured Impact</h3>
+            <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;margin-bottom:0.5em;">
+              <div class="stat-number">55%</div>
+              <div class="stat-label">faster task completion (GitHub, 2025)</div>
+            </div>
+            <ul>
+              <li class="fragment zoom-in"  >Accenture: 40% of code suggestions accepted</li>
+              <li  >Duolingo: 25% faster feature development</li>
+              <li  >Mercado Libre: 60% faster internal tool builds</li>
+              <li  >1.3M+ paying users as of 2025</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Copilot is the most widely adopted code AI tool. The 55% speed improvement is real but comes with caveats — it varies by language, task complexity, and developer experience. Senior developers often get more value because they can quickly evaluate suggestions. The Enterprise tier adds IP indemnification and organization-wide policy controls.</aside>
+      </section>
+
+      <!-- SLIDE 17: Code Assistant Alternatives -->
+      <section>
+        <h2>Code Assistant Alternatives</h2>
+        <table class="comparison" style="font-size:0.8em;">
+          <thead><tr ><th>Tool</th><th>Model</th><th>Price</th><th>Key Differentiator</th></tr></thead>
+          <tbody>
+            <tr  ><td><strong>GitHub Copilot</strong></td><td>GPT-4o / Claude</td><td>$19-39/mo</td><td>Deepest IDE integration, largest ecosystem</td></tr>
+            <tr  ><td><strong>Cursor</strong></td><td>Multiple (GPT-4, Claude)</td><td>$20/mo</td><td>AI-native IDE, codebase-aware context</td></tr>
+            <tr  ><td><strong>Amazon CodeWhisperer</strong></td><td>Amazon proprietary</td><td>Free-$19/mo</td><td>AWS integration, security scanning</td></tr>
+            <tr  ><td><strong>Tabnine</strong></td><td>Custom models</td><td>$12-39/mo</td><td>On-premise option, no code sent to cloud</td></tr>
+            <tr  ><td><strong>Cody (Sourcegraph)</strong></td><td>Multiple</td><td>Free-$19/mo</td><td>Repository-wide understanding</td></tr>
+            <tr  ><td><strong>Continue.dev</strong></td><td>Any (open-source)</td><td>Free</td><td>Fully open-source, use any model</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">The code assistant market is crowded and evolving fast. Cursor has gained traction with developers who want deeper AI integration than Copilot offers. Tabnine is the go-to for organizations that can't send code to the cloud. Continue.dev lets you use open-source models with zero vendor lock-in. Evaluate based on your IDE, security requirements, and budget.</aside>
+      </section>
+
+      <!-- SLIDE 18: Code Assistant Security -->
+      <section>
+        <h2>Code Assistant Security Considerations</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3 class="text-red">Risks</h3>
+            <ul>
+              <li  >⚠️ <strong>Code exfiltration:</strong> Your proprietary code sent to model provider</li>
+              <li  >⚠️ <strong>Insecure suggestions:</strong> Stanford study found Copilot generates vulnerable code in 40% of security-sensitive scenarios</li>
+              <li  >⚠️ <strong>License contamination:</strong> AI may reproduce GPL-licensed code patterns</li>
+              <li  >⚠️ <strong>Secret leakage:</strong> Models can suggest hardcoded API keys from training data</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3 class="text-teal">Mitigations</h3>
+            <ul>
+              <li  >✅ Use enterprise tiers with data privacy guarantees</li>
+              <li  >✅ Enable content exclusion filters for sensitive repos</li>
+              <li  >✅ Run SAST/DAST on all AI-generated code</li>
+              <li  >✅ Mandate code review for AI-assisted commits</li>
+              <li  >✅ Consider on-premise alternatives (Tabnine, self-hosted)</li>
+              <li class="fragment zoom-in"  >✅ Train developers to verify, not blindly accept</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">This slide is critical for security teams. The Stanford study on Copilot and security is sobering — AI code assistants can introduce vulnerabilities that look plausible. The solution isn't to ban AI assistants; it's to integrate them into your existing secure development lifecycle. All AI-generated code should go through the same review and scanning as human-written code.</aside>
+      </section>
+
+      <!-- SLIDE 19: Section Divider — Open Source -->
+      <section data-transition="slide" data-background-color="#1e293b">
+        <h2>Section 3</h2>
+        <h3>Open-Source Models: Llama, Mistral & Beyond</h3>
+        <aside class="notes">Open-source models are the biggest story in AI right now. They've gone from curiosities to production-grade alternatives in under two years. Let's evaluate the landscape.</aside>
+      </section>
+
+      <!-- SLIDE 20: Open-Source Model Landscape -->
+      <section data-transition="slide">
+        <h2>Open-Source Models Worth Knowing</h2>
+        <table class="comparison" style="font-size:0.8em;">
+          <thead><tr ><th>Model</th><th>Creator</th><th>Sizes</th><th>Best At</th></tr></thead>
+          <tbody>
+            <tr  ><td><strong>Llama 3</strong></td><td>Meta</td><td>8B, 70B, 405B</td><td>General purpose, strongest open model</td></tr>
+            <tr  ><td><strong>Mistral / Mixtral</strong></td><td>Mistral AI</td><td>7B, 8x7B, 8x22B</td><td>Efficiency, multilingual, code</td></tr>
+            <tr  ><td><strong>Phi-3</strong></td><td>Microsoft</td><td>3.8B, 7B, 14B</td><td>Small model performance, edge deployment</td></tr>
+            <tr  ><td><strong>Qwen 2</strong></td><td>Alibaba</td><td>7B, 72B</td><td>Multilingual, especially CJK languages</td></tr>
+            <tr  ><td><strong>Gemma 2</strong></td><td>Google</td><td>2B, 9B, 27B</td><td>Lightweight, research-friendly</td></tr>
+            <tr  ><td><strong>DeepSeek-V2</strong></td><td>DeepSeek</td><td>236B (MoE)</td><td>Code, math, reasoning</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">Meta's Llama 3 is the open-source champion — the 405B model competes with GPT-4 on many benchmarks. Mistral punches above its weight class — the 7B model rivals models twice its size. Phi-3 from Microsoft is remarkable for edge deployment. The open-source ecosystem is vibrant and accelerating.</aside>
+      </section>
+
+      <!-- SLIDE 21: Running Open-Source Models -->
+      <section>
+        <h2>Running Open-Source Models Locally</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3 class="text-teal">Tools for Local Inference</h3>
+            <ul>
+              <li  ><strong>Ollama:</strong> One-command model download and serving</li>
+              <li  ><strong>llama.cpp:</strong> C++ inference for CPU/GPU</li>
+              <li  ><strong>vLLM:</strong> High-throughput production serving</li>
+              <li  ><strong>Text Generation WebUI:</strong> Browser-based interface</li>
+              <li class="fragment fade-up"  ><strong>LM Studio:</strong> Desktop app with GUI</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3 class="text-blue">Quick Start with Ollama</h3>
+            <pre  ><code class="bash" style="font-size:0.8em;"># Install
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Download and run Llama 3 8B
+ollama run llama3
+
+# Or Mistral 7B
+ollama run mistral
+
+# Serve as API (OpenAI-compatible)
+ollama serve
+# → http://localhost:11434/v1/chat/completions</code></pre>
+          </div>
+        </div>
+        <aside class="notes">Ollama has made local model deployment trivially easy. You can have a production-quality model running on your laptop in under 5 minutes. The API is OpenAI-compatible, so existing code works with minimal changes. For enterprise deployment, vLLM is the standard for high-throughput serving on GPU clusters.</aside>
+      </section>
+
+      <!-- SLIDE 22: Self-Host vs Cloud Economics -->
+      <section>
+        <h2>Self-Host vs. Cloud: The Economics</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-teal">Self-Host When:</h3>
+            <ul>
+              <li   >✅ Data cannot leave your infrastructure</li>
+              <li   >✅ Volume exceeds ~$10K/month in API costs</li>
+              <li   >✅ You need to fine-tune on proprietary data</li>
+              <li   >✅ Latency requirements are strict (&lt;100ms)</li>
+              <li   >✅ You want zero vendor dependency</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3 class="text-blue">Use Cloud APIs When:</h3>
+            <ul>
+              <li   >✅ You need frontier quality (GPT-4, Claude Opus)</li>
+              <li   >✅ Volume is low-to-moderate</li>
+              <li   >✅ You want zero infrastructure management</li>
+              <li   >✅ You need rapid iteration / prototyping</li>
+              <li   >✅ Vendor DPA meets your compliance needs</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;margin-top:0.5em;">
+          <p>💰 <strong>Break-even example:</strong> Running Llama 3 70B on 4x A100 GPUs costs ~$8K/month (cloud GPU). At GPT-4o API rates, that equivalent throughput would cost ~$25K/month. Self-hosting saves ~$17K/month <em>if</em> you have the engineering team to maintain it.</p>
+        </div>
+        <aside class="notes">The economics are clear for high-volume use cases, but don't underestimate operational costs. You need GPU expertise, monitoring, failover, security patching, and model updates. Many enterprises start with cloud APIs and migrate high-volume workloads to self-hosted as they scale. The hybrid approach is often optimal.</aside>
+      </section>
+
+      <!-- SLIDE 23: Section Divider — Specialized Tools -->
+      <section data-transition="slide" data-background-color="#1e293b">
+        <h2>Section 4</h2>
+        <h3>Specialized AI Tools by Domain</h3>
+        <aside class="notes">Beyond general-purpose LLMs, there's a growing ecosystem of domain-specific AI tools. These are often the right choice when you need deep expertise in a particular vertical.</aside>
+      </section>
+
+      <!-- SLIDE 24: Domain-Specific AI Tools -->
+      <section>
+        <h2>Domain-Specific AI Tools</h2>
+        <table class="comparison" style="font-size:0.75em;">
+          <thead><tr ><th>Domain</th><th>Tool</th><th>What It Does</th><th>Why Not Generic LLM?</th></tr></thead>
+          <tbody>
+            <tr  ><td><strong>Legal</strong></td><td>Harvey AI</td><td>Contract analysis, legal research, due diligence</td><td>Trained on legal corpus, cite-aware</td></tr>
+            <tr  ><td><strong>Security</strong></td><td>Microsoft Security Copilot</td><td>Threat investigation, incident response</td><td>Integrated with Sentinel, Defender, MITRE ATT&CK</td></tr>
+            <tr  ><td><strong>Sales</strong></td><td>Gong / Clari</td><td>Call analysis, deal forecasting, coaching</td><td>CRM-integrated, trained on sales conversations</td></tr>
+            <tr  ><td><strong>Healthcare</strong></td><td>Google MedPaLM 2</td><td>Clinical Q&A, medical reasoning</td><td>USMLE-level accuracy, safety-validated</td></tr>
+            <tr  ><td><strong>Design</strong></td><td>Figma AI / Adobe Firefly</td><td>Layout generation, image creation, prototyping</td><td>Design-system aware, brand-safe</td></tr>
+            <tr  ><td><strong>Data</strong></td><td>Databricks AI / dbt AI</td><td>SQL generation, data pipeline automation</td><td>Schema-aware, governance-integrated</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">Specialized tools often outperform general LLMs in their domain because they combine model capability with domain-specific data, workflows, and guardrails. Microsoft Security Copilot is a great example — it doesn't just analyze threats, it's plugged into your actual security telemetry. Harvey AI was trained on millions of legal documents and understands jurisdiction-specific nuances. The trade-off: vendor lock-in and higher per-seat costs.</aside>
+      </section>
+
+      <!-- SLIDE 25: AI Tools for Security Professionals -->
+      <section>
+        <h2>AI Tools for Security Professionals</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-teal">Defensive Security</h3>
+            <ul>
+              <li class="fragment fade-right"  ><strong>Microsoft Security Copilot:</strong> Incident investigation, KQL generation, threat hunting</li>
+              <li  ><strong>CrowdStrike Charlotte AI:</strong> Natural language threat queries</li>
+              <li class="fragment fade-up"  ><strong>Darktrace:</strong> Autonomous threat response</li>
+              <li  ><strong>SentinelOne Purple AI:</strong> Unified security analyst</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3 class="text-blue">Offensive Security</h3>
+            <ul>
+              <li  ><strong>PentestGPT:</strong> AI-assisted penetration testing guidance</li>
+              <li  ><strong>Burp Suite AI:</strong> Intelligent scan analysis</li>
+              <li  ><strong>ChatGPT/Claude:</strong> Payload crafting, report writing, script generation</li>
+              <li  ><strong>Custom fine-tunes:</strong> Organization-specific threat models</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;margin-top:0.5em;">
+          <p>🔐 <strong>Critical note:</strong> Never paste sensitive security data (credentials, vulnerability details, network topology) into cloud-based AI tools without DPA review.</p>
+        </div>
+        <aside class="notes">This slide is particularly relevant for our audience. AI is transforming both sides of security. Defenders use it to triage faster — Microsoft's Security Copilot can investigate an incident in minutes instead of hours. Offensive teams use it to generate payloads and reports. The key concern: never feed sensitive security data into tools that might train on it. Always use enterprise tiers or self-hosted models for security work.</aside>
+      </section>
+
+      <!-- SLIDE 26: Section Divider — Evaluation -->
+      <section data-background-color="#1e293b">
+        <h2>Section 5</h2>
+        <h3>Evaluation Framework: How to Choose</h3>
+        <aside class="notes">Now let's build a systematic framework for evaluating AI tools. Ad-hoc "this one feels better" doesn't work for enterprise procurement. You need measurable criteria.</aside>
+      </section>
+
+      <!-- SLIDE 27: ACCPS Evaluation Framework -->
+      <section>
+        <h2>The ACCPS Evaluation Framework</h2>
+        <div class="cols-3" style="font-size:0.9em;">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;text-align:center;">
+            <h3 class="text-teal">A — Accuracy</h3>
+            <p>How correct and reliable are outputs?</p>
+            <ul style="text-align:left;">
+              <li  >Factual correctness</li>
+              <li class="fragment fade-up"  >Hallucination rate</li>
+              <li  >Consistency across runs</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;text-align:center;">
+            <h3 class="text-teal">C — Cost</h3>
+            <p>Total cost of ownership?</p>
+            <ul style="text-align:left;">
+              <li  >Per-token pricing</li>
+              <li  >Seat licensing</li>
+              <li class="fragment fade-up"  >Infrastructure costs</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;text-align:center;">
+            <h3 class="text-teal">C — Compliance</h3>
+            <p>Does it meet regulatory needs?</p>
+            <ul style="text-align:left;">
+              <li  >Data residency</li>
+              <li  >SOC 2 / ISO 27001</li>
+              <li  >GDPR / HIPAA</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:0.5em; font-size:0.9em;">
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;text-align:center;">
+            <h3 class="text-teal">P — Performance</h3>
+            <p>Speed and throughput?</p>
+            <ul style="text-align:left;">
+              <li  >Latency (time to first token)</li>
+              <li  >Tokens per second</li>
+              <li  >Rate limits / quotas</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;text-align:center;">
+            <h3 class="text-teal">S — Security</h3>
+            <p>Is your data protected?</p>
+            <ul style="text-align:left;">
+              <li  >Data processing agreement</li>
+              <li  >Training data opt-out</li>
+              <li  >Prompt injection resistance</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">ACCPS gives you a structured way to evaluate any AI tool. Score each dimension 1-5, weight by your organization's priorities, and compare. A healthcare company might weight Compliance and Security at 5x while a startup weights Cost and Performance. This framework is in your lab worksheet — you'll use it to evaluate tools hands-on.</aside>
+      </section>
+
+      <!-- SLIDE 28: Model Selection Flowchart -->
+      <section>
+        <h2>Model Selection Decision Flow</h2>
+        <img   src="/assets/graphics/flow-model-selection.svg" style="max-width:700px;width:100%">
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;margin-top:0.5em;">
+          <p><strong>Key decision points:</strong> Can data leave your infrastructure? → Do you need frontier capabilities? → What's your monthly volume? → Do you need real-time or batch processing?</p>
+        </div>
+        <aside class="notes">This flowchart encodes the decision logic we've been building throughout the module. Start with the data sensitivity question — that eliminates many options immediately. Then assess capability needs, volume, and latency. Most enterprises end up with 2-3 tools: a frontier API for complex tasks, an open-source model for high-volume or sensitive workloads, and a code assistant for engineering.</aside>
+      </section>
+
+      <!-- SLIDE 29: Pricing Deep Dive -->
+      <section data-transition="slide">
+        <h2>Pricing Comparison: Real Numbers</h2>
+        <table class="comparison" style="font-size:0.75em;">
+          <thead><tr ><th>Plan</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th></tr></thead>
+          <tbody>
+            <tr  ><td><strong>Free Tier</strong></td><td>GPT-4o-mini (limited 4o)</td><td>Claude 3.5 Sonnet (limited)</td><td>Gemini 1.5 Flash</td></tr>
+            <tr  ><td><strong>Individual</strong></td><td>$20/mo (Plus)</td><td>$20/mo (Pro)</td><td>$20/mo (Advanced)</td></tr>
+            <tr  ><td><strong>Team</strong></td><td>$25/user/mo</td><td>$25/user/mo</td><td>Included in Workspace</td></tr>
+            <tr  ><td><strong>Enterprise</strong></td><td>Custom pricing</td><td>Custom pricing</td><td>Vertex AI (usage-based)</td></tr>
+            <tr  ><td><strong>API (input/1M tokens)</strong></td><td>$2.50 (GPT-4o)</td><td>$3.00 (3.5 Sonnet)</td><td>$1.25 (1.5 Pro)</td></tr>
+            <tr  ><td><strong>API (output/1M tokens)</strong></td><td>$10.00</td><td>$15.00</td><td>$5.00</td></tr>
+          </tbody>
+        </table>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;margin-top:0.5em;">
+          <p>📐 <strong>Scenario:</strong> Customer service bot — 10K conversations/day × 2K tokens each = 20M tokens/day</p>
+          <p>Monthly cost: <span class="text-teal">GPT-4o: ~$3,750</span> | <span class="text-blue">Claude: ~$5,400</span> | <span style="color:#ef4444;">Gemini: ~$1,875</span> | <span style="color:#a855f7;">Self-hosted Llama 3: ~$2,400 (GPU lease)</span></p>
+        </div>
+        <aside class="notes">Pricing changes frequently — check current rates before making procurement decisions. The key insight: output tokens cost 3-5x more than input tokens, so chatty responses are expensive. Optimizing system prompts to request concise answers can cut costs by 30-50%. Notice self-hosted Llama 3 is competitive with Gemini at this volume.</aside>
+      </section>
+
+      <!-- SLIDE 30: Use Case Matrix -->
+      <section>
+        <h2>Which Tool for Which Task?</h2>
+        <table class="comparison" style="font-size:0.8em;">
+          <thead><tr ><th>Use Case</th><th>Best Tool</th><th>Runner-Up</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr ><td>Contract review (50+ pages)</td><td class="text-teal"><strong>Claude</strong></td><td>Gemini</td><td>200K context, structured output</td></tr>
+            <tr ><td>Code generation & debugging</td><td class="text-teal"><strong>Copilot / GPT-4o</strong></td><td>Claude</td><td>IDE integration, code training</td></tr>
+            <tr ><td>Video content analysis</td><td class="text-teal"><strong>Gemini</strong></td><td>GPT-4o</td><td>Native video understanding</td></tr>
+            <tr ><td>Customer service chatbot</td><td class="text-teal"><strong>GPT-4o-mini</strong></td><td>Gemini Flash</td><td>Cost-effective, fast</td></tr>
+            <tr ><td>Sensitive data processing</td><td class="text-teal"><strong>Self-hosted Llama 3</strong></td><td>Claude Enterprise</td><td>Data stays on-premise</td></tr>
+            <tr ><td>Marketing copy & creative</td><td class="text-teal"><strong>ChatGPT</strong></td><td>Claude</td><td>Creative flair, DALL-E</td></tr>
+            <tr ><td>Threat hunting / SIEM queries</td><td class="text-teal"><strong>Security Copilot</strong></td><td>Claude + RAG</td><td>Telemetry-integrated</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This matrix is your cheat sheet for tool selection. Print it out, stick it on your wall, and reference it when evaluating new use cases. The 'Why' column is key — it's not about which model is "best" in abstract; it's about which model's specific strengths align with your task requirements. In the lab, you'll test these recommendations hands-on.</aside>
+      </section>
+
+      <!-- SLIDE 31: Code Example — Multi-Model Comparison -->
+      <section>
+        <h2>Code: Comparing Models Programmatically</h2>
+        <pre  ><code class="python" style="font-size:0.65em;">import openai, anthropic, time
+
+prompt = "Explain zero-trust architecture in 3 sentences for a CISO."
+
+# OpenAI
+oai = openai.OpenAI(api_key="sk-...")
+start = time.time()
+gpt_resp = oai.chat.completions.create(
+    model="gpt-4o", messages=[{"role":"user","content":prompt}], temperature=0.2
+)
+gpt_time = time.time() - start
+
+# Anthropic
+ant = anthropic.Anthropic(api_key="sk-ant-...")
+start = time.time()
+claude_resp = ant.messages.create(
+    model="claude-3-5-sonnet-20241022", max_tokens=300,
+    messages=[{"role":"user","content":prompt}]
+)
+claude_time = time.time() - start
+
+print(f"GPT-4o ({gpt_time:.1f}s): {gpt_resp.choices[0].message.content}")
+print(f"Claude ({claude_time:.1f}s): {claude_resp.content[0].text}")
+print(f"GPT tokens: {gpt_resp.usage.total_tokens} | Claude tokens: {claude_resp.usage.input_tokens + claude_resp.usage.output_tokens}")</code></pre>
+        <aside class="notes">This pattern — same prompt, multiple models, timed — is exactly how you should evaluate models for your specific use cases. Generic benchmarks tell you about average performance; this tells you about YOUR performance on YOUR prompts. In the lab, you'll extend this to include Gemini and score outputs on accuracy, format, and helpfulness.</aside>
+      </section>
+
+      <!-- SLIDE 32: Hands-On Activity -->
+      <section data-transition="fade">
+        <h2>🎯 Hands-On: AI Tool Bake-Off</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <h3>Activity (20 minutes)</h3>
+          <ol>
+            <li   ><strong>Pick 3 prompts</strong> relevant to your work:
+              <ul>
+                <li class="fragment zoom-in"   >A factual question (e.g., "Explain NIST CSF 2.0 changes")</li>
+                <li   >A creative task (e.g., "Write a phishing awareness email")</li>
+                <li   >An analytical task (e.g., "Compare SIEM vendors for a 500-person company")</li>
+              </ul>
+            </li>
+            <li   ><strong>Submit each to ChatGPT, Claude, and Gemini</strong></li>
+            <li   ><strong>Score each response</strong> using the ACCPS framework (Accuracy 1-5, Completeness 1-5, Clarity 1-5)</li>
+            <li   ><strong>Record:</strong> Which model won on which prompt type? Were you surprised?</li>
+          </ol>
+        </div>
+        <aside class="notes">This is the most valuable activity in the module. Students will discover that no single model dominates across all prompt types. The scoring forces them to think critically rather than going with gut feel. Pair up for discussion — different people often score the same response differently, which highlights the subjectivity in model evaluation.</aside>
+      </section>
+
+      <!-- SLIDE 33: Quiz -->
+      <section data-transition="slide">
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <ol>
+            <li    >Your company processes medical records. Which AI deployment model is most appropriate?
+              <ul style="list-style:lower-alpha;">
+                <li    >ChatGPT Free Tier</li>
+                <li    >Claude Pro ($20/month)</li>
+                <li    >Self-hosted Llama 3 on private infrastructure</li>
+                <li class="fragment fade-up"    >Gemini Advanced</li>
+              </ul>
+            </li>
+            <li style="margin-top:0.5em;"   >Name two risks of using AI code assistants in enterprise.</li>
+            <li style="margin-top:0.5em;"   >What does the "S" in the ACCPS framework stand for, and why does it matter?</li>
+            <li style="margin-top:0.5em;"   >You need to analyze a 500-page contract. Which tool and why?</li>
+          </ol>
+        </div>
+        <p><small>Answers: 1) C — HIPAA requires data to stay on-premise; self-hosted is the safest choice. 2) Code exfiltration, insecure suggestions, license contamination, secret leakage. 3) Security — covers DPA, training opt-out, and prompt injection resistance. 4) Claude (200K context, structured output) or Gemini (2M context for very large docs).</small></p>
+        <aside class="notes">Question 1 is the most important — it tests whether students can connect data sensitivity requirements to tool selection. Many people default to the "best" model without considering compliance. Question 4 is designed to have two valid answers to reinforce that tool selection is context-dependent.</aside>
+      </section>
+
+      <!-- SLIDE 34: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>Key Takeaways</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <ul>
+            <li   >✅ No single AI tool wins at everything — match the tool to the task</li>
+            <li   >✅ ChatGPT leads in ecosystem and multimodal; Claude in accuracy and privacy; Gemini in cost and context</li>
+            <li   >✅ Code assistants boost productivity 25-55% but require security guardrails</li>
+            <li   >✅ Open-source models are production-ready and essential for sensitive data</li>
+            <li   >✅ Specialized domain tools outperform general LLMs in their vertical</li>
+            <li class="fragment fade-right"   >✅ Use the ACCPS framework for systematic, repeatable tool evaluation</li>
+            <li   >✅ Start with cloud APIs, migrate high-volume workloads to self-hosted</li>
+          </ul>
+        </div>
+        <aside class="notes">These seven takeaways form your enterprise AI tool selection playbook. The most common mistake is over-committing to a single vendor. The smartest enterprises use a portfolio approach — 2-3 tools, each chosen for specific use cases, with a clear governance policy. Screenshot this slide for your next procurement meeting.</aside>
+      </section>
+
+      <!-- SLIDE 35: Lab Preview -->
+      <section>
+        <h2>🔬 Lab Preview</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <h3>Lab 3: AI Tool Evaluation Workshop</h3>
+          <ul>
+            <li   ><strong>Part A:</strong> Run the multi-model comparison script against ChatGPT, Claude, and Gemini with 10 standardized prompts across 5 categories</li>
+            <li   ><strong>Part B:</strong> Score all outputs using the ACCPS rubric and create a weighted comparison matrix</li>
+            <li   ><strong>Part C:</strong> Install Ollama, run Llama 3 8B locally, and compare it against cloud APIs on speed, quality, and cost</li>
+            <li   ><strong>Part D:</strong> Write a one-page AI tool recommendation memo for a fictional company (choose: healthcare, fintech, or e-commerce)</li>
+          </ul>
+          <p style="margin-top:1em;"><strong>Time:</strong> 75 minutes | <strong>Deliverable:</strong> Comparison matrix + recommendation memo</p>
+        </div>
+        <aside class="notes">Lab 3 is the capstone for tool evaluation. Part D is especially important — writing a recommendation memo is exactly what you'll need to do when proposing AI tools to leadership. The fictional company scenarios force you to consider industry-specific constraints. Healthcare has HIPAA, fintech has SOC 2 and SOX, e-commerce has PCI DSS and scale requirements.</aside>
+      </section>
+
+      <!-- SLIDE 36: Resources -->
+      <section>
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h4>Benchmarks & Comparisons</h4>
+            <ul>
+              <li   >LMSys Chatbot Arena: lmsys.org (crowd-sourced model rankings)</li>
+              <li class="fragment fade-up"   >Hugging Face Open LLM Leaderboard</li>
+              <li   >Artificial Analysis: artificialanalysis.ai (speed & cost benchmarks)</li>
+              <li   >Stanford HELM: Holistic Evaluation of Language Models</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h4>Enterprise Guides</h4>
+            <ul>
+              <li class="fragment fade-up"   >Gartner Magic Quadrant for AI Code Assistants (2025)</li>
+              <li   >Forrester Wave: AI Foundation Models</li>
+              <li   >OWASP Top 10 for LLM Applications</li>
+              <li   >NIST AI Risk Management Framework</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">LMSys Chatbot Arena is the most trustworthy model comparison because it uses blind human evaluation at scale — over 1 million votes. Artificial Analysis tracks the cost-performance frontier in real time. The OWASP LLM Top 10 and NIST AI RMF are essential reading for security professionals evaluating AI tools. Bookmark these — you'll reference them throughout your career.</aside>
+      </section>
+
+      <!-- SLIDE 37: Q&A -->
+      <section data-transition="fade">
+        <h2>Questions & Discussion</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;text-align:center;">
+          <h3>🤔 If you could only use ONE AI tool for the next year, which would you pick — and why?</h3>
+          <p style="margin-top:2em; font-size:1.2em;">Next up: <strong>Module 4 — Prompt Engineering</strong></p>
+          <p>We'll learn to write prompts that get reliable, high-quality results every time.</p>
+        </div>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">The discussion question is intentionally provocative — there's no right answer, and the debate reveals people's priorities. Someone who picks Claude values accuracy; someone who picks ChatGPT values versatility; someone who picks self-hosted Llama values control. Use this to reinforce that tool selection is about organizational values, not just benchmarks. Preview Module 4 as the complement to this one: now that you know which tools to use, you'll learn how to use them effectively.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

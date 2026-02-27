@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="roiGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#14b8a6"/>
+    </linearGradient>
+    <linearGradient id="investGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+    <linearGradient id="returnGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#14b8a6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="bold" fill="url(#roiGrad)">💰 AI ROI Calculator Visualization</text>
+  
+  <!-- Chart Area -->
+  <rect x="100" y="70" width="600" height="350" rx="10" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  
+  <!-- Y-Axis Labels -->
+  <text x="85" y="100" text-anchor="end" font-family="Inter, sans-serif" font-size="9" fill="#64748b">$500K</text>
+  <text x="85" y="170" text-anchor="end" font-family="Inter, sans-serif" font-size="9" fill="#64748b">$400K</text>
+  <text x="85" y="240" text-anchor="end" font-family="Inter, sans-serif" font-size="9" fill="#64748b">$300K</text>
+  <text x="85" y="310" text-anchor="end" font-family="Inter, sans-serif" font-size="9" fill="#64748b">$200K</text>
+  <text x="85" y="380" text-anchor="end" font-family="Inter, sans-serif" font-size="9" fill="#64748b">$100K</text>
+  <text x="85" y="410" text-anchor="end" font-family="Inter, sans-serif" font-size="9" fill="#64748b">$0</text>
+  
+  <!-- Grid lines -->
+  <line x1="100" y1="100" x2="700" y2="100" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="170" x2="700" y2="170" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="240" x2="700" y2="240" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="310" x2="700" y2="310" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="100" y1="380" x2="700" y2="380" stroke="#334155" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- X-Axis Labels (Months) -->
+  <text x="130" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">M1</text>
+  <text x="200" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">M3</text>
+  <text x="280" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">M6</text>
+  <text x="380" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">M9</text>
+  <text x="500" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">M12</text>
+  <text x="620" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">M18</text>
+  <text x="680" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#64748b">M24</text>
+  
+  <!-- Investment Line (Red) - cumulative costs -->
+  <path d="M130 380 L200 340 L280 310 L380 290 L500 280 L620 275 L680 270" 
+        stroke="#ef4444" stroke-width="3" fill="none"/>
+  
+  <!-- Investment area fill -->
+  <path d="M130 410 L130 380 L200 340 L280 310 L380 290 L500 280 L620 275 L680 270 L680 410 Z" 
+        fill="#ef4444" fill-opacity="0.2"/>
+  
+  <!-- Returns Line (Green) - cumulative benefits -->
+  <path d="M130 410 L200 400 L280 370 L380 310 L500 220 L620 140 L680 90" 
+        stroke="#22c55e" stroke-width="3" fill="none"/>
+  
+  <!-- Returns area fill -->
+  <path d="M130 410 L130 410 L200 400 L280 370 L380 310 L500 220 L620 140 L680 90 L680 410 Z" 
+        fill="#22c55e" fill-opacity="0.2"/>
+  
+  <!-- Break-even point -->
+  <circle cx="380" cy="300" r="10" fill="#eab308" stroke="#fff" stroke-width="2"/>
+  <line x1="380" y1="70" x2="380" y2="290" stroke="#eab308" stroke-width="2" stroke-dasharray="5,5"/>
+  <rect x="320" y="75" width="120" height="30" rx="5" fill="#eab308"/>
+  <text x="380" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#000">⚡ Break-even @ M9</text>
+  
+  <!-- Legend on chart -->
+  <rect x="550" y="85" width="140" height="60" rx="6" fill="#0f172a" fill-opacity="0.9"/>
+  <line x1="560" y1="105" x2="590" y2="105" stroke="#ef4444" stroke-width="3"/>
+  <text x="600" y="109" font-family="Inter, sans-serif" font-size="9" fill="#ef4444">Investment</text>
+  <line x1="560" y1="130" x2="590" y2="130" stroke="#22c55e" stroke-width="3"/>
+  <text x="600" y="134" font-family="Inter, sans-serif" font-size="9" fill="#22c55e">Returns</text>
+  
+  <!-- ROI Categories Section -->
+  <text x="400" y="475" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#f8fafc">Return Categories Breakdown</text>
+  
+  <!-- Category boxes -->
+  <rect x="50" y="495" width="160" height="90" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="130" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">📈</text>
+  <text x="130" y="545" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Productivity</text>
+  <text x="130" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="#22c55e">+35%</text>
+  <text x="130" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Time saved per task</text>
+  
+  <rect x="230" y="495" width="160" height="90" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="310" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">🎯</text>
+  <text x="310" y="545" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#14b8a6">Error Reduction</text>
+  <text x="310" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="#14b8a6">-60%</text>
+  <text x="310" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Manual review errors</text>
+  
+  <rect x="410" y="495" width="160" height="90" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="490" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">🚀</text>
+  <text x="490" y="545" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Speed to Market</text>
+  <text x="490" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="#3b82f6">2.5x</text>
+  <text x="490" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Faster development</text>
+  
+  <rect x="590" y="495" width="160" height="90" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="670" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">💎</text>
+  <text x="670" y="545" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#8b5cf6">Customer Sat.</text>
+  <text x="670" y="565" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="#8b5cf6">+22%</text>
+  <text x="670" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">NPS improvement</text>
+</svg>

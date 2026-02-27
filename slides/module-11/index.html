@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 11: LLM Integration Patterns</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-11.svg" style="width:100px">
+        <h1>Module 11</h1>
+        <h2>LLM Integration Patterns</h2>
+        <p>APIs, RAG, LangChain & Production Architecture</p>
+        <p class="text-teal">IT Security Labs / OpSec Fusion</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Module 11 is the most code-heavy module in the course. We'll build production-ready LLM integrations from scratch, covering API patterns, RAG pipelines, LangChain architecture, vector databases, and deployment strategies. By the end, you'll have a working RAG system.</aside>
+      </section>
+
+      <!-- SLIDE 2: Objectives -->
+      <section data-transition="fade">
+        <h2>🎯 Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ol>
+            <li   >Implement LLM API calls with streaming and function calling</li>
+            <li   >Architect RAG pipelines with chunking, embedding, and retrieval</li>
+            <li   >Build LangChain applications with chains, agents, and memory</li>
+            <li   >Compare and select vector databases for enterprise use</li>
+            <li   >Design deployment patterns (serverless, containers, Kubernetes)</li>
+            <li   >Monitor LLM applications for cost, latency, and quality</li>
+          </ol>
+        </div>
+        <aside class="notes">This module bridges the gap between understanding LLMs conceptually and deploying them in production. Every pattern we cover is used by real companies processing millions of queries per day. The code examples are production-grade, not toy demos.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section>
+        <h2>💡 Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">92%</div>
+            <div class="stat-label">of Fortune 500 use LLM APIs in production (2025)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">$0.002</div>
+            <div class="stat-label">average cost per LLM query with optimization</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">of LLM apps use RAG for accuracy</div>
+          </div>
+        </div>
+        <p>Knowing <em>how</em> to integrate LLMs is the most in-demand AI skill in 2026.</p>
+        <aside class="notes">LLM integration has become the baseline skill for software engineers in 2026, much like REST API integration became baseline in the 2010s. The difference between a junior and senior LLM engineer is understanding patterns — when to use RAG vs fine-tuning, how to optimize costs, and how to monitor quality at scale.</aside>
+      </section>
+
+      <!-- SLIDE 4: Enterprise AI Stack -->
+      <section>
+        <h2>The Enterprise AI Stack</h2>
+        <img   src="/assets/graphics/arch-enterprise-ai-stack.svg" style="max-width:700px;width:100%">
+        <aside class="notes">This stack diagram shows how all the components we'll cover fit together. At the bottom are foundation models accessed via APIs. In the middle is the orchestration layer — LangChain, RAG pipelines, prompt management. At the top is the application layer — your actual product. On the sides are cross-cutting concerns: monitoring, security, and cost management.</aside>
+      </section>
+
+      <!-- SLIDE 5: Section Divider - API Patterns -->
+      <section data-transition="slide" data-background-color="#1e293b">
+        <h1>Section 1</h1>
+        <h2>LLM API Patterns</h2>
+        <p>REST, Streaming & Function Calling</p>
+        <aside class="notes">We start with the foundation — direct API calls to LLM providers. Even if you use higher-level frameworks like LangChain, understanding the raw API is essential for debugging, optimization, and knowing what's actually happening under the hood.</aside>
+      </section>
+
+      <!-- SLIDE 6: Basic API Call -->
+      <section>
+        <h2>🐍 Basic OpenAI API Call</h2>
+        <pre  ><code class="python">from openai import OpenAI
+
+client = OpenAI()  # Uses OPENAI_API_KEY env var
+
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "You are a security analyst."},
+        {"role": "user", "content": "Analyze this log entry for threats: "
+         "Failed login from 192.168.1.105 - 47 attempts in 2 minutes"}
+    ],
+    temperature=0.1,       # Low for analytical tasks
+    max_tokens=500,
+    response_format={"type": "json_object"}  # Structured output
+)
+
+analysis = response.choices[0].message.content
+print(f"Tokens used: {response.usage.total_tokens}")
+print(f"Cost: ${response.usage.total_tokens * 0.000005:.4f}")</code></pre>
+        <aside class="notes">This is the simplest possible LLM integration — a synchronous API call. Key parameters: temperature controls creativity (low for analysis, high for creative tasks), max_tokens caps output length, and response_format forces JSON output. Always log token usage — it's your cost meter.</aside>
+      </section>
+
+      <!-- SLIDE 7: Streaming Responses -->
+      <section>
+        <h2>🔄 Streaming Responses</h2>
+        <pre  ><code class="python">from openai import OpenAI
+
+client = OpenAI()
+
+# Streaming — tokens arrive as they're generated
+stream = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {"role": "user", "content": "Explain zero-trust architecture"}
+    ],
+    stream=True
+)
+
+full_response = ""
+for chunk in stream:
+    if chunk.choices[0].delta.content:
+        token = chunk.choices[0].delta.content
+        full_response += token
+        print(token, end="", flush=True)  # Real-time output
+
+# For web apps: Server-Sent Events (SSE)
+# async def stream_endpoint(request):
+#     async def generate():
+#         async for chunk in stream:
+#             yield f"data: {chunk.model_dump_json()}\n\n"
+#     return StreamingResponse(generate(), media_type="text/event-stream")</code></pre>
+        <aside class="notes">Streaming is essential for user-facing applications — nobody wants to wait 10 seconds staring at a blank screen. Time-to-first-token (TTFT) drops from seconds to milliseconds. In production, you'll expose this via Server-Sent Events to the frontend. The commented code shows the FastAPI pattern for SSE streaming.</aside>
+      </section>
+
+      <!-- SLIDE 8: Function Calling -->
+      <section>
+        <h2>⚡ Function Calling (Tool Use)</h2>
+        <pre  ><code class="python">tools = [{
+    "type": "function",
+    "function": {
+        "name": "check_vulnerability",
+        "description": "Check if a CVE affects our systems",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "cve_id": {"type": "string", "description": "CVE identifier"},
+                "severity_filter": {
+                    "type": "string",
+                    "enum": ["critical", "high", "medium", "low"]
+                }
+            },
+            "required": ["cve_id"]
+        }
+    }
+}]
+
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[{"role": "user", "content": "Is CVE-2024-3094 affecting us?"}],
+    tools=tools,
+    tool_choice="auto"
+)
+
+# Model decides to call the function
+tool_call = response.choices[0].message.tool_calls[0]
+print(f"Function: {tool_call.function.name}")
+print(f"Args: {tool_call.function.arguments}")
+# → Function: check_vulnerability
+# → Args: {"cve_id": "CVE-2024-3094", "severity_filter": "critical"}</code></pre>
+        <aside class="notes">Function calling is how LLMs interact with external systems — databases, APIs, security tools. The model doesn't execute the function; it generates structured arguments that your code executes. This is the foundation of AI agents. Note how the model correctly inferred the severity filter from context. In production, always validate and sanitize the generated arguments before execution.</aside>
+      </section>
+
+      <!-- SLIDE 9: API Pattern Comparison -->
+      <section>
+        <h2>API Pattern Comparison</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Pattern</th><th>Use Case</th><th>Latency</th><th>Complexity</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Synchronous</strong></td><td>Batch processing, background jobs</td><td>2-30s</td><td>Low</td></tr>
+            <tr  ><td><strong>Streaming</strong></td><td>Chat UIs, real-time apps</td><td>200ms TTFT</td><td>Medium</td></tr>
+            <tr  ><td><strong>Function Calling</strong></td><td>Tool use, data retrieval, actions</td><td>3-15s</td><td>High</td></tr>
+            <tr  ><td><strong>Batch API</strong></td><td>Bulk processing, 50% cost savings</td><td>24h window</td><td>Low</td></tr>
+            <tr  ><td><strong>Structured Output</strong></td><td>JSON extraction, form filling</td><td>2-20s</td><td>Medium</td></tr>
+          </tbody>
+        </table>
+        <p class="text-teal">Choose based on: user experience requirements, cost constraints, and integration complexity.</p>
+        <aside class="notes">Most production applications use a combination of these patterns. A chat interface uses streaming for the response but function calling when the user asks to perform an action. Batch API is underused but incredibly cost-effective for non-time-sensitive workloads like nightly report generation or data classification.</aside>
+      </section>
+
+      <!-- SLIDE 10: Section Divider - RAG -->
+      <section data-transition="slide" data-background-color="#1e293b">
+        <h1>Section 2</h1>
+        <h2>RAG Implementation</h2>
+        <p>Retrieval-Augmented Generation</p>
+        <aside class="notes">RAG is the most important LLM integration pattern for enterprises. It solves the two biggest problems with LLMs: hallucination and stale knowledge. By retrieving relevant documents before generating, you ground the AI's responses in your actual data.</aside>
+      </section>
+
+      <!-- SLIDE 11: RAG Architecture -->
+      <section>
+        <h2>RAG Pipeline Architecture</h2>
+        <img   src="/assets/graphics/arch-rag-pipeline-enterprise.svg" style="max-width:700px;width:100%">
+        <aside class="notes">The RAG pipeline has four stages: Ingest (chunk and embed documents), Store (vector database), Retrieve (similarity search), and Generate (LLM with retrieved context). Each stage has optimization opportunities. The most impactful optimization is usually in chunking strategy — getting the right chunk size and overlap for your data.</aside>
+      </section>
+
+      <!-- SLIDE 12: Chunking Strategies -->
+      <section>
+        <h2>📄 Chunking Strategies</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>Fixed-Size Chunks</h3>
+            <pre  ><code class="python">def fixed_chunks(text, size=512, overlap=50):
+    chunks = []
+    for i in range(0, len(text), size - overlap):
+        chunks.append(text[i:i + size])
+    return chunks</code></pre>
+            <p>Simple but breaks mid-sentence. Good for homogeneous text.</p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>Semantic Chunks</h3>
+            <pre  ><code class="python">from langchain.text_splitter import (
+    RecursiveCharacterTextSplitter
+)
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200,
+    separators=["\n\n", "\n", ". ", " "]
+)
+chunks = splitter.split_text(document)</code></pre>
+            <p>Respects document structure. Best for most use cases.</p>
+          </div>
+        </div>
+        <aside class="notes">Chunking is where most RAG pipelines succeed or fail. Too small and you lose context; too large and you dilute relevance. The recursive splitter tries paragraph breaks first, then sentences, then words. For technical documentation, 800-1200 characters with 200 overlap is a good starting point. For legal documents, consider section-based chunking that preserves clause boundaries.</aside>
+      </section>
+
+      <!-- SLIDE 13: Embeddings -->
+      <section>
+        <h2>🧮 Embedding Models</h2>
+        <pre  ><code class="python">from openai import OpenAI
+
+client = OpenAI()
+
+def embed_text(text: str, model="text-embedding-3-small") -> list[float]:
+    """Generate embedding vector for text."""
+    response = client.embeddings.create(
+        input=text,
+        model=model
+    )
+    return response.data[0].embedding  # 1536-dim vector
+
+# Embed a document chunk
+chunk = "Zero-trust architecture requires continuous verification..."
+vector = embed_text(chunk)
+print(f"Vector dimensions: {len(vector)}")   # 1536
+print(f"Cost: ~$0.00002 per chunk")          # Very cheap
+
+# Embed a query (same model!)
+query_vector = embed_text("What is zero-trust?")
+
+# Similarity = cosine distance between vectors
+import numpy as np
+similarity = np.dot(vector, query_vector) / (
+    np.linalg.norm(vector) * np.linalg.norm(query_vector)
+)
+print(f"Similarity: {similarity:.4f}")  # 0.89 = highly relevant</code></pre>
+        <aside class="notes">Embeddings convert text to numerical vectors that capture semantic meaning. Similar concepts produce similar vectors. The key rule: always use the same embedding model for documents and queries. text-embedding-3-small is cost-effective for most use cases at $0.02 per million tokens. For higher accuracy, text-embedding-3-large costs $0.13 per million tokens.</aside>
+      </section>
+
+      <!-- SLIDE 14: Vector Database - ChromaDB -->
+      <section>
+        <h2>🗄️ ChromaDB: Vector Store in Action</h2>
+        <pre  ><code class="python">import chromadb
+from chromadb.utils import embedding_functions
+
+# Initialize ChromaDB with OpenAI embeddings
+openai_ef = embedding_functions.OpenAIEmbeddingFunction(
+    model_name="text-embedding-3-small"
+)
+
+client = chromadb.PersistentClient(path="./vector_store")
+collection = client.get_or_create_collection(
+    name="security_docs",
+    embedding_function=openai_ef,
+    metadata={"hnsw:space": "cosine"}
+)
+
+# Add documents
+collection.add(
+    documents=[
+        "Zero-trust requires verifying every access request...",
+        "SIEM systems aggregate logs from multiple sources...",
+        "Incident response plans should be tested quarterly..."
+    ],
+    metadatas=[
+        {"source": "nist-800-207", "section": "3.1"},
+        {"source": "siem-guide", "section": "1.2"},
+        {"source": "ir-playbook", "section": "5.4"}
+    ],
+    ids=["doc1", "doc2", "doc3"]
+)
+
+# Query
+results = collection.query(
+    query_texts=["How do I verify network access?"],
+    n_results=3,
+    where={"source": "nist-800-207"}  # Metadata filter
+)
+print(results["documents"][0])  # Most relevant chunks</code></pre>
+        <img   src="/assets/lab-graphics/chromadb-architecture.svg" style="width:600px; margin:20px auto; display:block;" alt="ChromaDB vector database architecture">
+        <aside class="notes">ChromaDB is the fastest way to get a vector store running — it works locally with zero infrastructure. The metadata filtering is crucial for enterprise use: you can restrict searches to specific document sources, date ranges, or security classification levels. In production, you'd use PersistentClient with a mounted volume for durability.</aside>
+      </section>
+
+      <!-- SLIDE 14.5: Vector Similarity Concepts -->
+      <section>
+        <h2>Understanding Vector Similarity</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/concept-vector-similarity.svg" style="max-width:700px;width:100%"></div>
+        <aside class="notes">This diagram illustrates how vector similarity works — documents and queries are mapped to points in high-dimensional space, and similarity is measured by the distance or angle between vectors. Closer vectors mean more semantically similar content.</aside>
+      </section>
+
+      <!-- SLIDE 15: Vector Database Comparison -->
+      <section>
+        <h2>Vector Database Comparison</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Feature</th><th>ChromaDB</th><th>Pinecone</th><th>Weaviate</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Deployment</strong></td><td>Embedded/local</td><td>Managed cloud</td><td>Self-hosted/cloud</td></tr>
+            <tr  ><td><strong>Scale</strong></td><td>Millions of vectors</td><td>Billions</td><td>Billions</td></tr>
+            <tr ><td><strong>Pricing</strong></td><td class="text-teal">Free (OSS)</td><td>$70+/month</td><td>Free (OSS) / hosted</td></tr>
+            <tr ><td><strong>Setup time</strong></td><td class="text-teal">5 minutes</td><td>15 minutes</td><td>30 minutes</td></tr>
+            <tr ><td><strong>Metadata filter</strong></td><td>Basic</td><td class="text-teal">Advanced</td><td class="text-teal">GraphQL</td></tr>
+            <tr ><td><strong>Hybrid search</strong></td><td>No</td><td>Yes</td><td class="text-teal">Yes (BM25+vector)</td></tr>
+            <tr  ><td><strong>Best for</strong></td><td>Prototyping, small-medium</td><td>Production at scale</td><td>Complex queries</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">Start with ChromaDB for prototyping and small deployments. Move to Pinecone when you need managed infrastructure and scale. Choose Weaviate when you need hybrid search combining keyword and semantic matching, or when you need complex GraphQL-style queries on metadata. For security-sensitive deployments, Weaviate self-hosted gives you full data control.</aside>
+      </section>
+
+      <!-- SLIDE 16: Complete RAG Pipeline -->
+      <section data-transition="fade">
+        <h2>🔧 Complete RAG Pipeline</h2>
+        <pre  ><code class="python">from openai import OpenAI
+import chromadb
+
+client = OpenAI()
+db = chromadb.PersistentClient("./rag_store")
+collection = db.get_or_create_collection("knowledge_base")
+
+def rag_query(question: str, n_results: int = 5) -> str:
+    # 1. Retrieve relevant chunks
+    results = collection.query(
+        query_texts=[question], n_results=n_results
+    )
+    context_chunks = results["documents"][0]
+    sources = results["metadatas"][0]
+
+    # 2. Build prompt with retrieved context
+    context = "\n\n---\n\n".join(context_chunks)
+    prompt = f"""Answer based ONLY on the provided context.
+If the context doesn't contain the answer, say "I don't have
+enough information to answer that."
+
+Context:
+{context}
+
+Question: {question}
+
+Provide your answer with source references."""
+
+    # 3. Generate response
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.1
+    )
+    return response.choices[0].message.content
+
+# Usage
+answer = rag_query("What are the key principles of zero-trust?")
+print(answer)</code></pre>
+        <aside class="notes">This is a production-ready RAG pipeline in under 40 lines. The critical design choice is the prompt instruction: "Answer based ONLY on the provided context." This grounds the model and dramatically reduces hallucination. The temperature of 0.1 further constrains creative generation. In production, you'd add caching, error handling, and logging around this core pipeline.</aside>
+      </section>
+
+      <!-- SLIDE 17: Section Divider - LangChain -->
+      <section data-background-color="#1e293b">
+        <h1>Section 3</h1>
+        <h2>LangChain Architecture</h2>
+        <p>Chains, Agents, Tools & Memory</p>
+        <aside class="notes">LangChain is the most popular framework for building LLM applications, with over 90,000 GitHub stars and used by thousands of companies. Understanding its architecture is essential even if you choose a different framework, because the patterns it popularized are now industry standard.</aside>
+      </section>
+
+      <!-- SLIDE 18: LangChain Components -->
+      <section>
+        <h2>LangChain Component Architecture</h2>
+        <img   src="/assets/graphics/arch-langchain-components.svg" style="max-width:700px;width:100%">
+        <div class="cols-3">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>🔗 Chains</h3>
+            <p>Sequential pipelines: prompt → LLM → output parser</p>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>🤖 Agents</h3>
+            <p>Autonomous decision-makers that select and use tools</p>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>🧠 Memory</h3>
+            <p>Conversation history and context management</p>
+          </div>
+        </div>
+        <aside class="notes">LangChain's architecture is built on four pillars: Models (LLM wrappers), Chains (sequential processing), Agents (autonomous tool use), and Memory (state management). The framework also includes document loaders, text splitters, and vector store integrations that we've already covered. Think of LangChain as the orchestration layer that connects all the pieces we've discussed.</aside>
+      </section>
+
+      <!-- SLIDE 19: LangChain RAG Pipeline -->
+      <section>
+        <h2>🐍 LangChain RAG Pipeline</h2>
+        <pre  ><code class="python">from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.chains import RetrievalQA
+from langchain_community.document_loaders import DirectoryLoader
+
+# 1. Load documents
+loader = DirectoryLoader("./docs/", glob="**/*.md")
+documents = loader.load()
+
+# 2. Split into chunks
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000, chunk_overlap=200
+)
+chunks = splitter.split_documents(documents)
+
+# 3. Create vector store
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+vectorstore = Chroma.from_documents(
+    chunks, embeddings, persist_directory="./chroma_db"
+)
+
+# 4. Build RAG chain
+llm = ChatOpenAI(model="gpt-4o", temperature=0.1)
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    chain_type="stuff",  # "stuff" = put all docs in prompt
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 5}),
+    return_source_documents=True
+)
+
+# 5. Query
+result = qa_chain.invoke({"query": "Explain our incident response process"})
+print(result["result"])
+for doc in result["source_documents"]:
+    print(f"  Source: {doc.metadata['source']}")</code></pre>
+        <aside class="notes">LangChain abstracts the RAG pipeline into a few lines. The chain_type parameter is important: 'stuff' puts all retrieved docs into one prompt (simple, works for most cases), 'map_reduce' processes each doc separately then combines (for large result sets), and 'refine' iteratively improves the answer with each document. Start with 'stuff' and switch only if you hit context window limits.</aside>
+      </section>
+
+      <!-- SLIDE 20: LangChain Agent with Tools -->
+      <section>
+        <h2>🤖 LangChain Agent with Tools</h2>
+        <pre  ><code class="python">from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_openai_tools_agent
+from langchain.tools import tool
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+@tool
+def search_cve_database(cve_id: str) -> str:
+    """Search the CVE database for vulnerability details."""
+    # In production: call NVD API
+    return f"CVE {cve_id}: Critical RCE in XZ Utils, CVSS 10.0"
+
+@tool
+def check_system_inventory(software: str) -> str:
+    """Check if software is installed in our environment."""
+    inventory = {"xz-utils": "5.6.1 on 3 servers", "openssl": "3.2.0"}
+    return inventory.get(software, "Not found in inventory")
+
+# Build agent
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a security operations assistant."),
+    ("human", "{input}"),
+    MessagesPlaceholder("agent_scratchpad")
+])
+agent = create_openai_tools_agent(llm, [search_cve_database, check_system_inventory], prompt)
+executor = AgentExecutor(agent=agent, tools=[search_cve_database, check_system_inventory])
+
+result = executor.invoke({"input": "Is CVE-2024-3094 affecting our systems?"})
+# Agent: 1) Calls search_cve_database("CVE-2024-3094")
+#         2) Calls check_system_inventory("xz-utils")
+#         3) Synthesizes: "YES - XZ Utils 5.6.1 on 3 servers is vulnerable"</code></pre>
+        <aside class="notes">This demonstrates the agentic pattern — the LLM autonomously decides which tools to call and in what order. It first looks up the CVE, discovers it affects XZ Utils, then checks if XZ Utils is in our inventory. This is the pattern behind AI security copilots, DevOps assistants, and customer service agents. The key risk: always validate tool outputs and limit what actions agents can take.</aside>
+      </section>
+
+      <!-- SLIDE 21: Myth vs Reality - RAG -->
+      <section>
+        <h2>Myth vs Reality: RAG</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"RAG eliminates hallucination completely. Once you have retrieval, the AI only uses your documents."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>RAG <em>reduces</em> hallucination by 60-80% but doesn't eliminate it. The LLM can still hallucinate within retrieved context, misinterpret documents, or blend retrieved info with parametric knowledge. You need evaluation frameworks, confidence scoring, and human review for critical applications.</p>
+          </div>
+        </div>
+        <aside class="notes">This is one of the most dangerous myths in enterprise AI. Teams deploy RAG and assume their AI is now factually grounded. In reality, the retrieval can return irrelevant documents, the LLM can misinterpret them, and the model can still generate plausible-sounding but incorrect synthesis. Always implement evaluation — compare AI answers against known-good answers on a test set.</aside>
+      </section>
+
+      <!-- SLIDE 22: Section Divider - Deployment -->
+      <section data-background-color="#1e293b">
+        <h1>Section 4</h1>
+        <h2>Deployment Patterns</h2>
+        <p>From Prototype to Production</p>
+        <aside class="notes">Getting an LLM app working locally is easy. Getting it running reliably in production at scale with proper monitoring, security, and cost controls is where the engineering challenge lies. This section covers the three main deployment patterns.</aside>
+      </section>
+
+      <!-- SLIDE 23: Deployment Pattern Comparison -->
+      <section>
+        <h2>Deployment Patterns</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Pattern</th><th>Serverless (Lambda)</th><th>Containers (ECS/Fargate)</th><th>Kubernetes</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Best for</strong></td><td>Low-medium traffic, event-driven</td><td>Steady workloads, simple scaling</td><td>High scale, complex orchestration</td></tr>
+            <tr ><td><strong>Cold start</strong></td><td class="text-red">2-15 seconds</td><td class="text-teal">None</td><td class="text-teal">None</td></tr>
+            <tr ><td><strong>Cost model</strong></td><td class="text-teal">Pay per invocation</td><td>Pay per hour</td><td>Pay per cluster</td></tr>
+            <tr ><td><strong>Max timeout</strong></td><td class="text-red">15 min</td><td class="text-teal">Unlimited</td><td class="text-teal">Unlimited</td></tr>
+            <tr ><td><strong>Ops complexity</strong></td><td class="text-teal">Minimal</td><td>Moderate</td><td class="text-red">High</td></tr>
+            <tr ><td><strong>Streaming support</strong></td><td>Via response streaming</td><td class="text-teal">Native</td><td class="text-teal">Native</td></tr>
+            <tr ><td><strong>Scale to zero</strong></td><td class="text-teal">Yes</td><td>With config</td><td>With KEDA</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">For most enterprise LLM apps, start with containers on ECS Fargate or Cloud Run. Serverless has cold start issues that hurt user experience, and the 15-minute timeout can be a problem for complex agent workflows. Kubernetes is only justified at significant scale or when you need fine-grained control over GPU allocation for self-hosted models.</aside>
+      </section>
+
+      <!-- SLIDE 24: Production Architecture -->
+      <section data-transition="fade">
+        <h2>Production Architecture Pattern</h2>
+        <pre  ><code class="python"># FastAPI production LLM service
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+import time, logging
+
+app = FastAPI()
+logger = logging.getLogger("llm-service")
+
+class QueryRequest(BaseModel):
+    question: str
+    stream: bool = False
+    max_tokens: int = 1000
+
+@app.post("/query")
+async def query(req: QueryRequest):
+    start = time.time()
+    try:
+        if req.stream:
+            return StreamingResponse(
+                stream_response(req.question, req.max_tokens),
+                media_type="text/event-stream"
+            )
+        result = await rag_query(req.question, req.max_tokens)
+        latency = time.time() - start
+        logger.info(f"query latency={latency:.2f}s tokens={result['tokens']}")
+        return result
+    except Exception as e:
+        logger.error(f"query failed: {e}")
+        raise HTTPException(500, "Query processing failed")
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy", "model": "gpt-4o", "vector_db": "connected"}</code></pre>
+        <aside class="notes">This is the skeleton of a production LLM service. Key elements: health check endpoint for load balancers, structured logging with latency metrics, streaming support via SSE, error handling that doesn't leak internal details, and Pydantic models for input validation. In production, you'd add rate limiting, authentication, request tracing, and circuit breakers for the LLM API.</aside>
+      </section>
+
+      <!-- SLIDE 25: Section Divider - Monitoring -->
+      <section data-background-color="#1e293b">
+        <h1>Section 5</h1>
+        <h2>Monitoring & Cost Optimization</h2>
+        <p>What gets measured gets managed</p>
+        <aside class="notes">LLM applications have unique monitoring challenges. Unlike traditional APIs where latency and error rate tell the whole story, LLM apps also need quality monitoring — is the AI giving good answers? And cost monitoring — LLM APIs charge per token, so a poorly designed prompt can 10x your costs overnight.</aside>
+      </section>
+
+      <!-- SLIDE 26: LLM Monitoring Dashboard -->
+      <section data-transition="slide">
+        <h2>📊 The Three Pillars of LLM Monitoring</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3>⏱️ Latency</h3>
+            <ul>
+              <li class="fragment fade-up"   >Time to first token (TTFT)</li>
+              <li   >Total response time</li>
+              <li   >P50 / P95 / P99</li>
+              <li   >Target: TTFT < 500ms</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3>💰 Cost</h3>
+            <ul>
+              <li class="fragment fade-up"   >Cost per query</li>
+              <li class="fragment fade-right"   >Input vs output tokens</li>
+              <li   >Daily/weekly burn rate</li>
+              <li   >Cost per user session</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3>🎯 Quality</h3>
+            <ul>
+              <li   >Retrieval relevance score</li>
+              <li   >Answer correctness (eval set)</li>
+              <li   >User satisfaction (thumbs up/down)</li>
+              <li   >Hallucination detection rate</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Quality monitoring is the hardest pillar but the most important. Track it three ways: automated evaluation against a test set of questions with known-good answers, user feedback signals (thumbs up/down, regeneration requests), and periodic human review of a random sample. Most teams invest heavily in latency and cost monitoring but neglect quality — that's how AI rot sets in.</aside>
+      </section>
+
+      <!-- SLIDE 27: Cost Optimization Strategies -->
+      <section>
+        <h2>💰 Cost Optimization Strategies</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Strategy</th><th>Savings</th><th>Trade-off</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td><strong>Prompt caching</strong> (Anthropic, OpenAI)</td><td class="text-teal">50-90%</td><td>Cache invalidation complexity</td></tr>
+            <tr ><td><strong>Model routing</strong> (GPT-4o-mini for easy queries)</td><td class="text-teal">60-80%</td><td>Routing logic, quality variance</td></tr>
+            <tr ><td><strong>Semantic caching</strong> (cache similar queries)</td><td class="text-teal">40-70%</td><td>Stale answers, cache size</td></tr>
+            <tr  ><td><strong>Prompt compression</strong> (reduce input tokens)</td><td>20-40%</td><td>Possible quality loss</td></tr>
+            <tr ><td><strong>Batch API</strong> (async, 50% discount)</td><td class="text-teal">50%</td><td>24-hour latency</td></tr>
+            <tr  ><td><strong>Fine-tuning</strong> (smaller model, same quality)</td><td>30-60%</td><td>Training cost, maintenance</td></tr>
+          </tbody>
+        </table>
+        <p class="text-teal">Combine strategies: route + cache can achieve 80-95% cost reduction.</p>
+        <aside class="notes">The most impactful strategy is model routing. 70-80% of enterprise queries can be handled by GPT-4o-mini or Claude Haiku at 1/10th the cost of the flagship model. Use a classifier (can even be rule-based) to route complex queries to GPT-4o and simple ones to the mini model. Add semantic caching on top and you can reduce costs by 90% while maintaining quality for the queries that matter.</aside>
+      </section>
+
+      <!-- SLIDE 28: Cost Monitoring Code -->
+      <section>
+        <h2>🐍 Cost Tracking Implementation</h2>
+        <pre  ><code class="python">from dataclasses import dataclass, field
+from datetime import datetime
+
+# Pricing per 1M tokens (as of 2026)
+MODEL_PRICING = {
+    "gpt-4o":       {"input": 2.50, "output": 10.00},
+    "gpt-4o-mini":  {"input": 0.15, "output": 0.60},
+    "claude-sonnet": {"input": 3.00, "output": 15.00},
+    "claude-haiku":  {"input": 0.25, "output": 1.25},
+}
+
+@dataclass
+class CostTracker:
+    total_cost: float = 0.0
+    query_count: int = 0
+    costs_by_model: dict = field(default_factory=dict)
+
+    def log_usage(self, model: str, input_tokens: int, output_tokens: int):
+        pricing = MODEL_PRICING[model]
+        cost = (input_tokens * pricing["input"] +
+                output_tokens * pricing["output"]) / 1_000_000
+        self.total_cost += cost
+        self.query_count += 1
+        self.costs_by_model[model] = self.costs_by_model.get(model, 0) + cost
+        return cost
+
+    @property
+    def avg_cost_per_query(self) -> float:
+        return self.total_cost / max(self.query_count, 1)
+
+tracker = CostTracker()
+cost = tracker.log_usage("gpt-4o", input_tokens=2000, output_tokens=500)
+print(f"Query cost: ${cost:.4f}")  # $0.0100</code></pre>
+        <aside class="notes">Build cost tracking into your application from day one. This simple tracker gives you visibility into which models are consuming budget and what your average cost per query is. Set up alerts when daily costs exceed thresholds. I've seen production LLM apps go from $50/day to $5,000/day after a prompt change — without cost monitoring, nobody noticed for a week.</aside>
+      </section>
+
+      <!-- SLIDE 28.5: Project Architecture — Document Q&A -->
+      <section data-transition="fade">
+        <h2>🏗️ Project: Document Q&A System</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/project-doc-qa-arch.svg" style="max-width:700px;width:100%"></div>
+        <img   src="/assets/lab-graphics/project01-docqa-screenshot-mock.svg" style="width:600px; margin:20px auto; display:block;" alt="Document Q&A system screenshot mockup">
+        <aside class="notes">This architecture diagram shows the complete Document Q&A RAG system — from document ingestion through chunking, embedding, vector storage, retrieval, and LLM generation with source attribution.</aside>
+      </section>
+
+      <!-- SLIDE 28.6: Project Architecture — Email Triage -->
+      <section>
+        <h2>🏗️ Project: AI Email Triage</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/project-email-triage-arch.svg" style="max-width:700px;width:100%"></div>
+        <aside class="notes">The email triage project uses LLM classification to automatically categorize, prioritize, and route incoming emails — reducing manual processing time by 80%+.</aside>
+      </section>
+
+      <!-- SLIDE 29: Hands-On Activity -->
+      <section>
+        <h2>🛠️ Hands-On: Build a RAG Pipeline</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <h3>Activity: Security Knowledge Base RAG</h3>
+          <ol>
+            <li   ><strong>Setup (5 min):</strong> Install dependencies: <code>pip install openai chromadb langchain</code></li>
+            <li   ><strong>Ingest (10 min):</strong> Load NIST 800-53 security controls into ChromaDB with metadata (control family, priority)</li>
+            <li class="fragment fade-up"   ><strong>Query (10 min):</strong> Build the RAG pipeline with source attribution</li>
+            <li class="fragment fade-up"   ><strong>Evaluate (10 min):</strong> Test 10 security questions, compare AI answers to known-good answers</li>
+            <li   ><strong>Optimize (10 min):</strong> Experiment with chunk sizes (500, 1000, 1500) and measure retrieval quality</li>
+          </ol>
+          <p><strong>Bonus:</strong> Add a model router that uses GPT-4o-mini for simple lookups and GPT-4o for complex analysis</p>
+        </div>
+        <aside class="notes">This activity builds a practical tool that students can actually use in their security work. NIST 800-53 is freely available and well-structured, making it ideal for RAG. The evaluation step is critical — students should see how chunk size affects answer quality. The bonus challenge introduces model routing, which is a key cost optimization pattern.</aside>
+      </section>
+
+      <!-- SLIDE 30: Quiz -->
+      <section>
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <ol>
+            <li    >What does TTFT stand for in LLM monitoring?
+              <ul><li    >A) Total Time For Training</li><li    >B) Time To First Token ✅</li><li    >C) Token Transfer Frequency Test</li></ul>
+            </li>
+            <li    >In LangChain's RAG chain, what does chain_type="stuff" mean?
+              <ul><li    >A) Ignore irrelevant documents</li><li class="fragment fade-up"    >B) Put all retrieved docs into one prompt ✅</li><li    >C) Process each document separately</li></ul>
+            </li>
+            <li    >Which cost optimization strategy provides the highest savings?
+              <ul><li    >A) Prompt compression (20-40%)</li><li    >B) Model routing + caching (80-95%) ✅</li><li    >C) Batch API alone (50%)</li></ul>
+            </li>
+            <li    >Which vector database supports hybrid BM25 + semantic search?
+              <ul><li class="fragment zoom-in"    >A) ChromaDB</li><li    >B) Pinecone</li><li    >C) Weaviate ✅</li></ul>
+            </li>
+          </ol>
+        </div>
+        <aside class="notes">Review answers as a group. For question 3, discuss why combining strategies is more effective than any single approach. For question 4, explain that hybrid search is important when users search with both natural language and specific keywords — common in technical domains like security.</aside>
+      </section>
+
+      <!-- SLIDE 31: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>✅ Key Takeaways</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <ul>
+            <li   >✅ Use streaming for user-facing apps — TTFT matters more than total time</li>
+            <li   >✅ Function calling enables LLM-powered tool use and agents</li>
+            <li   >✅ RAG reduces hallucination 60-80% but requires evaluation frameworks</li>
+            <li   >✅ Start with ChromaDB for prototyping, graduate to Pinecone/Weaviate at scale</li>
+            <li   >✅ Chunking strategy is the #1 factor in RAG quality — experiment aggressively</li>
+            <li   >✅ Monitor three pillars: latency, cost, and quality — quality is hardest but most important</li>
+            <li   >✅ Model routing + caching can reduce costs 80-95% with minimal quality trade-off</li>
+          </ul>
+        </div>
+        <aside class="notes">The overarching lesson: LLM integration is software engineering, not data science. The skills that matter are API design, system architecture, monitoring, and cost management — the same skills that make great backend engineers. The AI-specific knowledge is chunking, prompt design, and evaluation — but those sit on top of solid engineering fundamentals.</aside>
+      </section>
+
+      <!-- SLIDE 32: Lab Preview -->
+      <section>
+        <h2>🔬 Lab Preview</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <h3>Lab 11: Production RAG System</h3>
+          <ul>
+            <li  >Build a complete RAG pipeline with FastAPI, ChromaDB, and OpenAI</li>
+            <li  >Implement streaming SSE endpoint for real-time responses</li>
+            <li  >Add model routing: GPT-4o-mini for simple queries, GPT-4o for complex</li>
+            <li  >Build a cost tracking dashboard with live metrics</li>
+            <li  >Deploy to Docker with health checks and structured logging</li>
+            <li  >Run evaluation: test 50 queries against known-good answers</li>
+          </ul>
+          <p><strong>Duration:</strong> 2.5 hours | <strong>Deliverable:</strong> Dockerized RAG service with monitoring</p>
+        </div>
+        <img   src="/assets/lab-graphics/project02-slackbot-interaction.svg" style="width:600px; margin:20px auto; display:block;" alt="AI Slack bot interaction flow">
+        <aside class="notes">This lab is the most hands-on in the course. Students will build a complete, production-grade RAG service from scratch. The evaluation component is critical — by testing against a known-good answer set, students experience firsthand how RAG quality varies with different configurations. The Docker deployment ensures the system is portable and production-ready.</aside>
+      </section>
+
+      <!-- SLIDE 33: Resources -->
+      <section>
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>Documentation</h3>
+            <ul>
+              <li   >OpenAI API Reference (platform.openai.com)</li>
+              <li   >LangChain Docs (python.langchain.com)</li>
+              <li   >ChromaDB Guide (docs.trychroma.com)</li>
+              <li class="fragment fade-up"   >Anthropic Cookbook (github.com/anthropics)</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3>Deep Dives</h3>
+            <ul>
+              <li   >"RAG is Dead, Long Live RAG" — retrieval optimization patterns</li>
+              <li   >LangChain vs LlamaIndex comparison (2025)</li>
+              <li   >OpenAI Prompt Engineering Guide</li>
+              <li   >Vector Database benchmarks (ann-benchmarks.com)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The OpenAI and Anthropic cookbooks are essential references — they contain production patterns maintained by the model providers themselves. The ANN benchmarks site is invaluable when choosing a vector database at scale. LangChain documentation has improved significantly and now includes production deployment guides.</aside>
+      </section>
+
+      <!-- SLIDE 34: Q&A -->
+      <section data-transition="fade">
+        <h2>❓ Questions & Discussion</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <h3>Discussion Prompts</h3>
+          <ul>
+            <li   >What's the most promising RAG use case in your organization?</li>
+            <li   >Have you hit cost surprises with LLM APIs? What happened?</li>
+            <li   >When would you choose fine-tuning over RAG, or vice versa?</li>
+          </ul>
+        </div>
+        <p class="text-teal">Next Module: Model Context Protocol (MCP) →</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">The fine-tuning vs RAG question is a great discussion starter. The short answer: RAG for factual grounding and up-to-date knowledge, fine-tuning for behavior and style. In practice, most enterprise applications need RAG, not fine-tuning. Fine-tuning is only justified when you need consistent output format, domain-specific terminology, or performance that RAG can't achieve.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

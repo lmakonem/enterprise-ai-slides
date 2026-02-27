@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 2: How LLMs Work</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-02.svg" style="width:100px">
+        <h1>Module 2: How LLMs Work</h1>
+        <h3>Tokenization, Embeddings, Attention & Training</h3>
+        <p>IT Security Labs / OpSec Fusion</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Welcome to Module 2. Today we open the black box. You don't need to become an ML engineer, but understanding how LLMs work will make you a better evaluator, user, and governor of these tools. Let's get technical — but accessible.</aside>
+      </section>
+
+      <!-- SLIDE 2: Learning Objectives -->
+      <section data-transition="fade">
+        <h2>Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ul>
+            <li   >🎯 Explain how text is converted to numbers (tokenization & embeddings)</li>
+            <li   >🎯 Describe the attention mechanism and why it matters</li>
+            <li   >🎯 Understand the LLM training pipeline: pre-training → RLHF</li>
+            <li   >🎯 Compare fine-tuning, RAG, and prompt engineering approaches</li>
+            <li   >🎯 Explain temperature, top-p, and context windows in practical terms</li>
+          </ul>
+        </div>
+        <aside class="notes">These objectives take you from "LLMs are magic" to "I understand the engineering." By the end, you'll be able to read an LLM product spec sheet and actually know what it means — context window, parameters, temperature settings, and more.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section>
+        <h2>Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">$13.4B</div>
+            <div class="stat-label">spent on LLM infrastructure in 2025 (Epoch AI)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">67%</div>
+            <div class="stat-label">of enterprise AI failures stem from misunderstanding model capabilities (Gartner, 2025)</div>
+          </div>
+        </div>
+        <p class="text-red" style="margin-top:1em; text-align:center;">Understanding how LLMs work prevents expensive mistakes.</p>
+        <aside class="notes">When enterprises don't understand how LLMs work, they make costly errors: choosing the wrong model, setting wrong parameters, expecting capabilities that don't exist, or ignoring limitations that do. This module prevents those mistakes by building genuine understanding.</aside>
+      </section>
+
+      <!-- SLIDE 4: Section Divider — Tokenization -->
+      <section data-background-color="#1e293b">
+        <h2>Section 1</h2>
+        <h3>Tokenization: Text → Numbers</h3>
+        <aside class="notes">Computers don't understand text — they understand numbers. Tokenization is the first step in converting human language into something a neural network can process. Let's see exactly how this works.</aside>
+      </section>
+
+      <!-- SLIDE 5: What Is Tokenization? -->
+      <section>
+        <h2>What Is Tokenization?</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <p>Tokenization splits text into <strong>tokens</strong> — subword units that the model processes. Each token maps to a number (ID) in the model's vocabulary.</p>
+        </div>
+        <img   src="/assets/graphics/concept-tokenization.svg" style="max-width:700px;width:100%">
+        <aside class="notes">Tokens are not always full words. Modern tokenizers use subword algorithms like BPE (Byte Pair Encoding). Common words like "the" are one token, but rare words get split. "Tokenization" itself might be split into "Token" + "ization". This is why token count ≠ word count.</aside>
+      </section>
+
+      <!-- SLIDE 6: Tokenization Example -->
+      <section>
+        <h2>Tokenization in Action</h2>
+        <div class="diagram-box" style="text-align:center;">
+          <p style="font-size:1.1em;"><strong>Input:</strong> "Hello world! How are you?"</p>
+          <div style="margin-top:1em;">
+            <table class="comparison" style="width:80%;margin:0 auto;">
+              <thead><tr ><th>Token</th><th>Token ID</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr  ><td style="background:#0d9488;color:white;padding:5px 10px;">Hello</td><td>9906</td><td>Common word = 1 token</td></tr>
+                <tr  ><td style="background:#3b82f6;color:white;padding:5px 10px;"> world</td><td>1917</td><td>Note: space is part of token</td></tr>
+                <tr  ><td style="background:#8b5cf6;color:white;padding:5px 10px;">!</td><td>0</td><td>Punctuation = separate token</td></tr>
+                <tr  ><td style="background:#0d9488;color:white;padding:5px 10px;"> How</td><td>1374</td><td>Leading space included</td></tr>
+                <tr  ><td style="background:#3b82f6;color:white;padding:5px 10px;"> are</td><td>527</td><td>Common word</td></tr>
+                <tr  ><td style="background:#8b5cf6;color:white;padding:5px 10px;"> you</td><td>499</td><td>Common word</td></tr>
+                <tr  ><td style="background:#0d9488;color:white;padding:5px 10px;">?</td><td>30</td><td>Punctuation</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:0.5em;"><strong>7 tokens</strong> for 5 words — tokenization adds overhead</p>
+        </div>
+        <aside class="notes">This is from GPT-4's tokenizer (cl100k_base). Notice that spaces are often attached to the following word. This matters for cost — you're billed per token, not per word. A rough rule: 1 token ≈ 0.75 words in English. Other languages are less efficient — Chinese can be 2-3x more tokens per concept.</aside>
+      </section>
+
+      <!-- SLIDE 7: Token Economics -->
+      <section>
+        <h2>Token Economics: Why This Matters for Business</h2>
+        <table class="comparison">
+          <thead><tr ><th>Model</th><th>Vocab Size</th><th>Input Cost (1M tokens)</th><th>Output Cost (1M tokens)</th></tr></thead>
+          <tbody>
+            <tr  ><td>GPT-4o</td><td>~100K</td><td>$2.50</td><td>$10.00</td></tr>
+            <tr  ><td>Claude 3.5 Sonnet</td><td>~100K</td><td>$3.00</td><td>$15.00</td></tr>
+            <tr  ><td>Gemini 1.5 Pro</td><td>~256K</td><td>$1.25</td><td>$5.00</td></tr>
+            <tr  ><td>Llama 3 70B (self-hosted)</td><td>~128K</td><td>~$0.50*</td><td>~$0.50*</td></tr>
+          </tbody>
+        </table>
+        <p><small>*Self-hosted costs vary by infrastructure. Prices as of early 2025.</small></p>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;margin-top:0.5em;">
+          <p>📐 <strong>Rule of thumb:</strong> 1 page of English text ≈ 500 tokens ≈ 375 words</p>
+        </div>
+        <aside class="notes">Tokenization directly impacts your budget. If your customer service bot handles 10,000 conversations per day at 2,000 tokens each, that's 20M tokens/day. At GPT-4o rates, that's about $50/day for input alone. Understanding token economics is essential for building a business case.</aside>
+      </section>
+
+      <!-- SLIDE 8: Section Divider — Embeddings -->
+      <section data-background-color="#1e293b">
+        <h2>Section 2</h2>
+        <h3>Embeddings: Words as Vectors</h3>
+        <aside class="notes">Once text is tokenized, each token gets converted to an embedding — a dense vector of numbers. This is where meaning starts to emerge. Embeddings are one of the most powerful ideas in modern AI.</aside>
+      </section>
+
+      <!-- SLIDE 9: What Are Embeddings? -->
+      <section>
+        <h2>Embeddings: Giving Words Meaning</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3 class="text-teal">The Idea</h3>
+            <p>Each token is represented as a <strong>vector</strong> (list of numbers) in high-dimensional space.</p>
+            <p>Similar words have similar vectors.</p>
+            <p><strong>Dimensions:</strong></p>
+            <ul>
+              <li class="fragment zoom-in"  >GPT-3: 12,288 dimensions</li>
+              <li  >GPT-4: ~12,000+ dimensions</li>
+              <li  >BERT: 768 dimensions</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-blue">The Magic</h3>
+            <p>Embeddings capture <em>relationships</em>:</p>
+            <ul>
+              <li  >"King" - "Man" + "Woman" ≈ "Queen"</li>
+              <li  >"Paris" - "France" + "Germany" ≈ "Berlin"</li>
+              <li  >"Doctor" and "Nurse" are close in space</li>
+            </ul>
+            <p style="margin-top:0.5em;">This is how models "understand" that words relate to each other.</p>
+          </div>
+        </div>
+        <aside class="notes">Embeddings are learned during training — the model discovers that words used in similar contexts should have similar vectors. The King-Queen example is famous from Word2Vec (2013). Modern embeddings are far richer — they capture nuance, context, and even sentiment.</aside>
+      </section>
+
+      <!-- SLIDE 10: 3D Embedding Visualization -->
+      <section>
+        <h2>Visualizing Embeddings</h2>
+        <img   src="/assets/graphics/concept-embeddings-3d.svg" style="max-width:700px;width:100%">
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;margin-top:0.5em;">
+          <p>In reality, embeddings have thousands of dimensions. We project to 2D/3D for visualization. Key insight: <strong>distance = similarity</strong>. Nearby points mean similar meanings.</p>
+        </div>
+        <aside class="notes">Tools like t-SNE and UMAP let us visualize high-dimensional embeddings in 2D. When you see clusters forming — animals together, countries together, emotions together — that's the model's learned understanding of language. Enterprises use embeddings for semantic search, recommendation, and classification.</aside>
+      </section>
+
+      <!-- SLIDE 11: Enterprise Embedding Use Cases -->
+      <section>
+        <h2>Embeddings in Enterprise</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;text-align:center;">
+            <h3>🔍 Semantic Search</h3>
+            <p>Search by meaning, not keywords</p>
+            <p><small>Notion AI, Elastic, Pinecone</small></p>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;text-align:center;">
+            <h3>🎯 Recommendations</h3>
+            <p>Find similar products, articles, candidates</p>
+            <p><small>Spotify, LinkedIn, Amazon</small></p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;text-align:center;">
+            <h3>🛡️ Anomaly Detection</h3>
+            <p>Spot unusual patterns in logs or transactions</p>
+            <p><small>Splunk, Datadog, CrowdStrike</small></p>
+          </div>
+        </div>
+        <aside class="notes">Embeddings are arguably more commercially important than text generation. Every major search system is moving from keyword matching to semantic similarity. When you search your email and find a message even though you used different words than the sender — that's embeddings at work.</aside>
+      </section>
+
+      <!-- SLIDE 12: Section Divider — Attention -->
+      <section data-background-color="#1e293b">
+        <h2>Section 3</h2>
+        <h3>The Attention Mechanism</h3>
+        <aside class="notes">Attention is the breakthrough that made modern LLMs possible. It's the "A" in the Transformer architecture, and it solves a fundamental problem: how does a model know which parts of the input to focus on?</aside>
+      </section>
+
+      <!-- SLIDE 13: The Problem Attention Solves -->
+      <section>
+        <h2>The Problem: Context Matters</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <p style="font-size:1.2em;">Consider these two sentences:</p>
+          <ul>
+            <li class="fragment fade-up"  >"The <strong>bank</strong> of the river was muddy."</li>
+            <li  >"I deposited money at the <strong>bank</strong>."</li>
+          </ul>
+          <p style="margin-top:1em;">Same word, completely different meanings. The model needs to look at <em>other words</em> to determine the meaning.</p>
+        </div>
+        <div style="margin-top:1em;">
+          <p><strong>Before Transformers (RNNs):</strong> Processed words left-to-right, sequentially. Long-range dependencies were lost.</p>
+          <p><strong>With Attention:</strong> Every word can "look at" every other word simultaneously.</p>
+        </div>
+        <aside class="notes">This is the core insight. In the river sentence, "bank" attends strongly to "river" and "muddy." In the money sentence, it attends to "deposited" and "money." Attention lets the model dynamically weigh which context words matter most for each position. This is why the 2017 paper was titled "Attention Is All You Need."</aside>
+      </section>
+
+      <!-- SLIDE 14: How Attention Works -->
+      <section>
+        <h2>Self-Attention: The Core Mechanism</h2>
+        <div class="diagram-box" style="font-size:0.9em;">
+          <p>For each token, attention computes three vectors:</p>
+          <div class="cols-3" style="margin-top:0.5em;">
+            <div style="background:#0d9488;color:white;padding:15px;border-radius:8px;text-align:center;">
+              <strong>Query (Q)</strong><br>"What am I looking for?"
+            </div>
+            <div style="background:#3b82f6;color:white;padding:15px;border-radius:8px;text-align:center;">
+              <strong>Key (K)</strong><br>"What do I contain?"
+            </div>
+            <div style="background:#8b5cf6;color:white;padding:15px;border-radius:8px;text-align:center;">
+              <strong>Value (V)</strong><br>"What information do I provide?"
+            </div>
+          </div>
+          <p style="margin-top:1em; text-align:center;"><strong>Attention Score = softmax(Q · K<sup>T</sup> / √d) · V</strong></p>
+          <p style="text-align:center;">High Q·K similarity → high attention weight → more influence from that token's Value</p>
+        </div>
+        <aside class="notes">Think of it like a search engine inside the model. Each word asks a query ("what context do I need?"), every other word offers a key ("here's what I'm about"), and the match between Q and K determines how much each word's value contributes. This happens at every layer, building richer representations.</aside>
+      </section>
+
+      <!-- SLIDE 15: Multi-Head Attention -->
+      <section>
+        <h2>Multi-Head Attention</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <p>Instead of one attention calculation, Transformers run <strong>multiple attention heads in parallel</strong> — each learning to focus on different relationships.</p>
+        </div>
+        <div class="cols" style="margin-top:1em;">
+          <div>
+            <h4>Different heads might learn:</h4>
+            <ul>
+              <li  >🔵 <strong>Head 1:</strong> Subject-verb relationships</li>
+              <li  >🟢 <strong>Head 2:</strong> Adjective-noun relationships</li>
+              <li class="fragment fade-up"  >🟣 <strong>Head 3:</strong> Pronoun references</li>
+              <li  >🟠 <strong>Head 4:</strong> Negation tracking</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Scale in practice:</h4>
+            <ul>
+              <li  >GPT-3: 96 attention heads</li>
+              <li  >GPT-4: ~120 attention heads (estimated)</li>
+              <li  >Each head: 128 dimensions</li>
+              <li  >Combined: rich, multi-faceted understanding</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Multi-head attention is like having a team of analysts, each examining the same document for different things. One tracks who's doing what, another tracks relationships between concepts, another tracks temporal order. Combined, they build a comprehensive understanding of the text.</aside>
+      </section>
+
+      <!-- SLIDE 16: Section Divider — Training -->
+      <section data-transition="fade" data-background-color="#1e293b">
+        <h2>Section 4</h2>
+        <h3>How LLMs Are Trained</h3>
+        <aside class="notes">Now let's look at the training pipeline. How do you go from a random neural network to something that can write code, answer questions, and pass the bar exam? It's a multi-stage process that costs tens of millions of dollars.</aside>
+      </section>
+
+      <!-- SLIDE 17: Training Pipeline -->
+      <section>
+        <h2>The LLM Training Pipeline</h2>
+        <div class="diagram-box">
+          <div style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;">
+            <div style="background:#0d9488;color:white;padding:20px;border-radius:8px;text-align:center;width:200px;">
+              <strong>Stage 1</strong><br>Pre-training<br><small>Learn language patterns from internet-scale data</small>
+            </div>
+            <div style="font-size:2em;">→</div>
+            <div style="background:#3b82f6;color:white;padding:20px;border-radius:8px;text-align:center;width:200px;">
+              <strong>Stage 2</strong><br>SFT<br><small>Supervised Fine-Tuning on curated Q&A pairs</small>
+            </div>
+            <div style="font-size:2em;">→</div>
+            <div style="background:#8b5cf6;color:white;padding:20px;border-radius:8px;text-align:center;width:200px;">
+              <strong>Stage 3</strong><br>RLHF<br><small>Reinforcement Learning from Human Feedback</small>
+            </div>
+          </div>
+        </div>
+        <div class="cols-3" style="margin-top:1em;">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;text-align:center;">
+            <p><strong>Data:</strong> Trillions of tokens</p>
+            <p><strong>Cost:</strong> $10-100M+</p>
+            <p><strong>Time:</strong> Months</p>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;text-align:center;">
+            <p><strong>Data:</strong> ~100K examples</p>
+            <p><strong>Cost:</strong> $100K-1M</p>
+            <p><strong>Time:</strong> Days-weeks</p>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;text-align:center;">
+            <p><strong>Data:</strong> Human rankings</p>
+            <p><strong>Cost:</strong> $1-10M</p>
+            <p><strong>Time:</strong> Weeks</p>
+          </div>
+        </div>
+        <aside class="notes">Pre-training creates a model that can predict text but isn't helpful. SFT teaches it to follow instructions. RLHF aligns it with human preferences — making it helpful, harmless, and honest. GPT-4's pre-training alone reportedly cost over $100M in compute. This is why only a few companies can train frontier models.</aside>
+      </section>
+
+      <!-- SLIDE 18: Pre-training Data -->
+      <section>
+        <h2>Pre-training: What's in the Data?</h2>
+        <table class="comparison">
+          <thead><tr ><th>Source</th><th>% of Training Data (est.)</th><th>What It Teaches</th></tr></thead>
+          <tbody>
+            <tr  ><td>Common Crawl (web pages)</td><td>~60%</td><td>General knowledge, writing styles</td></tr>
+            <tr  ><td>Books (Books1, Books2)</td><td>~16%</td><td>Long-form reasoning, narrative</td></tr>
+            <tr  ><td>Wikipedia</td><td>~3%</td><td>Factual knowledge, structure</td></tr>
+            <tr  ><td>Code (GitHub)</td><td>~10%</td><td>Programming, logical patterns</td></tr>
+            <tr  ><td>Academic papers (arXiv)</td><td>~5%</td><td>Scientific reasoning</td></tr>
+            <tr  ><td>Other (Reddit, forums, etc.)</td><td>~6%</td><td>Conversational patterns, opinions</td></tr>
+          </tbody>
+        </table>
+        <p class="text-red"><strong>Security note:</strong> Training data may contain PII, copyrighted content, and biased language. This has legal and ethical implications for enterprise use.</p>
+        <aside class="notes">This composition matters. Models trained heavily on code are better at reasoning. Models with more books are better at long-form text. The data mix also introduces biases — if the training data overrepresents certain viewpoints, the model will too. For security professionals: training data provenance is a governance concern.</aside>
+      </section>
+
+      <!-- SLIDE 19: RLHF Explained -->
+      <section>
+        <h2>RLHF: Teaching AI to Be Helpful</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <ol>
+            <li  ><strong>Generate:</strong> Model produces multiple responses to the same prompt</li>
+            <li  ><strong>Rank:</strong> Human raters rank responses from best to worst</li>
+            <li  ><strong>Train reward model:</strong> A separate model learns to predict human preferences</li>
+            <li  ><strong>Optimize:</strong> Original model is trained to maximize the reward model's score</li>
+          </ol>
+        </div>
+        <div class="cols" style="margin-top:1em;">
+          <div class="myth-card">
+            <h3>Before RLHF</h3>
+            <p>"The capital of France is Paris. Paris is also known as the City of Light. The Eiffel Tower was built in 1889..." <em>(rambling, unfocused)</em></p>
+          </div>
+          <div class="truth-card">
+            <h3>After RLHF</h3>
+            <p>"The capital of France is Paris." <em>(concise, direct, helpful)</em></p>
+          </div>
+        </div>
+        <aside class="notes">RLHF is what makes the difference between a raw language model and ChatGPT. Without it, models tend to ramble, repeat themselves, or generate toxic content. With it, they learn to be concise, helpful, and safe. OpenAI employed thousands of human raters for this process.</aside>
+      </section>
+
+      <!-- SLIDE 20: Section Divider — Fine-tuning vs RAG -->
+      <section data-transition="slide" data-background-color="#1e293b">
+        <h2>Section 5</h2>
+        <h3>Customization: Fine-Tuning vs. RAG vs. Prompting</h3>
+        <aside class="notes">Once a base model exists, how do you customize it for your enterprise? There are three main approaches, each with different trade-offs. Choosing the right one is one of the most important decisions in an enterprise AI project.</aside>
+      </section>
+
+      <!-- SLIDE 21: Three Approaches Compared -->
+      <section data-transition="slide">
+        <h2>Three Ways to Customize LLMs</h2>
+        <img   src="/assets/graphics/concept-fine-tuning-vs-rag.svg" style="max-width:700px;width:100%">
+        <table class="comparison" style="font-size:0.8em; margin-top:0.5em;">
+          <thead><tr ><th>Approach</th><th>Cost</th><th>Data Needed</th><th>Best For</th><th>Latency</th></tr></thead>
+          <tbody>
+            <tr  ><td><strong>Prompt Engineering</strong></td><td>Free</td><td>None</td><td>Quick tasks, prototyping</td><td>Low</td></tr>
+            <tr  ><td><strong>RAG</strong></td><td>$-$$</td><td>Your documents</td><td>Up-to-date knowledge, citations</td><td>Medium</td></tr>
+            <tr  ><td><strong>Fine-Tuning</strong></td><td>$$-$$$</td><td>1K-100K examples</td><td>Specific behavior, style, domain</td><td>Low</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">Start with prompting, then add RAG, then fine-tune only if needed. Most enterprise use cases are solved by RAG — which retrieves relevant documents and includes them in the prompt. Fine-tuning changes the model itself and is harder to maintain. Think of it as: prompting = giving instructions, RAG = giving a reference book, fine-tuning = going to school.</aside>
+      </section>
+
+      <!-- SLIDE 22: RAG Deep Dive -->
+      <section>
+        <h2>RAG: Retrieval-Augmented Generation</h2>
+        <div class="diagram-box">
+          <div style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;">
+            <div style="background:#0d9488;color:white;padding:15px;border-radius:8px;text-align:center;">
+              <strong>User Query</strong><br>"What's our refund policy?"
+            </div>
+            <div style="font-size:1.5em;">→</div>
+            <div style="background:#3b82f6;color:white;padding:15px;border-radius:8px;text-align:center;">
+              <strong>Vector Search</strong><br>Find relevant docs
+            </div>
+            <div style="font-size:1.5em;">→</div>
+            <div style="background:#8b5cf6;color:white;padding:15px;border-radius:8px;text-align:center;">
+              <strong>LLM + Context</strong><br>Generate answer with citations
+            </div>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:1em;">
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h4 class="text-teal">Advantages</h4>
+            <ul>
+              <li   >✅ Always uses current data</li>
+              <li class="fragment fade-up"   >✅ Can cite sources</li>
+              <li   >✅ No model retraining needed</li>
+              <li   >✅ Data stays in your control</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h4 class="text-red">Challenges</h4>
+            <ul>
+              <li   >⚠️ Retrieval quality is critical</li>
+              <li class="fragment zoom-in"   >⚠️ Adds latency (search step)</li>
+              <li   >⚠️ Context window limits</li>
+              <li class="fragment fade-right"   >⚠️ Requires vector database infrastructure</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">RAG is the most popular enterprise LLM pattern. Companies like Notion, Glean, and Microsoft Copilot all use RAG. The key insight: instead of training the model on your data (expensive, stale), you search your data at query time and include relevant chunks in the prompt. The model generates answers grounded in your actual documents.</aside>
+      </section>
+
+      <!-- SLIDE 23: Section Divider — Parameters -->
+      <section data-background-color="#1e293b">
+        <h2>Section 6</h2>
+        <h3>Parameters That Matter: Temperature, Top-p & Context Windows</h3>
+        <aside class="notes">When you use an LLM API, there are several parameters that dramatically affect output quality. Understanding these is the difference between a janky demo and a production-quality integration.</aside>
+      </section>
+
+      <!-- SLIDE 24: Temperature -->
+      <section data-transition="slide">
+        <h2>Temperature: Controlling Randomness</h2>
+        <div class="diagram-box" style="text-align:center;">
+          <p style="font-size:0.9em;"><strong>Prompt:</strong> "The best programming language is"</p>
+          <div class="cols-3" style="margin-top:1em;">
+            <div style="background:#3b82f6;color:white;padding:15px;border-radius:8px;">
+              <strong>Temp = 0.0</strong><br>
+              "Python, due to its versatility and readability."<br>
+              <small>(Same answer every time)</small>
+            </div>
+            <div style="background:#0d9488;color:white;padding:15px;border-radius:8px;">
+              <strong>Temp = 0.7</strong><br>
+              "Python for data science, but Rust for performance..."<br>
+              <small>(Balanced creativity)</small>
+            </div>
+            <div style="background:#ef4444;color:white;padding:15px;border-radius:8px;">
+              <strong>Temp = 1.5</strong><br>
+              "honestly vibes-dependent, maybe Haskell if you're feeling brave..."<br>
+              <small>(Wild, unpredictable)</small>
+            </div>
+          </div>
+        </div>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;margin-top:0.5em;">
+          <p>🏢 <strong>Enterprise guidance:</strong> Use 0.0–0.3 for factual tasks (data extraction, classification). Use 0.5–0.8 for creative tasks (drafting, brainstorming). Avoid >1.0 in production.</p>
+        </div>
+        <aside class="notes">Temperature controls the probability distribution over tokens. At 0, the model always picks the highest-probability token — deterministic and consistent. At higher values, lower-probability tokens get a chance, introducing variety but also potential nonsense. For enterprise use, lower is almost always safer.</aside>
+      </section>
+
+      <!-- SLIDE 25: Context Windows -->
+      <section>
+        <h2>Context Windows: How Much Can the Model "See"?</h2>
+        <table class="comparison">
+          <thead><tr ><th>Model</th><th>Context Window</th><th>Equivalent To</th></tr></thead>
+          <tbody>
+            <tr  ><td>GPT-3.5</td><td>16K tokens</td><td>~24 pages</td></tr>
+            <tr  ><td>GPT-4o</td><td>128K tokens</td><td>~200 pages (a novel)</td></tr>
+            <tr  ><td>Claude 3.5 Sonnet</td><td>200K tokens</td><td>~300 pages</td></tr>
+            <tr  ><td>Gemini 1.5 Pro</td><td>2M tokens</td><td>~3,000 pages (several textbooks)</td></tr>
+          </tbody>
+        </table>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;margin-top:0.5em;">
+          <p>⚠️ <strong>Important:</strong> Larger context ≠ better comprehension. Research shows performance degrades in the "middle" of long contexts ("Lost in the Middle" — Liu et al., 2023). Put critical information at the start or end.</p>
+        </div>
+        <aside class="notes">Context window is one of the most marketed specs, but bigger isn't always better. The "Lost in the Middle" paper showed that models pay most attention to the beginning and end of their context. For RAG systems, this means putting your most relevant documents first. Gemini's 2M context is impressive, but you still need good retrieval.</aside>
+      </section>
+
+      <!-- SLIDE 26: Model Size Comparison -->
+      <section data-transition="slide">
+        <h2>Model Parameters: Size Comparison</h2>
+        <table class="comparison">
+          <thead><tr ><th>Model</th><th>Parameters</th><th>Training Cost (est.)</th><th>Release</th></tr></thead>
+          <tbody>
+            <tr  ><td>GPT-2</td><td>1.5B</td><td>~$50K</td><td>2019</td></tr>
+            <tr  ><td>GPT-3</td><td>175B</td><td>~$4.6M</td><td>2020</td></tr>
+            <tr  ><td>LLaMA 2 70B</td><td>70B</td><td>~$2M</td><td>2023</td></tr>
+            <tr  ><td>GPT-4</td><td>~1.8T (MoE)</td><td>~$100M+</td><td>2023</td></tr>
+            <tr  ><td>Claude 3 Opus</td><td>Undisclosed</td><td>Undisclosed</td><td>2024</td></tr>
+            <tr  ><td>Llama 3 405B</td><td>405B</td><td>~$30M</td><td>2024</td></tr>
+          </tbody>
+        </table>
+        <p><small>MoE = Mixture of Experts: only a subset of parameters activate per token, making large models more efficient.</small></p>
+        <aside class="notes">Parameter count used to be the primary quality indicator, but that's changing. Smaller models trained on better data (like Mistral 7B) can outperform larger models on specific tasks. The trend is toward efficiency — getting more capability per parameter through better architectures and training data curation.</aside>
+      </section>
+
+      <!-- SLIDE 27: Open vs Closed Models -->
+      <section>
+        <h2>Open-Source vs. Closed-Source Models</h2>
+        <table class="comparison">
+          <thead><tr ><th>Factor</th><th>Closed (GPT-4, Claude)</th><th>Open (Llama 3, Mistral)</th></tr></thead>
+          <tbody>
+            <tr  ><td><strong>Performance</strong></td><td>Generally higher (frontier)</td><td>Catching up rapidly</td></tr>
+            <tr  ><td><strong>Data Privacy</strong></td><td>Data sent to provider</td><td>Runs on your infrastructure</td></tr>
+            <tr  ><td><strong>Cost</strong></td><td>Per-token pricing</td><td>Infrastructure cost only</td></tr>
+            <tr  ><td><strong>Customization</strong></td><td>Limited (API parameters)</td><td>Full (fine-tune, modify)</td></tr>
+            <tr  ><td><strong>Compliance</strong></td><td>Depends on provider DPA</td><td>Full control</td></tr>
+            <tr  ><td><strong>Support</strong></td><td>Vendor SLA</td><td>Community / self-support</td></tr>
+          </tbody>
+        </table>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;margin-top:0.5em;">
+          <p>🏢 <strong>Enterprise trend:</strong> Many use closed models for prototyping, then deploy open models for production — combining speed of iteration with data control.</p>
+        </div>
+        <aside class="notes">This is one of the biggest strategic decisions in enterprise AI. For regulated industries — healthcare, finance, defense — data privacy often mandates open-source or on-premise models. The good news: open models like Llama 3 405B are competitive with GPT-4 on many benchmarks.</aside>
+      </section>
+
+      <!-- SLIDE 28: Code Example -->
+      <section data-transition="slide">
+        <h2>Code: Calling an LLM API</h2>
+        <pre  ><code class="python" style="font-size:0.7em;">from openai import OpenAI
+
+client = OpenAI(api_key="sk-...")  # Never hardcode in production!
+
+# Basic completion with parameter control
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "You are a security analyst. Be concise."},
+        {"role": "user", "content": "Explain SQL injection in 3 sentences."}
+    ],
+    temperature=0.3,       # Low = factual, consistent
+    max_tokens=200,        # Limit output length
+    top_p=0.9,             # Nucleus sampling threshold
+)
+
+print(response.choices[0].message.content)
+print(f"Tokens used: {response.usage.total_tokens}")
+print(f"Cost estimate: ${response.usage.total_tokens * 0.00001:.4f}")
+
+# Output: "SQL injection is an attack where malicious SQL code is
+# inserted into application queries through user input fields.
+# Attackers exploit this to read, modify, or delete database
+# contents. Prevention requires parameterized queries, input
+# validation, and least-privilege database accounts."</code></pre>
+        <aside class="notes">This is a real, production-ready API call. Notice the system message sets the AI's persona, temperature is low for factual content, and we're tracking token usage for cost management. In production, you'd store the API key in environment variables or a secrets manager — never in code. We'll cover secure API usage in later modules.</aside>
+      </section>
+
+      <!-- SLIDE 29: Myth vs Reality -->
+      <section>
+        <h2>Myth vs. Reality</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>🚫 Myth</h3>
+            <p>"Bigger models are always better."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>Mistral 7B outperforms LLaMA 2 13B on many tasks. Data quality, architecture, and training methodology matter as much as parameter count. Microsoft's Phi-3 Mini (3.8B) rivals models 10x its size.</p>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:1em;">
+          <div class="myth-card">
+            <h3>🚫 Myth</h3>
+            <p>"Fine-tuning is always needed for enterprise use."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>80% of enterprise use cases can be solved with good prompt engineering + RAG. Fine-tuning is expensive, hard to maintain, and creates version management challenges. Start simple.</p>
+          </div>
+        </div>
+        <aside class="notes">These myths cost enterprises real money. Teams that jump straight to fine-tuning often spend months and tens of thousands of dollars when a well-crafted prompt template with RAG would have worked. Always start with the simplest approach and only add complexity when you have evidence it's needed.</aside>
+      </section>
+
+      <!-- SLIDE 31: Hands-On Activity -->
+      <section>
+        <h2>🎯 Hands-On: Exploring Tokenization & Parameters</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <h3>Activity (15 minutes)</h3>
+          <ol>
+            <li    ><strong>Tokenizer Playground</strong> (5 min): Visit <a href="https://platform.openai.com/tokenizer">platform.openai.com/tokenizer</a>
+              <ul>
+                <li    >Paste a paragraph of English text — count the tokens</li>
+                <li    >Paste the same content in another language — compare token counts</li>
+                <li    >Try code vs. prose — which is more token-efficient?</li>
+              </ul>
+            </li>
+            <li    ><strong>Temperature Experiment</strong> (10 min): Using ChatGPT or Claude:
+              <ul>
+                <li    >Ask the same question 5 times at temperature 0 (via API/playground)</li>
+                <li    >Then 5 times at temperature 1.0</li>
+                <li    >Document: How much do the responses vary? Which is better for your use case?</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        <aside class="notes">This activity builds intuition that's impossible to get from slides alone. Students are always surprised that Chinese text uses 2-3x more tokens than English for the same meaning — and that directly impacts cost. The temperature experiment shows them the practical impact of a parameter they'll use every day.</aside>
+      </section>
+
+      <!-- SLIDE 32: Quiz -->
+      <section data-transition="fade">
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <ol>
+            <li    >What is a token, and why isn't 1 token = 1 word?</li>
+            <li style="margin-top:0.5em;"   >Explain in one sentence what the attention mechanism does.</li>
+            <li style="margin-top:0.5em;"   >You need an LLM to answer questions about your company's internal wiki. Which approach is best?
+              <ul style="list-style:lower-alpha;">
+                <li    >Fine-tuning</li>
+                <li    >RAG</li>
+                <li    >Higher temperature</li>
+                <li    >Bigger model</li>
+              </ul>
+            </li>
+            <li style="margin-top:0.5em;"   >What temperature setting would you use for a legal document summarizer?</li>
+          </ol>
+        </div>
+        <p><small>Answers: 1) Subword unit; tokenizers split uncommon words and handle punctuation/spaces separately. 2) Attention lets each token determine which other tokens are most relevant to it. 3) B — RAG retrieves relevant wiki pages at query time. 4) 0.0–0.2 (factual accuracy is critical).</small></p>
+        <aside class="notes">These questions test practical understanding, not memorization. Question 3 is the most important — the ability to choose the right customization approach will save your organization significant time and money. If students default to fine-tuning, that's a signal to revisit the RAG section.</aside>
+      </section>
+
+      <!-- SLIDE 33: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>Key Takeaways</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <ul>
+            <li   >✅ Tokenization converts text to numbers — and directly impacts cost and multilingual performance</li>
+            <li   >✅ Embeddings represent meaning as vectors — enabling semantic search and similarity</li>
+            <li   >✅ Attention lets models focus on relevant context — the core innovation behind Transformers</li>
+            <li   >✅ LLM training is a 3-stage pipeline: pre-training → SFT → RLHF</li>
+            <li class="fragment fade-up"   >✅ Start with prompting, add RAG for knowledge, fine-tune only when necessary</li>
+            <li   >✅ Temperature, context window, and model size all have practical trade-offs</li>
+          </ul>
+        </div>
+        <aside class="notes">These takeaways equip you to have informed conversations about LLM selection, architecture, and deployment. You now understand the mechanics well enough to evaluate vendor claims, estimate costs, and make sound technical decisions.</aside>
+      </section>
+
+      <!-- SLIDE 34: Lab Preview -->
+      <section>
+        <h2>🔬 Lab Preview</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <h3>Lab 2: LLM Under the Hood</h3>
+          <ul>
+            <li  ><strong>Part A:</strong> Build a simple tokenizer and visualize token boundaries in different languages</li>
+            <li  ><strong>Part B:</strong> Use the OpenAI API to experiment with temperature, top-p, and max_tokens systematically</li>
+            <li class="fragment fade-up"  ><strong>Part C:</strong> Build a minimal RAG system — embed 5 documents, search by similarity, and generate answers</li>
+          </ul>
+          <p style="margin-top:1em;"><strong>Time:</strong> 60 minutes | <strong>Deliverable:</strong> Working Jupyter notebook with experiments and findings</p>
+        </div>
+        <aside class="notes">Lab 2 is where the magic happens. Part C especially — students will build a working RAG pipeline from scratch. It's simpler than they expect (maybe 30 lines of code), and it demystifies one of the most important enterprise AI patterns. They'll use this pattern in almost every subsequent module.</aside>
+      </section>
+
+      <!-- SLIDE 35: Resources -->
+      <section>
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h4>Essential Reading</h4>
+            <ul>
+              <li  >"Attention Is All You Need" (Vaswani et al., 2017)</li>
+              <li  >"Lost in the Middle" (Liu et al., 2023)</li>
+              <li  >OpenAI Tokenizer: platform.openai.com/tokenizer</li>
+              <li class="fragment fade-up"  >Hugging Face Course: huggingface.co/learn</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h4>Videos & Tools</h4>
+            <ul>
+              <li  >3Blue1Brown: "But what is a GPT?" (YouTube)</li>
+              <li  >Andrej Karpathy: "Let's build GPT" (YouTube)</li>
+              <li  >Jay Alammar: "The Illustrated Transformer"</li>
+              <li  >LMSys Chatbot Arena: lmsys.org</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Jay Alammar's "Illustrated Transformer" is the gold standard visual explanation — if attention was still fuzzy, that article will clarify everything. Karpathy's "Let's build GPT" is a 2-hour masterclass where he codes a small Transformer from scratch. LMSys Chatbot Arena lets you blind-test models against each other.</aside>
+      </section>
+
+      <!-- SLIDE 36: Q&A -->
+      <section data-transition="fade">
+        <h2>Questions & Discussion</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;text-align:center;">
+          <h3>🤔 Which concept from today was most surprising or counterintuitive?</h3>
+          <p style="margin-top:2em; font-size:1.2em;">Next up: <strong>Module 3 — AI Tools Landscape</strong></p>
+          <p>We'll evaluate ChatGPT, Claude, Gemini, Copilot, and open-source alternatives.</p>
+        </div>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Common questions: "Can I build a RAG system with free tools?" (Yes — Ollama + ChromaDB). "How do I know which model to pick?" (That's Module 3). "Is my company data safe with cloud APIs?" (Depends on the provider's data processing agreement — we cover this in the security module). Preview Module 3 as the practical decision-making companion to today's theory.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

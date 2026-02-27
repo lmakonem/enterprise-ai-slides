@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="riskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+    <filter id="riskGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="bold" fill="url(#riskGrad)">⚠️ Enterprise AI Risk Landscape</text>
+  
+  <!-- Central Hub -->
+  <circle cx="400" cy="300" r="70" fill="#1e293b" stroke="#3b82f6" stroke-width="3" filter="url(#riskGlow)"/>
+  <text x="400" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">🏢</text>
+  <text x="400" y="310" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">Enterprise</text>
+  <text x="400" y="328" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#3b82f6">AI</text>
+  
+  <!-- Risk 1: Hallucination (Top) - High Risk -->
+  <line x1="400" y1="230" x2="400" y2="130" stroke="#ef4444" stroke-width="3"/>
+  <rect x="310" y="55" width="180" height="80" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="3"/>
+  <text x="400" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">🎭</text>
+  <text x="400" y="108" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#ef4444">Hallucination</text>
+  <text x="400" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Confidently wrong outputs</text>
+  <circle cx="310" cy="55" r="15" fill="#ef4444"/>
+  <text x="310" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#fff">HIGH</text>
+  
+  <!-- Risk 2: Data Leakage (Top Right) - Critical -->
+  <line x1="460" y1="250" x2="560" y2="150" stroke="#ef4444" stroke-width="3"/>
+  <rect x="530" y="55" width="180" height="80" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="3"/>
+  <text x="620" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">🔓</text>
+  <text x="620" y="108" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#ef4444">Data Leakage</text>
+  <text x="620" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Sensitive info in prompts</text>
+  <circle cx="530" cy="55" r="15" fill="#ef4444"/>
+  <text x="530" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="bold" fill="#fff">CRIT</text>
+  
+  <!-- Risk 3: Bias (Right) - High -->
+  <line x1="470" y1="300" x2="580" y2="300" stroke="#f97316" stroke-width="3"/>
+  <rect x="590" y="250" width="180" height="80" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="680" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">⚖️</text>
+  <text x="680" y="303" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#f97316">Bias</text>
+  <text x="680" y="320" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Unfair or discriminatory</text>
+  <circle cx="590" cy="250" r="15" fill="#f97316"/>
+  <text x="590" y="255" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#fff">HIGH</text>
+  
+  <!-- Risk 4: Legal/IP (Bottom Right) - High -->
+  <line x1="460" y1="350" x2="560" y2="430" stroke="#f97316" stroke-width="3"/>
+  <rect x="530" y="400" width="180" height="80" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="620" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">⚖️</text>
+  <text x="620" y="453" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#f97316">Legal / IP Risk</text>
+  <text x="620" y="470" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Copyright, licensing issues</text>
+  <circle cx="530" cy="400" r="15" fill="#f97316"/>
+  <text x="530" y="405" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#fff">HIGH</text>
+  
+  <!-- Risk 5: Shadow AI (Bottom) - Medium -->
+  <line x1="400" y1="370" x2="400" y2="460" stroke="#eab308" stroke-width="3"/>
+  <rect x="310" y="465" width="180" height="80" rx="12" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="400" y="495" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">👻</text>
+  <text x="400" y="518" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#eab308">Shadow AI</text>
+  <text x="400" y="535" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Unsanctioned AI usage</text>
+  <circle cx="310" cy="465" r="15" fill="#eab308"/>
+  <text x="310" y="470" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#000">MED</text>
+  
+  <!-- Risk 6: Vendor Lock-in (Bottom Left) - Medium -->
+  <line x1="340" y1="350" x2="240" y2="430" stroke="#eab308" stroke-width="3"/>
+  <rect x="90" y="400" width="180" height="80" rx="12" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="180" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">🔗</text>
+  <text x="180" y="453" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#eab308">Vendor Lock-in</text>
+  <text x="180" y="470" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Single provider dependency</text>
+  <circle cx="90" cy="400" r="15" fill="#eab308"/>
+  <text x="90" y="405" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#000">MED</text>
+  
+  <!-- Risk 7: Cost Overrun (Left) - Medium -->
+  <line x1="330" y1="300" x2="220" y2="300" stroke="#14b8a6" stroke-width="3"/>
+  <rect x="30" y="250" width="180" height="80" rx="12" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="120" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">💸</text>
+  <text x="120" y="303" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#14b8a6">Cost Overrun</text>
+  <text x="120" y="320" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Unexpected token costs</text>
+  <circle cx="30" cy="250" r="15" fill="#14b8a6"/>
+  <text x="30" y="255" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#000">LOW</text>
+  
+  <!-- Risk 8: Security Breach (Top Left) - Critical -->
+  <line x1="340" y1="250" x2="240" y2="150" stroke="#ef4444" stroke-width="3"/>
+  <rect x="90" y="55" width="180" height="80" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="3"/>
+  <text x="180" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-size="24">🔐</text>
+  <text x="180" y="108" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#ef4444">Prompt Injection</text>
+  <text x="180" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Malicious input attacks</text>
+  <circle cx="90" cy="55" r="15" fill="#ef4444"/>
+  <text x="90" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="bold" fill="#fff">CRIT</text>
+  
+  <!-- Legend -->
+  <rect x="30" y="560" width="740" height="30" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <circle cx="100" cy="575" r="8" fill="#ef4444"/>
+  <text x="150" y="579" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Critical/High Risk</text>
+  <circle cx="280" cy="575" r="8" fill="#f97316"/>
+  <text x="330" y="579" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">High Risk</text>
+  <circle cx="420" cy="575" r="8" fill="#eab308"/>
+  <text x="470" y="579" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Medium Risk</text>
+  <circle cx="560" cy="575" r="8" fill="#14b8a6"/>
+  <text x="610" y="579" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Low Risk</text>
+  <text x="720" y="579" font-family="Inter, sans-serif" font-size="8" fill="#64748b">— Line thickness = impact</text>
+</svg>

@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+  <defs>
+    <linearGradient id="lcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14b8a6"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="600" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="500" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="url(#lcGrad)">LangChain Component Ecosystem</text>
+  
+  <!-- Central Hub - LangChain Core -->
+  <circle cx="500" cy="300" r="70" fill="#1e293b" stroke="#14b8a6" stroke-width="3"/>
+  <text x="500" y="290" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#14b8a6">🦜 LangChain</text>
+  <text x="500" y="310" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#f8fafc">Core</text>
+  
+  <!-- Chains Component -->
+  <rect x="80" y="100" width="180" height="120" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="170" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#3b82f6">⛓️ Chains</text>
+  <text x="170" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8">Sequential Workflows</text>
+  <rect x="95" y="170" width="70" height="22" rx="4" fill="#0f172a"/>
+  <text x="130" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">LLMChain</text>
+  <rect x="175" y="170" width="70" height="22" rx="4" fill="#0f172a"/>
+  <text x="210" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Router</text>
+  <rect x="95" y="195" width="150" height="18" rx="4" fill="#0f172a"/>
+  <text x="170" y="208" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">SequentialChain</text>
+  
+  <!-- Connection line -->
+  <line x1="260" y1="160" x2="430" y2="270" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Agents Component -->
+  <rect x="740" y="100" width="180" height="120" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="830" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#ef4444">🤖 Agents</text>
+  <text x="830" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8">Autonomous Reasoning</text>
+  <rect x="755" y="170" width="65" height="22" rx="4" fill="#0f172a"/>
+  <text x="787" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">ReAct</text>
+  <rect x="830" y="170" width="75" height="22" rx="4" fill="#0f172a"/>
+  <text x="867" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">OpenAI</text>
+  <rect x="755" y="195" width="150" height="18" rx="4" fill="#0f172a"/>
+  <text x="830" y="208" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Plan-and-Execute</text>
+  
+  <!-- Connection line -->
+  <line x1="740" y1="160" x2="570" y2="270" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Memory Component -->
+  <rect x="80" y="380" width="180" height="120" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="170" y="410" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#8b5cf6">🧠 Memory</text>
+  <text x="170" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8">Context Persistence</text>
+  <rect x="95" y="450" width="70" height="22" rx="4" fill="#0f172a"/>
+  <text x="130" y="465" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Buffer</text>
+  <rect x="175" y="450" width="70" height="22" rx="4" fill="#0f172a"/>
+  <text x="210" y="465" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Summary</text>
+  <rect x="95" y="475" width="150" height="18" rx="4" fill="#0f172a"/>
+  <text x="170" y="488" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">ConversationKG</text>
+  
+  <!-- Connection line -->
+  <line x1="260" y1="440" x2="430" y2="330" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Tools Component -->
+  <rect x="740" y="380" width="180" height="120" rx="10" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="830" y="410" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#eab308">🔧 Tools</text>
+  <text x="830" y="435" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8">External Capabilities</text>
+  <rect x="755" y="450" width="65" height="22" rx="4" fill="#0f172a"/>
+  <text x="787" y="465" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Search</text>
+  <rect x="830" y="450" width="75" height="22" rx="4" fill="#0f172a"/>
+  <text x="867" y="465" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Calculator</text>
+  <rect x="755" y="475" width="150" height="18" rx="4" fill="#0f172a"/>
+  <text x="830" y="488" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Custom Functions</text>
+  
+  <!-- Connection line -->
+  <line x1="740" y1="440" x2="570" y2="330" stroke="#eab308" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Retrievers Component (Top) -->
+  <rect x="410" y="60" width="180" height="100" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="500" y="90" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#14b8a6">🔍 Retrievers</text>
+  <text x="500" y="115" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8">Document Fetching</text>
+  <rect x="425" y="130" width="70" height="20" rx="4" fill="#0f172a"/>
+  <text x="460" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Vector</text>
+  <rect x="505" y="130" width="70" height="20" rx="4" fill="#0f172a"/>
+  <text x="540" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">BM25</text>
+  
+  <!-- Connection line -->
+  <line x1="500" y1="160" x2="500" y2="230" stroke="#14b8a6" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Output Parsers (Bottom) -->
+  <rect x="410" y="440" width="180" height="100" rx="10" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+  <text x="500" y="470" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#f97316">📤 Output Parsers</text>
+  <text x="500" y="495" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8">Structured Extraction</text>
+  <rect x="425" y="505" width="65" height="20" rx="4" fill="#0f172a"/>
+  <text x="457" y="519" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">JSON</text>
+  <rect x="500" y="505" width="75" height="20" rx="4" fill="#0f172a"/>
+  <text x="537" y="519" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Pydantic</text>
+  
+  <!-- Connection line -->
+  <line x1="500" y1="370" x2="500" y2="440" stroke="#f97316" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- LLMs (Left side) -->
+  <rect x="280" y="240" width="100" height="60" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="330" y="265" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">🤖 LLMs</text>
+  <text x="330" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">GPT / Claude</text>
+  
+  <!-- Embeddings (Right side) -->
+  <rect x="620" y="240" width="100" height="60" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="670" y="265" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">🧮 Embed</text>
+  <text x="670" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">text-embed-3</text>
+  
+  <!-- Vector Stores (Left bottom) -->
+  <rect x="280" y="300" width="100" height="60" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="330" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">🗄️ Vectors</text>
+  <text x="330" y="345" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Pinecone</text>
+  
+  <!-- Document Loaders (Right bottom) -->
+  <rect x="620" y="300" width="100" height="60" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="670" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">📄 Loaders</text>
+  <text x="670" y="345" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">PDF / Web</text>
+  
+  <!-- LangSmith Integration -->
+  <rect x="50" y="540" width="400" height="45" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="250" y="568" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#22c55e">🔬 LangSmith — Observability, Tracing, Evaluation</text>
+  
+  <!-- LangServe Integration -->
+  <rect x="550" y="540" width="400" height="45" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="750" y="568" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#ec4899">🚀 LangServe — Deploy Chains as REST APIs</text>
+</svg>

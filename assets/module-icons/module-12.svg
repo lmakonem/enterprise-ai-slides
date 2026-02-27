@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: USB-C Plug -->
+  <rect x="85" y="60" width="30" height="50" rx="5" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <line x1="100" y1="110" x2="100" y2="140" stroke="#00d4aa" stroke-width="2" />
+  <!-- Data Streams -->
+  <line x1="80" y1="130" x2="120" y2="130" stroke="#1b98e0" stroke-width="1" stroke-dasharray="2,2" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M12</text>
+</svg>

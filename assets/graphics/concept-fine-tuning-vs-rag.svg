@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <filter id="s2"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="800" height="400" fill="#0f172a"/>
+  
+  <text x="400" y="30" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="16" font-weight="bold">Fine-Tuning vs RAG</text>
+  <text x="400" y="48" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="10">When to use each approach</text>
+  
+  <!-- VS divider -->
+  <line x1="400" y1="65" x2="400" y2="350" stroke="#334155" stroke-width="1" stroke-dasharray="6,4"/>
+  <circle cx="400" cy="85" r="18" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="12" font-weight="bold">VS</text>
+  
+  <!-- LEFT: Fine-Tuning -->
+  <rect x="40" y="110" width="320" height="230" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="2" filter="url(#s2)"/>
+  <rect x="40" y="110" width="320" height="40" rx="12" fill="#ef4444" opacity="0.1"/>
+  <text x="200" y="136" text-anchor="middle" fill="#ef4444" font-family="Inter,sans-serif" font-size="14" font-weight="700">🔧 Fine-Tuning</text>
+  
+  <!-- Metaphor -->
+  <rect x="60" y="160" width="280" height="35" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1" opacity="0.8"/>
+  <text x="200" y="177" text-anchor="middle" fill="#fca5a5" font-family="Inter,sans-serif" font-size="10" font-style="italic">"Brain surgery — permanent change"</text>
+  
+  <!-- Properties -->
+  <text x="70" y="215" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Modifies model weights</text>
+  <text x="70" y="235" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Permanent behavioral change</text>
+  <text x="70" y="255" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Needs training data + GPU</text>
+  <text x="70" y="275" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Best for: tone, format, domain</text>
+  <text x="70" y="295" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Expensive to update</text>
+  
+  <!-- Cost/Complexity meter -->
+  <text x="70" y="322" fill="#64748b" font-family="Inter,sans-serif" font-size="9">Cost:</text>
+  <rect x="110" y="313" width="100" height="10" rx="3" fill="#1e293b"/>
+  <rect x="110" y="313" width="85" height="10" rx="3" fill="#ef4444" opacity="0.7"/>
+  <text x="220" y="322" fill="#ef4444" font-family="Inter,sans-serif" font-size="9" font-weight="600">HIGH</text>
+  
+  <!-- RIGHT: RAG -->
+  <rect x="440" y="110" width="320" height="230" rx="12" fill="#1e293b" stroke="#14b8a6" stroke-width="2" filter="url(#s2)"/>
+  <rect x="440" y="110" width="320" height="40" rx="12" fill="#14b8a6" opacity="0.1"/>
+  <text x="600" y="136" text-anchor="middle" fill="#14b8a6" font-family="Inter,sans-serif" font-size="14" font-weight="700">📚 RAG</text>
+  
+  <!-- Metaphor -->
+  <rect x="460" y="160" width="280" height="35" rx="8" fill="#0f172a" stroke="#14b8a6" stroke-width="1" opacity="0.8"/>
+  <text x="600" y="177" text-anchor="middle" fill="#5eead4" font-family="Inter,sans-serif" font-size="10" font-style="italic">"Library card — dynamic knowledge"</text>
+  
+  <!-- Properties -->
+  <text x="470" y="215" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Adds external context</text>
+  <text x="470" y="235" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Dynamic, updatable data</text>
+  <text x="470" y="255" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Needs vector DB + embeddings</text>
+  <text x="470" y="275" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Best for: facts, docs, Q&amp;A</text>
+  <text x="470" y="295" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10">✦ Easy to update &amp; maintain</text>
+  
+  <!-- Cost/Complexity meter -->
+  <text x="470" y="322" fill="#64748b" font-family="Inter,sans-serif" font-size="9">Cost:</text>
+  <rect x="510" y="313" width="100" height="10" rx="3" fill="#1e293b"/>
+  <rect x="510" y="313" width="40" height="10" rx="3" fill="#14b8a6" opacity="0.7"/>
+  <text x="620" y="322" fill="#14b8a6" font-family="Inter,sans-serif" font-size="9" font-weight="600">LOW</text>
+  
+  <!-- Recommendation -->
+  <rect x="250" y="355" width="300" height="28" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="400" y="374" text-anchor="middle" fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" font-weight="600">💡 Most enterprises start with RAG</text>
+  
+  <text x="400" y="395" text-anchor="middle" fill="#1e293b" font-family="Inter,sans-serif" font-size="7">IT Security Labs • Module 2: How LLMs Work</text>
+</svg>

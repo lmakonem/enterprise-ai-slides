@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="slackGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e01e5a"/>
+      <stop offset="25%" style="stop-color:#36c5f0"/>
+      <stop offset="50%" style="stop-color:#2eb67d"/>
+      <stop offset="75%" style="stop-color:#ecb22e"/>
+      <stop offset="100%" style="stop-color:#e01e5a"/>
+    </linearGradient>
+    <marker id="slackArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#36c5f0"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="url(#slackGrad)">💬 AI Slack Bot Project Architecture</text>
+  
+  <!-- Slack Cloud -->
+  <rect x="30" y="80" width="150" height="140" rx="12" fill="#1e293b" stroke="#e01e5a" stroke-width="2"/>
+  <text x="105" y="110" text-anchor="middle" font-family="Inter, sans-serif" font-size="28">💬</text>
+  <text x="105" y="135" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#e01e5a">Slack</text>
+  <text x="105" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Events API</text>
+  <text x="105" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">@mention / DM</text>
+  
+  <rect x="50" y="185" width="110" height="25" rx="4" fill="#0f172a"/>
+  <text x="105" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Event: message</text>
+  
+  <!-- Arrow to Bolt -->
+  <path d="M180 150 L230 150" stroke="#36c5f0" stroke-width="2" marker-end="url(#slackArrow)"/>
+  <text x="205" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#36c5f0">webhook</text>
+  
+  <!-- Bolt Handler -->
+  <rect x="240" y="80" width="150" height="140" rx="12" fill="#1e293b" stroke="#36c5f0" stroke-width="2"/>
+  <text x="315" y="110" text-anchor="middle" font-family="Inter, sans-serif" font-size="28">⚡</text>
+  <text x="315" y="135" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#36c5f0">Bolt Handler</text>
+  <text x="315" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Python/JS SDK</text>
+  <text x="315" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Event routing</text>
+  
+  <rect x="255" y="185" width="120" height="25" rx="4" fill="#0f172a"/>
+  <text x="315" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Parse &amp; validate</text>
+  
+  <!-- Arrow to Intent Classifier -->
+  <path d="M390 150 L440 150" stroke="#36c5f0" stroke-width="2" marker-end="url(#slackArrow)"/>
+  
+  <!-- Intent Classifier -->
+  <rect x="450" y="60" width="150" height="80" rx="10" fill="#1e293b" stroke="#2eb67d" stroke-width="2"/>
+  <text x="525" y="90" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">🎯</text>
+  <text x="525" y="110" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#2eb67d">Intent Classifier</text>
+  <text x="525" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Route to handler</text>
+  
+  <!-- Three branches from Intent Classifier -->
+  
+  <!-- Branch 1: RAG Pipeline -->
+  <path d="M525 140 L525 180 L350 180 L350 260" stroke="#8b5cf6" stroke-width="2"/>
+  <rect x="270" y="270" width="160" height="100" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="350" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">📚</text>
+  <text x="350" y="322" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#8b5cf6">RAG Pipeline</text>
+  <text x="350" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Knowledge base Q&amp;A</text>
+  <text x="350" y="355" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Company docs, FAQs</text>
+  
+  <!-- Branch 2: Direct LLM -->
+  <path d="M600 100 L680 100 L680 180 L525 180 L525 260" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="445" y="270" width="160" height="100" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="525" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">🤖</text>
+  <text x="525" y="322" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Direct LLM</text>
+  <text x="525" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">General conversation</text>
+  <text x="525" y="355" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Creative tasks</text>
+  
+  <!-- Branch 3: Tool Call -->
+  <path d="M600 100 L720 100 L720 260" stroke="#ecb22e" stroke-width="2"/>
+  <rect x="620" y="270" width="160" height="100" rx="10" fill="#1e293b" stroke="#ecb22e" stroke-width="2"/>
+  <text x="700" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">🔧</text>
+  <text x="700" y="322" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ecb22e">Tool Call</text>
+  <text x="700" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Jira, Calendar, Search</text>
+  <text x="700" y="355" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">External integrations</text>
+  
+  <!-- Merge back -->
+  <path d="M350 370 L350 400 L525 400" stroke="#14b8a6" stroke-width="2"/>
+  <path d="M525 370 L525 400" stroke="#14b8a6" stroke-width="2"/>
+  <path d="M700 370 L700 400 L525 400" stroke="#14b8a6" stroke-width="2"/>
+  
+  <!-- Format Response -->
+  <rect x="450" y="410" width="150" height="70" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="525" y="440" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">✨</text>
+  <text x="525" y="462" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Format Response</text>
+  <text x="525" y="477" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Slack markdown</text>
+  
+  <!-- Back to Slack -->
+  <path d="M450 445 L105 445 L105 220" stroke="#e01e5a" stroke-width="2"/>
+  <polygon points="105,225 100,235 110,235" fill="#e01e5a"/>
+  <text x="280" y="438" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#e01e5a">chat.postMessage</text>
+  
+  <!-- Features box -->
+  <rect x="30" y="270" width="220" height="130" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="140" y="295" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">🎯 Key Features</text>
+  
+  <text x="45" y="315" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ Thread awareness (context)</text>
+  <text x="45" y="332" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ @mention routing</text>
+  <text x="45" y="349" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ Emoji reactions feedback</text>
+  <text x="45" y="366" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ Slash commands</text>
+  <text x="45" y="383" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ Rate limiting per user</text>
+</svg>

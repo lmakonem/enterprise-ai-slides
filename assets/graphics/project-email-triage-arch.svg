@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="emailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+    <marker id="emailArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#14b8a6"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="url(#emailGrad)">📧 Email Triage System Architecture</text>
+  
+  <!-- Incoming Email -->
+  <rect x="30" y="150" width="120" height="100" rx="10" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+  <text x="90" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="28">📨</text>
+  <text x="90" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">Incoming</text>
+  <text x="90" y="225" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">Email</text>
+  <text x="90" y="242" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Gmail/O365 API</text>
+  
+  <!-- Arrow to Parser -->
+  <path d="M150 200 L190 200" stroke="#14b8a6" stroke-width="2" marker-end="url(#emailArrow)"/>
+  
+  <!-- Parser -->
+  <rect x="200" y="150" width="120" height="100" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="260" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="28">📝</text>
+  <text x="260" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Parser</text>
+  <text x="260" y="228" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Subject, body, sender</text>
+  <text x="260" y="242" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Attachments, metadata</text>
+  
+  <!-- Arrow to Classifier -->
+  <path d="M320 200 L360 200" stroke="#14b8a6" stroke-width="2" marker-end="url(#emailArrow)"/>
+  
+  <!-- LLM Classifier (Central) -->
+  <rect x="370" y="120" width="160" height="160" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="3"/>
+  <text x="450" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="32">🤖</text>
+  <text x="450" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#8b5cf6">LLM Classifier</text>
+  <text x="450" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Multi-label classification</text>
+  
+  <!-- Classification labels -->
+  <rect x="385" y="225" width="55" height="20" rx="4" fill="#ef4444"/>
+  <text x="412" y="239" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#fff">Urgent</text>
+  
+  <rect x="445" y="225" width="55" height="20" rx="4" fill="#22c55e"/>
+  <text x="472" y="239" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#000">Normal</text>
+  
+  <rect x="385" y="250" width="55" height="20" rx="4" fill="#64748b"/>
+  <text x="412" y="264" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#fff">Spam</text>
+  
+  <rect x="445" y="250" width="55" height="20" rx="4" fill="#eab308"/>
+  <text x="472" y="264" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#000">Action</text>
+  
+  <!-- Output arrows to different handlers -->
+  
+  <!-- Urgent Handler -->
+  <path d="M530 160 L600 80" stroke="#ef4444" stroke-width="2"/>
+  <rect x="600" y="50" width="160" height="70" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="680" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">🚨</text>
+  <text x="680" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ef4444">Urgent Handler</text>
+  <text x="680" y="112" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">SMS + Slack alert</text>
+  
+  <!-- Normal Handler -->
+  <path d="M530 180 L600 180" stroke="#22c55e" stroke-width="2"/>
+  <rect x="600" y="145" width="160" height="70" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="680" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">📁</text>
+  <text x="680" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Normal Queue</text>
+  <text x="680" y="207" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Standard workflow</text>
+  
+  <!-- Spam Handler -->
+  <path d="M530 220 L600 280" stroke="#64748b" stroke-width="2"/>
+  <rect x="600" y="245" width="160" height="70" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+  <text x="680" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">🗑️</text>
+  <text x="680" y="290" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#64748b">Spam Filter</text>
+  <text x="680" y="307" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Archive/Delete</text>
+  
+  <!-- Action Required Handler -->
+  <path d="M530 260 L600 380" stroke="#eab308" stroke-width="2"/>
+  <rect x="600" y="345" width="160" height="70" rx="8" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="680" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">✅</text>
+  <text x="680" y="390" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#eab308">Action Required</text>
+  <text x="680" y="407" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Create task/reminder</text>
+  
+  <!-- Auto-Response Generator -->
+  <rect x="370" y="320" width="160" height="80" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="450" y="350" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">💬</text>
+  <text x="450" y="372" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Auto-Response</text>
+  <text x="450" y="390" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Draft reply suggestions</text>
+  
+  <!-- Arrow from classifier to auto-response -->
+  <path d="M450 280 L450 320" stroke="#14b8a6" stroke-width="2" marker-end="url(#emailArrow)"/>
+  
+  <!-- Flag for review (human in the loop) -->
+  <rect x="200" y="320" width="140" height="80" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+  <text x="270" y="350" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">👤</text>
+  <text x="270" y="372" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ec4899">Human Review</text>
+  <text x="270" y="390" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">Low confidence flag</text>
+  
+  <path d="M370 340 L340 340" stroke="#ec4899" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Metrics panel -->
+  <rect x="30" y="300" width="150" height="120" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="105" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">📊 Key Metrics</text>
+  
+  <text x="45" y="348" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ Classification accuracy</text>
+  <text x="45" y="365" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ Avg response time</text>
+  <text x="45" y="382" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ False positive rate</text>
+  <text x="45" y="399" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">✓ Human override %</text>
+  
+  <!-- Classification Prompt Example -->
+  <rect x="30" y="440" width="350" height="50" rx="6" fill="#0f172a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="205" y="460" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="bold" fill="#8b5cf6">Example Prompt</text>
+  <text x="40" y="478" font-family="monospace" font-size="7" fill="#94a3b8">Classify this email: [Urgent, Normal, Spam, Action-Required]</text>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#0f172a"/>
+  
+  <text x="400" y="35" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="16" font-weight="bold">AI Tools Comparison Matrix</text>
+  <text x="400" y="52" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="10">Enterprise Evaluation — 2026</text>
+  
+  <!-- Column Headers -->
+  <rect x="160" y="70" width="110" height="35" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="215" y="92" text-anchor="middle" fill="#3b82f6" font-family="Inter,sans-serif" font-size="10" font-weight="700">ChatGPT</text>
+  
+  <rect x="280" y="70" width="110" height="35" rx="6" fill="#1e293b" stroke="#eab308" stroke-width="1.5"/>
+  <text x="335" y="92" text-anchor="middle" fill="#eab308" font-family="Inter,sans-serif" font-size="10" font-weight="700">Claude</text>
+  
+  <rect x="400" y="70" width="110" height="35" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="455" y="92" text-anchor="middle" fill="#14b8a6" font-family="Inter,sans-serif" font-size="10" font-weight="700">Gemini</text>
+  
+  <rect x="520" y="70" width="110" height="35" rx="6" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="575" y="92" text-anchor="middle" fill="#a78bfa" font-family="Inter,sans-serif" font-size="10" font-weight="700">Copilot</text>
+  
+  <rect x="640" y="70" width="110" height="35" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="695" y="92" text-anchor="middle" fill="#ef4444" font-family="Inter,sans-serif" font-size="10" font-weight="700">Open Source</text>
+  
+  <!-- Row: Quality -->
+  <text x="90" y="135" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10" font-weight="600">Quality</text>
+  <rect x="175" y="122" width="80" height="18" rx="3" fill="#3b82f6" opacity="0.7"/><text x="215" y="135" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  <rect x="295" y="122" width="80" height="18" rx="3" fill="#eab308" opacity="0.7"/><text x="335" y="135" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  <rect x="415" y="122" width="80" height="18" rx="3" fill="#14b8a6" opacity="0.6"/><text x="455" y="135" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★☆</text>
+  <rect x="535" y="122" width="80" height="18" rx="3" fill="#a78bfa" opacity="0.5"/><text x="575" y="135" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★☆</text>
+  <rect x="655" y="122" width="80" height="18" rx="3" fill="#ef4444" opacity="0.4"/><text x="695" y="135" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★☆☆</text>
+  
+  <!-- Row: Privacy -->
+  <text x="90" y="175" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10" font-weight="600">Privacy</text>
+  <rect x="175" y="162" width="80" height="18" rx="3" fill="#ef4444" opacity="0.4"/><text x="215" y="175" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★☆☆☆</text>
+  <rect x="295" y="162" width="80" height="18" rx="3" fill="#eab308" opacity="0.6"/><text x="335" y="175" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★☆</text>
+  <rect x="415" y="162" width="80" height="18" rx="3" fill="#ef4444" opacity="0.4"/><text x="455" y="175" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★☆☆☆</text>
+  <rect x="535" y="162" width="80" height="18" rx="3" fill="#a78bfa" opacity="0.5"/><text x="575" y="175" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★☆☆</text>
+  <rect x="655" y="162" width="80" height="18" rx="3" fill="#14b8a6" opacity="0.8"/><text x="695" y="175" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  
+  <!-- Row: Cost -->
+  <text x="90" y="215" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10" font-weight="600">Cost</text>
+  <rect x="175" y="202" width="80" height="18" rx="3" fill="#ef4444" opacity="0.5"/><text x="215" y="215" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">$$$$$</text>
+  <rect x="295" y="202" width="80" height="18" rx="3" fill="#ef4444" opacity="0.5"/><text x="335" y="215" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">$$$$</text>
+  <rect x="415" y="202" width="80" height="18" rx="3" fill="#eab308" opacity="0.5"/><text x="455" y="215" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">$$$</text>
+  <rect x="535" y="202" width="80" height="18" rx="3" fill="#eab308" opacity="0.5"/><text x="575" y="215" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">$$$</text>
+  <rect x="655" y="202" width="80" height="18" rx="3" fill="#14b8a6" opacity="0.8"/><text x="695" y="215" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">FREE*</text>
+  
+  <!-- Row: Speed -->
+  <text x="90" y="255" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10" font-weight="600">Speed</text>
+  <rect x="175" y="242" width="80" height="18" rx="3" fill="#3b82f6" opacity="0.6"/><text x="215" y="255" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★☆</text>
+  <rect x="295" y="242" width="80" height="18" rx="3" fill="#eab308" opacity="0.5"/><text x="335" y="255" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★☆☆</text>
+  <rect x="415" y="242" width="80" height="18" rx="3" fill="#14b8a6" opacity="0.8"/><text x="455" y="255" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  <rect x="535" y="242" width="80" height="18" rx="3" fill="#a78bfa" opacity="0.6"/><text x="575" y="255" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★☆</text>
+  <rect x="655" y="242" width="80" height="18" rx="3" fill="#ef4444" opacity="0.3"/><text x="695" y="255" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★☆☆☆</text>
+  
+  <!-- Row: Customization -->
+  <text x="90" y="295" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10" font-weight="600">Custom</text>
+  <rect x="175" y="282" width="80" height="18" rx="3" fill="#3b82f6" opacity="0.5"/><text x="215" y="295" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★☆☆</text>
+  <rect x="295" y="282" width="80" height="18" rx="3" fill="#eab308" opacity="0.6"/><text x="335" y="295" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★☆</text>
+  <rect x="415" y="282" width="80" height="18" rx="3" fill="#14b8a6" opacity="0.5"/><text x="455" y="295" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★☆☆</text>
+  <rect x="535" y="282" width="80" height="18" rx="3" fill="#a78bfa" opacity="0.4"/><text x="575" y="295" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★☆☆☆</text>
+  <rect x="655" y="282" width="80" height="18" rx="3" fill="#14b8a6" opacity="0.9"/><text x="695" y="295" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  
+  <!-- Row: Enterprise -->
+  <text x="90" y="335" text-anchor="middle" fill="#94a3b8" font-family="Inter,sans-serif" font-size="10" font-weight="600">Enterprise</text>
+  <rect x="175" y="322" width="80" height="18" rx="3" fill="#3b82f6" opacity="0.7"/><text x="215" y="335" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  <rect x="295" y="322" width="80" height="18" rx="3" fill="#eab308" opacity="0.7"/><text x="335" y="335" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  <rect x="415" y="322" width="80" height="18" rx="3" fill="#14b8a6" opacity="0.6"/><text x="455" y="335" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★☆</text>
+  <rect x="535" y="322" width="80" height="18" rx="3" fill="#a78bfa" opacity="0.7"/><text x="575" y="335" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★★★★</text>
+  <rect x="655" y="322" width="80" height="18" rx="3" fill="#ef4444" opacity="0.3"/><text x="695" y="335" text-anchor="middle" fill="#f8fafc" font-family="Inter,sans-serif" font-size="8">★★☆☆☆</text>
+  
+  <!-- Best for labels -->
+  <text x="215" y="375" text-anchor="middle" fill="#3b82f6" font-family="Inter,sans-serif" font-size="7" font-weight="600">Best: General</text>
+  <text x="335" y="375" text-anchor="middle" fill="#eab308" font-family="Inter,sans-serif" font-size="7" font-weight="600">Best: Code/Safety</text>
+  <text x="455" y="375" text-anchor="middle" fill="#14b8a6" font-family="Inter,sans-serif" font-size="7" font-weight="600">Best: Multimodal</text>
+  <text x="575" y="375" text-anchor="middle" fill="#a78bfa" font-family="Inter,sans-serif" font-size="7" font-weight="600">Best: M365</text>
+  <text x="695" y="375" text-anchor="middle" fill="#ef4444" font-family="Inter,sans-serif" font-size="7" font-weight="600">Best: Privacy</text>
+  
+  <!-- Note -->
+  <text x="400" y="420" text-anchor="middle" fill="#475569" font-family="Inter,sans-serif" font-size="8">* Open source requires your own infrastructure (GPU/compute costs apply)</text>
+  
+  <!-- Recommendation -->
+  <rect x="200" y="440" width="400" height="30" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+  <text x="400" y="460" text-anchor="middle" fill="#14b8a6" font-family="Inter,sans-serif" font-size="10" font-weight="600">💡 Start with Claude/GPT API, evaluate open-source for privacy</text>
+  
+  <text x="400" y="493" text-anchor="middle" fill="#1e293b" font-family="Inter,sans-serif" font-size="7">IT Security Labs • Module 3: AI Tools Landscape</text>
+</svg>

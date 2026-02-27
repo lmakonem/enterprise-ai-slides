@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Toolbox -->
+  <rect x="60" y="80" width="80" height="50" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <path d="M85,80 V70 H115 V80" fill="none" stroke="#00d4aa" stroke-width="2" />
+  <!-- Sparkle -->
+  <path d="M150,60 L155,70 L165,75 L155,80 L150,90 L145,80 L135,75 L145,70 Z" fill="#ffffff" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M03</text>
+</svg>

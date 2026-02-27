@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 6: Hugging Face &amp; Open-Source AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-06.svg" style="width:100px">
+        <h1>Module 6</h1>
+        <h2>Hugging Face &amp; Open-Source AI</h2>
+        <p>Navigating the World's Largest Open-Source AI Ecosystem</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Welcome to Module 6, where we explore Hugging Face — the platform that has become the GitHub of machine learning. With over 500,000 models, 100,000 datasets, and 200,000 Spaces, it's the single most important platform for understanding the open-source AI landscape. By the end of this module, you'll be able to find, evaluate, and deploy models from the Hub.</aside>
+      </section>
+
+      <!-- SLIDE 2: Learning Objectives -->
+      <section data-transition="fade">
+        <h2>🎯 Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ol>
+            <li   >Navigate the <strong>Hugging Face Hub</strong> — models, datasets, and Spaces</li>
+            <li   >Read and evaluate <strong>model cards</strong> for fitness and risk</li>
+            <li   >Use the <strong>Inference API</strong> and <strong>transformers library</strong> to test models</li>
+            <li   >Compare models using <strong>benchmarks and leaderboards</strong></li>
+            <li   >Assess <strong>deployment options</strong> for open-source models (local, cloud, edge)</li>
+            <li   >Identify <strong>supply chain security risks</strong> in open-source AI</li>
+          </ol>
+        </div>
+        <aside class="notes">These objectives take you from passive consumer to active evaluator of open-source AI. We'll cover both the conceptual framework for model evaluation and the hands-on skills to actually test models using Python. The security perspective is woven throughout — every model you evaluate is a potential attack surface.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section>
+        <h2>💡 Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">500K+</div>
+            <div class="stat-label">Models on Hugging Face Hub</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">100K+</div>
+            <div class="stat-label">Datasets available</div>
+          </div>
+        </div>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Organizations on the platform</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#047857,#10b981);color:#fff;">
+            <div class="stat-number">$0</div>
+            <div class="stat-label">Cost to access most models</div>
+          </div>
+        </div>
+        <p>Meta, Google, Microsoft, Mistral, Stability AI — all publish models on Hugging Face.</p>
+        <aside class="notes">Hugging Face has become the de facto distribution platform for open-source AI. Even major commercial AI companies publish models there. Understanding this ecosystem is essential because open-source models offer control, transparency, and cost advantages that closed APIs don't. But they also come with unique risks — supply chain attacks, licensing complications, and the responsibility of self-hosting.</aside>
+      </section>
+
+      <!-- SLIDE 4: Open-Source vs Closed AI -->
+      <section data-transition="slide">
+        <h2>Open-Source vs Closed AI — The Landscape</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Aspect</th><th>Open-Source (Llama, Mistral)</th><th>Closed API (GPT-4, Claude)</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Cost</strong></td><td>Free weights; you pay for compute</td><td>Pay per token via API</td></tr>
+            <tr  ><td><strong>Data Privacy</strong></td><td>Full control — data never leaves your infra</td><td>Data sent to vendor servers</td></tr>
+            <tr  ><td><strong>Customization</strong></td><td>Fine-tune, quantize, modify freely</td><td>Limited to prompting and fine-tune APIs</td></tr>
+            <tr  ><td><strong>Transparency</strong></td><td>Weights inspectable; some share training data</td><td>Black box — no weight access</td></tr>
+            <tr  ><td><strong>Support</strong></td><td>Community-driven; enterprise support emerging</td><td>Vendor SLAs and support contracts</td></tr>
+            <tr  ><td><strong>Liability</strong></td><td>You own deployment risk entirely</td><td>Shared responsibility with vendor</td></tr>
+            <tr  ><td><strong>Security</strong></td><td>Supply chain risks; you manage patching</td><td>Vendor manages security; you trust them</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This comparison frames the strategic choice enterprises face. Open-source isn't inherently better or worse — it's a different trade-off profile. For sensitive data, open-source wins because nothing leaves your network. For rapid deployment with SLA guarantees, closed APIs win. Most mature organizations use both: open-source for sensitive or high-volume workloads, closed APIs for general productivity and rapid prototyping.</aside>
+      </section>
+
+      <!-- SLIDE 5: Hub Overview -->
+      <section>
+        <h2>The Hugging Face Hub</h2>
+        <img   src="/assets/graphics/concept-fine-tuning-vs-rag.svg" style="max-width:700px;width:100%">
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <p>Three pillars: <strong>Models</strong> (pre-trained weights), <strong>Datasets</strong> (training &amp; eval data), and <strong>Spaces</strong> (live demos &amp; apps). Together they form a complete ecosystem for discovering, evaluating, and deploying AI.</p>
+        </div>
+        <aside class="notes">The Hub's three pillars work together: you find a model, check its training dataset, test it in a Space, and then download it for local use. This integrated workflow is what makes Hugging Face so powerful compared to downloading random model files from the internet. Everything is versioned, documented, and community-reviewed.</aside>
+      </section>
+
+      <!-- SLIDE 6: Section Divider - Hub Navigation -->
+      <section data-background-color="#1e293b">
+        <h1>🧭 Navigating the Hub</h1>
+        <h2>Models, Datasets, and Spaces</h2>
+        <aside class="notes">Let's start with the practical skills of navigating the Hub. With over half a million models, finding the right one requires understanding the filtering, sorting, and evaluation tools available. We'll cover each of the three main sections and how to use them effectively.</aside>
+      </section>
+
+      <!-- SLIDE 7: Models Hub -->
+      <section>
+        <h2>Models Hub — Finding the Right Model</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>Key Filters</h3>
+            <ul>
+              <li class="fragment fade-right"  ><strong>Task:</strong> Text generation, classification, translation, image generation, etc.</li>
+              <li class="fragment fade-up"  ><strong>Library:</strong> PyTorch, TensorFlow, JAX, ONNX, etc.</li>
+              <li  ><strong>Language:</strong> Filter by supported language</li>
+              <li class="fragment fade-up"  ><strong>License:</strong> Apache 2.0, MIT, LLAMA, custom</li>
+              <li  ><strong>Model size:</strong> From tiny (&lt; 100M) to massive (&gt; 100B)</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>Sorting Options</h3>
+            <ul>
+              <li  ><strong>Trending:</strong> Most downloaded recently</li>
+              <li  ><strong>Most downloads:</strong> All-time popularity</li>
+              <li class="fragment fade-up"  ><strong>Most likes:</strong> Community favorites</li>
+              <li class="fragment fade-right"  ><strong>Recently updated:</strong> Active development</li>
+            </ul>
+            <h3>Pro Tips</h3>
+            <ul>
+              <li  >Check the <strong>downloads/month</strong> badge — popular ≠ best, but very low downloads is a red flag</li>
+              <li  >Look for <strong>organization-published</strong> models (meta-llama, google, mistralai)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Effective Hub navigation saves enormous time. The task filter is your first stop — it narrows 500K models down to the relevant few hundred. License filtering is critical for enterprise use — some popular models have restrictive licenses that prohibit commercial use. The downloads badge is a useful signal but not definitive — a model with 10 downloads might be perfect for your niche use case, or it might be untested garbage.</aside>
+      </section>
+
+      <!-- SLIDE 8: Datasets Hub -->
+      <section>
+        <h2>Datasets Hub</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <ul>
+            <li  ><strong>100,000+ datasets</strong> for training, fine-tuning, and evaluation</li>
+            <li  ><strong>Dataset Viewer:</strong> Preview data directly in the browser — no download needed</li>
+            <li  ><strong>Dataset Cards:</strong> Documentation including source, composition, biases, and intended uses</li>
+            <li  ><strong>Streaming:</strong> Process datasets without downloading entire files</li>
+          </ul>
+        </div>
+        <div class="cols">
+          <div>
+            <h3>Popular Datasets</h3>
+            <ul>
+              <li  ><strong>Common Crawl</strong> — Web text corpus</li>
+              <li  ><strong>The Pile</strong> — 800GB diverse text</li>
+              <li  ><strong>MMLU</strong> — Multi-task language understanding benchmark</li>
+              <li  ><strong>HumanEval</strong> — Code generation benchmark</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Security Considerations</h3>
+            <ul>
+              <li  >⚠️ Datasets may contain <strong>PII or toxic content</strong></li>
+              <li  >⚠️ License terms may restrict <strong>commercial use</strong></li>
+              <li  >⚠️ Data provenance may be <strong>unclear or disputed</strong></li>
+              <li  >⚠️ Poisoned datasets are a <strong>supply chain risk</strong></li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The Dataset Viewer is incredibly useful — you can inspect actual data samples before committing to a download. This is important for security: you can check for PII, toxic content, or other issues before the data touches your infrastructure. Dataset poisoning is an emerging threat — malicious actors can upload datasets designed to introduce backdoors when used for fine-tuning. Always verify dataset provenance and scan for anomalies.</aside>
+      </section>
+
+      <!-- SLIDE 9: Spaces -->
+      <section>
+        <h2>Hugging Face Spaces</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <p><strong>Spaces</strong> are hosted web applications that let you demo and interact with AI models directly in the browser. Built with <strong>Gradio</strong> or <strong>Streamlit</strong>.</p>
+        </div>
+        <div class="cols-3">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
+            <div class="stat-number">200K+</div>
+            <div class="stat-label">Active Spaces</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#9f1239,#e11d48);color:#fff;">
+            <div class="stat-number">Free</div>
+            <div class="stat-label">CPU-based hosting</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">GPU</div>
+            <div class="stat-label">Available for $0.60/hr+</div>
+          </div>
+        </div>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <h3>Popular Space Examples</h3>
+          <ul>
+            <li   ><strong>Open LLM Leaderboard</strong> — Compare language model performance</li>
+            <li   ><strong>Stable Diffusion XL</strong> — Generate images in the browser</li>
+            <li   ><strong>Whisper</strong> — Transcribe audio to text</li>
+            <li   ><strong>ChatArena</strong> — Blind comparison of LLM outputs</li>
+          </ul>
+        </div>
+        <aside class="notes">Spaces are the fastest way to evaluate a model without writing any code. You can test a model's capabilities, understand its limitations, and even build a quick demo for stakeholders. For enterprises, Spaces can serve as internal model showcases. Security note: public Spaces process your input on Hugging Face infrastructure — don't test with sensitive data.</aside>
+      </section>
+
+      <!-- SLIDE 10: Section Divider - Model Cards -->
+      <section data-transition="fade" data-background-color="#1e293b">
+        <h1>📋 Model Cards</h1>
+        <h2>Reading the Label Before You Buy</h2>
+        <aside class="notes">Model cards are the nutritional labels of AI. They tell you what a model was trained on, what it's good at, what it's bad at, and what you shouldn't use it for. Learning to read model cards critically is one of the most important skills for anyone evaluating AI models.</aside>
+      </section>
+
+      <!-- SLIDE 11: Model Card Anatomy -->
+      <section>
+        <h2>Anatomy of a Model Card</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <table class="comparison">
+            <thead>
+              <tr ><th>Section</th><th>What to Look For</th><th>Red Flags</th></tr>
+            </thead>
+            <tbody>
+              <tr  ><td><strong>Model Description</strong></td><td>Architecture, size, training approach</td><td>Vague or missing details</td></tr>
+              <tr  ><td><strong>Intended Use</strong></td><td>What the model is designed for</td><td>Overly broad claims ("works for everything")</td></tr>
+              <tr  ><td><strong>Training Data</strong></td><td>Sources, size, composition, filtering</td><td>Undisclosed or "proprietary" data</td></tr>
+              <tr  ><td><strong>Evaluation</strong></td><td>Benchmarks, metrics, test datasets</td><td>Cherry-picked benchmarks, no error analysis</td></tr>
+              <tr  ><td><strong>Limitations</strong></td><td>Known failures, biases, edge cases</td><td>No limitations section = major red flag</td></tr>
+              <tr  ><td><strong>Ethical Considerations</strong></td><td>Bias analysis, misuse potential</td><td>Missing entirely</td></tr>
+              <tr  ><td><strong>License</strong></td><td>Usage rights, restrictions, attribution</td><td>Custom licenses with hidden restrictions</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="notes">A well-written model card is a sign of a responsible model publisher. If a model card is missing, incomplete, or vague, treat it as a risk indicator. The training data section is particularly important for enterprises — if you can't verify what data was used, you can't assess copyright or compliance risks. The limitations section is where honest publishers document known failure modes — models without this section are making implicit claims of perfection that are never true.</aside>
+      </section>
+
+      <!-- SLIDE 12: Good vs Bad Model Cards -->
+      <section>
+        <h2>Model Card Quality: Good vs Poor</h2>
+        <div class="cols">
+          <div class="truth-card">
+            <h3>✅ Meta's Llama 3.1</h3>
+            <ul>
+              <li class="fragment fade-up"  >Detailed training data description</li>
+              <li  >Comprehensive benchmark results</li>
+              <li  >Clear safety evaluation section</li>
+              <li  >Responsible use guide linked</li>
+              <li class="fragment fade-up"  >Known limitations documented</li>
+              <li  >Custom license clearly explained</li>
+            </ul>
+          </div>
+          <div class="myth-card">
+            <h3>❌ Typical Poor Model Card</h3>
+            <ul>
+              <li  >"Fine-tuned from [base model]"</li>
+              <li  >No training data details</li>
+              <li  >One benchmark score, no context</li>
+              <li  >No limitations section</li>
+              <li  >No ethical considerations</li>
+              <li  >"For research purposes" (license unclear)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Compare Meta's Llama model card with a typical community fine-tune. Meta provides pages of documentation including safety evaluations, red-teaming results, and responsible use guidelines. Many community models have barely a paragraph. This doesn't mean community models are bad — but it means you need to do more due diligence. For enterprise deployment, only consider models with comprehensive model cards unless you plan to do extensive testing yourself.</aside>
+      </section>
+
+      <!-- SLIDE 13: Licensing Deep Dive -->
+      <section>
+        <h2>⚖️ Open-Source AI Licensing</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>License</th><th>Commercial Use</th><th>Modification</th><th>Key Restriction</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td><strong>Apache 2.0</strong></td><td class="text-teal">✅ Yes</td><td class="text-teal">✅ Yes</td><td>Patent grant included; attribution required</td></tr>
+            <tr ><td><strong>MIT</strong></td><td class="text-teal">✅ Yes</td><td class="text-teal">✅ Yes</td><td>Minimal restrictions; attribution required</td></tr>
+            <tr ><td><strong>Llama 3.1 Community</strong></td><td class="text-teal">✅ Yes*</td><td class="text-teal">✅ Yes</td><td>*Prohibited for apps with &gt;700M monthly users</td></tr>
+            <tr ><td><strong>Mistral Research</strong></td><td class="text-red">❌ No</td><td class="text-teal">✅ Yes</td><td>Research and non-commercial only</td></tr>
+            <tr ><td><strong>CreativeML Open RAIL-M</strong></td><td class="text-teal">✅ Yes</td><td class="text-teal">✅ Yes</td><td>Use-based restrictions (no harm, no surveillance)</td></tr>
+            <tr ><td><strong>GPL-3.0</strong></td><td class="text-teal">✅ Yes</td><td class="text-teal">✅ Yes</td><td>Copyleft — derivatives must also be GPL</td></tr>
+          </tbody>
+        </table>
+        <p class="text-red"><strong>⚠️ Always have legal review licenses before enterprise deployment. "Open" ≠ "unrestricted."</strong></p>
+        <aside class="notes">Licensing is one of the most misunderstood aspects of open-source AI. Many people assume open-source means free to use for anything — it doesn't. Llama's license prohibits use by companies with over 700 million monthly active users, which excludes most Big Tech competitors. Some models use research-only licenses that prohibit any commercial use. The RAIL licenses are a new category that allow commercial use but prohibit specific harmful uses. Always involve legal counsel before deploying any open-source model commercially.</aside>
+      </section>
+
+      <!-- SLIDE 14: Section Divider - Inference API -->
+      <section data-background-color="#1e293b">
+        <h1>🔌 Using Models</h1>
+        <h2>Inference API &amp; Transformers Library</h2>
+        <aside class="notes">Now let's get hands-on with actually using models from the Hub. We'll cover two approaches: the Inference API for quick testing without local setup, and the transformers library for full local control. Both are essential tools in your AI evaluation toolkit.</aside>
+      </section>
+
+      <!-- SLIDE 15: Inference API -->
+      <section>
+        <h2>Hugging Face Inference API</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <p>Test any model on the Hub with a simple HTTP request — <strong>no GPU, no downloads, no setup</strong>.</p>
+        </div>
+        <pre  ><code class="python">import requests
+
+API_URL = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-8B-Instruct"
+headers = {"Authorization": "Bearer hf_YOUR_TOKEN_HERE"}
+
+def query(payload):
+    response = requests.post(API_URL, headers=headers, json=payload)
+    return response.json()
+
+# Test the model
+result = query({
+    "inputs": "Explain AI governance in one paragraph:",
+    "parameters": {
+        "max_new_tokens": 200,
+        "temperature": 0.7,
+        "top_p": 0.9
+    }
+})
+print(result[0]["generated_text"])</code></pre>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <p>⚠️ <strong>Security note:</strong> Inference API sends your prompts to Hugging Face servers. Do not use with sensitive data. Free tier has rate limits; Pro tier ($9/mo) removes most limits.</p>
+        </div>
+        <aside class="notes">The Inference API is the fastest way to test a model — you can go from discovery to evaluation in under a minute. It's perfect for initial screening: does this model understand my domain? How does it handle edge cases? But remember the security implications: your prompts are processed on Hugging Face infrastructure. For enterprise evaluation, use the Inference API for initial screening with synthetic data, then do detailed evaluation locally.</aside>
+      </section>
+
+      <!-- SLIDE 16: Transformers Library -->
+      <section>
+        <h2>🐍 Transformers Library — Local Inference</h2>
+        <pre  ><code class="python">from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+
+# Option 1: Quick start with pipeline (simplest)
+classifier = pipeline("sentiment-analysis")
+result = classifier("Hugging Face makes AI accessible to everyone!")
+print(result)
+# [{'label': 'POSITIVE', 'score': 0.9998}]
+
+# Option 2: Full control with model + tokenizer
+model_name = "microsoft/DialoGPT-medium"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
+# Encode and generate
+input_ids = tokenizer.encode(
+    "What is AI governance?",
+    return_tensors="pt"
+)
+output = model.generate(
+    input_ids,
+    max_length=100,
+    temperature=0.7,
+    do_sample=True
+)
+print(tokenizer.decode(output[0], skip_special_tokens=True))</code></pre>
+        <aside class="notes">The transformers library gives you full local control over model inference. Option 1, the pipeline API, is great for quick experiments — one line of code gives you a working model. Option 2 gives you fine-grained control over the tokenizer and model separately, which you need for production deployments. All processing happens locally — no data leaves your machine. The trade-off is that you need local compute resources, especially GPU for larger models.</aside>
+      </section>
+
+      <!-- SLIDE 17: Model Quantization -->
+      <section>
+        <h2>🔧 Model Quantization — Running Big Models on Small Hardware</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <p><strong>Quantization</strong> reduces model precision (e.g., 16-bit → 4-bit) to shrink memory requirements and speed up inference, with minimal quality loss.</p>
+        </div>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Format</th><th>Precision</th><th>Memory (7B model)</th><th>Quality Loss</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>FP32</strong> (full)</td><td>32-bit float</td><td>~28 GB</td><td>None (baseline)</td></tr>
+            <tr  ><td><strong>FP16 / BF16</strong></td><td>16-bit float</td><td>~14 GB</td><td>Negligible</td></tr>
+            <tr  ><td><strong>INT8</strong> (bitsandbytes)</td><td>8-bit integer</td><td>~7 GB</td><td>Minimal (&lt;1%)</td></tr>
+            <tr  ><td><strong>GPTQ / AWQ</strong></td><td>4-bit integer</td><td>~4 GB</td><td>Small (1-3%)</td></tr>
+            <tr  ><td><strong>GGUF</strong> (llama.cpp)</td><td>2-6 bit mixed</td><td>~3-5 GB</td><td>Varies by quant level</td></tr>
+          </tbody>
+        </table>
+        <pre  ><code class="python"># Load a 4-bit quantized model with bitsandbytes
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+
+quantization_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype="float16"
+)
+model = AutoModelForCausalLM.from_pretrained(
+    "meta-llama/Llama-3.1-8B-Instruct",
+    quantization_config=quantization_config,
+    device_map="auto"
+)</code></pre>
+        <aside class="notes">Quantization is what makes open-source AI practical for enterprise deployment without massive GPU budgets. A 7B parameter model at full precision needs 28GB of VRAM — more than most GPUs. At 4-bit quantization, it fits in 4GB — runnable on a laptop. The quality trade-off is surprisingly small for most tasks. GGUF format is particularly popular because it works with llama.cpp and Ollama, enabling CPU-only inference. On the Hub, look for model variants with 'GPTQ', 'AWQ', or 'GGUF' in the name.</aside>
+      </section>
+
+      <!-- SLIDE 18: Section Divider - Benchmarks -->
+      <section data-background-color="#1e293b">
+        <h1>📊 Model Evaluation</h1>
+        <h2>Benchmarks, Leaderboards, and What They Actually Mean</h2>
+        <aside class="notes">With hundreds of thousands of models available, how do you compare them objectively? Benchmarks and leaderboards provide standardized evaluation metrics. But they can also be misleading if you don't understand what they measure and what they don't. Let's build your evaluation literacy.</aside>
+      </section>
+
+      <!-- SLIDE 19: Key Benchmarks -->
+      <section>
+        <h2>Key AI Benchmarks</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Benchmark</th><th>What It Measures</th><th>Tasks</th><th>Limitation</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>MMLU</strong></td><td>Multi-task knowledge</td><td>57 subjects from STEM to humanities</td><td>Multiple choice only; memorization risk</td></tr>
+            <tr  ><td><strong>HumanEval</strong></td><td>Code generation</td><td>164 Python programming problems</td><td>Only Python; simple functions</td></tr>
+            <tr  ><td><strong>HellaSwag</strong></td><td>Common sense reasoning</td><td>Sentence completion tasks</td><td>Saturated (top models &gt;95%)</td></tr>
+            <tr  ><td><strong>TruthfulQA</strong></td><td>Truthfulness</td><td>817 questions designed to elicit falsehoods</td><td>Limited scope of question types</td></tr>
+            <tr  ><td><strong>GSM8K</strong></td><td>Math reasoning</td><td>8,500 grade school math problems</td><td>Only arithmetic word problems</td></tr>
+            <tr  ><td><strong>MT-Bench</strong></td><td>Multi-turn conversation</td><td>80 multi-turn dialogues, LLM-judged</td><td>LLM-as-judge bias</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">Each benchmark measures a specific capability, and no single benchmark tells the full story. MMLU is the most widely cited but has known issues: models can memorize answers from benchmark contamination in training data. HumanEval only tests Python and only tests simple function-level tasks. The limitation column is crucial — always ask 'what doesn't this benchmark tell me?' When evaluating models for enterprise use, run your own domain-specific evaluations in addition to checking standard benchmarks.</aside>
+      </section>
+
+      <!-- SLIDE 20: Open LLM Leaderboard -->
+      <section>
+        <h2>Open LLM Leaderboard</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <p>The <strong>Open LLM Leaderboard</strong> (hosted on Hugging Face Spaces) provides standardized evaluation of open-source language models across multiple benchmarks.</p>
+        </div>
+        <div class="cols">
+          <div>
+            <h3>What It Shows</h3>
+            <ul>
+              <li   >Standardized scores across 6+ benchmarks</li>
+              <li   >Filterable by model size, type, license</li>
+              <li   >Community-submitted models evaluated uniformly</li>
+              <li   >Historical tracking of model improvements</li>
+            </ul>
+          </div>
+          <div>
+            <h3>How to Read It</h3>
+            <ul>
+              <li   >Don't just look at the <strong>average score</strong> — check individual benchmarks</li>
+              <li   >Compare models of <strong>similar size</strong> for fair evaluation</li>
+              <li   >Check for <strong>benchmark contamination</strong> warnings</li>
+              <li class="fragment fade-up"   >Verify scores match <strong>model card claims</strong></li>
+              <li   >Remember: leaderboard ≠ real-world performance</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The Open LLM Leaderboard is the most important single resource for comparing open-source language models. But it has a known problem: some model creators deliberately optimize for benchmark scores through training data contamination — including benchmark questions in training data. The leaderboard team actively detects and flags this, but it's an ongoing arms race. Always treat leaderboard scores as a starting point for evaluation, not a final answer.</aside>
+      </section>
+
+      <!-- SLIDE 21: Myth vs Reality -->
+      <section>
+        <h2>Myth vs Reality</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"Open-source AI models are less capable than closed models like GPT-4."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>Open-source models like Llama 3.1 405B, Mixtral, and DeepSeek-V3 compete with or exceed closed models on many benchmarks. The gap has <strong>narrowed dramatically</strong> since 2023. For many enterprise tasks, a fine-tuned 8B open model outperforms a general-purpose 100B+ closed model.</p>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:20px">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"Open-source means free to use for anything."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>Many "open" models have restrictive licenses. Llama requires a <strong>custom license agreement</strong> and prohibits use by companies with &gt;700M monthly users. Some models are <strong>open-weight but not open-source</strong> (no training code/data). Always read the license.</p>
+          </div>
+        </div>
+        <aside class="notes">The capability myth is fading fast. In 2024, GPT-4 was clearly ahead. By 2026, open-source models regularly compete with and sometimes beat closed models, especially for specific tasks after fine-tuning. The licensing myth is more dangerous — 'open' in AI doesn't mean the same thing as in traditional software. Meta's Llama license, Mistral's various licenses, and community model licenses all have different restrictions. Enterprise legal teams need to review every model license before deployment.</aside>
+      </section>
+
+      <!-- SLIDE 22: Section Divider - Deployment -->
+      <section data-transition="slide" data-background-color="#1e293b">
+        <h1>🚀 Deployment Options</h1>
+        <h2>Running Open-Source Models in Production</h2>
+        <aside class="notes">Finding and evaluating a model is only half the battle. You also need to deploy it reliably, securely, and cost-effectively. Let's compare the deployment options available for open-source models, from your laptop to cloud-scale production.</aside>
+      </section>
+
+      <!-- SLIDE 23: Deployment Comparison -->
+      <section data-transition="slide">
+        <h2>Deployment Options Compared</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Option</th><th>Best For</th><th>Pros</th><th>Cons</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Local (Ollama, llama.cpp)</strong></td><td>Development, privacy-critical</td><td>Full control, no data leaves premises, free</td><td>Limited by local hardware, no scaling</td></tr>
+            <tr  ><td><strong>HF Inference Endpoints</strong></td><td>Quick cloud deployment</td><td>Easy setup, auto-scaling, managed</td><td>Vendor dependency, cost at scale</td></tr>
+            <tr  ><td><strong>Cloud VMs (AWS, GCP, Azure)</strong></td><td>Production workloads</td><td>Full control, scalable, GPU options</td><td>Infrastructure management, GPU costs</td></tr>
+            <tr  ><td><strong>Serverless (Modal, Replicate)</strong></td><td>Variable workloads</td><td>Pay-per-use, no idle costs</td><td>Cold starts, less control</td></tr>
+            <tr  ><td><strong>Edge (ONNX, TensorRT)</strong></td><td>Low-latency, offline</td><td>No network dependency, fast</td><td>Model size limits, optimization needed</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">The right deployment option depends on your requirements: data sensitivity, latency, scale, and budget. For development and evaluation, local deployment with Ollama is unbeatable — free, fast, and private. For production, most enterprises choose cloud VMs for control or Inference Endpoints for convenience. Edge deployment is growing rapidly for use cases that need low latency or offline capability. Many organizations use multiple deployment options for different use cases.</aside>
+      </section>
+
+      <!-- SLIDE 24: Local Deployment Example -->
+      <section>
+        <h2>🐍 Code: Local Deployment with Ollama</h2>
+        <pre  ><code class="python"># Install: curl -fsSL https://ollama.com/install.sh | sh
+# Pull a model: ollama pull llama3.1:8b
+
+import requests
+
+def ollama_generate(prompt, model="llama3.1:8b"):
+    """Query a locally-running Ollama model."""
+    response = requests.post(
+        "http://localhost:11434/api/generate",
+        json={
+            "model": model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {
+                "temperature": 0.7,
+                "num_predict": 500
+            }
+        }
+    )
+    return response.json()["response"]
+
+# Test it
+answer = ollama_generate(
+    "What security risks should I consider when deploying "
+    "an open-source AI model in production?"
+)
+print(answer)
+
+# List available models
+models = requests.get("http://localhost:11434/api/tags").json()
+for m in models["models"]:
+    print(f"  {m['name']} — {m['size'] / 1e9:.1f} GB")</code></pre>
+        <img   src="/assets/lab-graphics/ollama-architecture.svg" style="width:600px; margin:20px auto; display:block;" alt="Ollama local deployment architecture">
+        <aside class="notes">Ollama makes local model deployment trivially easy — two commands and you have a model running locally. The Python integration is a simple HTTP API, no special libraries needed. This is ideal for security-sensitive evaluations where you don't want prompts leaving your network. For enterprise deployment, you'd add authentication, logging, and rate limiting around this basic setup.</aside>
+      </section>
+
+      <!-- SLIDE 25: Security Considerations -->
+      <section>
+        <h2>⚠️ Open-Source AI Security Risks</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-red">Supply Chain Risks</h3>
+            <ul>
+              <li  ><strong>Malicious model weights:</strong> Pickle deserialization attacks in PyTorch models</li>
+              <li  ><strong>Backdoored models:</strong> Trojan triggers trained into weights</li>
+              <li  ><strong>Poisoned datasets:</strong> Training data designed to introduce vulnerabilities</li>
+              <li  ><strong>Typosquatting:</strong> Fake models mimicking popular model names</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3 class="text-teal">Mitigations</h3>
+            <ul>
+              <li  >✅ Use <strong>safetensors</strong> format (no arbitrary code execution)</li>
+              <li  >✅ Verify model <strong>checksums and signatures</strong></li>
+              <li  >✅ Download only from <strong>verified organizations</strong></li>
+              <li  >✅ Scan models with <strong>ModelScan</strong> or similar tools</li>
+              <li  >✅ Run models in <strong>sandboxed environments</strong></li>
+              <li  >✅ Maintain an internal <strong>model registry</strong></li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">This is where our security focus really matters. PyTorch's default pickle serialization format can execute arbitrary code during model loading — downloading and loading a malicious model is equivalent to running untrusted code. The safetensors format, created by Hugging Face, eliminates this risk by using a safe serialization format. Always prefer safetensors, verify model sources, and run models in sandboxed environments. Treat model files like executable code, not data.</aside>
+      </section>
+
+      <!-- SLIDE 26: Community Features & Enterprise Tools -->
+      <section data-transition="fade">
+        <h2>Hugging Face Community &amp; Enterprise Features</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3 class="text-teal">Community (Free)</h3>
+            <ul>
+              <li   ><strong>Discussions:</strong> GitHub-style threads on model repos</li>
+              <li   ><strong>Pull requests:</strong> Contribute model improvements</li>
+              <li   ><strong>Model trending:</strong> Community-driven discovery</li>
+              <li   ><strong>Spaces:</strong> Free CPU-based app hosting</li>
+              <li class="fragment fade-up"   ><strong>Organizations:</strong> Team model management</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-blue">Enterprise Hub ($$$)</h3>
+            <ul>
+              <li   ><strong>Private Hub:</strong> On-prem or VPC model registry</li>
+              <li   ><strong>SSO/SAML:</strong> Enterprise identity integration</li>
+              <li   ><strong>Audit logs:</strong> Track model access and downloads</li>
+              <li   ><strong>Resource groups:</strong> Manage compute across teams</li>
+              <li   ><strong>Inference Endpoints:</strong> Dedicated GPU serving</li>
+              <li   ><strong>Expert support:</strong> Direct engineering assistance</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Hugging Face's community features make it more than a download site — it's a collaborative platform where model authors, users, and researchers interact. For enterprises, the paid Enterprise Hub adds the governance and security features needed for production use: access controls, audit trails, and private model registries. Many enterprises start with the free tier for evaluation and upgrade to Enterprise for production deployment.</aside>
+      </section>
+
+      <!-- SLIDE 27: Case Study - Bloomberg -->
+      <section>
+        <h2>📋 Case Study: BloombergGPT — Domain-Specific Open Models</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <p>In 2023, Bloomberg trained a <strong>50B parameter model</strong> specifically for financial NLP tasks, demonstrating the power of domain-specific open models.</p>
+        </div>
+        <div class="cols">
+          <div>
+            <h3>What They Did</h3>
+            <ul>
+              <li  >Curated <strong>363B tokens</strong> of financial data (filings, news, reports)</li>
+              <li class="fragment fade-up"  >Combined with 345B tokens of general text</li>
+              <li  >Outperformed GPT-3 on <strong>all financial benchmarks</strong></li>
+              <li  >Competitive on general NLP tasks</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Lessons for Enterprises</h3>
+            <ul>
+              <li  >Domain-specific data matters more than model size</li>
+              <li  >A <strong>fine-tuned 8B model</strong> can beat a general-purpose 100B+ model on domain tasks</li>
+              <li  >Open-source base models + your data = competitive advantage</li>
+              <li  >Investment: ~$2.7M in compute for training</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">BloombergGPT is a landmark case for enterprise open-source AI. It proved that domain expertise in training data matters more than raw model size. The practical lesson for your organizations: you don't need to train a model from scratch. Start with a strong open-source base like Llama and fine-tune on your domain data. A fine-tuned 8B model for your specific use case often outperforms a general-purpose GPT-4 — and costs orders of magnitude less to run.</aside>
+      </section>
+
+      <!-- SLIDE 28: Hands-On Activity -->
+      <section>
+        <h2>🛠️ Hands-On: Explore the Hugging Face Hub</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <h3>Activity: Model Evaluation Workshop (25 minutes)</h3>
+          <ol>
+            <li   ><strong>Search:</strong> Find a text-generation model suitable for customer support (filter by license: Apache 2.0 or MIT, size: &lt;10B parameters)</li>
+            <li class="fragment fade-up"   ><strong>Evaluate the model card:</strong> Score it on completeness (training data, benchmarks, limitations, ethics)</li>
+            <li   ><strong>Test via Inference API:</strong> Send 5 prompts testing edge cases (refusal, hallucination triggers, PII handling)</li>
+            <li   ><strong>Compare:</strong> Repeat for a second candidate model — which would you recommend?</li>
+            <li class="fragment fade-up"   ><strong>Security review:</strong> Check file format (safetensors?), organization verification, and license terms</li>
+          </ol>
+        </div>
+        <p>📝 <strong>Deliverable:</strong> A 1-page model evaluation report comparing two models with a deployment recommendation</p>
+        <img   src="/assets/lab-graphics/activity06-huggingface-workflow.svg" style="width:600px; margin:20px auto; display:block;" alt="Hugging Face model evaluation workflow">
+        <aside class="notes">This activity simulates the real model selection process an enterprise goes through. Walk participants through the Hub interface if needed. Common pitfalls: choosing models based solely on download count, ignoring license restrictions, and not testing edge cases. The security review step is unique to our course — most tutorials skip it, but it's essential for enterprise deployment. The deliverable format mirrors what you'd present to an AI ethics board for approval.</aside>
+      </section>
+
+      <!-- SLIDE 29: Quiz -->
+      <section>
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <ol>
+            <li    >Name <strong>three sections</strong> of a model card that are essential for enterprise evaluation.</li>
+            <li    >Why should you prefer <strong>safetensors</strong> format over pickle (.bin) when downloading models?</li>
+            <li    >A model has a Llama 3.1 Community License. Can your <strong>500-person company</strong> use it commercially? What about <strong>Meta</strong> itself?</li>
+            <li    >Your team wants to deploy an open-source model for <strong>medical triage</strong>. List three governance steps required before deployment.</li>
+            <li    >What is <strong>benchmark contamination</strong> and why does it make leaderboard scores unreliable?</li>
+          </ol>
+        </div>
+        <aside class="notes">Give participants 5 minutes to discuss in pairs. For question 2, ensure they understand the arbitrary code execution risk with pickle. For question 3, the 500-person company can use it commercially, but Meta itself cannot use it because the license prohibits use by companies that compete with Meta's AI products. Question 4 should reference Module 5 governance — risk classification, ethics board review, bias testing at minimum.</aside>
+      </section>
+
+      <!-- SLIDE 30: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>✅ Key Takeaways</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <ul>
+            <li   >✅ Hugging Face Hub is the <strong>central ecosystem</strong> for open-source AI — models, datasets, and Spaces</li>
+            <li   >✅ <strong>Model cards</strong> are your primary evaluation tool — treat missing cards as a red flag</li>
+            <li   >✅ <strong>Licensing is complex</strong> — "open" doesn't mean "unrestricted," always involve legal</li>
+            <li   >✅ <strong>Quantization</strong> makes large models practical on modest hardware (4-bit = ~4GB for 7B models)</li>
+            <li   >✅ <strong>Supply chain security</strong> is critical — prefer safetensors, verify sources, sandbox execution</li>
+            <li   >✅ <strong>Benchmarks are starting points</strong>, not final answers — run domain-specific evaluations</li>
+            <li   >✅ <strong>Domain-specific fine-tuning</strong> of smaller open models often beats general-purpose large closed models</li>
+          </ul>
+        </div>
+        <aside class="notes">These takeaways give you a practical framework for engaging with the open-source AI ecosystem. The overarching message: open-source AI gives you unprecedented control and transparency, but that control comes with responsibility. You own the security, compliance, and governance of models you deploy. The tools and evaluation skills from this module are your foundation for making informed model selection decisions.</aside>
+      </section>
+
+      <!-- SLIDE 31: Lab Preview -->
+      <section data-transition="fade">
+        <h2>🔬 Lab Preview: Module 6 Lab</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <h3>Lab: Model Selection &amp; Local Deployment</h3>
+          <ul>
+            <li  >Install <strong>Ollama</strong> and pull two candidate models locally</li>
+            <li  >Run a <strong>structured evaluation</strong> with 20 test prompts across 4 categories</li>
+            <li  >Perform a <strong>security audit</strong>: check file formats, scan with ModelScan, verify checksums</li>
+            <li  >Compare <strong>quantized vs full-precision</strong> outputs for quality degradation</li>
+            <li  >Write a <strong>model deployment recommendation</strong> memo for your fictional CISO</li>
+          </ul>
+        </div>
+        <p>⏱️ <strong>Duration:</strong> 60 minutes | <strong>Tools:</strong> Ollama, Python, ModelScan, provided evaluation templates</p>
+        <aside class="notes">The lab gives participants hands-on experience with the full model evaluation and deployment pipeline. They'll install Ollama (if not pre-provisioned), pull real models, and run evaluations locally. The security audit component is unique to this course — most tutorials skip it entirely. The CISO memo format ensures they can communicate findings to leadership, not just technical colleagues.</aside>
+      </section>
+
+      <!-- SLIDE 32: Resources -->
+      <section>
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div>
+            <h3>Essential Links</h3>
+            <ul>
+              <li   >Hugging Face Hub: <strong>huggingface.co</strong></li>
+              <li   >Transformers docs: <strong>huggingface.co/docs/transformers</strong></li>
+              <li   >Open LLM Leaderboard: <strong>HF Spaces</strong></li>
+              <li   >Ollama: <strong>ollama.com</strong></li>
+              <li   >ModelScan: <strong>github.com/protectai/modelscan</strong></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Further Reading</h3>
+            <ul>
+              <li   >"Model Cards for Model Reporting" — Mitchell et al. (2019)</li>
+              <li   >"On the Risks of Recycled Benchmarks" — Kiela et al. (2023)</li>
+              <li   >OWASP ML Security Top 10</li>
+              <li   >Hugging Face Security Best Practices Guide</li>
+              <li   >llama.cpp documentation (quantization)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The Mitchell et al. paper on model cards is foundational — it established the framework that Hugging Face adopted for all model documentation. The Kiela paper on benchmark recycling explains why leaderboard scores shouldn't be trusted blindly. ModelScan from ProtectAI is the leading open-source tool for scanning model files for security vulnerabilities. Bookmark these — you'll reference them throughout your career in AI security.</aside>
+      </section>
+
+      <!-- SLIDE 33: Q&A -->
+      <section data-transition="fade">
+        <h2>❓ Questions &amp; Discussion</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <h3>Discussion Prompts</h3>
+          <ul>
+            <li   >Would you recommend <strong>open-source or closed AI</strong> for your organization's use case? Why?</li>
+            <li   >How would you build an <strong>internal model registry</strong> with security controls?</li>
+            <li   >What's the biggest <strong>risk</strong> you see in the open-source AI ecosystem?</li>
+          </ul>
+        </div>
+        <br>
+        <h3>Up Next: Module 7 — Prompt Engineering &amp; Security</h3>
+        <p>Mastering the art and science of communicating with AI systems</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">The open-vs-closed discussion usually generates strong opinions. Guide participants to think about it as a spectrum, not a binary choice — most mature organizations use both. The internal model registry question leads naturally into Module 7, where we'll discuss how to secure the entire AI pipeline from model selection through prompt engineering to deployment. Allow 10-15 minutes for discussion.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

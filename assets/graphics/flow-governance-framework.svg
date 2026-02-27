@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="govGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="bold" fill="url(#govGrad)">⚖️ AI Governance Framework Cycle</text>
+  
+  <!-- Central Hub - AI Ethics Board -->
+  <circle cx="400" cy="200" r="65" fill="#1e293b" stroke="#8b5cf6" stroke-width="3"/>
+  <text x="400" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="20">🏛️</text>
+  <text x="400" y="205" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#8b5cf6">AI Ethics</text>
+  <text x="400" y="220" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#8b5cf6">Board</text>
+  <text x="400" y="240" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#94a3b8">Oversight &amp; Decisions</text>
+  
+  <!-- Governance Cycle - 6 nodes around the center -->
+  
+  <!-- Node 1: Policy Creation (Top) -->
+  <rect x="330" y="50" width="140" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="400" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">📜</text>
+  <text x="400" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#3b82f6">Policy Creation</text>
+  <text x="400" y="112" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#94a3b8">Standards &amp; Guidelines</text>
+  
+  <!-- Connect to center -->
+  <line x1="400" y1="120" x2="400" y2="135" stroke="#3b82f6" stroke-width="2"/>
+  
+  <!-- Node 2: Risk Assessment (Top Right) -->
+  <rect x="560" y="95" width="140" height="70" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="630" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">⚠️</text>
+  <text x="630" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ef4444">Risk Assessment</text>
+  <text x="630" y="157" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#94a3b8">Threat Modeling</text>
+  
+  <!-- Connect to center -->
+  <line x1="560" y1="150" x2="465" y2="175" stroke="#ef4444" stroke-width="2"/>
+  
+  <!-- Node 3: Implementation (Bottom Right) -->
+  <rect x="560" y="235" width="140" height="70" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="630" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">🔧</text>
+  <text x="630" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#14b8a6">Implementation</text>
+  <text x="630" y="297" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#94a3b8">Deploy Controls</text>
+  
+  <!-- Connect to center -->
+  <line x1="560" y1="250" x2="465" y2="225" stroke="#14b8a6" stroke-width="2"/>
+  
+  <!-- Node 4: Monitoring (Bottom) -->
+  <rect x="330" y="290" width="140" height="70" rx="10" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <text x="400" y="315" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">📊</text>
+  <text x="400" y="335" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#eab308">Monitoring</text>
+  <text x="400" y="352" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#94a3b8">Continuous Tracking</text>
+  
+  <!-- Connect to center -->
+  <line x1="400" y1="290" x2="400" y2="265" stroke="#eab308" stroke-width="2"/>
+  
+  <!-- Node 5: Audit (Bottom Left) -->
+  <rect x="100" y="235" width="140" height="70" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+  <text x="170" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">🔍</text>
+  <text x="170" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ec4899">Audit</text>
+  <text x="170" y="297" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#94a3b8">Compliance Check</text>
+  
+  <!-- Connect to center -->
+  <line x1="240" y1="250" x2="335" y2="225" stroke="#ec4899" stroke-width="2"/>
+  
+  <!-- Node 6: Update Policy (Top Left) -->
+  <rect x="100" y="95" width="140" height="70" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="170" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="16">🔄</text>
+  <text x="170" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#22c55e">Update Policy</text>
+  <text x="170" y="157" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#94a3b8">Iterate &amp; Improve</text>
+  
+  <!-- Connect to center -->
+  <line x1="240" y1="150" x2="335" y2="175" stroke="#22c55e" stroke-width="2"/>
+  
+  <!-- Circular flow arrows -->
+  <path d="M470 85 Q 530 60 560 95" stroke="#3b82f6" stroke-width="2" fill="none"/>
+  <polygon points="560,95 555,85 565,88" fill="#3b82f6"/>
+  
+  <path d="M700 165 Q 720 200 700 235" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <polygon points="700,235 695,225 705,228" fill="#ef4444"/>
+  
+  <path d="M560 305 Q 480 340 470 315" stroke="#14b8a6" stroke-width="2" fill="none"/>
+  <polygon points="470,315 475,305 480,315" fill="#14b8a6"/>
+  
+  <path d="M330 305 Q 250 340 240 305" stroke="#eab308" stroke-width="2" fill="none"/>
+  <polygon points="240,305 245,295 250,305" fill="#eab308"/>
+  
+  <path d="M100 235 Q 80 200 100 165" stroke="#ec4899" stroke-width="2" fill="none"/>
+  <polygon points="100,165 95,175 105,172" fill="#ec4899"/>
+  
+  <path d="M240 95 Q 280 60 330 85" stroke="#22c55e" stroke-width="2" fill="none"/>
+  <polygon points="330,85 320,82 325,92" fill="#22c55e"/>
+  
+  <!-- Key Stakeholders -->
+  <rect x="30" y="340" width="740" height="50" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <text x="400" y="362" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#94a3b8">👥 Key Stakeholders</text>
+  <text x="100" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Legal</text>
+  <text x="200" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Security</text>
+  <text x="300" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Engineering</text>
+  <text x="400" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Data Science</text>
+  <text x="500" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Product</text>
+  <text x="600" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Compliance</text>
+  <text x="700" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Executive</text>
+</svg>

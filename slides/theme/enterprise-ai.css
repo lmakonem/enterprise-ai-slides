@@ -1,0 +1,287 @@
+/**
+ * IT Security Labs - Enterprise AI Course Theme
+ * Matched to Canva "Cybersecurity in the AI Era" design
+ * Black background, teal gradient cards, condensed uppercase headings
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --r-background-color: #0a0a0a;
+  --r-main-font: 'DM Sans', sans-serif;
+  --r-heading-font: 'Bebas Neue', 'Impact', sans-serif;
+  --r-main-color: #d4d4d4;
+  --r-heading-color: #ffffff;
+  --r-heading-text-transform: uppercase;
+  --r-link-color: #14b8a6;
+  --r-link-color-hover: #2dd4bf;
+  --r-selection-background-color: #0d9488;
+  --r-selection-color: #fff;
+  --accent-teal: #0d9488;
+  --accent-teal-light: #14b8a6;
+  --accent-teal-bright: #2dd4bf;
+  --accent-cyan: #06b6d4;
+  --accent-red: #ef4444;
+  --accent-yellow: #eab308;
+  --bg-card: #0f1f1f;
+  --teal-gradient: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+}
+
+/* ===== BASE ===== */
+.reveal {
+  font-family: var(--r-main-font);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--r-main-color);
+}
+
+/* ===== HEADINGS ===== */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-family: var(--r-heading-font);
+  font-weight: 400;
+  color: var(--r-heading-color);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 0.5em;
+}
+
+.reveal h1 {
+  font-size: 3.0em;
+  line-height: 1.0;
+  text-shadow: 0 2px 20px rgba(13, 148, 136, 0.3);
+}
+
+.reveal h2 {
+  font-size: 2.2em;
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.reveal h3 {
+  font-size: 1.4em;
+  color: var(--accent-teal-bright);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ===== TEXT ===== */
+.text-teal { color: var(--accent-teal-bright) !important; }
+.text-cyan { color: var(--accent-cyan) !important; }
+.text-red { color: var(--accent-red) !important; }
+.text-yellow { color: var(--accent-yellow) !important; }
+.text-white { color: #ffffff !important; }
+.text-smaller { font-size: 0.8em !important; }
+
+/* ===== TEAL GRADIENT CARD (primary Canva element) ===== */
+.bg-card {
+  background: var(--teal-gradient);
+  padding: 25px 30px;
+  border-radius: 16px;
+  color: #ffffff;
+  box-shadow: 0 8px 32px rgba(13, 148, 136, 0.15);
+}
+
+.bg-card h3, .bg-card strong {
+  color: #ffffff;
+}
+
+.bg-card li, .bg-card p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Dark card variant */
+.bg-card-dark {
+  background: #111818;
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  padding: 25px 30px;
+  border-radius: 16px;
+  color: #d4d4d4;
+}
+
+/* ===== LAYOUTS ===== */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+/* ===== STAT BOXES ===== */
+.stat-box {
+  background: var(--teal-gradient);
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5em;
+  color: #ffffff;
+  display: block;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.3em;
+}
+
+/* ===== NUMBERED BADGES (01, 02, 03 pattern) ===== */
+.num-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--teal-gradient);
+  border-radius: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4em;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+/* ===== DIAGRAMS ===== */
+.diagram-box {
+  border: 1px solid rgba(13, 148, 136, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(13, 148, 136, 0.05);
+}
+
+.arrow-down {
+  font-size: 2em;
+  color: var(--accent-teal-bright);
+  margin: 10px 0;
+  display: block;
+}
+
+/* ===== TABLES ===== */
+table.comparison {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8em;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table.comparison th {
+  background: var(--teal-gradient);
+  color: white;
+  padding: 15px;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+}
+
+table.comparison td {
+  background: #111818;
+  padding: 15px;
+  border-bottom: 1px solid rgba(13, 148, 136, 0.2);
+  color: #d4d4d4;
+}
+
+table.comparison tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== BRANDING FOOTER ===== */
+.footer-logo {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  font-size: 0.55em;
+  color: #444;
+  font-family: 'DM Sans', sans-serif;
+  z-index: 100;
+}
+
+/* ===== CODE BLOCKS ===== */
+.reveal pre {
+  background: #0a1414;
+  border-radius: 12px;
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.reveal code {
+  font-family: 'JetBrains Mono', monospace;
+  color: #2dd4bf;
+}
+
+.reveal pre code {
+  color: #a7f3d0;
+  background: transparent;
+}
+
+/* ===== SPECIAL CARDS ===== */
+.myth-card {
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 4px solid var(--accent-red);
+  padding: 20px;
+  margin-bottom: 15px;
+  text-align: left;
+  border-radius: 0 12px 12px 0;
+}
+
+.truth-card {
+  background: rgba(13, 148, 136, 0.08);
+  border-left: 4px solid var(--accent-teal-bright);
+  padding: 20px;
+  text-align: left;
+  border-radius: 0 12px 12px 0;
+}
+
+.warning-box {
+  border: 1px solid var(--accent-red);
+  background: rgba(239, 68, 68, 0.06);
+  color: #fca5a5;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.visual-box {
+  border: 1px solid rgba(13, 148, 136, 0.4);
+  background: rgba(13, 148, 136, 0.06);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* ===== LISTS ===== */
+.reveal ul, .reveal ol {
+  display: block;
+  text-align: left;
+  margin: 0.3em 0 0.3em 1.2em;
+  padding: 0;
+}
+
+.reveal ul {
+  list-style: none;
+}
+
+.reveal li {
+  margin-bottom: 0.4em;
+  line-height: 1.4;
+  padding-left: 0.5em;
+  text-indent: -0.5em;
+}
+
+.reveal ol li {
+  text-indent: 0;
+  padding-left: 0;
+}

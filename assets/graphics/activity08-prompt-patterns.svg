@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+  <rect width="1000" height="600" fill="#0f172a"/>
+  <text x="500" y="40" text-anchor="middle" fill="#f8fafc" font-family="Inter,Calibri,sans-serif" font-size="22" font-weight="bold">Prompt Engineering Patterns</text>
+  <text x="500" y="65" text-anchor="middle" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="14">Activity 08: Master the Core Techniques</text>
+  <!-- Pattern 1: Zero-Shot -->
+  <rect x="30" y="90" width="300" height="120" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+  <text x="180" y="115" text-anchor="middle" fill="#3b82f6" font-family="Inter,Calibri,sans-serif" font-size="14" font-weight="bold">ZERO-SHOT</text>
+  <text x="180" y="138" text-anchor="middle" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Direct instruction, no examples</text>
+  <rect x="50" y="150" width="260" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="168" fill="#14b8a6" font-family="monospace" font-size="10">"Classify this email as</text>
+  <text x="60" y="183" fill="#14b8a6" font-family="monospace" font-size="10"> spam or not spam: {email}"</text>
+  <!-- Pattern 2: Few-Shot -->
+  <rect x="350" y="90" width="300" height="120" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <text x="500" y="115" text-anchor="middle" fill="#14b8a6" font-family="Inter,Calibri,sans-serif" font-size="14" font-weight="bold">FEW-SHOT</text>
+  <text x="500" y="138" text-anchor="middle" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Provide 2-5 examples first</text>
+  <rect x="370" y="150" width="260" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="380" y="168" fill="#14b8a6" font-family="monospace" font-size="10">"Positive: Great product!</text>
+  <text x="380" y="183" fill="#14b8a6" font-family="monospace" font-size="10"> Negative: Terrible. Now: {text}"</text>
+  <!-- Pattern 3: Chain of Thought -->
+  <rect x="670" y="90" width="300" height="120" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="820" y="115" text-anchor="middle" fill="#f59e0b" font-family="Inter,Calibri,sans-serif" font-size="14" font-weight="bold">CHAIN-OF-THOUGHT</text>
+  <text x="820" y="138" text-anchor="middle" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">"Let's think step by step"</text>
+  <rect x="690" y="150" width="260" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="700" y="168" fill="#14b8a6" font-family="monospace" font-size="10">"Think step by step. What</text>
+  <text x="700" y="183" fill="#14b8a6" font-family="monospace" font-size="10"> are the security risks of..."</text>
+  <!-- Pattern 4: System + User -->
+  <rect x="30" y="240" width="300" height="120" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="180" y="265" text-anchor="middle" fill="#8b5cf6" font-family="Inter,Calibri,sans-serif" font-size="14" font-weight="bold">SYSTEM + USER ROLES</text>
+  <text x="180" y="288" text-anchor="middle" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Separate persona from task</text>
+  <rect x="50" y="300" width="260" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="318" fill="#8b5cf6" font-family="monospace" font-size="10">system: "You are a CISO..."</text>
+  <text x="60" y="333" fill="#14b8a6" font-family="monospace" font-size="10">user: "Review this policy"</text>
+  <!-- Pattern 5: Output Format -->
+  <rect x="350" y="240" width="300" height="120" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="500" y="265" text-anchor="middle" fill="#ef4444" font-family="Inter,Calibri,sans-serif" font-size="14" font-weight="bold">OUTPUT FORMATTING</text>
+  <text x="500" y="288" text-anchor="middle" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Specify JSON, table, list</text>
+  <rect x="370" y="300" width="260" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="380" y="318" fill="#14b8a6" font-family="monospace" font-size="10">"Return as JSON with keys:</text>
+  <text x="380" y="333" fill="#14b8a6" font-family="monospace" font-size="10"> risk, severity, mitigation"</text>
+  <!-- Pattern 6: Constraint -->
+  <rect x="670" y="240" width="300" height="120" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+  <text x="820" y="265" text-anchor="middle" fill="#10b981" font-family="Inter,Calibri,sans-serif" font-size="14" font-weight="bold">CONSTRAINTS</text>
+  <text x="820" y="288" text-anchor="middle" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Guardrails and boundaries</text>
+  <rect x="690" y="300" width="260" height="45" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="700" y="318" fill="#14b8a6" font-family="monospace" font-size="10">"Only use information from</text>
+  <text x="700" y="333" fill="#14b8a6" font-family="monospace" font-size="10"> the provided document..."</text>
+  <!-- Effectiveness chart -->
+  <text x="500" y="405" text-anchor="middle" fill="#f8fafc" font-family="Inter,Calibri,sans-serif" font-size="16" font-weight="bold">When to Use Each Pattern</text>
+  <rect x="30" y="420" width="940" height="35" rx="4" fill="#1e293b"/>
+  <text x="50" y="443" fill="#3b82f6" font-family="Inter,Calibri,sans-serif" font-size="11" font-weight="bold">Zero-Shot</text>
+  <text x="250" y="443" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Simple classification, summarization, translation</text>
+  <rect x="30" y="460" width="940" height="35" rx="4" fill="#172033"/>
+  <text x="50" y="483" fill="#14b8a6" font-family="Inter,Calibri,sans-serif" font-size="11" font-weight="bold">Few-Shot</text>
+  <text x="250" y="483" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Custom formats, domain-specific tasks, style matching</text>
+  <rect x="30" y="500" width="940" height="35" rx="4" fill="#1e293b"/>
+  <text x="50" y="523" fill="#f59e0b" font-family="Inter,Calibri,sans-serif" font-size="11" font-weight="bold">Chain-of-Thought</text>
+  <text x="250" y="523" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Math, logic, multi-step reasoning, complex analysis</text>
+  <rect x="30" y="540" width="940" height="35" rx="4" fill="#172033"/>
+  <text x="50" y="563" fill="#8b5cf6" font-family="Inter,Calibri,sans-serif" font-size="11" font-weight="bold">System Roles</text>
+  <text x="250" y="563" fill="#94a3b8" font-family="Inter,Calibri,sans-serif" font-size="11">Expert personas, consistent behavior, API integrations</text>
+  <!-- Footer -->
+  <text x="500" y="590" text-anchor="middle" fill="#334155" font-family="Inter,Calibri,sans-serif" font-size="10">IT Security Labs • AI for the Enterprise • Module 08</text>
+</svg>

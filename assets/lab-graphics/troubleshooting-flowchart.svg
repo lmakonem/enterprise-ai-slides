@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bgGradT1E" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="600" fill="url(#bgGradT1E)"/>
+  
+  <!-- Title -->
+  <text x="300" y="35" fill="#ef4444" font-family="Inter, sans-serif" font-size="16" font-weight="600" text-anchor="middle">Troubleshooting Flowchart</text>
+  
+  <!-- Start: Error? -->
+  <g transform="translate(225, 55)">
+    <polygon points="75,0 150,40 75,80 0,40" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+    <text x="75" y="35" fill="#ef4444" font-family="Inter, sans-serif" font-size="11" font-weight="500" text-anchor="middle">ERROR</text>
+    <text x="75" y="50" fill="#ef4444" font-family="Inter, sans-serif" font-size="11" font-weight="500" text-anchor="middle">TYPE?</text>
+  </g>
+  
+  <!-- Connection Error -->
+  <line x1="225" y1="95" x2="100" y2="95" stroke="#3b82f6" stroke-width="2"/>
+  <line x1="100" y1="95" x2="100" y2="155" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="100,160 95,150 105,150" fill="#3b82f6"/>
+  <text x="160" y="88" fill="#3b82f6" font-family="Inter, sans-serif" font-size="9">Connection</text>
+  
+  <g transform="translate(25, 165)">
+    <rect x="0" y="0" width="150" height="70" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="75" y="22" fill="#3b82f6" font-family="Inter, sans-serif" font-size="10" font-weight="500" text-anchor="middle">Connection Error</text>
+    <line x1="10" y1="32" x2="140" y2="32" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
+    <text x="75" y="48" fill="#94a3b8" font-family="Inter, sans-serif" font-size="9" text-anchor="middle">Check Ollama status:</text>
+    <text x="75" y="62" fill="#22c55e" font-family="monospace" font-size="8" text-anchor="middle">systemctl status ollama</text>
+  </g>
+  
+  <!-- Import Error -->
+  <line x1="300" y1="135" x2="300" y2="155" stroke="#14b8a6" stroke-width="2"/>
+  <polygon points="300,160 295,150 305,150" fill="#14b8a6"/>
+  <text x="330" y="148" fill="#14b8a6" font-family="Inter, sans-serif" font-size="9">Import</text>
+  
+  <g transform="translate(225, 165)">
+    <rect x="0" y="0" width="150" height="70" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+    <text x="75" y="22" fill="#14b8a6" font-family="Inter, sans-serif" font-size="10" font-weight="500" text-anchor="middle">Import Error</text>
+    <line x1="10" y1="32" x2="140" y2="32" stroke="#14b8a6" stroke-width="1" opacity="0.3"/>
+    <text x="75" y="48" fill="#94a3b8" font-family="Inter, sans-serif" font-size="9" text-anchor="middle">Check venv active:</text>
+    <text x="75" y="62" fill="#22c55e" font-family="monospace" font-size="8" text-anchor="middle">which python</text>
+  </g>
+  
+  <!-- Timeout Error -->
+  <line x1="375" y1="95" x2="500" y2="95" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="500" y1="95" x2="500" y2="155" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="500,160 495,150 505,150" fill="#f59e0b"/>
+  <text x="440" y="88" fill="#f59e0b" font-family="Inter, sans-serif" font-size="9">Timeout</text>
+  
+  <g transform="translate(425, 165)">
+    <rect x="0" y="0" width="150" height="70" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="75" y="22" fill="#f59e0b" font-family="Inter, sans-serif" font-size="10" font-weight="500" text-anchor="middle">Timeout Error</text>
+    <line x1="10" y1="32" x2="140" y2="32" stroke="#f59e0b" stroke-width="1" opacity="0.3"/>
+    <text x="75" y="48" fill="#94a3b8" font-family="Inter, sans-serif" font-size="9" text-anchor="middle">Check model loaded:</text>
+    <text x="75" y="62" fill="#22c55e" font-family="monospace" font-size="8" text-anchor="middle">ollama list</text>
+  </g>
+  
+  <!-- Second Row -->
+  <line x1="100" y1="240" x2="100" y2="280" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="100,285 95,275 105,275" fill="#3b82f6"/>
+  
+  <g transform="translate(25, 290)">
+    <rect x="0" y="0" width="150" height="70" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="75" y="22" fill="#3b82f6" font-family="Inter, sans-serif" font-size="10" font-weight="500" text-anchor="middle">403 Forbidden</text>
+    <line x1="10" y1="32" x2="140" y2="32" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
+    <text x="75" y="48" fill="#94a3b8" font-family="Inter, sans-serif" font-size="9" text-anchor="middle">Check API key:</text>
+    <text x="75" y="62" fill="#22c55e" font-family="monospace" font-size="8" text-anchor="middle">echo $API_KEY</text>
+  </g>
+  
+  <line x1="300" y1="240" x2="300" y2="280" stroke="#14b8a6" stroke-width="2"/>
+  <polygon points="300,285 295,275 305,275" fill="#14b8a6"/>
+  
+  <g transform="translate(225, 290)">
+    <rect x="0" y="0" width="150" height="70" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+    <text x="75" y="22" fill="#14b8a6" font-family="Inter, sans-serif" font-size="10" font-weight="500" text-anchor="middle">Memory Error</text>
+    <line x1="10" y1="32" x2="140" y2="32" stroke="#14b8a6" stroke-width="1" opacity="0.3"/>
+    <text x="75" y="48" fill="#94a3b8" font-family="Inter, sans-serif" font-size="9" text-anchor="middle">Check resources:</text>
+    <text x="75" y="62" fill="#22c55e" font-family="monospace" font-size="8" text-anchor="middle">free -h &amp;&amp; nvidia-smi</text>
+  </g>
+  
+  <line x1="500" y1="240" x2="500" y2="280" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="500,285 495,275 505,275" fill="#f59e0b"/>
+  
+  <g transform="translate(425, 290)">
+    <rect x="0" y="0" width="150" height="70" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="75" y="22" fill="#f59e0b" font-family="Inter, sans-serif" font-size="10" font-weight="500" text-anchor="middle">Other Error</text>
+    <line x1="10" y1="32" x2="140" y2="32" stroke="#f59e0b" stroke-width="1" opacity="0.3"/>
+    <text x="75" y="48" fill="#94a3b8" font-family="Inter, sans-serif" font-size="9" text-anchor="middle">Check logs:</text>
+    <text x="75" y="62" fill="#22c55e" font-family="monospace" font-size="8" text-anchor="middle">journalctl -xe</text>
+  </g>
+  
+  <!-- Converge -->
+  <line x1="100" y1="365" x2="100" y2="400" stroke="#64748b" stroke-width="1"/>
+  <line x1="300" y1="365" x2="300" y2="400" stroke="#64748b" stroke-width="1"/>
+  <line x1="500" y1="365" x2="500" y2="400" stroke="#64748b" stroke-width="1"/>
+  <line x1="100" y1="400" x2="500" y2="400" stroke="#64748b" stroke-width="1"/>
+  <line x1="300" y1="400" x2="300" y2="430" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="300,435 295,425 305,425" fill="#22c55e"/>
+  
+  <!-- Fixed? -->
+  <g transform="translate(225, 440)">
+    <polygon points="75,0 150,35 75,70 0,35" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="75" y="40" fill="#22c55e" font-family="Inter, sans-serif" font-size="11" font-weight="500" text-anchor="middle">FIXED?</text>
+  </g>
+  
+  <!-- Yes -->
+  <line x1="375" y1="475" x2="450" y2="475" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="455,475 445,470 445,480" fill="#22c55e"/>
+  <text x="410" y="468" fill="#22c55e" font-family="Inter, sans-serif" font-size="9">YES</text>
+  
+  <g transform="translate(460, 455)">
+    <ellipse cx="50" cy="20" rx="50" ry="20" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+    <text x="50" y="25" fill="#22c55e" font-family="Inter, sans-serif" font-size="11" text-anchor="middle">CONTINUE</text>
+  </g>
+  
+  <!-- No -->
+  <line x1="225" y1="475" x2="150" y2="475" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="145,475 155,470 155,480" fill="#ef4444"/>
+  <text x="185" y="468" fill="#ef4444" font-family="Inter, sans-serif" font-size="9">NO</text>
+  
+  <g transform="translate(30, 455)">
+    <rect x="0" y="0" width="110" height="40" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+    <text x="55" y="25" fill="#ef4444" font-family="Inter, sans-serif" font-size="9" text-anchor="middle">ASK INSTRUCTOR</text>
+  </g>
+  
+  <!-- Footer -->
+  <rect x="100" y="530" width="400" height="50" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="300" y="550" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">💡 Pro tip: Always check logs first!</text>
+  <text x="300" y="567" fill="#22c55e" font-family="monospace" font-size="9" text-anchor="middle">tail -f ~/lab/app.log</text>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="vecGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+    <marker id="vecArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="vecArrow2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="#0f172a"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="bold" fill="url(#vecGrad)">📐 Vector Similarity: How RAG Finds Matches</text>
+  
+  <!-- Coordinate system -->
+  <line x1="100" y1="300" x2="100" y2="80" stroke="#64748b" stroke-width="2"/>
+  <line x1="100" y1="300" x2="400" y2="300" stroke="#64748b" stroke-width="2"/>
+  <polygon points="100,80 95,90 105,90" fill="#64748b"/>
+  <polygon points="400,300 390,295 390,305" fill="#64748b"/>
+  
+  <!-- Origin point -->
+  <circle cx="100" cy="300" r="5" fill="#f8fafc"/>
+  
+  <!-- Vector A (Document chunk) - Going up-right -->
+  <line x1="100" y1="300" x2="300" y2="140" stroke="#22c55e" stroke-width="3" marker-end="url(#vecArrow)"/>
+  <text x="310" y="140" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#22c55e">Doc Chunk A</text>
+  <text x="310" y="155" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">"AI in healthcare"</text>
+  
+  <!-- Vector B (Query) - Similar direction -->
+  <line x1="100" y1="300" x2="280" y2="170" stroke="#3b82f6" stroke-width="3" marker-end="url(#vecArrow2)"/>
+  <text x="290" y="180" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#3b82f6">Query</text>
+  <text x="290" y="195" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">"medical AI uses"</text>
+  
+  <!-- Angle arc between vectors -->
+  <path d="M180 240 Q 200 220 215 235" stroke="#eab308" stroke-width="2" fill="none"/>
+  <text x="210" y="250" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#eab308">θ = 15°</text>
+  <text x="210" y="265" font-family="Inter, sans-serif" font-size="8" fill="#eab308">Small angle!</text>
+  
+  <!-- Vector C (Different document) - Different direction -->
+  <line x1="100" y1="300" x2="350" y2="280" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="360" y="280" font-family="Inter, sans-serif" font-size="11" fill="#ef4444">Doc Chunk B</text>
+  <text x="360" y="295" font-family="Inter, sans-serif" font-size="8" fill="#94a3b8">"cooking recipes"</text>
+  
+  <!-- Large angle indicator -->
+  <path d="M140 290 Q 160 290 155 278" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/>
+  <text x="170" y="288" font-family="Inter, sans-serif" font-size="9" fill="#ef4444">θ = 75°</text>
+  
+  <!-- Similarity Score Box -->
+  <rect x="420" y="80" width="170" height="180" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="505" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#8b5cf6">Cosine Similarity</text>
+  
+  <text x="505" y="130" text-anchor="middle" font-family="monospace" font-size="10" fill="#f8fafc">cos(θ) = A · B / |A||B|</text>
+  
+  <rect x="435" y="145" width="140" height="45" rx="6" fill="#0f172a"/>
+  <text x="505" y="165" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#22c55e">Query ↔ Doc A</text>
+  <text x="505" y="182" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#22c55e">0.96 ✓</text>
+  
+  <rect x="435" y="200" width="140" height="45" rx="6" fill="#0f172a"/>
+  <text x="505" y="220" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#ef4444">Query ↔ Doc B</text>
+  <text x="505" y="237" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#ef4444">0.26 ✗</text>
+  
+  <!-- Scale explanation -->
+  <rect x="420" y="275" width="170" height="55" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <text x="505" y="295" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="bold" fill="#94a3b8">Similarity Scale</text>
+  <text x="440" y="315" font-family="Inter, sans-serif" font-size="8" fill="#22c55e">1.0 = Identical</text>
+  <text x="520" y="315" font-family="Inter, sans-serif" font-size="8" fill="#eab308">0.5 = Related</text>
+  <text x="440" y="328" font-family="Inter, sans-serif" font-size="8" fill="#ef4444">0.0 = Unrelated</text>
+  
+  <!-- Bottom explanation -->
+  <rect x="50" y="340" width="500" height="50" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <text x="300" y="362" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#f8fafc">How RAG Uses This</text>
+  <text x="300" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Query is embedded → Compare against all doc chunks → Return top-K most similar → Send to LLM</text>
+</svg>

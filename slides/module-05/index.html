@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 5: AI Governance Frameworks</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-05.svg" style="width:100px">
+        <h1>Module 5</h1>
+        <h2>AI Governance Frameworks</h2>
+        <p>Building the Policies and Structures to Govern AI Safely</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Module 5 shifts from identifying risks to managing them. We'll cover the two most important governance frameworks — NIST AI RMF and the EU AI Act — then build practical governance structures including acceptable use policies, ethics boards, and compliance checklists. By the end, you'll draft your own AI policy.</aside>
+      </section>
+
+      <!-- SLIDE 2: Learning Objectives -->
+      <section data-transition="fade">
+        <h2>🎯 Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ol>
+            <li   >Explain the <strong>NIST AI Risk Management Framework</strong> and its four core functions</li>
+            <li   >Classify AI systems using the <strong>EU AI Act risk tiers</strong></li>
+            <li   >Design an <strong>acceptable use policy</strong> for enterprise AI</li>
+            <li   >Structure an <strong>AI ethics board</strong> with clear charter and authority</li>
+            <li   >Build a <strong>compliance checklist</strong> for AI deployment approval</li>
+            <li   >Develop an <strong>AI incident response plan</strong></li>
+          </ol>
+        </div>
+        <aside class="notes">These objectives are directly actionable — by the end of this module, participants will have drafted real policy documents they can adapt for their organizations. We move from framework theory to practical templates and hands-on policy writing. The incident response objective is new — it bridges governance to operational readiness.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section>
+        <h2>💡 Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">89%</div>
+            <div class="stat-label">Of organizations lack a formal AI governance policy (MIT Sloan 2025)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">€35M</div>
+            <div class="stat-label">Maximum EU AI Act fine (7% of global revenue)</div>
+          </div>
+        </div>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">3.5x</div>
+            <div class="stat-label">ROI advantage for companies with AI governance (Deloitte)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#047857,#10b981);color:#fff;">
+            <div class="stat-number">2025-2027</div>
+            <div class="stat-label">EU AI Act enforcement timeline — already in effect</div>
+          </div>
+        </div>
+        <aside class="notes">The business case for AI governance is clear: organizations with governance frameworks see better ROI from AI investments because they avoid costly incidents and build stakeholder trust. The regulatory pressure is real — the EU AI Act is already in effect with phased enforcement. And the fines are massive: up to 7% of global annual revenue. Governance isn't optional anymore.</aside>
+      </section>
+
+      <!-- SLIDE 4: Governance Landscape -->
+      <section>
+        <h2>The AI Governance Landscape</h2>
+        <img   src="/assets/graphics/flow-governance-framework.svg" style="max-width:700px;width:100%">
+        <aside class="notes">This diagram shows how the major governance frameworks, regulations, and standards interconnect. At the top level, you have international frameworks like the OECD AI Principles. Below that, regional regulations like the EU AI Act and national frameworks like NIST AI RMF. These inform organizational governance — your policies, boards, and processes. We'll focus on the practical, organizational layer while grounding it in NIST and EU requirements.</aside>
+      </section>
+
+      <!-- SLIDE 5: Section Divider - NIST -->
+      <section data-background-color="#1e293b">
+        <h1>🏛️ NIST AI Risk Management Framework</h1>
+        <h2>The Gold Standard for AI Governance</h2>
+        <aside class="notes">The NIST AI RMF, published in January 2023, has quickly become the most widely adopted AI governance framework globally. It's voluntary, flexible, and designed to work across sectors and organization sizes. Let's break down its structure and how to implement it.</aside>
+      </section>
+
+      <!-- SLIDE 6: NIST AI RMF Overview -->
+      <section>
+        <h2>NIST AI RMF 1.0 — Structure</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <p>Published January 2023 by the National Institute of Standards and Technology. Designed to be <strong>voluntary, rights-preserving, non-sector-specific, and use-case agnostic</strong>.</p>
+        </div>
+        <div class="cols">
+          <div>
+            <h3>Two Parts</h3>
+            <ul>
+              <li   ><strong>Part 1:</strong> Foundational information — how to think about AI risk</li>
+              <li   ><strong>Part 2:</strong> Core framework — the four functions and their categories</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Key Principles</h3>
+            <ul>
+              <li   >Risk-based, not compliance-based</li>
+              <li class="fragment fade-up"   >Applicable across the AI lifecycle</li>
+              <li   >Socio-technical approach (people + technology)</li>
+              <li   >Complements existing risk frameworks</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">NIST deliberately made this framework risk-based rather than prescriptive. Unlike a compliance checklist, it asks organizations to understand their specific risk context and build proportionate controls. This flexibility is both its strength and its challenge — organizations need to interpret it for their specific situation. The companion Playbook provides more specific guidance.</aside>
+      </section>
+
+      <!-- SLIDE 7: NIST Four Functions -->
+      <section>
+        <h2>The Four Core Functions</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
+            <div class="stat-number">GOVERN</div>
+            <div class="stat-label">Culture, policies, accountability structures. Cross-cutting function that informs all others.</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#9f1239,#e11d48);color:#fff;">
+            <div class="stat-number">MAP</div>
+            <div class="stat-label">Context, stakeholders, and risk identification. Understand the AI system and its environment.</div>
+          </div>
+        </div>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">MEASURE</div>
+            <div class="stat-label">Assessment, analysis, and tracking of AI risks using quantitative and qualitative methods.</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">MANAGE</div>
+            <div class="stat-label">Prioritize, respond to, and monitor AI risks. Allocate resources for risk treatment.</div>
+          </div>
+        </div>
+        <aside class="notes">GOVERN is the foundational function — it sets the organizational culture, policies, and accountability structures that enable the other three functions. MAP is about understanding your AI systems and their context. MEASURE is about quantifying and tracking risks. MANAGE is about taking action to address risks. Think of it as: GOVERN sets the rules, MAP identifies the terrain, MEASURE gauges the threats, MANAGE deploys the defenses.</aside>
+      </section>
+
+      <!-- SLIDE 8: GOVERN Deep Dive -->
+      <section>
+        <h2>GOVERN — Building the Foundation</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <h3>Key Categories</h3>
+          <table class="comparison">
+            <thead>
+              <tr ><th>Category</th><th>What It Covers</th><th>Example Actions</th></tr>
+            </thead>
+            <tbody>
+              <tr  ><td><strong>GV-1</strong></td><td>Policies &amp; procedures</td><td>AI acceptable use policy, approval workflows</td></tr>
+              <tr  ><td><strong>GV-2</strong></td><td>Accountability structures</td><td>AI ethics board, RACI matrix for AI decisions</td></tr>
+              <tr  ><td><strong>GV-3</strong></td><td>Workforce diversity &amp; expertise</td><td>Cross-functional AI governance team</td></tr>
+              <tr  ><td><strong>GV-4</strong></td><td>Organizational culture</td><td>Responsible AI training, reporting mechanisms</td></tr>
+              <tr  ><td><strong>GV-5</strong></td><td>Stakeholder engagement</td><td>Affected community consultation</td></tr>
+              <tr  ><td><strong>GV-6</strong></td><td>Risk management integration</td><td>AI risks in enterprise risk register</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="notes">GOVERN is the most important function because it's cross-cutting — it shapes how MAP, MEASURE, and MANAGE operate. Without strong governance, the other functions lack authority and resources. GV-1 through GV-6 provide a comprehensive checklist for organizational readiness. Most organizations start here because it establishes the foundation for everything else.</aside>
+      </section>
+
+      <!-- SLIDE 9: MAP, MEASURE, MANAGE -->
+      <section>
+        <h2>MAP → MEASURE → MANAGE</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3 class="text-teal">MAP</h3>
+            <ul>
+              <li   >Identify AI system context and intended purpose</li>
+              <li class="fragment fade-right"   >Map stakeholders and affected populations</li>
+              <li   >Catalog data sources and dependencies</li>
+              <li   >Document assumptions and limitations</li>
+              <li class="fragment fade-right"   >Identify potential benefits AND harms</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-blue">MEASURE</h3>
+            <ul>
+              <li   >Define metrics for trustworthiness</li>
+              <li   >Test for bias, fairness, accuracy</li>
+              <li   >Red-team for security vulnerabilities</li>
+              <li class="fragment zoom-in"   >Track performance over time (drift)</li>
+              <li   >Third-party audits and assessments</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3 class="text-red">MANAGE</h3>
+            <ul>
+              <li class="fragment fade-up"   >Prioritize risks by severity</li>
+              <li   >Implement controls and mitigations</li>
+              <li   >Plan for incidents and rollback</li>
+              <li   >Monitor deployed systems continuously</li>
+              <li   >Decommission when risks exceed benefits</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">These three functions form a cycle: you map the risks, measure them, manage them, and repeat. MAP ensures you understand what you're dealing with before you try to measure or manage it. MEASURE gives you data to make informed decisions. MANAGE puts controls in place and monitors them. This cycle repeats throughout the AI system lifecycle — from design through deployment to decommissioning.</aside>
+      </section>
+
+      <!-- SLIDE 10: Section Divider - EU AI Act -->
+      <section data-background-color="#1e293b">
+        <h1>🇪🇺 The EU AI Act</h1>
+        <h2>The World's First Comprehensive AI Law</h2>
+        <aside class="notes">The EU AI Act, which entered into force in August 2024, is the first comprehensive legal framework for AI anywhere in the world. Even if your organization is based outside the EU, the Act applies if you deploy AI systems that affect EU citizens. Like GDPR before it, it's becoming a de facto global standard.</aside>
+      </section>
+
+      <!-- SLIDE 11: EU AI Act Overview -->
+      <section>
+        <h2>EU AI Act — Key Facts</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <ul>
+            <li  ><strong>Adopted:</strong> March 2024 | <strong>Entered into force:</strong> August 1, 2024</li>
+            <li  ><strong>Approach:</strong> Risk-based — obligations scale with risk level</li>
+            <li  ><strong>Scope:</strong> Providers, deployers, importers, and distributors of AI systems in the EU market</li>
+            <li  ><strong>Extraterritorial:</strong> Applies to non-EU entities whose AI systems affect EU persons</li>
+          </ul>
+        </div>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">Feb 2025</div>
+            <div class="stat-label">Prohibited AI practices ban takes effect</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#047857,#10b981);color:#fff;">
+            <div class="stat-number">Aug 2025</div>
+            <div class="stat-label">GPAI model obligations begin</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
+            <div class="stat-number">Aug 2026</div>
+            <div class="stat-label">Full enforcement for high-risk systems</div>
+          </div>
+        </div>
+        <aside class="notes">The EU AI Act follows the same playbook as GDPR: extraterritorial reach, risk-based classification, and significant fines. The phased enforcement means some provisions are already in effect. Organizations need to start compliance work now, not wait for full enforcement in 2026. The Act's influence is already global — companies are adopting its classification system even in non-EU markets.</aside>
+      </section>
+
+      <!-- SLIDE 12: EU AI Act Risk Tiers -->
+      <section>
+        <h2>EU AI Act Risk Classification</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td class="text-red"><strong>Unacceptable</strong></td><td>Social scoring, real-time biometric surveillance (with exceptions), manipulative AI targeting vulnerabilities</td><td><strong>BANNED</strong></td><td>Up to €35M or 7% revenue</td></tr>
+            <tr  ><td><strong>High Risk</strong></td><td>Hiring tools, credit scoring, medical devices, law enforcement, critical infrastructure</td><td>Conformity assessment, risk management, data governance, transparency, human oversight, accuracy/robustness requirements</td><td>Up to €15M or 3% revenue</td></tr>
+            <tr  ><td><strong>Limited Risk</strong></td><td>Chatbots, emotion recognition, deepfake generators</td><td>Transparency obligations — users must be told they're interacting with AI</td><td>Up to €7.5M or 1.5% revenue</td></tr>
+            <tr ><td class="text-teal"><strong>Minimal Risk</strong></td><td>Spam filters, AI in video games, inventory management</td><td>No specific obligations (voluntary codes of conduct encouraged)</td><td>N/A</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This four-tier system is the backbone of the EU AI Act. The key insight is proportionality — the more potential harm an AI system can cause, the more stringent the requirements. High-risk systems face the most detailed requirements including mandatory conformity assessments, which are similar to product safety certifications. Most enterprise AI systems will fall into the high-risk or limited-risk categories.</aside>
+      </section>
+
+      <!-- SLIDE 13: High-Risk Deep Dive -->
+      <section>
+        <h2>High-Risk AI — Detailed Requirements</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3>Technical Requirements</h3>
+            <ul>
+              <li  >✅ Risk management system throughout lifecycle</li>
+              <li  >✅ Data governance — training data quality standards</li>
+              <li  >✅ Technical documentation before market placement</li>
+              <li  >✅ Automatic logging of system operations</li>
+              <li  >✅ Transparency — clear instructions for deployers</li>
+              <li  >✅ Human oversight capabilities built in</li>
+              <li  >✅ Accuracy, robustness, cybersecurity standards</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3>Organizational Requirements</h3>
+            <ul>
+              <li  >✅ Quality management system</li>
+              <li  >✅ Conformity assessment (self or third-party)</li>
+              <li  >✅ EU declaration of conformity</li>
+              <li  >✅ CE marking</li>
+              <li  >✅ Registration in EU database</li>
+              <li  >✅ Post-market monitoring</li>
+              <li  >✅ Serious incident reporting</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">High-risk AI systems face requirements similar to medical devices or safety-critical equipment. The technical requirements focus on the system itself, while organizational requirements focus on the company's processes. Conformity assessment is the gate: you must demonstrate compliance before deploying a high-risk system in the EU market. For Annex III high-risk systems, self-assessment is usually sufficient, but biometric systems require third-party audit.</aside>
+      </section>
+
+      <!-- SLIDE 14: GPAI and Foundation Models -->
+      <section>
+        <h2>General-Purpose AI (GPAI) Obligations</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <p>The EU AI Act includes specific rules for <strong>general-purpose AI models</strong> like GPT-4, Claude, and Gemini — the foundation models that power many downstream applications.</p>
+        </div>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>All GPAI Models</h3>
+            <ul>
+              <li class="fragment fade-right"   >Technical documentation</li>
+              <li   >Copyright law compliance information</li>
+              <li   >Detailed summary of training data</li>
+              <li class="fragment fade-right"   >Comply with EU Copyright Directive</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>Systemic Risk GPAI (&gt;10^25 FLOPS)</h3>
+            <ul>
+              <li   >All of the above, plus:</li>
+              <li   >Model evaluations &amp; adversarial testing</li>
+              <li   >Systemic risk assessment &amp; mitigation</li>
+              <li   >Serious incident reporting</li>
+              <li   >Adequate cybersecurity protections</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The GPAI provisions are crucial for understanding the shared responsibility model. OpenAI, Anthropic, Google, and Meta bear obligations as GPAI model providers. But organizations deploying these models in high-risk use cases also bear obligations as deployers. You can't just point to your vendor and say 'that's their responsibility' — the Act creates obligations at every layer of the AI value chain.</aside>
+      </section>
+
+      <!-- SLIDE 15: Myth vs Reality -->
+      <section>
+        <h2>Myth vs Reality</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"The EU AI Act only applies to EU-based companies."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>Like GDPR, the EU AI Act has <strong>extraterritorial scope</strong>. If your AI system's output is used in the EU or affects EU persons, you're in scope — regardless of where you're headquartered.</p>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:20px">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"We just use ChatGPT via API — governance is OpenAI's problem."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>The EU AI Act distinguishes between <strong>providers</strong> and <strong>deployers</strong>. If you deploy a high-risk AI system, you have independent obligations for risk management, human oversight, and incident reporting — even if the underlying model is someone else's.</p>
+          </div>
+        </div>
+        <aside class="notes">These myths are particularly dangerous because they create false confidence. Many US-based companies assume the EU AI Act doesn't apply to them, but if they have EU customers, it almost certainly does. The shared responsibility model is equally misunderstood — using an API doesn't transfer your governance obligations to the API provider.</aside>
+      </section>
+
+      <!-- SLIDE 16: Global Regulatory Landscape -->
+      <section>
+        <h2>🌍 Global AI Regulation — Beyond the EU</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Jurisdiction</th><th>Approach</th><th>Key Requirements</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>🇪🇺 EU AI Act</strong></td><td>Risk-based regulation</td><td>Tiered obligations, conformity assessment</td><td>In force (phased)</td></tr>
+            <tr  ><td><strong>🇺🇸 US (Federal)</strong></td><td>Executive orders + sector-specific</td><td>EO 14110: safety testing, NIST standards</td><td>Evolving</td></tr>
+            <tr  ><td><strong>🇺🇸 US (State)</strong></td><td>Patchwork — CO, CA, IL leading</td><td>Bias audits, transparency, consent</td><td>Active legislation</td></tr>
+            <tr  ><td><strong>🇨🇳 China</strong></td><td>Algorithm-specific regulations</td><td>Registration, content review, labeling</td><td>In force</td></tr>
+            <tr  ><td><strong>🇬🇧 UK</strong></td><td>Pro-innovation, sector-led</td><td>Principles-based, regulator-specific</td><td>Framework published</td></tr>
+            <tr  ><td><strong>🇨🇦 Canada (AIDA)</strong></td><td>Harm-based regulation</td><td>Impact assessments, transparency</td><td>Proposed</td></tr>
+          </tbody>
+        </table>
+        <p class="text-red"><strong>Multinational enterprises must comply with ALL applicable jurisdictions simultaneously.</strong></p>
+        <aside class="notes">The regulatory landscape is fragmenting globally. The EU leads with comprehensive legislation, but the US is catching up through a mix of executive orders and state-level laws. Colorado's SB 24-205 requires bias audits for high-risk AI decisions. China has some of the world's strictest AI regulations, including mandatory algorithm registration. For multinational enterprises, the compliance challenge is enormous — you may need to satisfy multiple overlapping and sometimes conflicting requirements.</aside>
+      </section>
+
+      <!-- SLIDE 17: Section Divider - Acceptable Use Policy -->
+      <section data-background-color="#1e293b">
+        <h1>📋 Acceptable Use Policies</h1>
+        <h2>Your First Line of AI Governance</h2>
+        <aside class="notes">Now we shift from regulatory frameworks to practical governance tools. An acceptable use policy is the single most impactful governance document you can create — it sets expectations, defines boundaries, and gives employees clear guidance on what's allowed. Let's build one.</aside>
+      </section>
+
+      <!-- SLIDE 18: AUP Structure -->
+      <section>
+        <h2>AI Acceptable Use Policy — Anatomy</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <h3>Essential Sections</h3>
+          <ol>
+            <li  ><strong>Purpose &amp; Scope</strong> — Who this applies to and why</li>
+            <li  ><strong>Definitions</strong> — What counts as "AI tools" (be specific)</li>
+            <li  ><strong>Approved Tools</strong> — Whitelisted platforms and versions</li>
+            <li  ><strong>Prohibited Uses</strong> — Red lines that cannot be crossed</li>
+            <li  ><strong>Data Classification Rules</strong> — What data can/cannot be used with AI</li>
+            <li class="fragment fade-up"  ><strong>Human Review Requirements</strong> — When human verification is mandatory</li>
+            <li  ><strong>Disclosure Requirements</strong> — When to disclose AI use to customers/stakeholders</li>
+            <li class="fragment fade-up"  ><strong>Incident Reporting</strong> — How to report AI-related issues</li>
+            <li  ><strong>Consequences</strong> — What happens when the policy is violated</li>
+            <li  ><strong>Review Cadence</strong> — When the policy gets updated (quarterly minimum)</li>
+          </ol>
+        </div>
+        <aside class="notes">A good AI acceptable use policy is specific enough to be actionable but flexible enough to accommodate rapid technology change. The biggest mistake organizations make is writing vague policies that say 'use AI responsibly' without defining what that means. Each section here addresses a specific governance need. The review cadence is critical — AI moves fast, and a policy from six months ago may already be outdated.</aside>
+      </section>
+
+      <!-- SLIDE 19: Sample Policy Excerpts -->
+      <section>
+        <h2>Sample Policy Clauses</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <h3>Prohibited Uses (Example)</h3>
+          <ul>
+            <li  >❌ Entering <strong>customer PII</strong> into any non-approved AI tool</li>
+            <li class="fragment fade-up"  >❌ Using AI to generate <strong>legal, medical, or financial advice</strong> without qualified human review</li>
+            <li  >❌ Using AI-generated code in <strong>production</strong> without code review and security scan</li>
+            <li  >❌ Using AI to make <strong>hiring, firing, or promotion</strong> decisions without human judgment</li>
+            <li class="fragment fade-up"  >❌ Creating <strong>synthetic media</strong> impersonating real individuals</li>
+          </ul>
+        </div>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <h3>Data Classification (Example)</h3>
+          <ul>
+            <li  >🟢 <strong>Public data:</strong> May be used with approved AI tools</li>
+            <li  >🟡 <strong>Internal data:</strong> May be used with enterprise-licensed AI tools only</li>
+            <li  >🔴 <strong>Confidential/Restricted:</strong> No AI tool usage without CISO approval</li>
+            <li  >⬛ <strong>Regulated data (HIPAA/PCI):</strong> Prohibited from all AI tools</li>
+          </ul>
+        </div>
+        <aside class="notes">These sample clauses give you a starting point. The prohibited uses list should reflect your specific industry and risk profile — a healthcare company will have different red lines than a marketing agency. The data classification approach leverages your existing data classification scheme, which most organizations already have. The key is mapping AI-specific rules to existing governance structures.</aside>
+      </section>
+
+      <!-- SLIDE 20: Section Divider - Ethics Board -->
+      <section data-background-color="#1e293b">
+        <h1>👥 AI Ethics Board</h1>
+        <h2>Governance With Teeth</h2>
+        <aside class="notes">An AI acceptable use policy needs an enforcement mechanism. That's where the AI ethics board comes in. Let's look at how to structure one that actually works — not a rubber-stamp committee, but a governance body with real authority and accountability.</aside>
+      </section>
+
+      <!-- SLIDE 21: Ethics Board Structure -->
+      <section>
+        <h2>AI Ethics Board — Composition</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3>Core Members (Voting)</h3>
+            <ul>
+              <li  ><strong>Chief Information Security Officer</strong> (or delegate)</li>
+              <li  ><strong>Chief Data Officer / Privacy Officer</strong></li>
+              <li  ><strong>General Counsel</strong> (or AI legal specialist)</li>
+              <li  ><strong>Head of Engineering/Technology</strong></li>
+              <li  ><strong>Business Unit Representative</strong> (rotating)</li>
+              <li  ><strong>HR / People Operations Lead</strong></li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3>Advisory Members (Non-Voting)</h3>
+            <ul>
+              <li  ><strong>External ethicist</strong> or academic advisor</li>
+              <li  ><strong>Customer advocate</strong> or community representative</li>
+              <li  ><strong>Compliance/Audit</strong> representative</li>
+              <li  ><strong>Data scientist / ML engineer</strong> (technical advisor)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <h3>Charter Essentials</h3>
+          <p>Authority to <strong>approve, defer, or reject</strong> AI deployments above a defined risk threshold. Meeting cadence: <strong>bi-weekly</strong> with emergency sessions as needed. Decision records maintained in governance log.</p>
+        </div>
+        <aside class="notes">The composition matters enormously. A board dominated by technologists will miss legal and ethical issues. A board without technical representation will make impractical decisions. The cross-functional composition ensures balanced perspectives. Advisory members bring specialized expertise without diluting decision-making authority. The charter must explicitly grant the board authority to block deployments — without teeth, it's just theater.</aside>
+      </section>
+
+      <!-- SLIDE 22: Case Study - Microsoft Responsible AI -->
+      <section>
+        <h2>📋 Case Study: Microsoft's Responsible AI Program</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <p>Microsoft has one of the most mature enterprise AI governance structures, built through both successes and high-profile failures.</p>
+        </div>
+        <div class="cols">
+          <div>
+            <h3>Structure</h3>
+            <ul>
+              <li  ><strong>Office of Responsible AI (ORA)</strong> — policy and governance</li>
+              <li  ><strong>AI, Ethics, and Effects in Engineering and Research (Aether)</strong> — advisory committee</li>
+              <li  ><strong>Responsible AI Standard</strong> — internal requirements document</li>
+              <li  ><strong>Sensitive Uses</strong> review process for high-risk applications</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Lessons Learned</h3>
+            <ul>
+              <li  >Tay chatbot (2016) → mandatory content filtering</li>
+              <li  >Bing Chat incidents (2023) → conversation limits, safety layers</li>
+              <li  >Governance evolved through <strong>real failures</strong>, not theory</li>
+              <li  >Requires <strong>executive sponsorship</strong> (Satya Nadella level)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Microsoft's governance program is instructive because it was forged through public failures. The Tay chatbot in 2016 became racist within hours, leading to major investment in content filtering. Bing Chat's early issues in 2023 led to conversation length limits and multi-layered safety systems. The key lesson: governance programs improve fastest when they're tested by real incidents. Don't wait for a failure to build your program, but expect your program to evolve as you encounter real challenges.</aside>
+      </section>
+
+      <!-- SLIDE 23: Risk Classification System -->
+      <section>
+        <h2>AI Risk Classification System</h2>
+        <div class="diagram-box">
+          <h3>Four-Tier Internal Classification</h3>
+        </div>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Tier</th><th>Criteria</th><th>Approval Required</th><th>Review Cadence</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td class="text-teal"><strong>Tier 1 — Low</strong></td><td>Internal productivity, no PII, no customer impact</td><td>Team lead</td><td>Annual</td></tr>
+            <tr  ><td><strong>Tier 2 — Medium</strong></td><td>Internal data, limited customer impact, human-in-loop</td><td>Department head + Security review</td><td>Semi-annual</td></tr>
+            <tr ><td class="text-red"><strong>Tier 3 — High</strong></td><td>Customer-facing, PII involved, regulated domain</td><td>AI Ethics Board</td><td>Quarterly</td></tr>
+            <tr ><td class="text-red"><strong>Tier 4 — Critical</strong></td><td>Autonomous decisions, life/safety, high-risk per EU AI Act</td><td>AI Ethics Board + Executive sponsor + Legal</td><td>Monthly + continuous monitoring</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This four-tier system maps loosely to the EU AI Act tiers but is adapted for internal governance. The key principle is proportionality: low-risk AI tools like summarizing internal meeting notes shouldn't need board approval, but a customer-facing credit scoring algorithm absolutely should. The review cadence ensures that approved systems don't drift unmonitored — AI systems can degrade over time as data distributions change.</aside>
+      </section>
+
+      <!-- SLIDE 24: Compliance Checklist -->
+      <section>
+        <h2>✅ AI Deployment Compliance Checklist</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <div class="cols">
+            <div>
+              <h3>Pre-Deployment</h3>
+              <ul>
+                <li   >☐ Risk tier classification completed</li>
+                <li   >☐ Data impact assessment filed</li>
+                <li   >☐ Vendor security review passed</li>
+                <li class="fragment zoom-in"   >☐ Data processing agreement signed</li>
+                <li   >☐ Bias testing completed and documented</li>
+                <li   >☐ Human oversight mechanism defined</li>
+                <li   >☐ Rollback plan documented</li>
+                <li   >☐ Appropriate approval obtained</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Post-Deployment</h3>
+              <ul>
+                <li   >☐ Monitoring dashboards active</li>
+                <li   >☐ Incident response plan tested</li>
+                <li class="fragment fade-up"   >☐ User training completed</li>
+                <li   >☐ Feedback mechanism operational</li>
+                <li   >☐ Performance baselines recorded</li>
+                <li   >☐ Scheduled review date set</li>
+                <li   >☐ Audit log retention configured</li>
+                <li   >☐ Compliance documentation archived</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">This checklist transforms governance from abstract principles into concrete actions. Every AI deployment should go through this checklist — the depth of review scales with the risk tier. For Tier 1, a quick pass through the checklist might take 30 minutes. For Tier 4, it's a multi-week process involving multiple stakeholders. Print this out and put it on the wall — it's the most immediately actionable artifact from this module.</aside>
+      </section>
+
+      <!-- SLIDE 25: Section Divider - Incident Response -->
+      <section data-background-color="#1e293b">
+        <h1>🚨 AI Incident Response</h1>
+        <h2>When Things Go Wrong — And They Will</h2>
+        <aside class="notes">Even the best governance program can't prevent all incidents. What separates mature organizations from unprepared ones is their ability to respond quickly and effectively when an AI system fails, hallucinates, discriminates, or leaks data. Let's build an AI-specific incident response plan.</aside>
+      </section>
+
+      <!-- SLIDE 26: AI Incident Response Plan -->
+      <section>
+        <h2>AI Incident Response — The Playbook</h2>
+        <img   src="/assets/graphics/flow-incident-response-ai.svg" style="max-width:650px;width:100%">
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <table class="comparison">
+            <thead>
+              <tr ><th>Phase</th><th>Key Actions</th><th>Timeline</th></tr>
+            </thead>
+            <tbody>
+              <tr  ><td><strong>1. Detect</strong></td><td>Monitoring alerts, user reports, audit log review</td><td>Minutes</td></tr>
+              <tr  ><td><strong>2. Contain</strong></td><td>Disable AI system, switch to fallback, block access</td><td>Minutes-Hours</td></tr>
+              <tr  ><td><strong>3. Assess</strong></td><td>Determine scope, impact, root cause, affected users</td><td>Hours-Days</td></tr>
+              <tr  ><td><strong>4. Remediate</strong></td><td>Fix root cause, update guardrails, retrain/retune</td><td>Days-Weeks</td></tr>
+              <tr  ><td><strong>5. Report</strong></td><td>Internal report, regulatory notification (if required), public disclosure</td><td>Per regulatory timeline</td></tr>
+              <tr  ><td><strong>6. Learn</strong></td><td>Post-incident review, update policies, share lessons</td><td>Within 2 weeks</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="notes">AI incidents require a specialized response playbook because they differ from traditional IT incidents. You can't just patch and redeploy — you may need to retrain models, update guardrails, or fundamentally rethink the use case. The containment step is critical: have a kill switch that can disable the AI system and fall back to manual processes or a simpler rule-based system. The EU AI Act requires serious incident reporting for high-risk systems — know your reporting obligations before an incident occurs.</aside>
+      </section>
+
+      <!-- SLIDE 27: Python Code - Policy Automation -->
+      <section>
+        <h2>🐍 Code: Automated Policy Compliance Check</h2>
+        <pre  ><code class="python">def check_ai_deployment_compliance(deployment: dict) -> dict:
+    """Validate AI deployment against governance checklist."""
+    required_checks = {
+        1: ["risk_classification", "team_lead_approval"],
+        2: ["risk_classification", "dept_head_approval",
+            "security_review", "data_impact_assessment"],
+        3: ["risk_classification", "ethics_board_approval",
+            "security_review", "data_impact_assessment",
+            "bias_testing", "human_oversight_plan",
+            "vendor_dpa", "rollback_plan"],
+        4: ["risk_classification", "ethics_board_approval",
+            "executive_sponsor", "legal_review",
+            "security_review", "data_impact_assessment",
+            "bias_testing", "human_oversight_plan",
+            "vendor_dpa", "rollback_plan",
+            "incident_response_plan", "continuous_monitoring"]
+    }
+
+    tier = deployment.get("risk_tier", 1)
+    completed = set(deployment.get("completed_checks", []))
+    needed = set(required_checks.get(tier, []))
+    missing = needed - completed
+
+    return {
+        "tier": tier,
+        "compliant": len(missing) == 0,
+        "missing_checks": list(missing),
+        "completion_pct": len(completed & needed) / len(needed) * 100
+    }
+
+# Example: Tier 3 customer chatbot
+result = check_ai_deployment_compliance({
+    "risk_tier": 3,
+    "completed_checks": [
+        "risk_classification", "security_review",
+        "data_impact_assessment", "vendor_dpa"
+    ]
+})
+print(f"Compliant: {result['compliant']}")
+print(f"Missing: {result['missing_checks']}")
+# Compliant: False
+# Missing: ['ethics_board_approval', 'bias_testing',
+#           'human_oversight_plan', 'rollback_plan']</code></pre>
+        <aside class="notes">This code demonstrates how governance checks can be automated. In practice, you'd integrate this with your CI/CD pipeline or project management tool so that AI deployments can't progress without completing required checks. The tier-based approach ensures proportional governance — simple deployments have simple requirements, while critical deployments require comprehensive review.</aside>
+      </section>
+
+      <!-- SLIDE 28: AI Audit Framework -->
+      <section>
+        <h2>🔍 AI Audit Framework</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <p>Regular audits verify that governance controls are working as intended. Structure audits around <strong>three dimensions</strong>:</p>
+        </div>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3 class="text-teal">Technical Audit</h3>
+            <ul>
+              <li  >Model performance metrics</li>
+              <li  >Bias and fairness testing</li>
+              <li  >Security vulnerability scan</li>
+              <li  >Data pipeline integrity</li>
+              <li  >Drift detection results</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-blue">Process Audit</h3>
+            <ul>
+              <li  >Approval workflow compliance</li>
+              <li  >Documentation completeness</li>
+              <li  >Training records review</li>
+              <li  >Incident response drill results</li>
+              <li  >Policy update history</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3 class="text-red">Outcome Audit</h3>
+            <ul>
+              <li class="fragment fade-right"  >Impact on affected populations</li>
+              <li  >Customer complaint analysis</li>
+              <li  >Regulatory compliance status</li>
+              <li  >Cost-benefit reassessment</li>
+              <li  >Stakeholder satisfaction</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The three-dimensional audit approach ensures comprehensive coverage. Technical audits check the AI system itself. Process audits check your governance machinery. Outcome audits check real-world impact. Many organizations only do technical audits — they check model accuracy but never assess whether the approval process is actually being followed or whether the system is achieving its intended benefits. Schedule technical audits quarterly, process audits semi-annually, and outcome audits annually for Tier 3-4 systems.</aside>
+      </section>
+
+      <!-- SLIDE 29: Change Management -->
+      <section>
+        <h2>Change Management for AI Adoption</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3 class="text-teal">What Works</h3>
+            <ul>
+              <li class="fragment fade-up"    >✅ Executive sponsorship with visible AI usage</li>
+              <li    >✅ "Champions" program — trained advocates in each team</li>
+              <li    >✅ Quick wins — start with low-risk, high-value use cases</li>
+              <li    >✅ Clear, accessible policy (not 50-page legal docs)</li>
+              <li    >✅ Regular training with hands-on components</li>
+              <li    >✅ Feedback loops — employees shape the policy</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3 class="text-red">What Fails</h3>
+            <ul>
+              <li    >❌ Blanket bans (drives AI underground)</li>
+              <li    >❌ Policy without approved alternatives</li>
+              <li class="fragment fade-up"    >❌ One-time training with no follow-up</li>
+              <li class="fragment fade-right"    >❌ Governance owned only by legal/compliance</li>
+              <li    >❌ Treating AI governance as a project (it's a program)</li>
+              <li    >❌ Ignoring employee frustration and workarounds</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Change management is where most AI governance programs fail. You can write the perfect policy, but if people don't follow it, it's just paper. The champions program is particularly effective — training 2-3 people per department who become go-to resources for AI questions. Quick wins build momentum and demonstrate that governance enables rather than blocks AI usage. The biggest failure mode is treating governance as a project with an end date rather than an ongoing program.</aside>
+      </section>
+
+      <!-- SLIDE 30: Comparison - Frameworks -->
+      <section>
+        <h2>Framework Comparison</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Aspect</th><th>NIST AI RMF</th><th>EU AI Act</th><th>ISO/IEC 42001</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Type</strong></td><td>Voluntary framework</td><td>Binding regulation</td><td>Certifiable standard</td></tr>
+            <tr  ><td><strong>Scope</strong></td><td>US-focused, globally adopted</td><td>EU + extraterritorial</td><td>International</td></tr>
+            <tr  ><td><strong>Approach</strong></td><td>Risk-based guidance</td><td>Risk-tier compliance</td><td>Management system</td></tr>
+            <tr  ><td><strong>Enforcement</strong></td><td>None (voluntary)</td><td>Fines up to €35M / 7%</td><td>Certification audits</td></tr>
+            <tr  ><td><strong>Best For</strong></td><td>Building internal governance</td><td>EU market compliance</td><td>Demonstrating maturity</td></tr>
+            <tr  ><td><strong>Cost to Implement</strong></td><td>Low-Medium</td><td>Medium-High</td><td>Medium-High</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">These three frameworks complement each other rather than competing. NIST AI RMF provides the conceptual foundation. The EU AI Act provides the legal requirements. ISO/IEC 42001 provides a certifiable management system. Many organizations use NIST as their internal framework, align it to EU AI Act requirements for compliance, and pursue ISO certification to demonstrate maturity to customers and partners.</aside>
+      </section>
+
+      <!-- SLIDE 31: Hands-On Activity -->
+      <section>
+        <h2>🛠️ Hands-On: Draft Your AI Policy</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <h3>Activity: Create an AI Acceptable Use Policy (25 minutes)</h3>
+          <ol>
+            <li  ><strong>Choose your org:</strong> Use your real organization or the provided fictional company profile</li>
+            <li  ><strong>Draft these sections:</strong>
+              <ul>
+                <li  >Purpose &amp; scope (3-5 sentences)</li>
+                <li  >Approved tools list (at least 3 tools with conditions)</li>
+                <li class="fragment fade-up"  >Prohibited uses (at least 5 specific prohibitions)</li>
+                <li  >Data classification rules (4 tiers with AI-specific guidance)</li>
+              </ul>
+            </li>
+            <li  ><strong>Classify one AI use case</strong> from your organization using the four-tier system</li>
+            <li  ><strong>Identify the ethics board composition</strong> for your organization (6-8 members)</li>
+          </ol>
+        </div>
+        <p>📝 <strong>Deliverable:</strong> A 1-2 page AI acceptable use policy draft + ethics board proposal</p>
+        <aside class="notes">This is the most important hands-on activity in the course so far. Participants leave with a tangible artifact they can bring back to their organizations. Walk the room actively — common struggles include making policies too vague, forgetting to include approved alternatives alongside prohibitions, and not defining clear escalation paths. Remind them that a policy that's 80% good and actually deployed beats a perfect policy that sits in a drawer.</aside>
+      </section>
+
+      <!-- SLIDE 32: Quiz / Discussion -->
+      <section>
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <ol>
+            <li    >Name the four core functions of the NIST AI Risk Management Framework.</li>
+            <li    >Under the EU AI Act, what risk tier would a <strong>resume screening AI</strong> fall into? What obligations does this trigger?</li>
+            <li    >Your company uses Claude API for a customer-facing financial advice chatbot. Under the EU AI Act, who bears compliance obligations — <strong>Anthropic, your company, or both</strong>?</li>
+            <li    >An employee asks: "Why can't I just use my personal ChatGPT for work?" Give <strong>three governance-based reasons</strong>.</li>
+            <li    >What's the <strong>first action</strong> in an AI incident response plan, and why?</li>
+          </ol>
+        </div>
+        <aside class="notes">Question 2 tests EU AI Act application — resume screening is explicitly listed as high-risk (Annex III). Question 3 tests the shared responsibility model — both Anthropic (as GPAI provider) and the company (as deployer) have obligations. Question 5 tests incident response knowledge — containment (disable the system) is the priority to prevent further harm while you investigate.</aside>
+      </section>
+
+      <!-- SLIDE 33: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>✅ Key Takeaways</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <ul>
+            <li   >✅ <strong>NIST AI RMF</strong> provides four functions: Govern, Map, Measure, Manage — start with Govern</li>
+            <li   >✅ The <strong>EU AI Act</strong> uses four risk tiers with proportionate obligations — compliance is already required</li>
+            <li   >✅ <strong>Global regulation</strong> is fragmenting — multinationals face overlapping requirements</li>
+            <li   >✅ <strong>Acceptable use policies</strong> are your first and most impactful governance tool</li>
+            <li   >✅ An <strong>AI ethics board</strong> needs cross-functional composition and real authority</li>
+            <li   >✅ <strong>Incident response plans</strong> are essential — have a kill switch and fallback process</li>
+            <li   >✅ <strong>Regular audits</strong> across technical, process, and outcome dimensions ensure governance works</li>
+            <li   >✅ <strong>Change management</strong> determines whether governance succeeds or fails — bans don't work</li>
+          </ul>
+        </div>
+        <aside class="notes">The meta-takeaway is this: governance is not about saying no to AI. It's about saying yes safely. The organizations that thrive with AI will be those that move fast with appropriate guardrails, not those that either ban AI or adopt it without controls. The frameworks and tools we covered today provide the structure to do this well.</aside>
+      </section>
+
+      <!-- SLIDE 34: Lab Preview -->
+      <section data-transition="fade">
+        <h2>🔬 Lab Preview: Module 5 Lab</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <h3>Lab: Build a Governance Package</h3>
+          <ul>
+            <li  >Complete the <strong>AI acceptable use policy</strong> started in the hands-on activity</li>
+            <li  >Classify <strong>5 AI use cases</strong> using the four-tier risk system</li>
+            <li  >Run the <strong>compliance checklist</strong> against a provided deployment scenario</li>
+            <li  >Map your organization's AI tools to <strong>EU AI Act risk tiers</strong></li>
+            <li  >Draft an <strong>AI incident response plan</strong> for a provided scenario</li>
+            <li  >Present your <strong>governance package</strong> to the group for peer review</li>
+          </ul>
+        </div>
+        <p>⏱️ <strong>Duration:</strong> 60 minutes | <strong>Deliverable:</strong> Complete governance package (policy + classification + checklist + incident response)</p>
+        <aside class="notes">The lab extends the hands-on activity into a comprehensive governance package. The incident response plan is a new addition that ensures participants think about operational readiness, not just policy documents. The peer review component is crucial — presenting governance proposals to a group surfaces blind spots and generates better policies. The deliverable should be something participants can genuinely bring back to their organizations.</aside>
+      </section>
+
+      <!-- SLIDE 35: Resources -->
+      <section data-transition="slide">
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div>
+            <h3>Frameworks &amp; Regulations</h3>
+            <ul>
+              <li  >NIST AI RMF 1.0 + Playbook (ai.nist.gov)</li>
+              <li  >EU AI Act Full Text (eur-lex.europa.eu)</li>
+              <li  >ISO/IEC 42001:2023 — AI Management System</li>
+              <li  >OECD AI Policy Observatory</li>
+              <li  >Colorado SB 24-205 (US state AI regulation)</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Practical Guides</h3>
+            <ul>
+              <li  >Responsible AI Institute — Certification Program</li>
+              <li  >Partnership on AI — Best Practices</li>
+              <li  >World Economic Forum — AI Governance Alliance</li>
+              <li class="fragment fade-up"  >Future of Life Institute — AI Policy Resources</li>
+              <li  >AI Incident Database (incidentdatabase.ai)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The NIST Playbook is particularly valuable as a companion to the RMF — it provides suggested actions and outcomes for each category and subcategory. The AI Incident Database is a new resource — it catalogs real-world AI failures and is invaluable for risk assessment and incident response planning. The EU AI Act full text is essential reading for anyone in a compliance role.</aside>
+      </section>
+
+      <!-- SLIDE 36: Q&A -->
+      <section data-transition="fade">
+        <h2>❓ Questions &amp; Discussion</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <h3>Discussion Prompts</h3>
+          <ul>
+            <li   >What's the <strong>biggest barrier</strong> to implementing AI governance in your organization?</li>
+            <li   >How would you <strong>sell AI governance</strong> to leadership that sees it as slowing innovation?</li>
+            <li   >Should <strong>every organization</strong> have an AI ethics board, or is it only for large enterprises?</li>
+          </ul>
+        </div>
+        <br>
+        <h3>Up Next: Module 6 — Hugging Face &amp; Open-Source AI</h3>
+        <p>Navigating the world's largest open-source AI ecosystem</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">The governance-as-innovation-blocker objection is the most common pushback. Help participants frame governance as risk-aware acceleration, not bureaucratic slowdown. Organizations with clear governance actually deploy AI faster because they have clear approval paths instead of ad hoc decision-making paralysis. For small organizations, a lightweight governance committee can fulfill the ethics board function without a formal board structure.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

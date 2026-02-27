@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400">
+  <rect width="1000" height="400" fill="#0d1b2a" />
+  
+  <!-- Connections -->
+  <path d="M250,200 H500 H750" stroke="#1b98e0" stroke-width="2" stroke-dasharray="5,5" />
+
+  <!-- Left: Doc Q&amp;A -->
+  <g transform="translate(150, 150)">
+    <rect x="0" y="0" width="100" height="120" fill="#0a121f" stroke="#00d4aa" stroke-width="2" />
+    <line x1="20" y1="30" x2="80" y2="30" stroke="#00d4aa" />
+    <line x1="20" y1="50" x2="80" y2="50" stroke="#00d4aa" />
+    <!-- Magnifying Glass -->
+    <circle cx="70" cy="80" r="20" fill="#0d1b2a" stroke="#1b98e0" stroke-width="2" />
+    <line x1="85" y1="95" x2="100" y2="110" stroke="#1b98e0" stroke-width="2" />
+    <text x="50" y="-20" font-family="Arial" fill="#00d4aa" text-anchor="middle">Doc Q&amp;A</text>
+  </g>
+
+  <!-- Center: Slack Bot -->
+  <g transform="translate(450, 150)">
+    <circle cx="50" cy="50" r="60" fill="#0a121f" stroke="#1b98e0" stroke-width="2" />
+    <!-- Hash -->
+    <text x="50" y="70" font-family="Arial" font-size="60" fill="#ffffff" text-anchor="middle">#</text>
+    <!-- Brain overlay -->
+    <path d="M30,30 C30,10 70,10 70,30" fill="none" stroke="#00d4aa" stroke-width="2" />
+    <text x="50" y="-20" font-family="Arial" fill="#1b98e0" text-anchor="middle">Slack Bot</text>
+  </g>
+
+  <!-- Right: Email Triage -->
+  <g transform="translate(750, 150)">
+    <rect x="0" y="20" width="120" height="80" fill="#0a121f" stroke="#00d4aa" stroke-width="2" />
+    <path d="M0,20 L60,60 L120,20" fill="none" stroke="#00d4aa" stroke-width="2" />
+    <!-- Arrows -->
+    <path d="M-20,60 L-10,60 L-15,50 Z" fill="#1b98e0" />
+    <path d="M140,60 L130,60 L135,70 Z" fill="#1b98e0" />
+    <text x="60" y="-20" font-family="Arial" fill="#00d4aa" text-anchor="middle">Email Triage</text>
+  </g>
+
+  <text x="500" y="380" font-family="Arial" font-size="14" fill="#666" text-anchor="middle">Hands-on Integration Projects</text>
+</svg>

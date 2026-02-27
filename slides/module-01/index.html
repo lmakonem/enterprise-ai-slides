@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 1: What Is AI?</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-01.svg" style="width:100px">
+        <h1>Module 1: What Is AI?</h1>
+        <h3>From Turing to Transformers — Understanding Artificial Intelligence</h3>
+        <p>IT Security Labs / OpSec Fusion</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Welcome to Module 1. This session demystifies AI — what it actually is, how it evolved, and why every enterprise professional needs to understand it. We'll cut through the hype and ground our understanding in real technology.</aside>
+      </section>
+
+      <!-- SLIDE 2: Learning Objectives -->
+      <section data-transition="fade">
+        <h2>Learning Objectives</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/learning-path.svg" style="max-width:700px;width:100%"></div>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ul>
+            <li   >🎯 Define AI, ML, and Deep Learning — and explain how they relate</li>
+            <li class="fragment fade-up"   >🎯 Identify the three types of machine learning and their enterprise applications</li>
+            <li   >🎯 Explain how Large Language Models generate text (next-token prediction)</li>
+            <li   >🎯 Trace the key milestones in AI history from 1950 to 2025</li>
+            <li class="fragment zoom-in"   >🎯 Distinguish AI capabilities from AI hype in a business context</li>
+          </ul>
+        </div>
+        <aside class="notes">These five objectives frame everything we cover today. By the end, you'll be able to hold your own in any conversation about AI — whether it's with your CTO, a vendor, or a board member.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section>
+        <h2>Why This Matters</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/course-roadmap.svg" style="max-width:700px;width:100%"></div>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">72%</div>
+            <div class="stat-label">of enterprises have adopted AI in at least one business function (McKinsey, 2025)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">$4.4T</div>
+            <div class="stat-label">estimated annual economic value AI could add globally (McKinsey Global Institute)</div>
+          </div>
+        </div>
+        <p class="text-red" style="margin-top:1em;">If you don't understand AI, you can't evaluate it, secure it, or govern it.</p>
+        <aside class="notes">These aren't projections from optimistic startups — this is McKinsey data. AI adoption is accelerating, and the professionals who understand the technology will make the decisions. Those who don't will be left implementing decisions they can't evaluate.</aside>
+      </section>
+
+      <!-- SLIDE 4: Section Divider — What Is AI? -->
+      <section data-background-color="#1e293b">
+        <h2>Section 1</h2>
+        <h3>Defining Artificial Intelligence</h3>
+        <aside class="notes">Let's start with the fundamentals. What do we actually mean when we say "Artificial Intelligence"? The answer is more nuanced than most people think.</aside>
+      </section>
+
+      <!-- SLIDE 5: AI Definition -->
+      <section>
+        <h2>What Is Artificial Intelligence?</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <blockquote>"The science and engineering of making intelligent machines, especially intelligent computer programs."<br>— John McCarthy, 1956</blockquote>
+        </div>
+        <p style="margin-top:1em;">In practice, AI is <strong>software that performs tasks typically requiring human intelligence</strong>:</p>
+        <ul>
+          <li class="fragment fade-right"  >Understanding language</li>
+          <li class="fragment fade-up"  >Recognizing patterns in data</li>
+          <li  >Making decisions under uncertainty</li>
+          <li  >Generating new content</li>
+        </ul>
+        <aside class="notes">John McCarthy coined the term in 1956. Notice his definition says "intelligent" — not "conscious" or "alive." AI is about capability, not sentience. Modern AI excels at narrow tasks but has no understanding of what it's doing.</aside>
+      </section>
+
+      <!-- SLIDE 6: AI Hierarchy Diagram -->
+      <section>
+        <h2>The AI → ML → DL Hierarchy</h2>
+        <div class="diagram-box">
+          <div style="text-align:center;">
+            <div style="background:#0d9488;color:white;padding:40px;border-radius:50%;width:500px;margin:0 auto;">
+              <strong>Artificial Intelligence</strong><br><small>Any system that mimics human intelligence</small>
+              <div style="background:#3b82f6;color:white;padding:30px;border-radius:50%;width:360px;margin:15px auto 0;">
+                <strong>Machine Learning</strong><br><small>Systems that learn from data</small>
+                <div style="background:#8b5cf6;color:white;padding:20px;border-radius:50%;width:220px;margin:10px auto 0;">
+                  <strong>Deep Learning</strong><br><small>Neural networks with many layers</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">Think of this as nested circles. All deep learning is machine learning, and all machine learning is AI — but not the other way around. A rule-based spam filter is AI but not ML. A decision tree is ML but not deep learning. GPT-4 is all three.</aside>
+      </section>
+
+      <!-- SLIDE 7: AI vs Automation vs RPA -->
+      <section>
+        <h2>AI vs. Automation vs. RPA</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Feature</th><th>Traditional Automation</th><th>RPA</th><th>AI / ML</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Logic</strong></td><td>Hard-coded rules</td><td>Recorded workflows</td><td>Learned from data</td></tr>
+            <tr  ><td><strong>Handles ambiguity?</strong></td><td>❌ No</td><td>❌ No</td><td>✅ Yes</td></tr>
+            <tr  ><td><strong>Improves over time?</strong></td><td>❌ No</td><td>❌ No</td><td>✅ Yes</td></tr>
+            <tr  ><td><strong>Example</strong></td><td>Cron job backups</td><td>UiPath invoice entry</td><td>Fraud detection</td></tr>
+            <tr  ><td><strong>Vendor examples</strong></td><td>Ansible, Terraform</td><td>UiPath, Blue Prism</td><td>OpenAI, Google, AWS</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This distinction matters for procurement and architecture. If your problem is deterministic and rule-based, you don't need AI — you need automation. AI shines when the rules are too complex to write by hand, or when the problem space changes over time.</aside>
+      </section>
+
+      <!-- SLIDE 8: Section Divider — Types of ML -->
+      <section data-background-color="#1e293b">
+        <h2>Section 2</h2>
+        <h3>Types of Machine Learning</h3>
+        <aside class="notes">Now that we've placed ML in the AI hierarchy, let's look at the three fundamental approaches to machine learning. Each solves a different class of problems.</aside>
+      </section>
+
+      <!-- SLIDE 9: Supervised Learning -->
+      <section>
+        <h2>Supervised Learning</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3 class="text-teal">How It Works</h3>
+            <p>Model learns from <strong>labeled examples</strong> — input/output pairs.</p>
+            <p>Like a student studying with an answer key.</p>
+            <ul>
+              <li class="fragment fade-up"  ><strong>Classification:</strong> Is this email spam or not?</li>
+              <li  ><strong>Regression:</strong> What will this house sell for?</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3 class="text-blue">Enterprise Examples</h3>
+            <ul>
+              <li  >🏦 JPMorgan — fraud transaction detection</li>
+              <li  >📧 Gmail — spam filtering (99.9% accuracy)</li>
+              <li  >🏥 PathAI — cancer cell classification</li>
+              <li  >📊 Salesforce Einstein — lead scoring</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Supervised learning is the workhorse of enterprise AI. You need labeled data — which is often the hardest and most expensive part. Gmail's spam filter was trained on billions of labeled emails. The model learned patterns humans could never manually code.</aside>
+      </section>
+
+      <!-- SLIDE 10: Unsupervised Learning -->
+      <section>
+        <h2>Unsupervised Learning</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-teal">How It Works</h3>
+            <p>Model finds <strong>hidden patterns</strong> in data without labels.</p>
+            <p>Like sorting a jigsaw puzzle by color without the box image.</p>
+            <ul>
+              <li  ><strong>Clustering:</strong> Group similar customers</li>
+              <li  ><strong>Anomaly Detection:</strong> Spot the outlier</li>
+              <li  ><strong>Dimensionality Reduction:</strong> Simplify complex data</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3 class="text-blue">Enterprise Examples</h3>
+            <ul>
+              <li  >🛒 Amazon — customer segmentation</li>
+              <li  >🔐 CrowdStrike — threat anomaly detection</li>
+              <li  >🎵 Spotify — music clustering for Discover Weekly</li>
+              <li  >💳 Visa — unusual transaction patterns</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Unsupervised learning is critical for security. You can't label every possible cyberattack — there are always novel threats. Instead, you train a model on "normal" behavior and flag anything that deviates. CrowdStrike uses this approach to detect zero-day threats.</aside>
+      </section>
+
+      <!-- SLIDE 11: Reinforcement Learning -->
+      <section>
+        <h2>Reinforcement Learning</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3 class="text-teal">How It Works</h3>
+            <p>Agent learns by <strong>trial and error</strong> — receives rewards or penalties.</p>
+            <p>Like training a dog: treat for good behavior, no treat for bad.</p>
+            <ul>
+              <li class="fragment fade-right"  ><strong>Agent:</strong> The decision-maker</li>
+              <li class="fragment fade-up"  ><strong>Environment:</strong> The world it acts in</li>
+              <li  ><strong>Reward signal:</strong> Feedback on actions</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-blue">Enterprise Examples</h3>
+            <ul>
+              <li  >🤖 DeepMind AlphaGo — defeated world champion (2016)</li>
+              <li  >🚗 Waymo — autonomous vehicle navigation</li>
+              <li  >📦 Amazon — warehouse robot routing</li>
+              <li  >🧠 ChatGPT — RLHF (learning from human feedback)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Reinforcement learning is how ChatGPT was refined. After pre-training on text, human raters ranked outputs, and the model was trained to maximize those rankings. This process — RLHF — is why ChatGPT feels more helpful than a raw language model.</aside>
+      </section>
+
+      <!-- SLIDE 12: Section Divider — Neural Networks -->
+      <section data-background-color="#1e293b">
+        <h2>Section 3</h2>
+        <h3>Neural Networks & Deep Learning</h3>
+        <aside class="notes">Now let's go deeper — literally. Neural networks are the engine behind modern AI. Understanding their basics will help you evaluate AI tools and communicate with technical teams.</aside>
+      </section>
+
+      <!-- SLIDE 13: Neural Network Basics -->
+      <section>
+        <h2>Neural Networks 101</h2>
+        <div class="diagram-box">
+          <div style="text-align:center; font-family:monospace; font-size:0.9em;">
+            <p><strong>Input Layer</strong> → <strong>Hidden Layers</strong> → <strong>Output Layer</strong></p>
+            <p style="font-size:2em;">⬤ ⬤ ⬤ → ⬤ ⬤ ⬤ ⬤ → ⬤ ⬤</p>
+            <p>Each connection has a <span class="text-teal">weight</span> (strength)</p>
+            <p>Training = adjusting weights to minimize errors</p>
+          </div>
+        </div>
+        <ul>
+          <li  ><strong>Neuron:</strong> Takes inputs, applies weights, produces output</li>
+          <li  ><strong>Layer:</strong> Group of neurons processing at the same stage</li>
+          <li  ><strong>"Deep":</strong> Many hidden layers (GPT-4 has ~120 layers)</li>
+        </ul>
+        <aside class="notes">Neural networks are loosely inspired by the brain, but don't take the analogy too far. A neuron in a network is just a math function — multiply inputs by weights, add a bias, apply an activation function. "Deep" learning simply means many layers stacked together.</aside>
+      </section>
+
+      <!-- SLIDE 14: Why Deep Learning Won -->
+      <section>
+        <h2>Why Deep Learning Dominates</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;text-align:center;">
+            <h3>📊 Data</h3>
+            <p>Internet generated massive training datasets</p>
+            <p class="text-teal">Common Crawl: 250B+ pages</p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;text-align:center;">
+            <h3>⚡ Compute</h3>
+            <p>GPUs made parallel processing affordable</p>
+            <p class="text-teal">NVIDIA H100: 4 petaflops</p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;text-align:center;">
+            <h3>🧪 Algorithms</h3>
+            <p>Transformers (2017) revolutionized architecture</p>
+            <p class="text-teal">Attention Is All You Need</p>
+          </div>
+        </div>
+        <p style="margin-top:1em; text-align:center;">The convergence of all three — around 2017 — unlocked the current AI revolution.</p>
+        <aside class="notes">Neural networks existed since the 1980s, but they didn't work well until three things converged: enough data to train on, enough compute to process it, and the right architecture. The Transformer paper in 2017 was the catalyst — it's the "T" in GPT.</aside>
+      </section>
+
+      <!-- SLIDE 15: Section Divider — LLMs -->
+      <section data-background-color="#1e293b">
+        <h2>Section 4</h2>
+        <h3>Large Language Models (LLMs)</h3>
+        <aside class="notes">LLMs are the most visible AI technology today. Let's understand what they actually do, how they work, and what they can and can't do.</aside>
+      </section>
+
+      <!-- SLIDE 16: What Is an LLM? -->
+      <section>
+        <h2>What Is a Large Language Model?</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <p>An LLM is a neural network trained on massive text data to <strong>predict the next token</strong> in a sequence.</p>
+        </div>
+        <div class="cols" style="margin-top:1em;">
+          <div>
+            <h4 class="text-teal">Key Properties</h4>
+            <ul>
+              <li  ><strong>Large:</strong> Billions of parameters (GPT-4: ~1.8T estimated)</li>
+              <li  ><strong>Language:</strong> Trained primarily on text</li>
+              <li  ><strong>Model:</strong> Statistical model of language patterns</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-blue">What They Learn</h4>
+            <ul>
+              <li  >Grammar and syntax</li>
+              <li class="fragment fade-up"  >Facts and relationships</li>
+              <li  >Reasoning patterns</li>
+              <li  >Code structure</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The key insight: LLMs don't "know" anything. They've learned statistical patterns in language. When GPT-4 tells you the capital of France, it's not looking it up — it's predicting that "Paris" is the most likely next token given the context. This is both their power and their limitation.</aside>
+      </section>
+
+      <!-- SLIDE 17: Next-Token Prediction -->
+      <section>
+        <h2>Next-Token Prediction</h2>
+        <div class="diagram-box" style="text-align:center;">
+          <p style="font-size:1.3em;">The cat sat on the <span class="text-teal" style="font-size:1.5em;">___</span></p>
+          <div style="margin-top:1em;">
+            <table class="comparison" style="width:60%;margin:0 auto;">
+              <thead><tr ><th>Token</th><th>Probability</th></tr></thead>
+              <tbody>
+                <tr ><td><strong>mat</strong></td><td class="text-teal">34%</td></tr>
+                <tr  ><td><strong>floor</strong></td><td>22%</td></tr>
+                <tr  ><td><strong>roof</strong></td><td>11%</td></tr>
+                <tr  ><td><strong>table</strong></td><td>8%</td></tr>
+                <tr  ><td><em>... thousands more</em></td><td>25%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p style="text-align:center; margin-top:0.5em;">The model picks one token, appends it, then predicts the <em>next</em> one. Repeat.</p>
+        <aside class="notes">This is the entire secret. An LLM generates text one token at a time, each time asking "given everything before this point, what's the most likely next piece?" It's autocomplete on steroids — but fundamentally, it's the same principle as your phone keyboard suggestions.</aside>
+      </section>
+
+      <!-- SLIDE 18: Transformer Architecture -->
+      <section>
+        <h2>The Transformer Architecture</h2>
+        <img   src="/assets/graphics/concept-transformer-architecture.svg" style="max-width:700px;width:100%">
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;margin-top:0.5em;">
+          <p><strong>Key Innovation: Self-Attention</strong> — allows the model to weigh which parts of the input matter most for each output token. "Attention Is All You Need" (Vaswani et al., 2017)</p>
+        </div>
+        <aside class="notes">The Transformer architecture replaced older sequential models (RNNs) with parallel self-attention. This means the model can look at all words simultaneously and decide which ones are most relevant. This parallelism also made training much faster on GPUs.</aside>
+      </section>
+
+      <!-- SLIDE 19: AI You Already Use -->
+      <section>
+        <h2>AI You Already Use Every Day</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;text-align:center;">
+            <h3>📧 Gmail</h3>
+            <p>Smart Compose, spam filtering, priority inbox</p>
+            <p><small class="text-teal">~1.8B users</small></p>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;text-align:center;">
+            <h3>🎬 Netflix</h3>
+            <p>Recommendation engine drives 80% of content watched</p>
+            <p><small class="text-teal">Saves $1B/year in retention</small></p>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;text-align:center;">
+            <h3>🗣️ Siri / Alexa</h3>
+            <p>Speech recognition, NLU, intent classification</p>
+            <p><small class="text-teal">500M+ Siri users</small></p>
+          </div>
+        </div>
+        <div class="cols-3" style="margin-top:0.5em;">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;text-align:center;">
+            <h3>🗺️ Google Maps</h3>
+            <p>Traffic prediction, route optimization, ETA</p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;text-align:center;">
+            <h3>📸 iPhone Photos</h3>
+            <p>Face recognition, scene detection, search</p>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;text-align:center;">
+            <h3>💳 Your Bank</h3>
+            <p>Real-time fraud detection on every transaction</p>
+          </div>
+        </div>
+        <aside class="notes">Most people have been using AI for years without realizing it. Netflix's recommendation engine is so effective that 80% of what people watch comes from suggestions — not search. This is the invisible AI that already shapes our daily decisions.</aside>
+      </section>
+
+      <!-- SLIDE 20: Section Divider — History -->
+      <section data-background-color="#1e293b">
+        <h2>Section 5</h2>
+        <h3>A Brief History of AI</h3>
+        <aside class="notes">Understanding where AI came from helps us predict where it's going — and recognize the hype cycles that have burned enterprises before.</aside>
+      </section>
+
+      <!-- SLIDE 21: AI Timeline -->
+      <section>
+        <h2>AI Timeline: 75 Years in 60 Seconds</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;font-size:0.85em;">
+          <table class="comparison">
+            <thead><tr ><th>Year</th><th>Milestone</th><th>Significance</th></tr></thead>
+            <tbody>
+              <tr  ><td>1950</td><td>Turing Test proposed</td><td>First formal definition of machine intelligence</td></tr>
+              <tr  ><td>1956</td><td>Dartmouth Conference</td><td>"Artificial Intelligence" coined as a field</td></tr>
+              <tr  ><td>1966</td><td>ELIZA chatbot</td><td>First conversational AI (pattern matching)</td></tr>
+              <tr  ><td>1997</td><td>Deep Blue beats Kasparov</td><td>AI conquers chess (brute force, not learning)</td></tr>
+              <tr  ><td>2012</td><td>AlexNet wins ImageNet</td><td>Deep learning revolution begins</td></tr>
+              <tr  ><td>2017</td><td>"Attention Is All You Need"</td><td>Transformer architecture invented at Google</td></tr>
+              <tr  ><td>2020</td><td>GPT-3 released</td><td>175B parameters — first "wow" moment for text AI</td></tr>
+              <tr  ><td>2022</td><td>ChatGPT launches</td><td>100M users in 2 months — fastest adoption ever</td></tr>
+              <tr  ><td>2024</td><td>GPT-4o, Claude 3, Gemini</td><td>Multimodal models go mainstream</td></tr>
+              <tr  ><td>2025</td><td>AI agents emerge</td><td>Models that can use tools and take actions</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="notes">Notice the pattern: long periods of slow progress punctuated by breakthroughs. The field experienced two "AI winters" — periods where funding dried up because promises outpaced reality. We may be in an AI summer now, but history teaches us to be pragmatic.</aside>
+      </section>
+
+      <!-- SLIDE 22: AI Winters -->
+      <section>
+        <h2>AI Winters: Hype Cycles Are Real</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3 class="text-red">First AI Winter (1974–1980)</h3>
+            <ul>
+              <li  >Perceptrons couldn't solve XOR problem</li>
+              <li  >Government funding cut dramatically</li>
+              <li  >Promises far exceeded capabilities</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3 class="text-red">Second AI Winter (1987–1993)</h3>
+            <ul>
+              <li  >Expert systems were brittle and expensive</li>
+              <li  >LISP machine market collapsed</li>
+              <li  >Japan's 5th Gen Computer project failed</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:1em; text-align:center;"><strong>Lesson for enterprises:</strong> Adopt AI for real problems with measurable ROI — not because of hype.</p>
+        <aside class="notes">Every enterprise leader should know about AI winters. The current excitement is real — the technology works — but not every AI project will succeed. Gartner reports that 85% of AI projects fail to deliver. The difference between success and failure is disciplined implementation, not technology choice.</aside>
+      </section>
+
+      <!-- SLIDE 23: Myth vs Reality -->
+      <section>
+        <h2>Myth vs. Reality</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>🚫 Myth</h3>
+            <p>"AI is sentient and understands what it's saying."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>LLMs are statistical pattern matchers. They predict likely text — they don't understand meaning, have beliefs, or experience consciousness.</p>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:1em;">
+          <div class="myth-card">
+            <h3>🚫 Myth</h3>
+            <p>"AI is always accurate and factual."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>LLMs hallucinate confidently. A 2025 Stanford study found GPT-4 fabricated legal citations in 6% of responses. Always verify critical outputs.</p>
+          </div>
+        </div>
+        <aside class="notes">These myths are dangerous in enterprise settings. If your team thinks AI output is always accurate, they'll skip verification — and that's how you get lawyers citing fake cases (which happened to a New York attorney in 2023, who was sanctioned by the court). AI is a tool, not an oracle.</aside>
+      </section>
+
+      <!-- SLIDE 24: More Myths -->
+      <section>
+        <h2>Myth vs. Reality (Continued)</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>🚫 Myth</h3>
+            <p>"AI will replace all jobs."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>AI automates <em>tasks</em>, not jobs. Goldman Sachs estimates 300M jobs will be <em>affected</em>, but most will be augmented, not eliminated. Radiologists now use AI to be faster, not to be replaced.</p>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:1em;">
+          <div class="myth-card">
+            <h3>🚫 Myth</h3>
+            <p>"More data always means better AI."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>Data quality matters more than quantity. Garbage in, garbage out. IBM found that poor data quality costs US businesses $3.1 trillion per year.</p>
+          </div>
+        </div>
+        <aside class="notes">The jobs myth causes unnecessary panic. The more productive framing: AI will make some skills more valuable and others less. People who can work effectively with AI will outperform those who can't. That's exactly why you're in this course.</aside>
+      </section>
+
+      <!-- SLIDE 25: Section Divider — Capabilities -->
+      <section data-background-color="#1e293b">
+        <h2>Section 6</h2>
+        <h3>Current Capabilities & Limitations</h3>
+        <aside class="notes">Let's be precise about what AI can and can't do today. This is essential for making good enterprise decisions about where to deploy AI.</aside>
+      </section>
+
+      <!-- SLIDE 26: What AI Can Do Well -->
+      <section>
+        <h2>What AI Does Well (2025)</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3 class="text-teal">Strong Capabilities</h3>
+            <ul>
+              <li  >✅ Text generation, summarization, translation</li>
+              <li  >✅ Code generation and debugging</li>
+              <li  >✅ Image recognition and generation</li>
+              <li  >✅ Pattern detection in large datasets</li>
+              <li class="fragment fade-up"  >✅ Conversational interfaces</li>
+              <li  >✅ Document analysis and extraction</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-red">Known Limitations</h3>
+            <ul>
+              <li  >❌ Reliable factual accuracy (hallucinations)</li>
+              <li  >❌ Mathematical reasoning (improving but fragile)</li>
+              <li  >❌ Real-time information (without tools)</li>
+              <li  >❌ Causal reasoning and common sense</li>
+              <li  >❌ Long-term planning and goal pursuit</li>
+              <li  >❌ Explaining its own reasoning reliably</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">This slide should be on every AI project manager's wall. The left column tells you where AI adds value today. The right column tells you where human oversight is non-negotiable. The biggest enterprise failures come from deploying AI in the right column without safeguards.</aside>
+      </section>
+
+      <!-- SLIDE 27: Enterprise AI Use Cases -->
+      <section>
+        <h2>Enterprise AI in Action</h2>
+        <table class="comparison">
+          <thead><tr ><th>Industry</th><th>Use Case</th><th>Company</th><th>Impact</th></tr></thead>
+          <tbody>
+            <tr  ><td>Finance</td><td>Fraud detection</td><td>Mastercard</td><td>Reduced false positives by 50%</td></tr>
+            <tr  ><td>Healthcare</td><td>Drug discovery</td><td>Insilico Medicine</td><td>Candidate to trial in 18 months (vs 4.5 years)</td></tr>
+            <tr  ><td>Legal</td><td>Contract review</td><td>Kira Systems</td><td>90% faster due diligence</td></tr>
+            <tr  ><td>Security</td><td>Threat detection</td><td>Darktrace</td><td>Autonomous response in &lt;2 seconds</td></tr>
+            <tr  ><td>Retail</td><td>Demand forecasting</td><td>Walmart</td><td>Reduced food waste by 20%</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">These are real, deployed, revenue-impacting use cases. Notice they're all narrow applications — not general AI doing everything. Successful enterprise AI picks a specific problem, measures the baseline, deploys a model, and tracks improvement. That's the pattern we'll follow throughout this course.</aside>
+      </section>
+
+      <!-- SLIDE 28: Hands-On Activity -->
+      <section>
+        <h2>🎯 Hands-On: "Spot the AI"</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <h3>Activity (10 minutes)</h3>
+          <ol>
+            <li   ><strong>List 5 apps/services you used today</strong> (email, maps, music, shopping, etc.)</li>
+            <li   ><strong>For each, identify:</strong>
+              <ul>
+                <li class="fragment fade-up"   >Does it use AI? (Yes / No / Probably)</li>
+                <li   >What type? (Supervised, Unsupervised, or RL)</li>
+                <li   >What task does the AI perform?</li>
+              </ul>
+            </li>
+            <li class="fragment zoom-in"   ><strong>Share with your neighbor</strong> — did they catch any you missed?</li>
+            <li   ><strong>Group discussion:</strong> Which AI did you not realize was AI?</li>
+          </ol>
+        </div>
+        <aside class="notes">This activity makes AI tangible. Most people are surprised at how much AI they already use. The goal is to move from "AI is this scary future thing" to "AI is already everywhere, and understanding it is a practical skill." Give them 7-8 minutes to work, then 2-3 minutes to share.</aside>
+      </section>
+
+      <!-- SLIDE 29: Python Code Example -->
+      <section>
+        <h2>Code: Your First AI Classification</h2>
+        <pre  ><code class="python" style="font-size:0.75em;">from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Load a classic ML dataset
+data = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    data.data, data.target, test_size=0.2, random_state=42
+)
+
+# Train a supervised learning model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Predict and evaluate
+predictions = model.predict(X_test)
+accuracy = accuracy_score(y_test, predictions)
+print(f"Model accuracy: {accuracy:.1%}")  # ~96.7%
+
+# This is supervised learning:
+# - Labeled data (iris species)
+# - Classification task
+# - Learns from examples, generalizes to new data</code></pre>
+        <aside class="notes">This is a complete, runnable example. We'll run it in the lab, but the point here is to show that ML isn't magic — it's about 10 lines of code. The complexity is in the data preparation, evaluation, and deployment — not the model training itself. Scikit-learn makes the basics accessible to anyone who can write Python.</aside>
+      </section>
+
+      <!-- SLIDE 30: Quiz -->
+      <section>
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <ol>
+            <li    >What is the difference between AI, ML, and Deep Learning?</li>
+            <li style="margin-top:0.5em;"   >Netflix's recommendation engine is an example of which type of ML?
+              <ul style="list-style:lower-alpha;">
+                <li    >Supervised Learning</li>
+                <li    >Unsupervised Learning</li>
+                <li    >Reinforcement Learning</li>
+                <li    >All of the above</li>
+              </ul>
+            </li>
+            <li style="margin-top:0.5em;"   >True or False: LLMs understand the meaning of the text they generate.</li>
+            <li style="margin-top:0.5em;"   >Name two reasons the "AI winter" periods occurred.</li>
+          </ol>
+        </div>
+        <p><small>Answers: 1) Nested hierarchy — DL ⊂ ML ⊂ AI. 2) D — Netflix uses collaborative filtering (unsupervised), content-based (supervised), and A/B testing (RL-like). 3) False. 4) Overpromising, underfunding, brittle technology.</small></p>
+        <aside class="notes">Give students 3-4 minutes to think through these. Question 2 is intentionally tricky — Netflix actually uses elements of all three types. This reinforces that real systems often combine multiple ML approaches.</aside>
+      </section>
+
+      <!-- SLIDE 31: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>Key Takeaways</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <ul>
+            <li   >✅ AI is a broad field; ML and DL are subsets with specific meanings</li>
+            <li   >✅ Three types of ML: supervised (labeled data), unsupervised (pattern finding), reinforcement (reward-based)</li>
+            <li   >✅ LLMs work by next-token prediction — powerful but not "understanding"</li>
+            <li   >✅ The Transformer architecture (2017) enabled the current AI revolution</li>
+            <li   >✅ AI has real enterprise value but also real limitations — always verify outputs</li>
+            <li   >✅ History shows AI hype cycles are real — adopt based on ROI, not buzz</li>
+          </ul>
+        </div>
+        <aside class="notes">These six points are the foundation for everything else in this course. If a student walks away remembering only these, they're already better equipped than 90% of enterprise professionals making AI decisions. Encourage them to screenshot this slide.</aside>
+      </section>
+
+      <!-- SLIDE 32: Lab Preview -->
+      <section data-transition="fade">
+        <h2>🔬 Lab Preview</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <h3>Lab 1: Exploring AI in the Wild</h3>
+          <ul>
+            <li   ><strong>Part A:</strong> Run the scikit-learn classification example and experiment with parameters</li>
+            <li class="fragment fade-up"   ><strong>Part B:</strong> Use ChatGPT, Claude, and Gemini to answer the same 5 questions — compare accuracy</li>
+            <li   ><strong>Part C:</strong> Document 3 AI systems in your organization and classify them (supervised/unsupervised/RL)</li>
+          </ul>
+          <p style="margin-top:1em;"><strong>Time:</strong> 45 minutes | <strong>Deliverable:</strong> Completed worksheet with findings</p>
+        </div>
+        <img   src="/assets/lab-graphics/setup-checklist.svg" style="width:600px; margin:20px auto; display:block;" alt="Course setup checklist">
+        <aside class="notes">The lab reinforces today's concepts with hands-on work. Part B is especially valuable — students will see firsthand that different AI tools give different answers to the same question. This builds healthy skepticism and evaluation skills they'll use throughout the course.</aside>
+      </section>
+
+      <!-- SLIDE 33: Resources -->
+      <section data-transition="slide">
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h4>Essential Reading</h4>
+            <ul>
+              <li  >"Attention Is All You Need" (Vaswani et al., 2017)</li>
+              <li  >McKinsey: "The State of AI in 2025"</li>
+              <li  >Stanford HAI: "AI Index Report 2025"</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h4>Tools & Courses</h4>
+            <ul>
+              <li  >Google's Machine Learning Crash Course (free)</li>
+              <li  >3Blue1Brown: Neural Networks (YouTube)</li>
+              <li  >Andrej Karpathy: "Intro to LLMs" (YouTube)</li>
+            </ul>
+          </div>
+        </div>
+        <img   src="/assets/lab-graphics/troubleshooting-flowchart.svg" style="width:600px; margin:20px auto; display:block;" alt="Troubleshooting flowchart for common setup issues">
+        <aside class="notes">These are curated, not exhaustive. The Karpathy video is the single best hour-long introduction to LLMs — highly recommend watching it before Module 2. The McKinsey report gives you the business context to justify AI investments to leadership.</aside>
+      </section>
+
+      <!-- SLIDE 34: Q&A -->
+      <section data-transition="fade">
+        <h2>Questions & Discussion</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;text-align:center;">
+          <h3>🤔 What surprised you most about how AI actually works?</h3>
+          <p style="margin-top:2em; font-size:1.2em;">Next up: <strong>Module 2 — How LLMs Work</strong></p>
+          <p>We'll go deeper into tokenization, embeddings, and the attention mechanism.</p>
+        </div>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Open the floor for questions. Common questions at this point: "Will AI take my job?", "Is AI dangerous?", "How do I convince my boss to invest in AI?" Use these to reinforce the practical, evidence-based framing from the module. Transition to Module 2 by previewing that we'll look under the hood of LLMs.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

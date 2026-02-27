@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 4: The AI Risk Landscape</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-04.svg" style="width:100px">
+        <h1>Module 4</h1>
+        <h2>The AI Risk Landscape</h2>
+        <p>Understanding What Can Go Wrong — And How to Prepare</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Welcome to Module 4, where we map out the full landscape of AI risks facing enterprises today. This isn't theoretical — every risk we discuss has real-world examples with real consequences. By the end, you'll have a practical framework for assessing and prioritizing AI risks in your organization.</aside>
+      </section>
+
+      <!-- SLIDE 2: Learning Objectives -->
+      <section data-transition="fade">
+        <h2>🎯 Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ol>
+            <li   >Identify and categorize the <strong>seven major AI risk domains</strong></li>
+            <li   >Analyze real-world AI failures using <strong>case studies</strong></li>
+            <li class="fragment fade-up"   >Evaluate <strong>hallucination, bias, and data leakage</strong> risks</li>
+            <li   >Map risks to the <strong>OWASP LLM Top 10</strong> framework</li>
+            <li   >Apply a <strong>risk assessment framework</strong> to enterprise AI deployments</li>
+          </ol>
+        </div>
+        <aside class="notes">These five objectives map directly to the skills you need as an AI security professional. We'll cover technical risks like hallucinations, organizational risks like shadow AI, and strategic risks like legal liability. Each section includes real incidents from real companies. We'll also connect everything to the OWASP LLM Top 10 — a practical framework you can take back to your teams.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section data-transition="slide">
+        <h2>💡 Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">$1.2T</div>
+            <div class="stat-label">Projected AI spending by 2027 (IDC)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">77%</div>
+            <div class="stat-label">Of enterprises report AI-related incidents (Gartner 2025)</div>
+          </div>
+        </div>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">$4.4M</div>
+            <div class="stat-label">Average cost of an AI-related data breach (IBM 2025)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#047857,#10b981);color:#fff;">
+            <div class="stat-number">60%</div>
+            <div class="stat-label">Of AI projects abandoned due to risk concerns (McKinsey)</div>
+          </div>
+        </div>
+        <aside class="notes">The stakes are enormous and growing. Organizations are pouring money into AI, but most lack adequate risk management. The cost of getting it wrong isn't just financial — it's reputational, legal, and operational. Understanding risks is the first step to managing them effectively.</aside>
+      </section>
+
+      <!-- SLIDE 4: The AI Risk Landscape Overview -->
+      <section>
+        <h2>🗺️ The AI Risk Landscape</h2>
+        <img   src="/assets/graphics/infographic-risk-landscape.svg" style="max-width:700px;width:100%">
+        <aside class="notes">This infographic maps seven major risk domains. Think of these as interconnected territories — a failure in one area often cascades into others. A hallucination becomes a legal risk. Data leakage becomes a compliance violation. Shadow AI amplifies everything. We'll explore each domain in depth.</aside>
+      </section>
+
+      <!-- SLIDE 5: Seven Risk Domains -->
+      <section>
+        <h2>Seven Risk Domains</h2>
+        <div class="cols">
+          <div>
+            <ol>
+              <li  >🎭 <strong>Hallucinations</strong> — Confident fabrication</li>
+              <li class="fragment fade-right"  >⚖️ <strong>Bias & Fairness</strong> — Systematic discrimination</li>
+              <li  >🔓 <strong>Data Leakage</strong> — Confidential info exposure</li>
+              <li  >📜 <strong>Legal & IP</strong> — Copyright, liability, compliance</li>
+            </ol>
+          </div>
+          <div>
+            <ol start="5">
+              <li  >👻 <strong>Shadow AI</strong> — Unmanaged AI usage</li>
+              <li  >🎭 <strong>Deepfakes</strong> — Synthetic media attacks</li>
+              <li class="fragment zoom-in"  >💸 <strong>Cost & Operational</strong> — Runaway spending, vendor lock-in</li>
+            </ol>
+          </div>
+        </div>
+        <aside class="notes">Each domain represents a distinct category of risk, but they're deeply interconnected. An employee using shadow AI might leak data through a third-party model, which creates legal exposure, while the model hallucinates outputs that create operational risk. Thinking in domains helps us systematically address each area.</aside>
+      </section>
+
+      <!-- SLIDE 6: Section Divider - Hallucinations -->
+      <section data-background-color="#1e293b">
+        <h1>🎭 Risk Domain 1</h1>
+        <h2>AI Hallucinations</h2>
+        <p>When AI Makes Things Up — Confidently</p>
+        <aside class="notes">Hallucinations are arguably the most dangerous AI risk because they're the hardest to detect. The AI doesn't hedge or express uncertainty — it states fabricated information with the same confidence as verified facts. Let's look at what this means in practice.</aside>
+      </section>
+
+      <!-- SLIDE 7: What Are Hallucinations -->
+      <section>
+        <h2>What Are AI Hallucinations?</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+          <p><strong>Definition:</strong> AI-generated content that is factually incorrect, fabricated, or nonsensical — presented as confident, authoritative output.</p>
+        </div>
+        <div class="cols">
+          <div>
+            <h3 class="text-red">Types</h3>
+            <ul>
+              <li  ><strong>Factual fabrication</strong> — Inventing events, people, citations</li>
+              <li class="fragment fade-right"  ><strong>Conflation</strong> — Merging unrelated facts</li>
+              <li class="fragment zoom-in"  ><strong>Extrapolation</strong> — Extending patterns beyond training data</li>
+              <li  ><strong>Intrinsic</strong> — Contradicts source material</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-teal">Why It Happens</h3>
+            <ul>
+              <li  >LLMs predict <em>probable</em> tokens, not <em>true</em> tokens</li>
+              <li  >No internal fact-checking mechanism</li>
+              <li  >Training data gaps and contradictions</li>
+              <li  >Pressure to always produce an answer</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The fundamental issue is architectural: LLMs are next-token prediction engines, not knowledge retrieval systems. They optimize for plausible-sounding text, not truth. This means hallucinations aren't bugs — they're an inherent property of how these systems work. Understanding this is crucial for building appropriate safeguards.</aside>
+      </section>
+
+      <!-- SLIDE 8: Hallucination Case Study - Avianca -->
+      <section>
+        <h2>📋 Case Study: Mata v. Avianca (2023)</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+          <p>New York attorney Steven Schwartz used ChatGPT to research legal precedents for a personal injury case against Avianca Airlines.</p>
+        </div>
+        <ul>
+          <li  >ChatGPT generated <strong>six completely fabricated court cases</strong></li>
+          <li  >Fake case names, fake citations, fake judicial opinions</li>
+          <li  >When challenged, Schwartz asked ChatGPT to <em>verify</em> the cases — it confirmed they were real</li>
+          <li  >Judge P. Kevin Castel imposed <strong>$5,000 sanctions</strong> on Schwartz and co-counsel</li>
+          <li  >Cases cited: <em>Varghese v. China Southern Airlines</em>, <em>Shaboon v. Egyptair</em> — <strong>none existed</strong></li>
+        </ul>
+        <p class="text-red"><strong>Lesson:</strong> AI-generated content requires human verification — always.</p>
+        <aside class="notes">This case became the poster child for AI hallucination risk. What makes it especially instructive is the verification loop failure: the lawyer asked ChatGPT to verify its own fabrications, and it doubled down. This demonstrates why AI systems cannot be used to validate their own outputs. The reputational damage to the attorneys far exceeded the $5,000 fine.</aside>
+      </section>
+
+      <!-- SLIDE 9: More Hallucination Examples -->
+      <section>
+        <h2>More Hallucination Incidents</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Incident</th><th>What Happened</th><th>Impact</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td>Google AI Overview (2024)</td><td>Told users to <strong>"add glue to pizza"</strong> and <strong>"eat one rock per day"</strong></td><td>Viral embarrassment, feature rollback</td></tr>
+            <tr  ><td>Air Canada Chatbot (2024)</td><td>Fabricated a bereavement fare discount policy that <strong>didn't exist</strong></td><td>Tribunal ruled Air Canada liable, forced to honor fake policy</td></tr>
+            <tr  ><td>Microsoft Bing Chat (2023)</td><td>Insisted the year was 2022, became <strong>argumentative</strong> with users</td><td>Conversation length limits imposed</td></tr>
+            <tr  ><td>Google Bard Launch (2023)</td><td>Wrong claim about James Webb telescope in launch demo</td><td>$100B wiped from Alphabet market cap</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">These examples span different companies and use cases, showing that hallucinations aren't limited to any single model or vendor. The Air Canada case is particularly significant because it established legal precedent: if your AI makes a promise to a customer, you may be legally bound to honor it. The Google Bard example shows the financial stakes — a single hallucination in a demo wiped $100 billion in market value.</aside>
+      </section>
+
+      <!-- SLIDE 10: Section Divider - Bias -->
+      <section data-transition="slide" data-background-color="#1e293b">
+        <h1>⚖️ Risk Domain 2</h1>
+        <h2>Bias & Fairness</h2>
+        <p>When AI Discriminates at Scale</p>
+        <aside class="notes">Bias in AI is particularly insidious because it can systematically discriminate against protected groups while appearing objective and data-driven. Unlike human bias, which affects individual decisions, algorithmic bias operates at scale — potentially affecting millions of people simultaneously.</aside>
+      </section>
+
+      <!-- SLIDE 11: Amazon Hiring Tool -->
+      <section>
+        <h2>📋 Case Study: Amazon's AI Hiring Tool</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <p>In 2018, Reuters revealed that Amazon had scrapped an AI recruiting tool that <strong>systematically discriminated against women</strong>.</p>
+        </div>
+        <ul>
+          <li  >Trained on <strong>10 years of résumés</strong> — predominantly from men (reflecting tech industry demographics)</li>
+          <li  >Penalized résumés containing the word <strong>"women's"</strong> (e.g., "women's chess club captain")</li>
+          <li  >Downgraded graduates of <strong>all-women's colleges</strong></li>
+          <li  >Amazon tried to de-bias it but <strong>couldn't guarantee neutrality</strong></li>
+          <li  >Project scrapped after 4 years of development</li>
+        </ul>
+        <p class="text-red"><strong>Root cause:</strong> Historical data encodes historical bias. The model learned that successful hires were male — because that's who had been hired before.</p>
+        <aside class="notes">The Amazon case illustrates a fundamental challenge: you cannot build a fair AI system on biased historical data without explicit intervention. The model did exactly what it was designed to do — find patterns in past data. The problem was that the past data reflected decades of gender bias in tech hiring. Even after attempting corrections, Amazon couldn't certify the system was bias-free.</aside>
+      </section>
+
+      <!-- SLIDE 12: Healthcare Bias -->
+      <section>
+        <h2>📋 Case Study: Optum/UnitedHealth Algorithm (2019)</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>What Happened</h3>
+            <ul>
+              <li  >Algorithm allocated healthcare resources based on <strong>spending as proxy</strong> for health needs</li>
+              <li  >Black patients historically had <strong>less access</strong> to healthcare, so spent less</li>
+              <li  >Algorithm concluded Black patients were <strong>healthier</strong></li>
+              <li  >Only <strong>17.7%</strong> of patients flagged for extra care were Black (should have been ~46%)</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>Key Insight</h3>
+            <p>The algorithm <strong>never used race</strong> as an input. But by using cost as a proxy for need, it reproduced racial inequities embedded in the healthcare system.</p>
+            <p class="text-red"><strong>Proxy discrimination</strong> is one of the hardest forms of bias to detect and prevent.</p>
+            <p>Affected an estimated <strong>200 million patients/year</strong>.</p>
+          </div>
+        </div>
+        <aside class="notes">This is a critical example because it shows how bias can emerge even when protected attributes aren't used as inputs. The algorithm was technically race-blind, but the proxy variable — healthcare spending — was deeply correlated with race due to systemic inequities. Researchers from UC Berkeley discovered the bias and published their findings in Science.</aside>
+      </section>
+
+      <!-- SLIDE 13: Section Divider - Data Leakage -->
+      <section data-background-color="#1e293b">
+        <h1>🔓 Risk Domain 3</h1>
+        <h2>Data Leakage</h2>
+        <p>When Confidential Data Escapes Through AI</p>
+        <aside class="notes">Data leakage through AI tools is one of the fastest-growing enterprise risks. Employees paste proprietary code, customer data, and strategic documents into AI chatbots — often without realizing they're sending it to a third party. Let's examine the most infamous incident.</aside>
+      </section>
+
+      <!-- SLIDE 14: Samsung Case Study -->
+      <section>
+        <h2>📋 Case Study: Samsung & ChatGPT (2023)</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <h3>The Incident</h3>
+          <p>Less than <strong>20 days</strong> after Samsung's semiconductor division allowed ChatGPT use, three separate data leaks occurred.</p>
+        </div>
+        <div class="cols-3">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
+            <div class="stat-number">Leak 1</div>
+            <div class="stat-label">Engineer pasted <strong>proprietary source code</strong> to fix a bug</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#9f1239,#e11d48);color:#fff;">
+            <div class="stat-number">Leak 2</div>
+            <div class="stat-label">Employee shared <strong>test sequences for chip hardware</strong></div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">Leak 3</div>
+            <div class="stat-label">Employee pasted <strong>meeting notes</strong> and asked for a summary</div>
+          </div>
+        </div>
+        <aside class="notes">Samsung's incident became the defining case study for enterprise AI data leakage. Three separate employees, three different types of confidential data, all within three weeks. Samsung's response was to ban ChatGPT entirely and begin developing an internal AI tool. This incident triggered AI usage bans at JPMorgan Chase, Apple, Verizon, and dozens of other major enterprises.</aside>
+      </section>
+
+      <!-- SLIDE 15: Samsung Aftermath -->
+      <section>
+        <h2>Samsung Aftermath & Industry Response</h2>
+        <div class="cols">
+          <div>
+            <h3 class="text-red">Samsung's Actions</h3>
+            <ul>
+              <li  >Banned all external generative AI tools</li>
+              <li  >Limited internal ChatGPT prompts to <strong>1,024 bytes</strong></li>
+              <li  >Threatened <strong>termination</strong> for violations</li>
+              <li  >Began developing internal LLM</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-teal">Companies That Followed</h3>
+            <ul>
+              <li  ><strong>Apple</strong> — Restricted ChatGPT and Copilot</li>
+              <li  ><strong>JPMorgan Chase</strong> — Banned ChatGPT</li>
+              <li  ><strong>Verizon</strong> — Blocked ChatGPT access</li>
+              <li  ><strong>Deutsche Bank</strong> — Prohibited use</li>
+              <li  ><strong>Amazon</strong> — Warned employees about code sharing</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The Samsung incident triggered a wave of enterprise AI bans across industries. However, outright bans proved unsustainable — employees found workarounds, creating shadow AI problems. The more sophisticated response was to deploy enterprise-grade AI tools with data governance controls, which we'll discuss in Module 5.</aside>
+      </section>
+
+      <!-- SLIDE 16: Data Leakage Vectors -->
+      <section>
+        <h2>Data Leakage Vectors</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Vector</th><th>Example</th><th>Risk Level</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td>Direct prompt input</td><td>Pasting code, docs, customer data</td><td class="text-red"><strong>Critical</strong></td></tr>
+            <tr ><td>File uploads</td><td>Uploading spreadsheets, PDFs to AI tools</td><td class="text-red"><strong>Critical</strong></td></tr>
+            <tr  ><td>Training data extraction</td><td>Adversarial prompts extracting memorized data</td><td><strong>High</strong></td></tr>
+            <tr  ><td>API logging</td><td>Prompts stored in vendor logs</td><td><strong>High</strong></td></tr>
+            <tr  ><td>Browser extensions</td><td>AI assistants reading page content</td><td><strong>Medium</strong></td></tr>
+            <tr  ><td>Model fine-tuning</td><td>Your data used to improve vendor models</td><td><strong>Medium</strong></td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">Data leakage isn't just about users pasting sensitive content into chatbots. There are multiple vectors, some obvious and some subtle. API logging means that even enterprise API calls might be stored by the vendor. Browser extensions with AI features might read sensitive page content. And the default terms of many AI services include using your inputs for model improvement.</aside>
+      </section>
+
+      <!-- SLIDE 17: Section Divider - Legal/IP -->
+      <section data-background-color="#1e293b">
+        <h1>📜 Risk Domain 4</h1>
+        <h2>Legal, Regulatory & IP Risks</h2>
+        <p>Copyright, Compliance, and the Courts</p>
+        <aside class="notes">The legal landscape around AI is evolving rapidly, with major lawsuits setting precedents and new regulations like the EU AI Act creating compliance obligations. Understanding these is essential for any enterprise deploying AI tools.</aside>
+      </section>
+
+      <!-- SLIDE 18: Regulatory Landscape -->
+      <section>
+        <h2>The Regulatory Landscape</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Regulation</th><th>Scope</th><th>Key AI Provisions</th><th>Penalties</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>EU AI Act</strong> (2024)</td><td>All AI systems in the EU market</td><td>Risk-tiered classification, prohibited uses, transparency requirements</td><td>Up to <strong>€35M or 7% global revenue</strong></td></tr>
+            <tr  ><td><strong>GDPR</strong></td><td>EU personal data</td><td>Right to explanation for automated decisions, data minimization</td><td>Up to <strong>€20M or 4% global revenue</strong></td></tr>
+            <tr  ><td><strong>NYC Local Law 144</strong></td><td>NYC hiring</td><td>Bias audits for AI hiring tools, annual reporting</td><td>$500–$1,500 per violation</td></tr>
+            <tr  ><td><strong>Colorado AI Act</strong> (2026)</td><td>High-risk AI in Colorado</td><td>Risk assessments, disclosure, impact statements</td><td>Enforced via UCPA</td></tr>
+            <tr  ><td><strong>Executive Order 14110</strong></td><td>US federal agencies</td><td>Safety testing, red-teaming, transparency for dual-use models</td><td>Federal compliance mandates</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">The regulatory environment is accelerating. The EU AI Act is the most comprehensive, creating a risk-tiered framework similar to GDPR's impact on privacy. NYC Local Law 144 was the first US law specifically targeting AI in hiring. Colorado's AI Act takes effect in 2026 and requires impact assessments for high-risk systems. These regulations are not hypothetical — enterprises need compliance strategies now.</aside>
+      </section>
+
+      <!-- SLIDE 19: Major AI Lawsuits -->
+      <section>
+        <h2>Landmark AI Lawsuits</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Case</th><th>Plaintiff</th><th>Claim</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>NYT v. OpenAI</strong> (2023)</td><td>New York Times</td><td>ChatGPT reproduces NYT articles verbatim</td><td>Ongoing — seeking billions</td></tr>
+            <tr  ><td><strong>Getty v. Stability AI</strong> (2023)</td><td>Getty Images</td><td>Stable Diffusion trained on 12M Getty images</td><td>Ongoing</td></tr>
+            <tr  ><td><strong>Doe v. GitHub</strong> (2022)</td><td>Open-source developers</td><td>Copilot reproduces licensed code without attribution</td><td>Core claims remain</td></tr>
+            <tr  ><td><strong>Authors Guild v. OpenAI</strong> (2023)</td><td>17 authors inc. John Grisham</td><td>Training on copyrighted books</td><td>Ongoing</td></tr>
+            <tr  ><td><strong>Concord Music v. Anthropic</strong> (2023)</td><td>Music publishers</td><td>Claude reproduces copyrighted song lyrics</td><td>Ongoing</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">These lawsuits represent a fundamental question: does training AI on copyrighted material constitute fair use? The outcomes will determine the business model viability of all major AI companies. For enterprises, the risk is that using AI-generated content could expose you to downstream copyright claims. The NYT case is particularly significant because OpenAI's defense relies heavily on fair use doctrine, which has never been tested at this scale.</aside>
+      </section>
+
+      <!-- SLIDE 20: IP Risk for Enterprises -->
+      <section>
+        <h2>IP Risks for Your Organization</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3 class="text-red">Using AI Output</h3>
+            <ul>
+              <li  >AI-generated code may contain <strong>copyrighted fragments</strong></li>
+              <li  >AI-generated images may <strong>replicate copyrighted styles</strong></li>
+              <li  >US Copyright Office: <strong>no copyright protection</strong> for purely AI-generated works</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3 class="text-red">Feeding AI Your Data</h3>
+            <ul>
+              <li  >Trade secrets may <strong>lose legal protection</strong> once shared</li>
+              <li  >Confidential info may appear in <strong>other users' outputs</strong></li>
+              <li  >Some vendors claim <strong>license to training data</strong> in ToS</li>
+              <li  >GDPR implications for <strong>personal data in prompts</strong></li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The IP risk is bidirectional. On one side, AI-generated content you use might infringe someone else's copyright. On the other side, your proprietary data fed into AI systems might leak or lose legal protection. The US Copyright Office ruling is crucial: if your AI generates a marketing image, you may not be able to copyright it, meaning competitors can freely copy it.</aside>
+      </section>
+
+      <!-- SLIDE 21: Section Divider - Shadow AI -->
+      <section data-background-color="#1e293b">
+        <h1>👻 Risk Domain 5</h1>
+        <h2>Shadow AI</h2>
+        <p>The AI Tools Your Organization Doesn't Know About</p>
+        <aside class="notes">Shadow AI is the new shadow IT — but potentially more dangerous because it involves sending data to external systems. Studies show that the majority of enterprise AI usage happens outside of approved channels.</aside>
+      </section>
+
+      <!-- SLIDE 22: Shadow AI + Myths -->
+      <section>
+        <h2>Shadow AI: The Hidden Risk</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">68%</div>
+            <div class="stat-label">Of employees use unapproved AI tools (Salesforce 2025)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">55%</div>
+            <div class="stat-label">Of AI tool usage invisible to security teams (Gartner)</div>
+          </div>
+        </div>
+        <div class="cols" style="margin-top:20px">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"We banned ChatGPT, so our data is safe."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>Employees use personal devices, mobile apps, and VPNs. DNS-level blocking catches ~30% of shadow AI. You need <strong>approved alternatives + monitoring + training</strong>.</p>
+          </div>
+        </div>
+        <aside class="notes">Shadow AI is the biggest amplifier of every other risk we've discussed. Employees using unapproved tools bypass data governance, create compliance gaps, and generate untracked costs. Banning AI outright doesn't work — people find workarounds. The solution is providing approved alternatives that are easy enough to use that employees prefer them.</aside>
+      </section>
+
+      <!-- SLIDE 23: Section Divider - Deepfakes -->
+      <section data-background-color="#1e293b">
+        <h1>🎭 Risk Domain 6</h1>
+        <h2>Deepfakes & Synthetic Media</h2>
+        <p>When You Can't Trust Your Eyes or Ears</p>
+        <aside class="notes">Deepfake technology has evolved from novelty to serious enterprise threat. Audio deepfakes can now be generated from just a few seconds of sample audio, and video deepfakes are increasingly difficult to detect.</aside>
+      </section>
+
+      <!-- SLIDE 24: Deepfake Incidents -->
+      <section>
+        <h2>Real Deepfake Attacks</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Incident</th><th>Technique</th><th>Impact</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>Arup Engineering, Hong Kong (2024)</strong></td><td>Video call with deepfake CFO and colleagues</td><td><strong>$25.6 million</strong> transferred to attackers</td></tr>
+            <tr  ><td><strong>UK Energy Company (2019)</strong></td><td>AI-cloned voice of CEO on phone</td><td><strong>$243,000</strong> wired to fraudulent account</td></tr>
+            <tr  ><td><strong>US Elections (2024)</strong></td><td>AI-generated robocall impersonating Biden</td><td>Voter suppression attempt in NH primary</td></tr>
+            <tr  ><td><strong>Ferrari CEO (2024)</strong></td><td>AI-cloned voice on WhatsApp</td><td>Attempt <strong>failed</strong> — executive asked verification question</td></tr>
+          </tbody>
+        </table>
+        <p class="text-teal"><strong>Ferrari lesson:</strong> Simple out-of-band verification defeats even convincing deepfakes.</p>
+        <aside class="notes">The Arup case is the most dramatic: attackers set up a video conference call where every other participant was a deepfake. The employee transferred $25.6 million across 15 transactions. The Ferrari case is the success story — a simple verification question ("What book did I recommend to you last week?") stopped the attack cold. These attacks will only become more common.</aside>
+      </section>
+
+      <!-- SLIDE 25: Section Divider - Cost -->
+      <section data-background-color="#1e293b">
+        <h1>💸 Risk Domain 7</h1>
+        <h2>Cost & Operational Risks</h2>
+        <p>When AI Burns Through Your Budget</p>
+        <aside class="notes">The final risk domain is often overlooked until the bills arrive. AI costs can escalate rapidly and unpredictably.</aside>
+      </section>
+
+      <!-- SLIDE 26: Cost Risks -->
+      <section>
+        <h2>AI Cost Pitfalls</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3 class="text-red">Direct Costs</h3>
+            <ul>
+              <li   ><strong>API bills:</strong> A runaway loop can cost $10,000+ overnight</li>
+              <li   ><strong>Token inflation:</strong> Prompts grow as context windows expand</li>
+              <li   ><strong>GPU compute:</strong> Fine-tuning 70B model: $5K–$50K+</li>
+              <li   ><strong>Storage:</strong> Embeddings, vector DBs, model weights</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3 class="text-red">Hidden Costs</h3>
+            <ul>
+              <li class="fragment fade-up"   ><strong>Integration:</strong> Connecting AI to existing systems</li>
+              <li   ><strong>Monitoring:</strong> Observability for AI pipelines</li>
+              <li   ><strong>Vendor lock-in:</strong> Switching costs between providers</li>
+              <li   ><strong>Human review:</strong> Verifying AI outputs at scale</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">One startup reported a $72,000 monthly OpenAI bill after an engineer left a test loop running over a weekend. Token costs are the new cloud compute costs. Hidden costs are often larger than direct costs: integration engineering, ongoing maintenance, and human labor needed to verify AI outputs can dwarf the API bill.</aside>
+      </section>
+
+      <!-- SLIDE 27: OWASP LLM Top 10 Section Divider -->
+      <section data-background-color="#1e293b">
+        <h1>🛡️ OWASP LLM Top 10</h1>
+        <h2>A Security Framework for LLM Applications</h2>
+        <p>Mapping Enterprise Risks to Standardized Categories</p>
+        <aside class="notes">Now that we've surveyed the risk landscape, let's map everything to a standardized security framework. The OWASP Top 10 for LLM Applications gives us a common language for discussing and prioritizing LLM-specific risks — just like the web application Top 10 that many of you already use.</aside>
+      </section>
+
+      <!-- SLIDE 28: OWASP LLM Top 10 Infographic -->
+      <section data-transition="slide">
+        <h2>OWASP Top 10 for LLM Applications (2025)</h2>
+        <img   src="/assets/graphics/infographic-owasp-llm-top10.svg" style="max-width:700px;width:100%">
+        <aside class="notes">This infographic lays out all ten categories. We've already discussed many of these through our case studies: prompt injection maps to the Avianca case, sensitive information disclosure maps to the Samsung incident, and training data poisoning underpins the bias cases we reviewed. Let's break down the top entries in detail.</aside>
+      </section>
+
+      <!-- SLIDE 29: OWASP LLM Top 10 Detail -->
+      <section>
+        <h2>OWASP LLM Top 10 — Key Entries</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>#</th><th>Vulnerability</th><th>Real-World Example</th><th>Our Risk Domain</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td><strong>LLM01</strong></td><td>Prompt Injection</td><td>DPD chatbot tricked into swearing, criticizing the company</td><td>Hallucination + Legal</td></tr>
+            <tr  ><td><strong>LLM02</strong></td><td>Sensitive Information Disclosure</td><td>Samsung data leak via ChatGPT</td><td>Data Leakage</td></tr>
+            <tr  ><td><strong>LLM03</strong></td><td>Supply Chain Vulnerabilities</td><td>Hugging Face malicious model uploads (2024)</td><td>Operational</td></tr>
+            <tr  ><td><strong>LLM05</strong></td><td>Improper Output Handling</td><td>Air Canada chatbot honored by tribunal</td><td>Legal + Hallucination</td></tr>
+            <tr  ><td><strong>LLM06</strong></td><td>Excessive Agency</td><td>Auto-GPT experiments draining wallets, sending emails</td><td>Operational + Cost</td></tr>
+            <tr  ><td><strong>LLM09</strong></td><td>Misinformation</td><td>Google Bard launch, $100B market cap loss</td><td>Hallucination</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This table bridges our case studies to the OWASP framework. Notice how real incidents map cleanly to standardized vulnerability categories. This is the power of frameworks — they give security teams a structured approach to assessment. For the lab, you'll be testing for LLM01 (prompt injection) and LLM02 (sensitive information disclosure) hands-on.</aside>
+      </section>
+
+      <!-- SLIDE 30: Guardrails & Incident Response -->
+      <section>
+        <h2>🛡️ Building AI Guardrails</h2>
+        <div class="cols">
+          <div>
+            <img   src="/assets/graphics/concept-guardrails.svg" style="max-width:320px;width:100%">
+          </div>
+          <div>
+            <h3 class="text-teal">Layered Defense</h3>
+            <ul>
+              <li class="fragment fade-up"  ><strong>Input guardrails:</strong> DLP filters, content classification, prompt sanitization</li>
+              <li  ><strong>Model guardrails:</strong> System prompts, temperature limits, output length caps</li>
+              <li  ><strong>Output guardrails:</strong> Fact-checking layers, toxicity filters, PII redaction</li>
+              <li  ><strong>Human guardrails:</strong> Approval workflows, escalation paths, audit trails</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;margin-top:15px">
+          <h3>AI Incident Response Flow</h3>
+          <img   src="/assets/graphics/flow-incident-response-ai.svg" style="max-width:600px;width:100%">
+        </div>
+        <aside class="notes">Defense in depth applies to AI just as it does to traditional security. No single guardrail is sufficient — you need layers. Input guardrails prevent sensitive data from reaching the model. Model-level guardrails constrain behavior. Output guardrails catch hallucinations and policy violations before they reach users. And human guardrails provide the final safety net. The incident response flow shows how AI incidents should be triaged, contained, and resolved — we'll build this out in Module 5.</aside>
+      </section>
+
+      <!-- SLIDE 31: Python Code Example -->
+      <section>
+        <h2>🐍 Code: AI Risk Scoring Framework</h2>
+        <pre  ><code class="python">def assess_ai_risk(use_case: dict) -> dict:
+    """Enterprise AI risk scoring aligned to OWASP LLM Top 10."""
+    dimensions = {
+        "data_sensitivity": 0,   # 1-5: public=1, PII=4, classified=5
+        "decision_impact": 0,    # 1-5: informational=1, life-safety=5
+        "human_oversight": 0,    # 1-5: full_auto=5, human_in_loop=1
+        "model_transparency": 0, # 1-5: open_source=1, black_box=5
+        "regulatory_exposure": 0 # 1-5: unregulated=1, HIPAA/GDPR=5
+    }
+    dimensions.update(use_case)
+
+    total = sum(dimensions.values())
+    max_score = len(dimensions) * 5
+    risk_pct = (total / max_score) * 100
+
+    # Map to OWASP LLM categories
+    owasp_flags = []
+    if dimensions["data_sensitivity"] >= 4:
+        owasp_flags.append("LLM02: Sensitive Info Disclosure")
+    if dimensions["human_oversight"] >= 4:
+        owasp_flags.append("LLM06: Excessive Agency")
+    if dimensions["model_transparency"] >= 4:
+        owasp_flags.append("LLM03: Supply Chain Risk")
+
+    if risk_pct >= 70:
+        tier = "CRITICAL — Board approval required"
+    elif risk_pct >= 50:
+        tier = "HIGH — CISO sign-off required"
+    elif risk_pct >= 30:
+        tier = "MEDIUM — Team lead approval"
+    else:
+        tier = "LOW — Standard deployment"
+
+    return {"score": total, "pct": risk_pct,
+            "tier": tier, "owasp_flags": owasp_flags}
+
+# Example: Customer-facing chatbot handling PII
+result = assess_ai_risk({
+    "data_sensitivity": 4, "decision_impact": 3,
+    "human_oversight": 4,  "model_transparency": 5,
+    "regulatory_exposure": 4
+})
+print(f"Risk: {result['tier']} ({result['pct']:.0f}%)")
+print(f"OWASP flags: {result['owasp_flags']}")
+# Risk: CRITICAL — Board approval required (80%)
+# OWASP flags: ['LLM02: Sensitive Info Disclosure', 'LLM06: Excessive Agency', 'LLM03: Supply Chain Risk']</code></pre>
+        <aside class="notes">This enhanced version of our risk scoring framework now maps to OWASP LLM Top 10 categories automatically. In practice, you'd expand this with weighted scores and more granular OWASP mapping. The key concept is making risk assessment systematic, repeatable, and tied to industry-standard frameworks. This is the foundation for the hands-on activity coming up next.</aside>
+      </section>
+
+      <!-- SLIDE 32: Risk Assessment Matrix -->
+      <section>
+        <h2>AI Risk Assessment Matrix</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Use Case</th><th>Likelihood</th><th>Impact</th><th>Risk Level</th><th>Primary OWASP</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td>Internal code assistant</td><td>High</td><td>Medium</td><td class="text-red"><strong>High</strong></td><td>LLM02, LLM01</td></tr>
+            <tr ><td>Customer support chatbot</td><td>High</td><td>High</td><td class="text-red"><strong>Critical</strong></td><td>LLM01, LLM05, LLM09</td></tr>
+            <tr ><td>Marketing copy generation</td><td>Medium</td><td>Low</td><td class="text-teal"><strong>Medium</strong></td><td>LLM09</td></tr>
+            <tr ><td>Medical diagnosis assist</td><td>Medium</td><td>Critical</td><td class="text-red"><strong>Critical</strong></td><td>LLM09, LLM06</td></tr>
+            <tr ><td>Internal meeting summaries</td><td>Low</td><td>Medium</td><td class="text-teal"><strong>Low</strong></td><td>LLM02</td></tr>
+            <tr ><td>Financial forecasting</td><td>Medium</td><td>High</td><td class="text-red"><strong>High</strong></td><td>LLM09, LLM06</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This matrix now includes OWASP LLM Top 10 mapping, giving each use case a standardized vulnerability profile. Notice how customer-facing chatbots trigger three different OWASP categories. This kind of structured assessment helps security teams prioritize controls and communicate risk to leadership using industry-standard language.</aside>
+      </section>
+
+      <!-- SLIDE 33: Hands-On Activity -->
+      <section>
+        <h2>🛠️ Hands-On: Risk Assessment Workshop</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <h3>Activity: Assess AI Risks for Your Organization (20 minutes)</h3>
+          <ol>
+            <li   ><strong>Inventory:</strong> List 5 AI tools currently used (or proposed) in your organization</li>
+            <li   ><strong>Classify:</strong> For each tool, rate the five risk dimensions (1-5):
+              <ul>
+                <li   >Data sensitivity, Decision impact, Human oversight level, Model transparency, Regulatory exposure</li>
+              </ul>
+            </li>
+            <li   ><strong>Score:</strong> Calculate risk percentage using the Python framework</li>
+            <li   ><strong>Map:</strong> Identify relevant <strong>OWASP LLM Top 10</strong> categories for each tool</li>
+            <li   ><strong>Mitigate:</strong> For the top 2 risks, propose specific guardrail controls</li>
+          </ol>
+        </div>
+        <p>📝 <strong>Deliverable:</strong> A completed risk matrix with scores, OWASP mapping, and mitigations for 5 AI use cases</p>
+        <aside class="notes">This activity applies everything we've covered to the participants' own organizations. Walk the room and help groups that are stuck — common issues include underestimating data sensitivity and overestimating human oversight capabilities. Encourage groups to be honest about shadow AI usage. The deliverable they create here feeds directly into the governance framework we'll build in Module 5.</aside>
+      </section>
+
+      <!-- SLIDE 34: Quiz / Knowledge Check -->
+      <section>
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <ol>
+            <li    >Why can't AI hallucinations be completely eliminated through better training?</li>
+            <li    >In the Samsung incident, what were the <strong>three types</strong> of data leaked?</li>
+            <li    >Why did Amazon's hiring AI discriminate against women even though gender wasn't an input?</li>
+            <li    >What legal precedent did the <strong>Air Canada chatbot</strong> case establish?</li>
+            <li    >Which <strong>OWASP LLM Top 10</strong> category covers the risk of an AI agent autonomously sending emails or making purchases?</li>
+          </ol>
+        </div>
+        <aside class="notes">Give participants 5 minutes to discuss in pairs, then cold-call for answers. For question 1, ensure they understand the architectural reason (probabilistic token prediction). For question 5, the answer is LLM06: Excessive Agency — when LLM-based systems are granted too much autonomy or capability without proper oversight. This ties together our guardrails discussion.</aside>
+      </section>
+
+      <!-- SLIDE 35: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>✅ Key Takeaways</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <ul>
+            <li   >✅ AI risks span <strong>seven interconnected domains</strong> — technical, legal, operational, and strategic</li>
+            <li   >✅ <strong>Hallucinations are inherent</strong> to LLMs — always implement verification layers</li>
+            <li   >✅ Bias emerges from <strong>proxy variables</strong> even without protected attributes as inputs</li>
+            <li   >✅ <strong>Data leakage</strong> is the fastest-growing enterprise AI risk</li>
+            <li   >✅ <strong>OWASP LLM Top 10</strong> provides a standardized framework for LLM security assessment</li>
+            <li   >✅ <strong>Layered guardrails</strong> (input → model → output → human) are essential</li>
+            <li   >✅ Regulation is accelerating — <strong>EU AI Act</strong> penalties rival GDPR</li>
+          </ul>
+        </div>
+        <aside class="notes">These takeaways capture the essence of Module 4. The overarching lesson is that AI risk management requires a systematic, multi-domain approach using standardized frameworks like OWASP. Every risk domain we covered has real-world examples with real consequences, and the regulatory environment is catching up fast.</aside>
+      </section>
+
+      <!-- SLIDE 36: Lab Preview -->
+      <section data-transition="fade">
+        <h2>🔬 Lab Preview: Module 4 Lab</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <h3>Lab: Red-Teaming an AI Chatbot</h3>
+          <ul>
+            <li   >Attempt to <strong>extract training data</strong> from a controlled chatbot (OWASP LLM02)</li>
+            <li   >Test for <strong>prompt injection</strong> attacks (OWASP LLM01)</li>
+            <li   >Evaluate <strong>bias</strong> in a resume-screening AI demo</li>
+            <li   >Document findings using the <strong>risk assessment framework</strong></li>
+            <li   >Write a one-page <strong>risk brief</strong> for a fictional CISO</li>
+          </ul>
+        </div>
+        <p>⏱️ <strong>Duration:</strong> 45 minutes | <strong>Tools:</strong> Python, provided chatbot API, risk matrix template</p>
+        <aside class="notes">The lab gives participants hands-on experience with the attack techniques we discussed. They'll use a sandboxed chatbot environment where they can safely test prompt injection, data extraction, and bias detection. The risk brief deliverable mirrors what they'd produce in a real enterprise setting. Make sure the lab environment is provisioned before the session.</aside>
+      </section>
+
+      <!-- SLIDE 37: Resources -->
+      <section>
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div>
+            <h3>Essential Reading</h3>
+            <ul>
+              <li   >OWASP Top 10 for LLM Applications (2025)</li>
+              <li   >NIST AI 100-2: Adversarial ML Taxonomy</li>
+              <li   >MITRE ATLAS — Adversarial Threat Landscape for AI</li>
+              <li   >EU AI Act — Full text and guidance</li>
+              <li   >"On the Dangers of Stochastic Parrots" — Bender et al.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Case Study Sources</h3>
+            <ul>
+              <li   >Reuters: Amazon AI Hiring Tool</li>
+              <li   >Science: Dissecting Racial Bias in Healthcare Algorithm</li>
+              <li   >Bloomberg: Samsung ChatGPT Ban</li>
+              <li   >NY Times: Mata v. Avianca Filing</li>
+              <li   >CNN: Arup $25.6M Deepfake Fraud</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">These resources provide deeper dives into everything we covered. The OWASP Top 10 for LLM Applications is particularly practical — it's structured like the web application Top 10 that many of you already know. MITRE ATLAS is the AI-specific equivalent of MITRE ATT&CK. The EU AI Act text is essential for anyone operating in or selling into the European market.</aside>
+      </section>
+
+      <!-- SLIDE 38: Q&A -->
+      <section data-transition="fade">
+        <h2>❓ Questions & Discussion</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <h3>Discussion Prompts</h3>
+          <ul>
+            <li   >What AI risks are you <strong>most concerned about</strong> in your organization?</li>
+            <li   >Have you encountered <strong>shadow AI usage</strong> at your workplace?</li>
+            <li   >How would you convince leadership to invest in AI risk management <strong>before</strong> an incident?</li>
+          </ul>
+        </div>
+        <br>
+        <h3>Up Next: Module 5 — AI Governance Frameworks</h3>
+        <p>Building the policies and structures to manage these risks systematically</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Open the floor for questions and discussion. Common questions include: How do we balance AI innovation with risk management? What's the minimum viable governance for a small team? How do we handle AI risks in regulated industries? These all lead naturally into Module 5 where we'll build governance frameworks. Allow 10-15 minutes for discussion.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

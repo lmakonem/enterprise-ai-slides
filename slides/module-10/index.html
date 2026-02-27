@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Module 10: Enterprise AI Strategy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="/slides/theme/enterprise-ai.css" id="theme">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <!-- THEME-FIX -->
+  <style>
+    html, body { background: #0a0a0a !important; margin: 0; padding: 0; }
+    .reveal { background: #0a0a0a !important; }
+    .reveal .slides { background: transparent !important; }
+
+    /* Decorative: concentric rings top-right */
+    .reveal .slides::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: url('/assets/decorative/concentric-rings.svg') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Decorative: dot matrix bottom-left */
+    .reveal .slides::before {
+      content: '';
+      position: fixed;
+      bottom: -20px;
+      left: -20px;
+      width: 200px;
+      height: 200px;
+      background: url('/assets/decorative/dot-matrix.svg') repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Teal gradient strip across top of slides */
+    .reveal .slides > section::before,
+    .reveal .slides > section > section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #0d9488);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Slide base */
+    .reveal .slides section {
+      background: transparent !important;
+      color: #d4d4d4 !important;
+    }
+
+    /* Headings — Bebas Neue uppercase */
+    .reveal .slides section h1 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 4px !important;
+      font-size: 2.8em !important;
+      line-height: 1.0 !important;
+    }
+    .reveal .slides section h2 {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', Impact, sans-serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 2.0em !important;
+    }
+    .reveal .slides section h3 {
+      color: #2dd4bf !important;
+      font-family: 'DM Sans', sans-serif !important;
+      text-transform: none !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      font-size: 1.2em !important;
+    }
+
+    /* Body text */
+    .reveal .slides section p {
+      color: #b0b0b0 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section li {
+      color: #d4d4d4 !important;
+      font-family: 'DM Sans', sans-serif !important;
+    }
+    .reveal .slides section strong {
+      color: #ffffff !important;
+    }
+
+    /* Tables */
+    .reveal .slides section td {
+      color: #d4d4d4 !important;
+      background: #111818 !important;
+    }
+    .reveal .slides section th {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, #0d9488, #0891b2) !important;
+    }
+
+    /* Cards — teal gradient like Canva */
+    .reveal .slides section .bg-card {
+      border-radius: 16px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      padding: 20px 25px !important;
+    }
+    .reveal .slides section .bg-card h3,
+    .reveal .slides section .bg-card strong {
+      color: inherit !important;
+    }
+    .reveal .slides section .bg-card li,
+    .reveal .slides section .bg-card p {
+      color: inherit !important;
+      opacity: 0.95;
+    }
+
+    /* Stat boxes */
+    .reveal .slides section .stat-box {
+      border-radius: 16px !important;
+      padding: 20px !important;
+      text-align: center !important;
+    }
+    .reveal .slides section .stat-number {
+      color: #ffffff !important;
+      font-family: 'Bebas Neue', sans-serif !important;
+    }
+    .reveal .slides section .stat-label {
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Images */
+    .reveal .slides section img {
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Slide layout — fit content, scroll if needed */
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      box-sizing: border-box !important;
+      padding: 25px 40px 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: stretch !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    /* Tighter spacing on all content */
+    .reveal .slides section > * {
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section h2 {
+      margin-bottom: 0.2em !important;
+    }
+    .reveal .slides section h3 {
+      margin-bottom: 0.15em !important;
+    }
+    .reveal .slides section .bg-card,
+    .reveal .slides section .visual-box,
+    .reveal .slides section .warning-box {
+      padding: 12px 18px !important;
+      margin: 6px 0 !important;
+    }
+    .reveal .slides section .stat-box {
+      padding: 14px !important;
+    }
+    .reveal .slides section ul,
+    .reveal .slides section ol {
+      margin: 0.15em 0 0.15em 0.5em !important;
+    }
+    .reveal .slides section li {
+      margin-bottom: 0.2em !important;
+      line-height: 1.35 !important;
+      font-size: 0.88em !important;
+    }
+    .reveal .slides section p {
+      margin: 0.2em 0 !important;
+      line-height: 1.35 !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.7em !important;
+    }
+    .reveal .slides section pre {
+      margin: 6px 0 !important;
+      padding: 10px 14px !important;
+    }
+    .reveal .slides section .cols,
+    .reveal .slides section .cols-3 {
+      gap: 12px !important;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .reveal .slides > section::-webkit-scrollbar,
+    .reveal .slides > section > section::-webkit-scrollbar {
+      display: none !important;
+    }
+    .reveal .slides > section,
+    .reveal .slides > section > section {
+      scrollbar-width: none !important;
+    }
+
+    /* Bullet alignment */
+    .reveal .slides section ul {
+      list-style: none !important;
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 0.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section ol {
+      text-align: left !important;
+      margin: 0.3em 0 0.3em 1.5em !important;
+      padding: 0 !important;
+      width: 90% !important;
+    }
+    .reveal .slides section li {
+      padding-left: 0 !important;
+      text-indent: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.4em !important;
+    }
+
+    /* Responsive images and SVGs */
+    .reveal .slides section img {
+      max-height: 55vh !important;
+      object-fit: contain !important;
+      margin: 0.3em auto !important;
+      display: block !important;
+    }
+    .reveal .slides section svg {
+      max-height: 50vh !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0.3em auto !important;
+    }
+    .reveal .slides section pre {
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+    }
+    .reveal .slides section table {
+      font-size: 0.75em !important;
+      width: 100% !important;
+    }
+    .reveal .slides section .cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      flex: 1 !important;
+      align-items: center !important;
+    }
+    .reveal .slides section .cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 15px !important;
+      flex: 1 !important;
+    }
+
+    /* Special cards */
+    .reveal .slides section .myth-card {
+      background: rgba(239,68,68,0.08) !important;
+      border-left: 4px solid #ef4444 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .truth-card {
+      background: rgba(13,148,136,0.08) !important;
+      border-left: 4px solid #2dd4bf !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .reveal .slides section .visual-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .warning-box {
+      border: 1px solid #ef4444 !important;
+      background: rgba(239,68,68,0.06) !important;
+      border-radius: 12px !important;
+    }
+    .reveal .slides section .diagram-box {
+      border: 1px solid rgba(13,148,136,0.4) !important;
+      background: rgba(13,148,136,0.05) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Code blocks — preserve formatting */
+    .reveal .slides section pre {
+      background: #0a1414 !important;
+      border: 1px solid rgba(13,148,136,0.3) !important;
+      border-radius: 12px !important;
+      max-height: 45vh !important;
+      overflow: auto !important;
+      font-size: 0.5em !important;
+      display: block !important;
+      white-space: pre !important;
+      text-align: left !important;
+      padding: 16px 20px !important;
+      margin: 0.5em 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      flex-shrink: 1 !important;
+    }
+    .reveal .slides section pre code {
+      color: #a7f3d0 !important;
+      background: transparent !important;
+      display: block !important;
+      white-space: pre !important;
+      overflow-x: auto !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      font-size: 1em !important;
+      line-height: 1.5 !important;
+      tab-size: 4 !important;
+      padding: 0 !important;
+    }
+    .reveal .slides section code {
+      color: #2dd4bf !important;
+      background: #0a1414 !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 0.9em !important;
+    }
+    /* Inline code inside pre should not have padding/bg */
+    .reveal .slides section pre code {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  </style>
+  <!-- /THEME-FIX -->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1: Title -->
+      <section data-transition="none">
+        <img  src="/assets/module-icons/module-10.svg" style="width:100px">
+        <h1>Module 10</h1>
+        <h2>Enterprise AI Strategy</h2>
+        <p>From Pilot Projects to Organization-Wide Transformation</p>
+        <p class="text-teal">IT Security Labs / OpSec Fusion</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Module 10 shifts from technical implementation to strategic planning. We'll cover how to assess organizational readiness, calculate ROI, make build-vs-buy decisions, and communicate AI value to executives. This is where engineers become leaders.</aside>
+      </section>
+
+      <!-- SLIDE 2: Objectives -->
+      <section data-transition="fade">
+        <h2>🎯 Learning Objectives</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <ol>
+            <li   >Assess organizational AI maturity using a 5-level model</li>
+            <li   >Calculate ROI for AI initiatives with real financial frameworks</li>
+            <li   >Apply build-vs-buy decision criteria to AI projects</li>
+            <li   >Adapt Kotter's 8-step change management for AI adoption</li>
+            <li   >Craft executive-ready AI pitches and one-pagers</li>
+            <li   >Design a 30/60/90-day AI roadmap with measurable KPIs</li>
+          </ol>
+        </div>
+        <aside class="notes">By the end of this module, you'll be able to walk into any boardroom and make a data-driven case for AI investment. These are the skills that separate individual contributors from strategic leaders.</aside>
+      </section>
+
+      <!-- SLIDE 3: Why This Matters -->
+      <section>
+        <h2>💡 Why This Matters</h2>
+        <div class="cols">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;">
+            <div class="stat-number">87%</div>
+            <div class="stat-label">of AI projects never make it to production</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;">
+            <div class="stat-number">$4.4T</div>
+            <div class="stat-label">projected annual AI economic value by 2030 (McKinsey)</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;">
+            <div class="stat-number">3x</div>
+            <div class="stat-label">higher success rate with formal AI strategy</div>
+          </div>
+        </div>
+        <p>The gap between AI experimentation and AI value is <strong>strategy</strong>, not technology.</p>
+        <aside class="notes">Most AI failures are organizational, not technical. Companies that succeed with AI treat it as a strategic initiative with executive sponsorship, clear metrics, and change management — not just a tech project handed to the data science team.</aside>
+      </section>
+
+      <!-- SLIDE 4: Section Divider - AI Maturity -->
+      <section data-background-color="#1e293b">
+        <h1>Section 1</h1>
+        <h2>AI Maturity Model</h2>
+        <p>Where is your organization today?</p>
+        <aside class="notes">Before you can plan where to go, you need to honestly assess where you are. The AI maturity model gives you a common language for that assessment and a clear progression path.</aside>
+      </section>
+
+      <!-- SLIDE 5: The 5-Level AI Maturity Model -->
+      <section data-transition="slide">
+        <h2>The 5-Level AI Maturity Model</h2>
+        <img   src="/assets/graphics/infographic-maturity-model.svg" style="max-width:700px;width:100%">
+        <aside class="notes">This model is adapted from Gartner's AI maturity framework combined with real-world observations from enterprise deployments. Most organizations in 2026 sit at Level 2 or 3. The jump from Level 3 to Level 4 is the hardest because it requires organizational change, not just better models.</aside>
+      </section>
+
+      <!-- SLIDE 6: Maturity Levels Detail -->
+      <section>
+        <h2>Maturity Levels in Detail</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Level</th><th>Name</th><th>Characteristics</th><th>% of Orgs</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td>1</td><td><span class="text-red">Ad-hoc</span></td><td>Individual experiments, no governance, shadow AI</td><td>25%</td></tr>
+            <tr ><td>2</td><td><span class="text-blue">Exploring</span></td><td>Pilot projects, dedicated team, basic data pipelines</td><td>35%</td></tr>
+            <tr ><td>3</td><td><span class="text-teal">Operationalizing</span></td><td>Production models, MLOps, cross-functional collaboration</td><td>25%</td></tr>
+            <tr ><td>4</td><td><span class="text-teal">Scaling</span></td><td>AI Center of Excellence, reusable platforms, governed access</td><td>12%</td></tr>
+            <tr ><td>5</td><td><span class="text-teal">Optimized</span></td><td>AI-first culture, continuous learning loops, competitive moat</td><td>3%</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">The percentages are approximate based on 2025 survey data from McKinsey and Deloitte. Notice how few organizations have truly reached Level 5. Even tech giants like Google operate at Level 4-5 in some divisions and Level 2-3 in others. Maturity isn't uniform across an organization.</aside>
+      </section>
+
+      <!-- SLIDE 7: Maturity Assessment Dimensions -->
+      <section>
+        <h2>Assessment Dimensions</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>🏗️ Infrastructure</h3>
+            <ul>
+              <li  >Data pipelines</li>
+              <li  >Compute resources</li>
+              <li  >MLOps tooling</li>
+              <li class="fragment fade-up"  >Model registry</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>👥 People</h3>
+            <ul>
+              <li class="fragment fade-up"  >AI talent density</li>
+              <li  >Literacy programs</li>
+              <li  >Cross-functional teams</li>
+              <li  >Leadership buy-in</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>📋 Process</h3>
+            <ul>
+              <li class="fragment fade-up"  >Governance framework</li>
+              <li  >Ethics review board</li>
+              <li  >Use case prioritization</li>
+              <li  >Measurement cadence</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">A proper maturity assessment scores each of these dimensions independently. You might have great infrastructure but terrible governance, or excellent talent but no process for prioritizing use cases. The lowest-scoring dimension is your bottleneck.</aside>
+      </section>
+
+      <!-- SLIDE 8: Real Example - JPMorgan -->
+      <section>
+        <h2>🏦 Case Study: JPMorgan Chase</h2>
+        <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+          <h3>Journey from Level 2 → Level 5 (2019–2025)</h3>
+          <ul>
+            <li  ><strong>2019:</strong> Scattered ML experiments across trading desks</li>
+            <li class="fragment zoom-in"  ><strong>2020:</strong> Created AI Center of Excellence, hired 1,500+ AI researchers</li>
+            <li  ><strong>2021:</strong> Launched COIN (Contract Intelligence) — 360,000 hours of legal review automated</li>
+            <li  ><strong>2022:</strong> IndexGPT trademark filed, LLM integration begins</li>
+            <li  ><strong>2024:</strong> LLM Suite deployed to 200,000+ employees</li>
+            <li  ><strong>2025:</strong> AI driving $1.5B+ in annual value across fraud, trading, and operations</li>
+          </ul>
+        </div>
+        <aside class="notes">JPMorgan's AI journey is one of the most well-documented enterprise transformations. Key lesson: they invested heavily in people and governance before scaling technology. Their AI budget exceeded $15 billion annually by 2025, but the organizational changes were more important than the spend.</aside>
+      </section>
+
+      <!-- SLIDE 9: Section Divider - ROI -->
+      <section data-background-color="#1e293b">
+        <h1>Section 2</h1>
+        <h2>ROI Calculation</h2>
+        <p>Making the financial case for AI</p>
+        <aside class="notes">If you can't quantify the value of AI in dollars, you can't get budget. This section gives you the frameworks to calculate and communicate AI ROI in terms executives understand.</aside>
+      </section>
+
+      <!-- SLIDE 10: The AI ROI Framework -->
+      <section>
+        <h2>The AI ROI Framework</h2>
+        <img   src="/assets/graphics/infographic-roi-calculator.svg" style="max-width:700px;width:100%">
+        <div class="cols-3">
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#047857,#10b981);color:#fff;">
+            <div class="stat-number">💰</div>
+            <div class="stat-label">Direct Cost Savings</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
+            <div class="stat-number">⚡</div>
+            <div class="stat-label">Productivity Gains</div>
+          </div>
+          <div class="stat-box fragment zoom-in" style="background:linear-gradient(135deg,#9f1239,#e11d48);color:#fff;">
+            <div class="stat-number">📈</div>
+            <div class="stat-label">Revenue Uplift</div>
+          </div>
+        </div>
+        <aside class="notes">AI ROI has three buckets. Direct savings are the easiest to measure — headcount reduction, error reduction, faster processing. Productivity gains are moderate difficulty — time saved per employee. Revenue uplift is hardest but often largest — better recommendations, faster time to market, new products.</aside>
+      </section>
+
+      <!-- SLIDE 11: ROI Calculator Walkthrough -->
+      <section data-transition="slide">
+        <h2>📊 ROI Calculator: Document Processing</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Metric</th><th>Before AI</th><th>After AI</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td>Docs processed/day</td><td>200</td><td>2,000</td><td class="text-teal">+900%</td></tr>
+            <tr ><td>Error rate</td><td>4.2%</td><td>0.8%</td><td class="text-teal">-81%</td></tr>
+            <tr ><td>FTEs required</td><td>12</td><td>3</td><td class="text-teal">-75%</td></tr>
+            <tr ><td>Cost per document</td><td>$4.50</td><td>$0.35</td><td class="text-teal">-92%</td></tr>
+            <tr ><td>Annual processing cost</td><td>$1.17M</td><td>$182K</td><td class="text-teal">-$988K</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Implementation cost:</strong> $450K | <strong>Payback period:</strong> 5.5 months</p>
+        <aside class="notes">This is a real-world example from an insurance claims processing deployment. The key insight: include ALL costs in the implementation number — infrastructure, licensing, training, change management, and ongoing maintenance. Many AI ROI calculations fail because they undercount implementation costs.</aside>
+      </section>
+
+      <!-- SLIDE 12: Python ROI Calculator -->
+      <section>
+        <h2>🐍 Python ROI Calculator</h2>
+        <pre  ><code class="python">def calculate_ai_roi(
+    current_cost_annual: float,
+    projected_cost_annual: float,
+    implementation_cost: float,
+    productivity_gain_hours: float,
+    avg_hourly_rate: float = 75.0,
+    revenue_uplift_annual: float = 0.0,
+    years: int = 3
+) -> dict:
+    annual_savings = current_cost_annual - projected_cost_annual
+    productivity_value = productivity_gain_hours * avg_hourly_rate * 52
+    annual_benefit = annual_savings + productivity_value + revenue_uplift_annual
+    total_benefit = annual_benefit * years
+    roi_pct = ((total_benefit - implementation_cost) / implementation_cost) * 100
+    payback_months = (implementation_cost / annual_benefit) * 12
+
+    return {
+        "annual_benefit": f"${annual_benefit:,.0f}",
+        "total_3yr_benefit": f"${total_benefit:,.0f}",
+        "roi_percent": f"{roi_pct:.0f}%",
+        "payback_months": f"{payback_months:.1f} months"
+    }
+
+# Example: Document processing AI
+result = calculate_ai_roi(
+    current_cost_annual=1_170_000,
+    projected_cost_annual=182_000,
+    implementation_cost=450_000,
+    productivity_gain_hours=20,  # hrs/week saved
+    revenue_uplift_annual=200_000
+)
+print(result)
+# {'annual_benefit': '$1,266,000', 'total_3yr_benefit': '$3,798,000',
+#  'roi_percent': '744%', 'payback_months': '4.3 months'}</code></pre>
+        <aside class="notes">This calculator gives you a tool to run scenarios with stakeholders. The key parameters to negotiate with leadership are: what counts as a productivity gain, how to measure revenue uplift, and what implementation costs to include. Having a shared model makes these conversations productive rather than opinion-based.</aside>
+      </section>
+
+      <!-- SLIDE 13: Myth vs Reality - ROI -->
+      <section>
+        <h2>Myth vs Reality: AI ROI</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"AI ROI is impossible to measure — the benefits are too intangible."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>Every AI project can be measured with leading indicators (adoption, accuracy, latency) and lagging indicators (cost reduction, revenue impact). Start measuring on day one — don't wait for "full deployment."</p>
+          </div>
+        </div>
+        <aside class="notes">The myth of immeasurable AI comes from organizations that skip the baseline measurement step. If you don't know your current cost-per-document or error rate before deploying AI, of course you can't measure the improvement. Always establish baselines first.</aside>
+      </section>
+
+      <!-- SLIDE 14: Section Divider - Build vs Buy -->
+      <section data-transition="fade" data-background-color="#1e293b">
+        <h1>Section 3</h1>
+        <h2>Build vs Buy</h2>
+        <p>The most expensive decision you'll make</p>
+        <aside class="notes">Build vs buy is a perennial question, but AI makes it more nuanced than ever. The rapid pace of model improvement means custom-built solutions can become obsolete in months, while vendor lock-in with commercial platforms carries its own risks.</aside>
+      </section>
+
+      <!-- SLIDE 15: Build vs Buy Decision Framework -->
+      <section>
+        <h2>Build vs Buy Decision Framework</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Factor</th><th>Build</th><th>Buy</th></tr>
+          </thead>
+          <tbody>
+            <tr ><td><strong>Competitive advantage</strong></td><td class="text-teal">Core differentiator</td><td>Commodity capability</td></tr>
+            <tr ><td><strong>Data sensitivity</strong></td><td class="text-teal">Highly regulated/proprietary</td><td>General/public data</td></tr>
+            <tr ><td><strong>Time to value</strong></td><td>6-18 months</td><td class="text-teal">2-8 weeks</td></tr>
+            <tr ><td><strong>Total cost (3yr)</strong></td><td>$500K-$5M+</td><td class="text-teal">$50K-$500K</td></tr>
+            <tr ><td><strong>In-house talent</strong></td><td class="text-teal">Strong ML team exists</td><td>Limited AI expertise</td></tr>
+            <tr ><td><strong>Customization needs</strong></td><td class="text-teal">Unique workflows</td><td>Standard processes</td></tr>
+            <tr ><td><strong>Maintenance burden</strong></td><td class="text-red">Ongoing team required</td><td class="text-teal">Vendor handles</td></tr>
+            <tr ><td><strong>Model freshness</strong></td><td class="text-red">You retrain</td><td class="text-teal">Vendor updates</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">The general rule: build when AI is your competitive moat, buy when it's operational infrastructure. Netflix builds recommendation engines because that IS their product. Most companies should buy their document processing AI. The hybrid approach — buy the foundation model, build the application layer — is increasingly the sweet spot.</aside>
+      </section>
+
+      <!-- SLIDE 16: The Hybrid Approach -->
+      <section>
+        <h2>The Hybrid Sweet Spot (2026)</h2>
+        <div class="diagram-box">
+          <h3>Buy the Foundation → Build the Application</h3>
+        </div>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>🔧 Buy</h3>
+            <ul>
+              <li  >Foundation models (GPT-4o, Claude, Gemini)</li>
+              <li  >Vector databases</li>
+              <li  >MLOps platforms</li>
+              <li class="fragment fade-up"  >Monitoring tools</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3>🏗️ Build</h3>
+            <ul>
+              <li  >Prompt engineering</li>
+              <li  >RAG pipelines</li>
+              <li class="fragment fade-up"  >Domain-specific fine-tuning</li>
+              <li  >Integration layer</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+            <h3>🔒 Own</h3>
+            <ul>
+              <li  >Training data</li>
+              <li  >Evaluation benchmarks</li>
+              <li  >Business logic</li>
+              <li  >Customer relationships</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">This hybrid model has emerged as the dominant pattern for enterprise AI in 2025-2026. You rent the expensive compute and research from model providers, build your competitive differentiation in the application layer, and own the data and relationships that create your moat. This approach reduces time-to-value from 12+ months to 2-3 months.</aside>
+      </section>
+
+      <!-- SLIDE 17: Real Example - Walmart -->
+      <section>
+        <h2>🛒 Case Study: Walmart AI Adoption</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <h3>Hybrid Build/Buy Strategy</h3>
+          <ul>
+            <li  ><strong>Buy:</strong> Microsoft Azure OpenAI Service for employee-facing copilots</li>
+            <li class="fragment fade-right"  ><strong>Build:</strong> Custom demand forecasting models trained on proprietary sales data</li>
+            <li class="fragment zoom-in"  ><strong>Buy:</strong> Computer vision from Symbotic for warehouse automation</li>
+            <li  ><strong>Build:</strong> Internal "My Assistant" tool for 50,000+ corporate employees</li>
+            <li  ><strong>Result:</strong> $2.7B in AI-driven savings (FY2025), 65% reduction in out-of-stock items</li>
+          </ul>
+        </div>
+        <p class="text-teal">Walmart treats demand forecasting as a competitive moat (build) and employee productivity as infrastructure (buy).</p>
+        <aside class="notes">Walmart's approach perfectly illustrates the hybrid model. Their demand forecasting uses proprietary data from 10,500+ stores — no vendor can replicate that. But for employee chat assistants, they correctly identified that as a commodity capability and bought it from Microsoft rather than building from scratch.</aside>
+      </section>
+
+      <!-- SLIDE 18: Section Divider - Change Management -->
+      <section data-background-color="#1e293b">
+        <h1>Section 4</h1>
+        <h2>Change Management for AI</h2>
+        <p>Technology is easy. People are hard.</p>
+        <aside class="notes">The number one reason AI projects fail is not technical — it's organizational resistance. Change management is the difference between a successful deployment and an expensive shelf-ware installation.</aside>
+      </section>
+
+      <!-- SLIDE 19: Kotter's 8 Steps Adapted for AI -->
+      <section data-transition="slide">
+        <h2>Kotter's 8 Steps for AI Adoption</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>Phase 1: Create Climate</h3>
+            <ol>
+              <li class="fragment fade-right"   >🔥 <strong>Create urgency:</strong> Show competitor AI wins, market pressure</li>
+              <li   >👥 <strong>Build coalition:</strong> C-suite sponsor + IT + business unit champion</li>
+              <li class="fragment fade-up"   >🎯 <strong>Form vision:</strong> "AI-augmented workforce" not "AI replacement"</li>
+            </ol>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>Phase 2: Engage & Enable</h3>
+            <ol start="4">
+              <li   >📢 <strong>Communicate:</strong> Town halls, demos, hands-on workshops</li>
+              <li   >🚧 <strong>Remove barriers:</strong> Data access, compute, training budgets</li>
+              <li   >🏆 <strong>Quick wins:</strong> Deploy easy, visible AI wins in 30 days</li>
+            </ol>
+          </div>
+        </div>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <h3>Phase 3: Sustain</h3>
+          <ol start="7">
+            <li   >📈 <strong>Build momentum:</strong> Share ROI results, expand to new use cases</li>
+            <li   >🏛️ <strong>Anchor in culture:</strong> AI literacy in job descriptions, performance reviews, hiring</li>
+          </ol>
+        </div>
+        <aside class="notes">Kotter's model maps surprisingly well to AI adoption. The critical adaptation: Step 3 must frame AI as augmentation, not replacement, or you'll trigger survival-mode resistance from employees. Step 6 is crucial — pick a use case that's easy to deploy and highly visible. An AI chatbot that answers HR questions is a better first win than a complex ML pipeline, even if the pipeline has higher ROI.</aside>
+      </section>
+
+      <!-- SLIDE 20: Resistance Patterns -->
+      <section>
+        <h2>Common Resistance Patterns</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>😰 Fear-Based</h3>
+            <p>"AI will take my job"</p>
+            <p><strong>Response:</strong> Show augmentation examples. Reskilling programs. New roles AI creates.</p>
+          </div>
+          <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+            <h3>🤨 Skepticism</h3>
+            <p>"We tried ML in 2019, it failed"</p>
+            <p><strong>Response:</strong> Acknowledge past failures. Show what's changed (LLMs, tooling). Start small with proof.</p>
+          </div>
+          <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+            <h3>🏰 Territory</h3>
+            <p>"My team already does this fine"</p>
+            <p><strong>Response:</strong> Frame as empowerment. Make the team the AI champion, not the victim.</p>
+          </div>
+        </div>
+        <aside class="notes">Every organization has all three resistance types. The key is identifying which is dominant in each stakeholder group and tailoring your approach. Fear-based resistance responds to empathy and concrete plans. Skepticism responds to data and demos. Territory resistance responds to inclusion and ownership.</aside>
+      </section>
+
+      <!-- SLIDE 21: Section Divider - Executive Communication -->
+      <section data-background-color="#1e293b">
+        <h1>Section 5</h1>
+        <h2>Executive Communication</h2>
+        <p>Pitching AI to the C-Suite</p>
+        <aside class="notes">You can have the best AI strategy in the world, but if you can't communicate it to executives in their language, it won't get funded. This section teaches you to translate technical value into business outcomes.</aside>
+      </section>
+
+      <!-- SLIDE 22: The Executive One-Pager Template -->
+      <section>
+        <h2>📄 Executive One-Pager Template</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <table class="comparison">
+            <tbody>
+              <tr  ><td><strong>Problem</strong></td><td>2-3 sentences. Business pain in dollars or risk.</td></tr>
+              <tr  ><td><strong>Proposed Solution</strong></td><td>What AI capability. No jargon. "Automated document review" not "transformer-based NLP pipeline."</td></tr>
+              <tr  ><td><strong>Business Impact</strong></td><td>3 metrics: cost savings, time reduction, quality improvement.</td></tr>
+              <tr  ><td><strong>Investment Required</strong></td><td>Total cost. Implementation timeline. Team needs.</td></tr>
+              <tr  ><td><strong>Risk & Mitigation</strong></td><td>Top 3 risks with mitigation plan.</td></tr>
+              <tr  ><td><strong>Ask</strong></td><td>Specific decision needed. Budget approval? Pilot authorization? Headcount?</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-teal">Rule: If a CFO can't understand it in 2 minutes, rewrite it.</p>
+        <aside class="notes">This template has been tested with dozens of C-suite presentations. The most common mistake engineers make is leading with the technology instead of the problem. Executives don't care about transformers — they care about reducing operational costs by 40%. Always lead with the business problem and the dollar impact.</aside>
+      </section>
+
+      <!-- SLIDE 23: Speaking C-Suite Language -->
+      <section>
+        <h2>Translation Guide: Tech → Executive</h2>
+        <table class="comparison">
+          <thead>
+            <tr ><th>Don't Say</th><th>Say Instead</th></tr>
+          </thead>
+          <tbody>
+            <tr  ><td>"We need a vector database for RAG"</td><td>"We can make our AI search all company documents instantly"</td></tr>
+            <tr  ><td>"Fine-tuning a transformer model"</td><td>"Training AI on our specific business data"</td></tr>
+            <tr  ><td>"We need GPU compute clusters"</td><td>"Infrastructure investment: $X/month for AI processing"</td></tr>
+            <tr  ><td>"The model achieves 94% F1 score"</td><td>"Accuracy matches our best human reviewers"</td></tr>
+            <tr  ><td>"We should adopt MLOps practices"</td><td>"Automated quality control for our AI systems"</td></tr>
+            <tr  ><td>"LLM hallucination risk"</td><td>"AI accuracy controls and human oversight requirements"</td></tr>
+          </tbody>
+        </table>
+        <aside class="notes">This translation exercise is not about dumbing things down — it's about communicating in terms of business outcomes. The best technical leaders can fluently switch between technical depth with their teams and business impact with executives. Practice this until it's natural.</aside>
+      </section>
+
+      <!-- SLIDE 24: Section Divider - Roadmap -->
+      <section data-background-color="#1e293b">
+        <h1>Section 6</h1>
+        <h2>AI Roadmap & KPIs</h2>
+        <p>The 30/60/90 Day Plan</p>
+        <aside class="notes">A roadmap without KPIs is a wish list. A roadmap with KPIs is a strategy. This section combines both into an actionable plan that creates accountability and demonstrates progress.</aside>
+      </section>
+
+      <!-- SLIDE 25: 30/60/90 Day AI Roadmap -->
+      <section>
+        <h2>30/60/90 Day AI Roadmap</h2>
+        <img   src="/assets/graphics/flow-ai-adoption-roadmap.svg" style="max-width:700px;width:100%">
+        <aside class="notes">This roadmap template is designed for organizations at Maturity Level 2-3 looking to accelerate. The key principle: deliver visible value in 30 days, prove scalability in 60 days, and establish infrastructure in 90 days. Don't try to boil the ocean — pick one high-impact use case and execute flawlessly.</aside>
+      </section>
+
+      <!-- SLIDE 26: Roadmap Details -->
+      <section>
+        <h2>Roadmap Breakdown</h2>
+        <div class="cols-3">
+          <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+            <h3>📅 Days 1-30</h3>
+            <h4>Foundation</h4>
+            <ul>
+              <li class="fragment fade-right"  >Maturity assessment</li>
+              <li  >Identify top 3 use cases</li>
+              <li  >Select pilot project</li>
+              <li  >Assemble core team</li>
+              <li  >Establish baselines</li>
+              <li  ><strong>Deliverable:</strong> Working prototype</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>📅 Days 31-60</h3>
+            <h4>Validation</h4>
+            <ul>
+              <li  >Pilot deployment</li>
+              <li class="fragment fade-up"  >User feedback loops</li>
+              <li  >Measure vs baselines</li>
+              <li  >Security review</li>
+              <li class="fragment fade-up"  >Cost analysis</li>
+              <li  ><strong>Deliverable:</strong> ROI report</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>📅 Days 61-90</h3>
+            <h4>Scale</h4>
+            <ul>
+              <li  >Production hardening</li>
+              <li  >Governance framework</li>
+              <li  >Training program launch</li>
+              <li class="fragment fade-up"  >Second use case selection</li>
+              <li  >Budget proposal for Year 1</li>
+              <li  ><strong>Deliverable:</strong> Scale plan</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Each phase has a clear deliverable that creates a decision point. After 30 days, leadership decides whether to continue the pilot. After 60 days, they decide whether to invest in production. After 90 days, they decide on the annual budget. This structure keeps the initiative accountable and prevents the "eternal pilot" trap.</aside>
+      </section>
+
+      <!-- SLIDE 27: KPIs for AI Initiatives -->
+      <section data-transition="slide">
+        <h2>📊 KPIs for AI Initiatives</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+            <h3>Leading Indicators</h3>
+            <ul>
+              <li  ><strong>Adoption rate:</strong> % of target users actively using AI tools</li>
+              <li  ><strong>Query volume:</strong> Number of AI interactions per day</li>
+              <li  ><strong>Data quality score:</strong> Completeness, freshness, accuracy</li>
+              <li  ><strong>Model accuracy:</strong> Precision, recall, F1 on test sets</li>
+              <li  ><strong>Latency:</strong> P50/P95 response times</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:#1a1a2e;color:#e0e0e0;border-left:4px solid #0d9488;">
+            <h3>Lagging Indicators</h3>
+            <ul>
+              <li class="fragment fade-right"  ><strong>Cost per transaction:</strong> Before vs after AI</li>
+              <li  ><strong>Revenue impact:</strong> Uplift from AI-driven features</li>
+              <li  ><strong>Employee NPS:</strong> Satisfaction with AI tools</li>
+              <li  ><strong>Time-to-resolution:</strong> Support ticket, claim, review times</li>
+              <li  ><strong>Error rate reduction:</strong> Quality improvement metrics</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Leading indicators tell you if your AI initiative is on track. Lagging indicators tell you if it's working. You need both. A common mistake is only tracking lagging indicators — by the time you see bad results, it's too late to course-correct. Track leading indicators weekly, lagging indicators monthly.</aside>
+      </section>
+
+      <!-- SLIDE 28: Success Metrics Dashboard -->
+      <section>
+        <h2>Success Metrics Dashboard</h2>
+        <pre  ><code class="python">import pandas as pd
+from datetime import datetime, timedelta
+
+class AIMetricsDashboard:
+    def __init__(self):
+        self.metrics = []
+
+    def log_metric(self, name: str, value: float, category: str):
+        self.metrics.append({
+            "timestamp": datetime.now().isoformat(),
+            "name": name, "value": value, "category": category
+        })
+
+    def weekly_report(self) -> dict:
+        df = pd.DataFrame(self.metrics)
+        week_ago = (datetime.now() - timedelta(days=7)).isoformat()
+        recent = df[df["timestamp"] >= week_ago]
+        return {
+            "adoption_rate": recent[recent.name == "adoption"]["value"].mean(),
+            "avg_latency_ms": recent[recent.name == "latency"]["value"].mean(),
+            "cost_per_query": recent[recent.name == "cost"]["value"].mean(),
+            "accuracy": recent[recent.name == "accuracy"]["value"].mean(),
+            "total_queries": len(recent[recent.name == "query_count"])
+        }
+
+# Usage
+dashboard = AIMetricsDashboard()
+dashboard.log_metric("adoption", 0.73, "leading")
+dashboard.log_metric("latency", 245, "leading")
+dashboard.log_metric("cost", 0.004, "lagging")
+dashboard.log_metric("accuracy", 0.94, "leading")</code></pre>
+        <aside class="notes">This dashboard class gives you a starting point for tracking AI metrics programmatically. In production, you'd connect this to a time-series database like InfluxDB or use a managed service like Datadog. The important thing is to start tracking from day one of your pilot, not after production deployment.</aside>
+      </section>
+
+      <!-- SLIDE 29: Myth vs Reality - Strategy -->
+      <section data-transition="slide">
+        <h2>Myth vs Reality: AI Strategy</h2>
+        <div class="cols">
+          <div class="myth-card">
+            <h3>❌ Myth</h3>
+            <p>"We need to hire a team of PhD data scientists before we can start with AI."</p>
+          </div>
+          <div class="truth-card">
+            <h3>✅ Reality</h3>
+            <p>In 2026, foundation model APIs (OpenAI, Anthropic, Google) let a small team of software engineers build production AI applications. You need AI literacy across the org, but deep ML expertise is only required for custom model training — which most companies don't need.</p>
+          </div>
+        </div>
+        <aside class="notes">This myth has killed more AI initiatives than any technical challenge. Companies spend 12 months trying to hire ML PhDs while their competitors deploy GPT-4 wrappers and capture market share. The talent you need is strong software engineers who understand AI capabilities and limitations — not researchers who can write papers.</aside>
+      </section>
+
+      <!-- SLIDE 30: Hands-On Activity -->
+      <section>
+        <h2>🛠️ Hands-On: Build Your AI Roadmap</h2>
+        <div class="bg-card" style="background:#0f1729;color:#cbd5e1;border-left:4px solid #3b82f6;">
+          <h3>Activity: 30-Minute Strategy Sprint</h3>
+          <ol>
+            <li  ><strong>Assess (5 min):</strong> Score your organization on the 5-level maturity model across all 3 dimensions</li>
+            <li  ><strong>Identify (5 min):</strong> List 5 potential AI use cases. Score each on: business impact (1-5), technical feasibility (1-5), data readiness (1-5)</li>
+            <li  ><strong>Calculate (10 min):</strong> Use the Python ROI calculator for your top-scored use case. Estimate current costs and projected savings.</li>
+            <li  ><strong>Plan (5 min):</strong> Draft your 30/60/90 day roadmap for the selected use case</li>
+            <li class="fragment zoom-in"  ><strong>Pitch (5 min):</strong> Write the executive one-pager using the template</li>
+          </ol>
+        </div>
+        <p class="text-teal">Deliverable: A complete AI strategy document you can present Monday morning.</p>
+        <img   src="/assets/lab-graphics/project03-email-dashboard-mock.svg" style="width:600px; margin:20px auto; display:block;" alt="AI email triage dashboard mockup">
+        <aside class="notes">This activity synthesizes everything in the module into a single deliverable. Encourage students to use their actual organization as the case study. The output should be realistic enough to actually present to leadership — that's the bar for quality. Pair up students for the pitch practice portion.</aside>
+      </section>
+
+      <!-- SLIDE 31: Quiz -->
+      <section>
+        <h2>🧠 Knowledge Check</h2>
+        <div class="bg-card" style="background:#1a1025;color:#e2d9f3;border-left:4px solid #8b5cf6;">
+          <ol>
+            <li   >What maturity level is characterized by "AI Center of Excellence and reusable platforms"?
+              <ul><li   >A) Level 3 — Operationalizing</li><li   >B) Level 4 — Scaling ✅</li><li   >C) Level 5 — Optimized</li></ul>
+            </li>
+            <li   >Which ROI component is hardest to measure but often largest?
+              <ul><li   >A) Direct cost savings</li><li class="fragment fade-up"   >B) Productivity gains</li><li   >C) Revenue uplift ✅</li></ul>
+            </li>
+            <li   >In the build vs buy framework, when should you build?
+              <ul><li   >A) When AI is a commodity capability</li><li   >B) When AI is a competitive differentiator ✅</li><li   >C) When you have limited AI talent</li></ul>
+            </li>
+            <li   >What is Step 6 of Kotter's model adapted for AI?
+              <ul><li   >A) Build momentum</li><li   >B) Generate quick wins ✅</li><li   >C) Form a vision</li></ul>
+            </li>
+          </ol>
+        </div>
+        <aside class="notes">Give students 3 minutes to answer individually, then review as a group. The questions test both memorization and application. For question 3, discuss edge cases — when might a company with limited AI talent still choose to build?</aside>
+      </section>
+
+      <!-- SLIDE 31.5: Skills Assessment -->
+      <section data-transition="fade">
+        <h2>🎯 Skills Assessment</h2>
+        <div style="text-align:center;margin:20px 0"><img   src="/assets/graphics/skills-radar.svg" style="max-width:700px;width:100%"></div>
+        <aside class="notes">Use this skills radar to assess your team's AI readiness across key dimensions. Identify gaps and prioritize training investments accordingly.</aside>
+      </section>
+
+      <!-- SLIDE 32: Key Takeaways -->
+      <section data-transition="fade">
+        <h2>✅ Key Takeaways</h2>
+        <div class="bg-card" style="background:#1a1400;color:#fef3c7;border-left:4px solid #f59e0b;">
+          <ul>
+            <li   >✅ Assess maturity honestly — your lowest dimension is your bottleneck</li>
+            <li   >✅ Quantify ROI with three buckets: savings, productivity, revenue</li>
+            <li   >✅ Default to buy → build hybrid: rent foundations, own the application layer</li>
+            <li   >✅ Change management > technology — use Kotter's framework</li>
+            <li   >✅ Speak executive language: business outcomes, not technical architecture</li>
+            <li   >✅ 30/60/90 roadmap with KPIs creates accountability and momentum</li>
+            <li   >✅ Start measuring from day one — baselines make or break your ROI story</li>
+          </ul>
+        </div>
+        <aside class="notes">If students remember one thing from this module, it should be this: AI strategy is about people and processes, not technology. The organizations winning with AI in 2026 aren't the ones with the best models — they're the ones with the best change management, clearest metrics, and strongest executive alignment.</aside>
+      </section>
+
+      <!-- SLIDE 33: Lab Preview -->
+      <section>
+        <h2>🔬 Lab Preview</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;">
+          <h3>Lab 10: Enterprise AI Strategy Workshop</h3>
+          <ul>
+            <li  >Complete a full maturity assessment for a simulated enterprise</li>
+            <li class="fragment fade-right"  >Build an ROI model with sensitivity analysis in Python</li>
+            <li  >Create a build-vs-buy decision matrix for 5 AI use cases</li>
+            <li  >Draft and present an executive one-pager to classmates</li>
+            <li  >Develop a 90-day roadmap with KPI tracking dashboard</li>
+          </ul>
+          <p><strong>Duration:</strong> 2 hours | <strong>Deliverable:</strong> Complete AI strategy package</p>
+        </div>
+        <aside class="notes">The lab is designed as a workshop where students work in teams of 3-4 playing different roles: AI lead, business sponsor, finance analyst, and change management lead. Each team presents their strategy to the class at the end, simulating a board presentation.</aside>
+      </section>
+
+      <!-- SLIDE 34: Resources -->
+      <section>
+        <h2>📚 Resources</h2>
+        <div class="cols">
+          <div class="bg-card" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);color:#e0f2fe;border:none;">
+            <h3>Essential Reading</h3>
+            <ul>
+              <li  >McKinsey: "The State of AI in 2025"</li>
+              <li class="fragment fade-right"  >Harvard Business Review: "Building the AI-Powered Organization"</li>
+              <li  >Gartner: "AI Maturity Model Framework"</li>
+              <li class="fragment fade-up"  >Kotter: "Leading Change" (adapted for digital transformation)</li>
+            </ul>
+          </div>
+          <div class="bg-card" style="background:linear-gradient(135deg,#581c87,#7c3aed);color:#f3e8ff;border:none;">
+            <h3>Tools & Templates</h3>
+            <ul>
+              <li class="fragment fade-up"  >AI ROI Calculator (course GitHub repo)</li>
+              <li  >Maturity Assessment Spreadsheet</li>
+              <li  >Executive One-Pager Template (Notion/Google Docs)</li>
+              <li  >KPI Dashboard Starter Kit (Python + Streamlit)</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">The McKinsey State of AI report is updated annually and is the gold standard for benchmarking data. The HBR article specifically addresses the organizational challenges we covered in the change management section. All templates are available in the course GitHub repository.</aside>
+      </section>
+
+      <!-- SLIDE 35: Q&A -->
+      <section data-transition="fade">
+        <h2>❓ Questions & Discussion</h2>
+        <div class="bg-card" style="background:linear-gradient(135deg,#064e3b,#047857);color:#d1fae5;border:none;">
+          <h3>Discussion Prompts</h3>
+          <ul>
+            <li   >Where does your organization sit on the maturity model? What's blocking the next level?</li>
+            <li   >What's the most compelling AI use case in your industry right now?</li>
+            <li   >Have you experienced AI resistance? What worked to overcome it?</li>
+          </ul>
+        </div>
+        <p class="text-teal">Next Module: LLM Integration Patterns →</p>
+        <div class="footer-logo">IT Security Labs © 2026</div>
+        <aside class="notes">Use the discussion prompts to draw out real-world experiences from students. The most valuable learning in strategy modules comes from peer sharing. Allow 10-15 minutes for open discussion. If students are quiet, start with a show of hands on maturity level to break the ice.</aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1920,
+      height: 1080,
+      margin: 0.02,
+      minScale: 0.1,
+      maxScale: 2.0,
+      center: false,
+      display: 'flex'
+    });
+    hljs.highlightAll();;;
+  </script>
+</body>
+</html>

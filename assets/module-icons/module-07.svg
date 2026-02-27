@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1b2a" />
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#1b98e0" stroke-width="3" />
+  
+  <!-- Icon: Pipeline with Guardrails -->
+  <line x1="50" y1="100" x2="150" y2="100" stroke="#00d4aa" stroke-width="4" />
+  <rect x="80" y="90" width="5" height="20" fill="#e94560" />
+  <rect x="115" y="90" width="5" height="20" fill="#e94560" />
+
+  <text x="100" y="170" font-family="Arial" font-size="10" fill="#888" text-anchor="middle">M07</text>
+</svg>
