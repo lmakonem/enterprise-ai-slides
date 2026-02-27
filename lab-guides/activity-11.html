@@ -1,1 +1,103 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>activity-11</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Activity 11: LLM Integration Patterns</title><style>body{font-family:Inter,Arial,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.7;padding:24px 32px 60px;max-width:860px;margin:0 auto}h1{color:#0d9488;border-bottom:2px solid #1e3a5f;padding-bottom:8px;margin:24px 0 12px}h2{color:#38bdf8;margin:20px 0 8px}h3{color:#7dd3fc;margin:16px 0 6px}p,li{color:#cbd5e1;margin:6px 0}ul,ol{padding-left:24px}strong{color:#e2e8f0}code{background:#1e293b;color:#38bdf8;padding:2px 6px;border-radius:4px;font-size:.88em}pre{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}pre code{background:none;color:#e2e8f0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}th{background:#1e3a5f;color:#38bdf8;padding:9px 12px;border:1px solid #334155;text-align:left}td{padding:8px 12px;border:1px solid #334155;color:#cbd5e1;vertical-align:top}tr:nth-child(even) td{background:#0f1f35}blockquote{border-left:4px solid #0d9488;padding:10px 16px;background:#0f1f35;margin:12px 0;color:#94a3b8;font-style:italic}hr{border:none;border-top:1px solid #1e3a5f;margin:24px 0}</style></head><body>
+<h1>Activity 11: LLM Integration Patterns in Practice</h1>
+<p><strong>Module 11: LLM Integration Patterns</strong></p>
+<h2>Time Estimate</h2><p>45 Minutes</p>
+<h2>Objective</h2>
+<p>Design and document an LLM integration architecture for a real enterprise use case. You will choose an integration pattern (RAG, Fine-tuning, or Agents), define the data flow, and map out the security and governance controls required.</p>
+<h2>Tools Required</h2>
+<ul>
+  <li>A text editor or document tool</li>
+  <li>Access to OpenAI API documentation (free account)</li>
+  <li>Optional: LangChain quickstart for hands-on coding</li>
+</ul>
+<hr/>
+<h2>Part 1: Choose Your Integration Pattern (10 min)</h2>
+<table>
+  <thead><tr><th>Pattern</th><th>Best For</th><th>Key Components</th><th>Complexity</th></tr></thead>
+  <tbody>
+    <tr><td><strong>RAG</strong></td><td>Q&amp;A over internal docs, knowledge bases</td><td>Vector DB, Embeddings, LLM</td><td>Medium</td></tr>
+    <tr><td><strong>Fine-tuning</strong></td><td>Consistent tone/style, domain-specific tasks</td><td>Training data, Model API, Evaluation</td><td>High</td></tr>
+    <tr><td><strong>Agents / Tool Use</strong></td><td>Multi-step workflows, API orchestration</td><td>LLM, Tools, Memory, Planner</td><td>High</td></tr>
+  </tbody>
+</table>
+<h3>Reflection Questions</h3>
+<ol>
+  <li>What enterprise problem are you solving?</li>
+  <li>Which pattern fits best and why?</li>
+  <li>What data does the LLM need access to? Is it sensitive?</li>
+</ol>
+<hr/>
+<h2>Part 2: Map the Data Flow (20 min)</h2>
+<p>Sketch the end-to-end data flow for your chosen pattern.</p>
+<h3>RAG Architecture</h3>
+<pre><code>User Query
+    |
+[Query Embedding]  &lt;-- Embedding Model
+    |
+[Vector Store]     &lt;-- Pre-indexed Documents
+    |  Top-K results
+[Prompt Builder]   &lt;-- System Prompt + Context + Query
+    |
+[LLM API]          &lt;-- GPT-4o / Claude / Gemini
+    |
+[Response]         --&gt; UI / Application Layer
+    |
+[Audit Log]        &lt;-- query, context, response, user ID, timestamp</code></pre>
+<h3>Agents Architecture</h3>
+<pre><code>User Request
+    |
+[LLM Planner]      &lt;-- Decides which tools to call
+    |
+    |--&gt; [Tool: Search API]
+    |--&gt; [Tool: Database Query]
+    |--&gt; [Tool: Email / Calendar]
+    |
+[LLM Synthesizer]  &lt;-- Combines tool outputs
+    |
+[Response + Actions]
+    |
+[Human-in-the-Loop checkpoint?]</code></pre>
+<h3>Your Task</h3>
+<ul>
+  <li>Sketch your chosen architecture (diagram or written description)</li>
+  <li>Label each component: purpose, technology, data type handled</li>
+  <li>Identify where PII or sensitive data could be exposed</li>
+</ul>
+<hr/>
+<h2>Part 3: Security &amp; Governance Checklist (15 min)</h2>
+<table>
+  <thead><tr><th>Control Area</th><th>Question</th><th>Your Answer</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Data Privacy</strong></td><td>Does any PII reach the LLM API?</td><td><em>(fill in)</em></td></tr>
+    <tr><td><strong>Access Control</strong></td><td>Who can query this system?</td><td><em>(fill in)</em></td></tr>
+    <tr><td><strong>Prompt Injection</strong></td><td>Can a user manipulate the system prompt?</td><td><em>(fill in)</em></td></tr>
+    <tr><td><strong>Output Validation</strong></td><td>Is the LLM output validated before use?</td><td><em>(fill in)</em></td></tr>
+    <tr><td><strong>Cost Controls</strong></td><td>Is there rate limiting or token budgeting?</td><td><em>(fill in)</em></td></tr>
+    <tr><td><strong>Audit Trail</strong></td><td>Are queries and responses logged?</td><td><em>(fill in)</em></td></tr>
+    <tr><td><strong>Model Fallback</strong></td><td>What happens if the API is unavailable?</td><td><em>(fill in)</em></td></tr>
+  </tbody>
+</table>
+<hr/>
+<h2>Deliverables</h2>
+<ul>
+  <li>Architecture diagram or written description with labeled components</li>
+  <li>Completed security and governance checklist</li>
+  <li>1-paragraph summary: "We chose [pattern] because... The biggest risk is... We mitigate it by..."</li>
+</ul>
+<h2>Bonus Challenge</h2>
+<p>Implement a minimal RAG prototype using LangChain:</p>
+<pre><code>pip install langchain openai chromadb tiktoken
+
+from langchain.chat_models import ChatOpenAI
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.chains import RetrievalQA
+
+docs = ["AI governance requires clear ownership.",
+        "Data minimization reduces LLM risk.",
+        "Human review is essential for high-stakes outputs."]
+
+vectorstore = Chroma.from_texts(docs, OpenAIEmbeddings())
+qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), retriever=vectorstore.as_retriever())
+print(qa.run("What reduces LLM risk?"))</code></pre>
+</body></html>
